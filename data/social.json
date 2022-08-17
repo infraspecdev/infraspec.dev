@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Github",
+        "link": "https://github.com/infraspec_dev",
+        "image": "images/social/github.svg"
+    },
+    {
+        "name": "Twitter",
+        "link": "https://twitter.com/infraspec_dev",
+        "image": "images/social/twitter.svg"
+    }
+]
