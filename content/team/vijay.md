@@ -3,7 +3,7 @@ title: 'Vijay Dhama'
 date: 2022-08-17
 draft: false
 image: 'images/team/vijay-profile.png'
-jobtitle: 'Co-Founder'
+jobtitle: 'Founder'
 weight: 1
 promoted: false
 ---

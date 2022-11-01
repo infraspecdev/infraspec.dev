@@ -3,7 +3,7 @@ title: 'Chetan Kothari'
 date: 2022-08-17
 draft: false
 image: 'images/team/chetan-profile.png'
-jobtitle: 'Co-Founder'
+jobtitle: 'Founder'
 weight: 3
 promoted: false
 ---

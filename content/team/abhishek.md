@@ -3,7 +3,7 @@ title: 'Abhishek Sangwan'
 date: 2022-08-17
 draft: false
 image: 'images/team/abhishek-profile.png'
-jobtitle: 'Co-Founder'
+jobtitle: 'Founder'
 weight: 2
 promoted: false
 ---
