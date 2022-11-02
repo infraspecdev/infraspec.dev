@@ -1,6 +1,6 @@
 ---
 title: 'Homepage'
-meta_title: 'InfraSpec'
+meta_title: 'Infraspec'
 description: "Cloud Native Infrastructure Simplified"
 intro_image: "images/illustrations/pointing.svg"
 intro_image_absolute: true

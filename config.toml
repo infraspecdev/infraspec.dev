@@ -2,7 +2,7 @@ baseURL = "/"
 themesDir = "themes"
 theme = "hugo-serif-theme"
 languageCode = "en-us"
-title = "InfraSpec"
+title = "Infraspec"
 
 [module]
   [module.hugoVersion]
@@ -21,10 +21,10 @@ title = "InfraSpec"
 
   [params.logo]
     mobile = "images/logo/infraspec-logo-mobile.svg"
-    mobile_height = "36px"
+    mobile_height = "28px"
     desktop = "images/logo/infraspec-logo.svg"
-    desktop_height = "36px"
-    alt = "InfraSpec - Cloud Native Infrastructure Simplified"
+    desktop_height = "28px"
+    alt = "Infraspec - Cloud Native Infrastructure Simplified"
 
   [params.fonts]
     # sets the google font link in layouts/partials/google-fonts.html
@@ -51,7 +51,7 @@ title = "InfraSpec"
     summary_large_truncate = 120 # How many characters to include in the summary of the team bios (large layout) before truncating
 
   [params.footer]
-    copyright_text = '© 2022 InfraSpec - Delivering high impact transformational work'
+    copyright_text = '© 2022 Infraspec - Delivering high impact transformational work'
 
 [menu]
   # Main Menu
