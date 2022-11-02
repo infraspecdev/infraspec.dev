@@ -21,7 +21,7 @@ title = "Infraspec"
 
   [params.logo]
     mobile = "images/logo/infraspec-logo-mobile.svg"
-    mobile_height = "28px"
+    mobile_height = "32px"
     desktop = "images/logo/infraspec-logo.svg"
     desktop_height = "28px"
     alt = "Infraspec - Cloud Native Infrastructure Simplified"
