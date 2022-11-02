@@ -1,12 +1,12 @@
 [
     {
         "name": "Github",
-        "link": "https://github.com/infraspec_dev",
+        "link": "https://github.com/infraspecdev",
         "image": "images/social/github.svg"
     },
     {
         "name": "Twitter",
-        "link": "https://twitter.com/infraspec_dev",
+        "link": "https://twitter.com/infraspecdev",
         "image": "images/social/twitter.svg"
     }
 ]
