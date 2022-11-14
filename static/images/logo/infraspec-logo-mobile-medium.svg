@@ -41,39 +41,39 @@
     <g
        id="g204-6"
        transform="matrix(0.0457061,0,0,-0.0457061,113.96498,266.83853)"
-       style="fill:#22577a;fill-opacity:1"
+       style="fill:#002644;fill-opacity:1"
        inkscape:export-filename="g204.svg"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300">
       <g
          id="g206-5"
          clip-path="url(#clipPath210-4)"
-         style="fill:#22577a;fill-opacity:1">
+         style="fill:#002644;fill-opacity:1">
         <g
            id="g212-9"
            transform="translate(253.3193,224.9719)"
-           style="fill:#22577a;fill-opacity:1">
+           style="fill:#002644;fill-opacity:1">
           <path
              d="m 0,0 c -83.542,0 -151.51,67.97 -151.51,151.511 h 60.462 c 0,-50.204 40.843,-91.048 91.048,-91.048 25.035,0 48.374,9.951 65.709,28.027 l 170.578,180.564 c 28.735,32.192 69.91,50.641 113.053,50.641 83.541,0 151.51,-67.968 151.51,-151.51 0,-83.541 -67.969,-151.51 -151.51,-151.51 -39.029,0 -76.098,14.808 -104.381,41.694 l 41.654,43.819 c 16.998,-16.155 39.274,-25.051 62.727,-25.051 50.204,0 91.048,40.844 91.048,91.048 0,50.205 -40.844,91.048 -91.048,91.048 -26.028,0 -50.866,-11.179 -68.151,-30.668 L 280.548,227.86 109.501,46.8 C 80.494,16.561 41.662,0 0,0"
-             style="fill:#22577a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002644;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path214-5" />
         </g>
         <g
            id="g216-4"
            transform="translate(166.4009,463.7507)"
-           style="fill:#22577a;fill-opacity:1">
+           style="fill:#002644;fill-opacity:1">
           <path
              d="m 0,0 c 0,-18.537 -15.027,-33.564 -33.564,-33.564 -18.537,0 -33.563,15.027 -33.563,33.564 0,18.537 15.026,33.563 33.563,33.563 C -15.027,33.563 0,18.537 0,0"
-             style="fill:#22577a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002644;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path218-9" />
         </g>
         <g
            id="g220-1"
            transform="translate(338.1777,463.7507)"
-           style="fill:#22577a;fill-opacity:1">
+           style="fill:#002644;fill-opacity:1">
           <path
              d="m 0,0 c 0,-18.537 -15.027,-33.564 -33.564,-33.564 -18.537,0 -33.564,15.027 -33.564,33.564 0,18.537 15.027,33.563 33.564,33.563 C -15.027,33.563 0,18.537 0,0"
-             style="fill:#22577a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="fill:#002644;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path222-7" />
         </g>
       </g>
