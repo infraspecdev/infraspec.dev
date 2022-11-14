@@ -33,7 +33,7 @@ title = "Infraspec"
     base = "Titillium Web"
 
   [params.colors]
-    primary = "#22577A"
+    primary = "#002644"
     black = "#2f2f41"
     white = "#ffffff"
     white_offset = "#f6f7ff"
