@@ -8,5 +8,10 @@
         "name": "Twitter",
         "link": "https://twitter.com/infraspecdev",
         "image": "images/social/twitter.svg"
+    },
+    {
+        "name": "Linkedin",
+        "link": "https://www.linkedin.com/company/infraspecdev",
+        "image": "images/social/linkedin.svg"
     }
 ]
