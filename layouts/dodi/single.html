@@ -1,0 +1,39 @@
+{{ define "body_classes" }}page-default-single{{ end }}
+
+{{ define "main" }}
+<div class="dodi d-flex flex-column align-items-center container pb-3 pt-3 pt-md-10 pb-md-10">
+  <div class="justify-content-start">
+    <div class="dodi-single d-flex flex-column">
+      {{ if .Params.image }}
+      <div class="d-flex justify-content-center align-items-center dodi-image mb-2">
+        <div class="dodi-image-bg"></div>
+        <img alt="Photo of {{ .Title }}" class="img-fluid" src="{{ .Params.image | relURL }}" />
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="justify-content-start">
+    <div class="d-flex align-items-center">
+      <div class="dodi-single">
+        <div class="d-flex flex-column align-items-center dodi-meta">
+          <h1 class="dodi-name mb-1">👋  Hi!</h1>
+          <h1 class="dodi-name">I'm <span class="mark">{{ .Title }}</span></h1>
+          <p class="mt-1">It was nice catching up with at DevOpsDays India.</p>
+          <p>I would like to stay connected with you.</p>
+          <div class="d-flex flex-column align-items-center mt-2">
+            {{ if .Params.email }}
+            <div><a class="d-flex align-items-center" href="mailto:{{ .Params.email }}"><img class="social" src="/images/social/gmail-dark.svg" title="email" alt="email" />{{ .Params.email }}</a></div>
+            {{ end }}
+            {{ if .Params.twitterhandle }}
+            <div><a class="d-flex align-items-center" target="_blank" rel="noreferrer" href="https://twitter.com/{{ .Params.twitterhandle }}"><img class="social" src="/images/social/twitter-dark.svg" title="twitter" alt="twitter" />{{ .Params.twitterhandle }}</a></div>
+            {{ end }}
+            {{ if .Params.linkedinurl }}
+            <div><a class="d-flex align-items-center" target="_blank" rel="noreferrer" href="{{ .Params.linkedinurl }}"><img class="social" src="/images/social/linkedin-dark.svg" title="Linkedin" alt="Linkedin" />Linkedin</a></div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
