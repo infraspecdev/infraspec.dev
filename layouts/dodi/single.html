@@ -25,7 +25,7 @@
             <div><a class="d-flex align-items-center" href="mailto:{{ .Params.email }}"><img class="social" src="/images/social/gmail-dark.svg" title="email" alt="email" />{{ .Params.email }}</a></div>
             {{ end }}
             {{ if .Params.twitterhandle }}
-            <div><a class="d-flex align-items-center" target="_blank" rel="noreferrer" href="https://twitter.com/{{ .Params.twitterhandle }}"><img class="social" src="/images/social/twitter-dark.svg" title="twitter" alt="twitter" />{{ .Params.twitterhandle }}</a></div>
+            <div><a class="d-flex align-items-center" target="_blank" rel="noreferrer" href="https://twitter.com/{{ .Params.twitterhandle }}"><img class="social" src="/images/social/twitter-dark.svg" title="twitter" alt="twitter" />@{{ .Params.twitterhandle }}</a></div>
             {{ end }}
             {{ if .Params.linkedinurl }}
             <div><a class="d-flex align-items-center" target="_blank" rel="noreferrer" href="{{ .Params.linkedinurl }}"><img class="social" src="/images/social/linkedin-dark.svg" title="Linkedin" alt="Linkedin" />Linkedin</a></div>
