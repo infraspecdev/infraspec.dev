@@ -12,8 +12,8 @@ description = "Infraspec is an engineering consulting company that provides expe
 
 [params]
   # In most cases you will only want to set the google_analytics_id OR the google_tag_manager_id. If you have Google Analytics included in your GTM tags don't put your GA ID here. Otherwise your data might be useless.
-  google_analytics_id = ""
-  google_tag_manager_id = ""
+  google_analytics_id = "G-LWW22W6FQM"
+  google_tag_manager_id = "GT-WBLRZ4P"
 
   [params.homepage]
     show_contact_box = true     # show / hide the contaxt box on the homepage
