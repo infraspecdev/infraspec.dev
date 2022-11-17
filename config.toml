@@ -3,6 +3,7 @@ themesDir = "themes"
 theme = "hugo-serif-theme"
 languageCode = "en-us"
 title = "Infraspec"
+description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, backend infrastructure, platform engineering, and devops. Our team has extensive experience working with large scale distributed systems and we provide services ranging from architecture design to implementation, and monitoring."
 
 [module]
   [module.hugoVersion]
