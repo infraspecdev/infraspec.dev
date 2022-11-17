@@ -3,7 +3,6 @@ themesDir = "themes"
 theme = "hugo-serif-theme"
 languageCode = "en-us"
 title = "Infraspec"
-description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, backend infrastructure, platform engineering, and devops. Our team has extensive experience working with large scale distributed systems and we provide services ranging from architecture design to implementation, and monitoring."
 
 [module]
   [module.hugoVersion]
@@ -44,6 +43,7 @@ description = "Infraspec is an engineering consulting company that provides expe
     meta_twitter_site = "@infraspec_dev"
     meta_twitter_creator = "@infraspec_dev"
     meta_og_image = ""
+    meta_description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, backend infrastructure, platform engineering, and devops. Our team has extensive experience working with large scale distributed systems and we provide services ranging from architecture design to implementation, and monitoring."
 
   [params.services]
     summary_truncate = 120 # How many characters to include in the summary of the team bios (large layout) before truncating
