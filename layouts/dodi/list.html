@@ -12,7 +12,12 @@
   ]
   function startCrossWord() {
     const crosswordContentDiv = document.getElementById('crossword-content');
-    const puzzleId = puzzleIds[Math.floor(Math.random() * puzzleIds.length)];
+    let puzzleId = localStorage.getItem('puzzleId');
+    if (!(!!puzzleId)) {
+      puzzleId = puzzleIds[Math.floor(Math.random() * puzzleIds.length)];
+      localStorage.setItem('puzzleId', puzzleId);
+    }
+
     crosswordContentDiv.innerHTML = `<div><h1></h1><iframe src='${puzzleURL}${puzzleId}'></iframe></div>`;
   }
 </script>
