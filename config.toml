@@ -58,9 +58,13 @@ title = "Infraspec"
 [menu]
   # Main Menu
   [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 1
+  [[menu.main]]
     name = "Team"
     url = "/team/"
-    weight = 1
+    weight = 2
 
   # Footer Menu
   [[menu.footer]]
