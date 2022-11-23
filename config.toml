@@ -43,7 +43,7 @@ title = "Infraspec"
     meta_twitter_site = "@infraspec_dev"
     meta_twitter_creator = "@infraspec_dev"
     meta_og_image = ""
-    meta_description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, backend infrastructure, platform engineering, and devops. Our team has extensive experience working with large scale distributed systems and we provide services ranging from architecture design to implementation, and monitoring."
+    meta_description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, infrastructure automation, platform engineering, and DevOps."
     meta_keywords = "infraspec, infraspec.dev, infraspec bangalore, infraspec bengaluru, infraspec consulting, gaussb labs, cloud services, engineering consulting, tech consulting in bangalore, infrastructure automation, devops, devops consulting, infrastructure services, manage infrastructure"
 
   [params.services]
