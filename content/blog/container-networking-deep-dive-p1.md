@@ -153,4 +153,7 @@ voila 🎊😃, you made it.
 You just learned about network namespaces and about the elements that constitute container networking. You also set up the container networking 
 from scratch using Linux commands. Both container1 and the host are able to send packets to each other.
 
-In part 2, we will see how we can have multiple containers running on a single host communicate with each other.
+In [part 2](/blog/container-networking-deep-dive-p2/), we will see how we can have multiple containers running on a single host communicate with each other.
+
+## Other related articles
+- [Container Networking Deep Dive - Part 2](/blog/container-networking-deep-dive-p2/)

@@ -15,7 +15,7 @@ In part 2 of this series, we will demystify how multiple containers running on t
 
 ## Setting up the multiple containers on the host
 
-In part1, we had single container running on the host, and it was able to communicate with the host. The
+In [part 1](/blog/container-networking-deep-dive-p1/), we had single container running on the host, and it was able to communicate with the host. The
 implementation of it is shown below.
 
 ![Single container host](/images/blog/container-networking-deep-dive-p2/single-container-host.png)
@@ -76,7 +76,7 @@ vagrant ssh
 
 ## Set up container networking from scratch using Linux commands
 
-In part1 of this series, we already saw how to create network namespaces, add routes, run command inside network namespace etc. In this 
+In part 1 of this series, we already saw how to create network namespaces, add routes, run command inside network namespace etc. In this 
 I will quickly run the commands. We will focus more on the bridge part to help you understand how containers are attached to it and how packets are sent via it.
 
 1. To create two network namespace container1 and container2
@@ -155,11 +155,14 @@ bridge(172.16.0.1) as the default gateway to forward all packets and the out int
 The ping to internet did not succeed!!   
 Give yourself some time to think why cannot the containers reach to the internet....  
 \
-**In part3, we will see how the containers can connect to the internet.**
+**In part 3, we will see how the containers can connect to the internet.**
 
 ## Conclusion
 In this, you learned how multiple containers running on a single host can communicate with each other.
 You also learned about linux bridges and created a linux bridge to attach containers to it.
 
-In part3, we will try to resolve the connection between the containers and the internet. You will learn about
+In part 3, we will try to resolve the connection between the containers and the internet. You will learn about
 iptables, network address translation etc. 
+
+## Other related articles
+   - [Container Networking Deep Dive - Part 1](/blog/container-networking-deep-dive-p1/)
