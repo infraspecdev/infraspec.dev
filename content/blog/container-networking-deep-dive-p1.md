@@ -28,6 +28,9 @@ vagrant up
 vagrant ssh
 ```
 
+> **Note:** All the commands in the following articles are run with root privileges. Either you can add `sudo` before each command or switch to different a user with root
+> privileges by running `sudo su`
+
 ## Isolating containers with network namespaces
 Linux [namespaces](https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work/) are one of the technologies that make up containers
 and allow process isolation. 
