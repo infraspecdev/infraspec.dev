@@ -74,6 +74,9 @@ vagrant up
 vagrant ssh
 ```
 
+> **Note:** All the commands in the following articles are run with root privileges. Either you can add `sudo` before each command or switch to different a user with root
+> privileges by running `sudo su`
+
 ## Set up container networking from scratch using Linux commands
 
 In part 1 of this series, we already saw how to create network namespaces, add routes, run command inside network namespace etc. In this 
