@@ -30,9 +30,9 @@ This lets you consolidate your routing rules into a single resource. For example
 
 A ClusterIP service is the default service. It gives you a service inside your cluster that other apps inside your cluster can access. There is no external access.
 
-*The YAML for ClusterIP service looks like this:*
-
 ![ClusterIP](/images/blog/setting-up-ingress-on-eks/cluster-ip.png)
+
+*The YAML for ClusterIP service looks like this:*
 
 ```shell
 apiVersion: v1
@@ -76,8 +76,6 @@ A NodePort service is the most primitive way to get external traffic directly to
 When we create a Service of type NodePort, Kubernetes gives us a nodePort value. Then the Service is accessible by using the IP address of any node along with the nodePort value. In other words, when a user sets the Service type field to NodePort, the Kubernetes master allocates a static port from a range, and each Node will proxy that port (the same port number on every Node) into our Service.
 
 ![NodePort](/images/blog/setting-up-ingress-on-eks/node-port.png)
-
-![Exposing Services NodePort](/images/blog/setting-up-ingress-on-eks/exposing-services-nodeport.png)
 
 *The YAML for NodePort service looks like this:*
 
@@ -127,13 +125,11 @@ A LoadBalancer service is the standard way to expose a service to the internet.
 
 In case of AWS -- will create an AWS Load Balancer, by default Classic type, which will proxy traffic to all ЕС2 instances of the TargetGroup tied to this Load Balancer, and then via  `NodePort` Service -- to all the pods.
 
-`LoadBalancer` type provides a Public IP address or DNS name to which the external users can connect. The traffic flows from the LoadBalancer to a mapped service on a designated port, which eventually forwards it to the healthy pods. Note that LoadBalancers doesn't have a direct mapping to the pods. **
-
-*The YAML for LoadBalancer service looks this:*
+`LoadBalancer` type provides a Public IP address or DNS name to which the external users can connect. The traffic flows from the LoadBalancer to a mapped service on a designated port, which eventually forwards it to the healthy pods. Note that LoadBalancers doesn't have a direct mapping to the pods.
 
 ![LoadBalancer](/images/blog/setting-up-ingress-on-eks/load-balancer.png)
 
-![LoadBalancer-multiple-nodes](/images/blog/setting-up-ingress-on-eks/load-balancer-2.svg)
+*The YAML for LoadBalancer service looks this:*
 
 ```shell
 apiVersion: v1
@@ -184,11 +180,13 @@ Unlike all the above examples, Ingress is actually NOT a dedicated Service. Inst
 
 It just describes a set of rules for the Kubernetes Ingress Controller to create a Load Balancer, its Listeners, and routing rules for them.
 
-An Ingress does not expose arbitrary ports or protocols. Exposing services other than HTTP and HTTPS to the internet typically uses a service of type [Service.Type=NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) or [Service.Type = LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer).
+An Ingress does not expose arbitrary ports or protocols. Exposing services other than HTTP and HTTPS to the internet typically uses a service of type [Service.Type=NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) or [Service.Type=LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer).
 
 ![Ingress](/images/blog/setting-up-ingress-on-eks/ingress.png)
 
 ![Ingress managed LB](/images/blog/setting-up-ingress-on-eks/ingress-managed-lb.png)
+
+_image source: https://kubernetes.io/docs/concepts/services-networking/ingress/_
 
 In order for the Ingress resource to work, the cluster must have an ingress controller running. Only creating an Ingress resource has no effect.
 
@@ -395,6 +393,8 @@ The Ingress controller provisions an implementation-specific load balancer that 
 Name-based virtual hosts support routing HTTP traffic to multiple host names at the same IP address.
 
 ![Name based virtual hosting](/images/blog/setting-up-ingress-on-eks/name-based-virtual-hosting.png)
+
+image source: https://kubernetes.io/docs/concepts/services-networking/ingress/#name-based-virtual-hosting
 
 The following Ingress tells the backing load balancer to route requests based on the Host header.
 
