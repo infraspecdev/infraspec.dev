@@ -1,6 +1,4 @@
 baseURL = "/"
-themesDir = "themes"
-theme = "hugo-serif-theme"
 languageCode = "en-us"
 title = "Infraspec"
 
