@@ -1,6 +1,6 @@
 ---
 title: "Office/Home Lab Internet Failover Setup"
-draft: true
+draft: false
 featured: true
 weight: 1
 ---
