@@ -35,6 +35,27 @@
     {{ with .Site.Params.seo.meta_twitter_creator }}<meta name="twitter:creator" content="{{ . }}"/>{{ end }}
   {{ end }}
 
+  <!-- Schema - "Organization" START -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Infraspec",
+      "description": "We are a team of engineers helping you navigate your daily infrastructure needs. Delivering high-impact transformational work. Focusing on outcome over output.",
+      "image": "https://www.infraspec.dev/images/logo/infraspec-logo.svg",
+      "logo": "https://www.infraspec.dev/images/logo/infraspec-logo.svg",
+      "url": "https://infraspec.dev/",
+      "sameAs": ["https://twitter.com/infraspecdev","https://www.linkedin.com/company/infraspecdev"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No. 20, Ground Floor, 1st Main Rd, Domlur",
+        "addressLocality": "Bengaluru",
+        "postalCode": "560071",
+        "addressCountry": "India"
+      }
+    }
+  </script>
+  <!-- Schema - "Organization" END -->
 </head>
 
 <body class='page {{ block "body_classes" . }}{{ end }}'>
