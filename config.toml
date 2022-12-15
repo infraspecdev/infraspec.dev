@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://www.infraspec.dev/"
 languageCode = "en-us"
 title = "Infraspec"
 enableRobotsTXT = false
