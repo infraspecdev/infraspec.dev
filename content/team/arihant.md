@@ -6,6 +6,7 @@ image: 'images/team/arihant-profile.png'
 jobtitle: 'Software Engineer'
 weight: 5
 promoted: false
+name: 'arihant'
 ---
 
 Arihant love technology, so his work is nothing but his love. Someone said him writing good code is an art so he is on his journey to becoming that artist.

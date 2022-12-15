@@ -6,6 +6,7 @@ image: 'images/team/vijay-profile.png'
 jobtitle: 'Founder'
 weight: 1
 promoted: false
+name: 'vijay'
 ---
 
 Experienced engineer with background working as SRE following DevOps principles. Has spent considerable time in last years exploring and working on cloud native toolings with Docker, Kubernetes, CoreDNS, Istio, Prometheus. Has also worked on various configuration management tools like chef, ansible. Has experience working in programming languages like Ruby, golang and Java.

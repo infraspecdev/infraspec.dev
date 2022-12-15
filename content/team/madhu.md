@@ -6,6 +6,7 @@ image: 'images/team/madhu-profile.png'
 jobtitle: 'Office Operations'
 weight: 9
 promoted: false
+name: 'madhu'
 ---
 
 Helping the company run smoothly.

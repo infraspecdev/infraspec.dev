@@ -6,6 +6,7 @@ image: 'images/team/abhishek-profile.png'
 jobtitle: 'Founder'
 weight: 2
 promoted: false
+name: 'abhishek'
 ---
 
 Abhishek has worked with organization like Gojek and Swiggy in past and loves working on problems of distributed systems.
