@@ -1,6 +1,6 @@
 ---
 title: 'Infraspec'
-meta_title: "Infraspec | Technology Consulting | SRE | DevOps | Cloud Infra"
+meta_title: "Infraspec - Cloud Native Infrastructure & SRE Consulting"
 intro_image: "images/illustrations/pointing.svg"
 intro_image_absolute: true
 intro_image_hide_on_mobile: true
