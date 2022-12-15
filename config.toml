@@ -1,6 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Infraspec"
+enableRobotsTXT = false
 
 [module]
   [module.hugoVersion]
