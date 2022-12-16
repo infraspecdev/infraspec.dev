@@ -69,7 +69,10 @@ enableRobotsTXT = false
     name = "Team"
     url = "/team/"
     weight = 2
-
+  [[menu.main]]
+    name = "Consult"
+    url = "/consult/"
+    weight = 3
   # Footer Menu
   [[menu.footer]]
     name = "Home"
