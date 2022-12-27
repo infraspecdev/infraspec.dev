@@ -1,6 +1,6 @@
 ---
 title: "Setting up Ingress on EKS"
-date: 2022-11-19
+date: 2022-11-30
 draft: false
 featured: true
 weight: 1
