@@ -1,5 +1,5 @@
 ---
-title: "Setting up a lightweight k3s cluster on Raspberry Pi’s"
+title: "k3s cluster on Raspberry Pi’s"
 date: 2022-12-27
 draft: false
 featured: true
