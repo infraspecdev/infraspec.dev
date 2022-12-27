@@ -1,5 +1,6 @@
 ---
 title: "Office/Home Lab Internet Failover Setup"
+date: 2022-12-15
 draft: false
 featured: true
 weight: 1

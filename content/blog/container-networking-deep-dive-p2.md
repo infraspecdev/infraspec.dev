@@ -1,6 +1,6 @@
 ---
 title: "Container Networking Deep Dive - Part 2"
-date: 2022-11-19
+date: 2022-11-20
 draft: false
 featured: true
 weight: 1
