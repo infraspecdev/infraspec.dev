@@ -20,12 +20,14 @@ In this blog, I want to share my learnings and a step-by-step configuration setu
     
     These Raspberry Pi's were used as data nodes in our k3s cluster.
     
-2. For the control plane, we used an ODROID-H2 which had:
+2. For the control plane, we used an [ODROID-H2](https://www.hardkernel.com/shop/odroid-h2/) which had:
     - 32GB of RAM
     - 500GB SSD
-3. We also used a NETGEAR GS310TP 8 Port POE Switch, which allowed us to pass both electric power and data along the same twisted-pair Ethernet cabling, making it easier to set up and power multiple devices at once.
+3. We also used a [NETGEAR GS310TP 8 Port POE Switch](https://www.netgear.com/support/product/GS310TP.aspx#docs), which allowed us to pass both electric power and data along the same twisted-pair Ethernet cabling, making it easier to set up and power multiple devices at once.
 
-Our hardware setup was sufficient for running a k3s cluster for our internal toolings, although it may not have been top-of-the-line. The ODROID-H2 had enough RAM and SSD storage to serve as the control plane. Although the hardware specifications may not be impressive, they were adequate for our needs.
+If you want to know more about Power over Ethernet (PoE), check out this [whitepaper](https://www.saelig.com/supplier/amplicon/PoE-white-paper.pdf). 
+
+Our hardware setup was sufficient for running a k3s cluster for our internal toolings, although it may not have been top-of-the-line. The [ODROID-H2](https://www.hardkernel.com/shop/odroid-h2/) had enough RAM and SSD storage to serve as the control plane. Although the hardware specifications may not be impressive, they were adequate for our needs.
 
 ### 2. Setup Raspberry Pi headless
 
@@ -55,7 +57,7 @@ Setting up a Raspberry Pi headless (without a monitor and keyboard) is a conveni
    ![Write Image](/images/blog/lightweight-k3s-cluster-raspberry-pi/write_image.png)
 
 7. Once the image has been written, eject the SD card and insert it into your Raspberry Pi.
-8. Next, connect your Raspberry Pi to your router using Ethernet cables, and make sure to attach a power source. I'm using a NETGEAR GS310TP 8 Port POE Switch, which allows me to pass both electric power and data along the same twisted-pair Ethernet cabling. This makes it easier to set up and power multiple devices at once.
+8. Next, connect your Raspberry Pi to your router using Ethernet cables, and make sure to attach a power source. I'm using a [NETGEAR GS310TP 8 Port POE Switch](https://www.netgear.com/support/product/GS310TP.aspx#docs), which allows me to pass both electric power and data along the same twisted-pair Ethernet cabling. This makes it easier to set up and power multiple devices at once.
 
    ![Office Setup](/images/blog/lightweight-k3s-cluster-raspberry-pi/office_setup.png)
 
