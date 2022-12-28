@@ -156,3 +156,9 @@ ansible-playbook -i inventory.yaml site.yaml --extra-vars "ansible_sudo_pass=YOU
 ```
 
 This command will apply the playbook defined in **`site.yaml`** to the hosts defined in **`inventory.yaml`**.The **`--extra-vars`** flag is used to pass extra variables to the playbook at runtime. In this case, the **`ansible_sudo_pass`** variable is being set to **`YOUR_PASSWORD`**. This variable will be used by the playbook tasks to specify the password that should be used when running tasks that require **`sudo`** privileges. By running this playbook, we will be able to provision a k3s cluster on the specified hosts using Ansible.
+
+### Conclusion
+
+One of the key learnings from this project was the importance of automating the process of setting up this Kubernetes Cluster. By using ansible playbooks, I was able to streamline the configuration and deployment of the cluster, making it easier to set up and manage. If I had chosen to go the manual route of setting up a k3s cluster, rather than using automation tools like Ansible, the process would likely have been much more time-consuming and prone to errors.
+
+Another learning was the value of using a lightweight version of Kubernetes like k3s, which is specifically designed for edge computing and IoT scenarios. This allowed me to set up a cost-effective and efficient cluster that was well-suited for my needs.
