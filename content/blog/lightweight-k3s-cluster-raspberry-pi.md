@@ -13,6 +13,8 @@ In this blog, I want to share my learnings and a step-by-step configuration setu
 
 ### 1. Our Hardware Setup
 
+  ![My Collection](/images/blog/lightweight-k3s-cluster-raspberry-pi/collection.png)
+
 1. We used 6 Raspberry Pis in total, including:
     - 3 Raspberry Pi 4's with 4GB of RAM
     - 1 Raspberry Pi 4 with 8GB of RAM
