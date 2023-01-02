@@ -20,7 +20,7 @@ on Raspberry Pis.
 
 ### 1. Our Hardware Setup
 
-![My Collection](/images/blog/lightweight-k3s-cluster-raspberry-pi/collection.png)
+<img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/collection.png" alt="My Collection" width="500">
 
 1. We used 6 Raspberry Pis in total, including:
     - 3 Raspberry Pi 4's with 4GB of RAM
@@ -61,25 +61,25 @@ remotely. Headles setup doesn't have GUI attached to it.
 3. From the list of available operating systems, select "Raspberry Pi OS (other)", and then choose "Raspberry Pi OS
    Lite (64-bit)" and click "CHOOSE STORAGE".
 
-   ![Choose OS](/images/blog/lightweight-k3s-cluster-raspberry-pi/choose_os.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/choose_os.png" alt="Choose OS" width="500">
 
-   ![Choose Storage](/images/blog/lightweight-k3s-cluster-raspberry-pi/choose_storage.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/choose_storage.png" alt="Choose Storage" width="500">
 
 4. Select the SD card you want to use for your Raspberry Pi and click on the gear icon to configure Raspberry Pi.
 
-   ![Selectl SD Card](/images/blog/lightweight-k3s-cluster-raspberry-pi/select_sd_card.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/select_sd_card.png" alt="Selectl SD Card" width="500">
 
 5. Set up a unique hostname for every Raspberry Pi, like **`knode1`**, **`knode2`**, **`knode3`**, etc for each node.
    Activate ssh with
    password authentication and pass in your ssh credentials. It is recommended to provide the same username and password
    to all the Raspberry Pis as it becomes easier to run ansible on all the nodes.
 
-   ![Configure Pis](/images/blog/lightweight-k3s-cluster-raspberry-pi/configure_pis.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/configure_pis.png" alt="Configure Pis" width="500">
 
 6. Next, click "WRITE" and note that this will clear all the existing data on the SD card. Wait for the image to be
    written to the SD card. This may take a while, so grab a cup of tea and relax.
 
-   ![Write Image](/images/blog/lightweight-k3s-cluster-raspberry-pi/write_image.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/write_image.png" alt="Write Image" width="500">
 
 7. Once the image has been written, eject the SD card and insert it into your Raspberry Pi.
 8. Next, connect your Raspberry Pi to your router using Ethernet cables, and make sure to attach a power source. I'm
@@ -87,7 +87,7 @@ remotely. Headles setup doesn't have GUI attached to it.
    me to pass both electric power and data along the same twisted-pair Ethernet cabling. This makes it easier to set up
    and power multiple devices at once.
 
-   ![Office Setup](/images/blog/lightweight-k3s-cluster-raspberry-pi/office_setup.png)
+   <img src="/images/blog/lightweight-k3s-cluster-raspberry-pi/office_setup.png" alt="Office Setup" width="500">
 
 Note that, we'll continuously be working on improving our setup, and booting Raspberry Pis from network is one of the
 things we'll be working on in next iteration. Once it's done, we'll update this blog.
