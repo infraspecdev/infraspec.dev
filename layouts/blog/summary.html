@@ -3,6 +3,18 @@
     <h2 class="service-title">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
-    <p>{{ .Content | plainify | htmlUnescape | truncate 120 "…" }}</p>
+    <p>
+      {{ .Content | plainify | htmlUnescape | truncate 120 "…" }}
+      <br />
+      <span class="text-black-50">
+        {{ if .Params.AuthorId }}
+          {{ $authorId := .Params.AuthorId }}
+          {{ $authorDetails := (index .Site.Data.team $authorId) }}
+          {{ $author := $authorDetails.name }}
+          <span>by {{ $author }},</span>
+        {{ end }}
+        <span>on {{ time.Format "Jan 2, 2006" .Params.Date }}</span>
+      </span>
+    </p>
   </div>
 </div>
