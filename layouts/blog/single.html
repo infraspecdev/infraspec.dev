@@ -5,7 +5,9 @@
   <div class="row justify-content-start">
     <div class="col-12">
       <div class="service service-single">
+        {{ .Render "meta" }}
         <h1 class="title">{{.Title}}</h1>
+
         <div class="content">{{.Content}}</div>
       </div>
     </div>

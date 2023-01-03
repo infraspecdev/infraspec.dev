@@ -1,0 +1,38 @@
+{
+  "abhishek": {
+    "name": "Abhishek Sangwan",
+    "image": "images/team/abhishek-profile.png"
+  },
+  "arihant": {
+    "name" : "Arihant Hirawat",
+    "image": "images/team/arihant-profile.png"
+  },
+  "ashwini": {
+    "name" : "Ashwini Manoj",
+    "image": "images/team/ashwini-profile.png"
+  },
+  "chetan": {
+    "name" : "Chetan Kothari",
+    "image": "images/team/chetan-profile.png"
+  },
+  "madhu": {
+    "name" : "Madhu P",
+    "image": "images/team/madhu-profile.png"
+  },
+  "premdeep": {
+    "name" : "Premdeep Saini",
+    "image": "images/team/premdeep-profile.png"
+  },
+  "rajat": {
+    "name" : "Rajat Tomar",
+    "image": "images/team/rajat-profile.png"
+  },
+  "sanjay": {
+    "name" : "Sanjay Singh",
+    "image": "images/team/sanjay-profile.png"
+  },
+  "vijay": {
+    "name" : "Vijay Dhama",
+    "image": "images/team/vijay-profile.png"
+  }
+}

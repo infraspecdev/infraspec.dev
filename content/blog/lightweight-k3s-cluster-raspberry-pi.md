@@ -1,5 +1,6 @@
 ---
 title: "k3s cluster on Raspberry Pi’s"
+authorId: "rajat"
 date: 2023-01-02
 draft: false
 featured: true
