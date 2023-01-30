@@ -1,12 +1,7 @@
 [
   {
-    "title": "Cloud Native Infrastructure",
-    "description": "Get started with your Cloud Native journey.",
-    "image": "images/features/noun_The Process_1885341.svg"
-  },
-  {
-    "title": "Observability",
-    "description": "Improve observability of your application to debug issues faster.",
+    "title": "DevOps",
+    "description": "Improve team collaboration with DevOps culture adoption.",
     "image": "images/features/noun_The Process_1885341.svg"
   },
   {
@@ -15,33 +10,23 @@
     "image": "images/features/noun_The Process_1885341.svg"
   },
   {
-    "title": "API Gateway",
-    "description": "Add centralized ingress and security control for your services.",
-    "image": "images/features/noun_The Process_1885341.svg"
-  },
-  {
     "title": "Infrastructure as Code",
     "description": "Improve infrastructure visibility using automation.",
     "image": "images/features/noun_The Process_1885341.svg"
   },
   {
-    "title": "Kubernetes Consulting",
-    "description": "Fastrack your Kubernetes adoption journey.",
-    "image": "images/features/noun_The Process_1885341.svg"
-  },
-  {
-    "title": "DevOps",
-    "description": "Improve team collaboration with DevOps culture adoption.",
-    "image": "images/features/noun_The Process_1885341.svg"
-  },
-  {
-    "title": "Cloud Migration",
-    "description": "Move your existing infra to the Cloud or migrate between clouds.",
-    "image": "images/features/noun_The Process_1885341.svg"
-  },
-  {
     "title": "SRE Consulting",
     "description": "Maximizing uptime and reliability with SRE",
+    "image": "images/features/noun_The Process_1885341.svg"
+  },
+  {
+    "title": "Observability",
+    "description": "Improve observability of your application to debug issues faster.",
+    "image": "images/features/noun_The Process_1885341.svg"
+  },
+  {
+    "title": "Kubernetes Consulting",
+    "description": "Fastrack your Kubernetes adoption journey.",
     "image": "images/features/noun_The Process_1885341.svg"
   }
 ]

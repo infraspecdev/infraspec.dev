@@ -1,6 +1,6 @@
 ---
 title: 'Infraspec'
-meta_title: "Infraspec - Cloud Native Infrastructure & SRE Consulting"
+meta_title: "Infraspec - DevOps & SRE Consulting"
 intro_image: "images/illustrations/pointing.svg"
 intro_image_absolute: true
 intro_image_hide_on_mobile: true
@@ -9,6 +9,6 @@ sitemap:
     priority: 1
 ---
 
-# Cloud Native Infrastructure Simplified
+# Your Infrastructure and Reliability partner
 
-We are team of engineers helping you navigate your daily infrastructure needs. Delivering high impact transformational work. Focusing on outcome over output.
+We are team of engineers helping you navigate your daily DevOps and SRE needs. Delivering high impact transformational work. Focusing on outcome over output.
