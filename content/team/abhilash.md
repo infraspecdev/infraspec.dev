@@ -4,7 +4,7 @@ date: 2023-06-01
 draft: false
 image: 'images/team/abhilash-profile.jpg'
 jobtitle: 'Principal Engineer'
-weight: 10
+weight: 9
 promoted: false
 name: 'abhilash'
 ---
