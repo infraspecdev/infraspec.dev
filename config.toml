@@ -69,6 +69,10 @@ enableRobotsTXT = false
     name = "Team"
     url = "/team/"
     weight = 2
+  [[menu.main]]
+    name = "Career"
+    url = "/job/"
+    weight = 2
 
   # Footer Menu
   [[menu.footer]]
