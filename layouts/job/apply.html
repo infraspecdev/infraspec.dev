@@ -1,0 +1,11 @@
+<div class="call">
+    <div class="call-box-top">
+      {{ if .Site.Data.contact.apply }}
+      <div class="call-email"><strong>Please email your resume to </strong>
+        <a href="mailto:{{ .Site.Data.contact.apply }}">
+          {{ .Site.Data.contact.apply }}
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
