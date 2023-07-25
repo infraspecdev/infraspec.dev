@@ -28,5 +28,15 @@
     "title": "Kubernetes Consulting",
     "description": "Fastrack your Kubernetes adoption journey.",
     "image": "images/features/noun_The Process_1885341.svg"
+  },
+  {
+    "title": "Backend Engineering",
+    "description": "Build scalable and distributed backend systems.",
+    "image": "images/features/noun_The Process_1885341.svg"
+  },
+  {
+    "title": "Monolith to Microservice Migration",
+    "description": "Identify performance bottlenecks and extract scalable services.",
+    "image": "images/features/noun_The Process_1885341.svg"
   }
 ]
