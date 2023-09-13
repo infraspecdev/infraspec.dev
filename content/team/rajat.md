@@ -2,7 +2,7 @@
 title: 'Rajat Tomar'
 date: 2022-08-17
 draft: false
-image: 'images/team/rajat-profile.png'
+image: 'images/team/rajat-profile.jpg'
 jobtitle: 'Software Engineer'
 weight: 6
 promoted: false
