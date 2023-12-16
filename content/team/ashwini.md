@@ -4,7 +4,7 @@ date: 2022-08-17
 draft: false
 image: 'images/team/ashwini-profile.png'
 jobtitle: 'Senior Software Engineer'
-weight: 8
+weight: 7
 promoted: false
 name: 'ashwini'
 ---
