@@ -30,5 +30,9 @@
   "vijay": {
     "name" : "Vijay Dhama",
     "image": "images/team/vijay-profile.png"
+  },
+  "rahul": {
+    "name" : "Rahul Patil",
+    "image": "images/team/rahul-profile.jpeg"
   }
 }
