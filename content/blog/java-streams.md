@@ -1,5 +1,5 @@
 ---
-title: "Java Streams"
+title: "Unleashing the Power of Streams in Java"
 authorId: "rahul"
 date: 2024-03-05
 draft: false
@@ -7,7 +7,7 @@ featured: true
 weight: 1
 ---
 
-# Unleashing the Power of Streams in Java: A Paradigm Shift in Data Processing
+# Java Streams: A Paradigm Shift in Data Processing
 
 ## What are Streams?
 
