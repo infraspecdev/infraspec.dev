@@ -1,3 +1,12 @@
+---
+title: "Streamlining Raspberry Pi Deployment: A Guide to Automated Netbooting"
+authorId: "rohit"
+date: 2024-04-17
+draft: true
+featured: true
+weight: 1
+---
+
 # Streamlining Raspberry Pi Deployment: A Guide to Automated Netbooting
 
 ## 1. Understanding Netbooting
