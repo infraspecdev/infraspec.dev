@@ -7,8 +7,6 @@ featured: true
 weight: 1
 ---
 
-# Streamlining Raspberry Pi Deployment: A Guide to Automated Netbooting
-
 ## 1. Understanding Netbooting
 
 ### What is PXE Boot?
