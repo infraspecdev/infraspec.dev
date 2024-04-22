@@ -25,7 +25,7 @@ For this example, I will be considering a simple Node.js application that uses t
 
 This method allows the app to get the Access Token from Secrets Manager and remove the need for Service Account keys.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684534307/5b4af0ac-04e8-4994-8477-a3da850a1702.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684534307/5b4af0ac-04e8-4994-8477-a3da850a1702.png" alt="" width="600px" />
 
 This is my starter code. The Google Service Account key being used is a long-lived credential. That's why I aim to remove this dependency by having an external service provide my application with the Access Token, which is a short-lived credential.
 
@@ -39,15 +39,15 @@ Let's start configuring the AWS infrastructure to set up AWS Secrets Manager and
 
 2. Let's begin by storing a new secret, and let the type of secret be set to "Other type of secret".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713608995307/9ac004d5-b92c-4d5c-a5fe-c28e35d79ee0.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713608995307/9ac004d5-b92c-4d5c-a5fe-c28e35d79ee0.png" alt="" width="600px" />
 
 3. As I will be storing the Access Token, let's set the secret key as "*GOOGLE\_ACCESS\_TOKEN*" and leave the value empty.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609088974/97402a01-e589-4389-82a4-6189de10bc18.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609088974/97402a01-e589-4389-82a4-6189de10bc18.png" alt="" width="600px" />
 
 4. For the Encryption key selection, I'll leave it as the default option, which is a key managed by AWS. However, you can choose to take an additional step and utilize customer-managed keys for encrypting secrets if you prefer.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609212808/64fc2162-1ff8-473e-9efb-8ce20fe0a855.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609212808/64fc2162-1ff8-473e-9efb-8ce20fe0a855.png" alt="" width="600px" />
 
 5. In the "Configure secret" step, let's name our secret "*demo/GoogleAuth/AccessToken*".
 
@@ -65,7 +65,7 @@ And there we have it, we have successfully created our secret in the Secrets Man
 
 4. I will write the Lambda function in JavaScript, so I'll choose the Runtime as "Node.js 20.x" and keep the Architecture as "x86\_64".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610154824/59076adb-b75c-4afc-af1b-4fffc171d4ca.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610154824/59076adb-b75c-4afc-af1b-4fffc171d4ca.png" alt="" width="600px" />
 
 5. Create the function.
 
@@ -83,7 +83,7 @@ Before linking them, we need to grant permissions to our Lambda function so that
 
 3. Scroll further down to the "Resource-based policy statements" section. Click on "Add permissions".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610729973/9424af50-3d95-45b0-80a8-0b0792a9045d.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610729973/9424af50-3d95-45b0-80a8-0b0792a9045d.png" alt="" width="600px" />
 
 4. In the "Edit policy statement" section, choose the "AWS service" option.
 
@@ -95,7 +95,7 @@ Before linking them, we need to grant permissions to our Lambda function so that
 
 8. Finally, select the "lambda:InvokeFunction" action from the Action dropdown, and then click on Save.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611043263/be59f2ed-76b0-498a-88ff-5d66fc8cb6cd.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611043263/be59f2ed-76b0-498a-88ff-5d66fc8cb6cd.png" alt="" width="600px" />
 
 This permission will enable the Secrets Manager service to refer to our Lambda function and automatically trigger it at a set schedule.
 
@@ -111,7 +111,7 @@ Since I will be rotating the Google Access Token, I will generate the Access Tok
 
     At first, automatic rotation is turned off. You can activate this by clicking on "Edit rotation".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611445134/88a23906-17ca-459f-b850-ec9bdeb77149.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611445134/88a23906-17ca-459f-b850-ec9bdeb77149.png" alt="" width="600px" />
 
 3. In the "Edit rotation configuration" window, enable "Automatic rotation".
 
@@ -119,15 +119,15 @@ Since I will be rotating the Google Access Token, I will generate the Access Tok
 
     Additionally, we have the option to define our schedule using an expression, similar to a cron schedule expression. This allows us to create more complex schedules effortlessly.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611697737/513d6a77-313a-4558-8155-1b9fcef1923d.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611697737/513d6a77-313a-4558-8155-1b9fcef1923d.png" alt="" width="600px" />
 
 5. Finally, under the "Rotation function" section, select the created Lambda function from the dropdown menu, and click Save.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611755247/f651be0b-431a-4c4d-958c-0957af313f34.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611755247/f651be0b-431a-4c4d-958c-0957af313f34.png" alt="" width="600px" />
 
 Upon saving, you should now notice that the automatic rotation is now enabled.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611799096/c2bc590e-f40e-4bf3-87cc-69d044c8363f.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611799096/c2bc590e-f40e-4bf3-87cc-69d044c8363f.png" alt="" width="600px" />
 
 ### Allowing our Lambda function to update secrets in the Secret Manager by defining a policy
 
@@ -145,7 +145,7 @@ Let's start by defining our policy in IAM.
 
 5. In the "Actions allowed" section, under the "Write" Access level, check the "UpdateSecret" box. Also, ensure that the "Effect" is set to "Allow."
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713612384644/2b79381c-f7a4-4058-a3f8-aae573baa660.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713612384644/2b79381c-f7a4-4058-a3f8-aae573baa660.png" alt="" width="600px" />
 
 6. Next, in the "Resources" section, we have the option to either permit access to all resources (meaning all stored Secrets under the Secrets Manager) or limit access to only chosen Secrets.
 
@@ -159,15 +159,15 @@ Let's start by defining our policy in IAM.
 
     3. Paste the Secret ARN in the "Specify ARN(s)" window after clicking "Add ARNs".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713612844675/64bfccc8-300b-4ad3-8a3e-d0924b50d23b.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713612844675/64bfccc8-300b-4ad3-8a3e-d0924b50d23b.png" alt="" width="600px" />
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686110615/14f8cd33-6d33-401c-b17e-1f4435a1339a.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686110615/14f8cd33-6d33-401c-b17e-1f4435a1339a.png" alt="" width="600px" />
 
     Click on "Add ARNs" and then click on "Next".
 
 7. Under "Policy details", let's name our policy "*demo-GoogleAuth-AccessToken-UpdateSecret-policy*" since it is closely linked to our "*demo/GoogleAuth/AccessToken*" Secret.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613225433/a8f2bbd7-0328-46e2-be74-1a8571bc709a.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613225433/a8f2bbd7-0328-46e2-be74-1a8571bc709a.png" alt="" width="600px" />
 
 8. Create policy.
 
@@ -175,7 +175,7 @@ Let's start by defining our policy in IAM.
 
 Now that we have created a policy to allow updating our Secret in the Secrets Manager, let's proceed to link this policy under the Lambda function's role. You can find the Lambda function's role in IAM under **Access Management &gt; Roles**.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613440260/66ba5c84-aee8-41b4-ada0-adb7e6292e09.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613440260/66ba5c84-aee8-41b4-ada0-adb7e6292e09.png" alt="" width="600px" />
 
 1. Click on the role name to view the role's details.
 
@@ -185,7 +185,7 @@ Now that we have created a policy to allow updating our Secret in the Secrets Ma
 
 4. Lastly, select the Policy and click on "Add permissions".
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613912767/e4ed5eb6-4f92-41b9-b948-bd7db58ea5bc.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613912767/e4ed5eb6-4f92-41b9-b948-bd7db58ea5bc.png" alt="" width="600px" />
 
 This action will link our Policy to the role, giving access to the Secret and enabling our Lambda function to securely update the Secret's value.
 
@@ -203,7 +203,7 @@ Okay, enough blabbering, let's get into the implementation part.
 
 2. Scroll down to view the template code or the starter code under the "Code" tab.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713616449381/ed7a3b7e-1630-4f4e-b8dd-801481952678.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713616449381/ed7a3b7e-1630-4f4e-b8dd-801481952678.png" alt="" width="600px" />
 
     In my case, the `handler` function represents the core of our Lambda function and acts as the starting point.
 
@@ -211,7 +211,7 @@ Okay, enough blabbering, let's get into the implementation part.
 
 3. Under the "Configuration" tab, within the "Environment variables" section, click on "Edit environment variables." Here, we can input our details - Service Account key as Base64, scopes, and the Secret's name.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686228053/8551b641-58c3-47e4-b7ce-e412e9b8456c.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686228053/8551b641-58c3-47e4-b7ce-e412e9b8456c.png" alt="" width="600px" />
 
 4. Click on Save.
 
@@ -229,11 +229,11 @@ npm init -y
 
 Below is the implementation of the *google\_auth\_init.mjs* file, which defines the `createGoogleAuthFromBase64Credentials` function used to create a GoogleAuth instance.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684887551/9adc880b-01f0-48d0-a5ed-fb07c837c60f.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684887551/9adc880b-01f0-48d0-a5ed-fb07c837c60f.png" alt="" width="600px" />
 
 Let's now implement the *aws\_secrets\_manager\_init.mjs* file. This file will contain the `createAwsSecretsManagerClient` function, used to create an instance of SecretsManagerClient.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684941025/3d77dbee-ef47-4068-9b69-d37da7da385b.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684941025/3d77dbee-ef47-4068-9b69-d37da7da385b.png" alt="" width="600px" />
 
 Next, we can:
 
@@ -247,7 +247,7 @@ Next, we can:
 
 Let's proceed with implementing the source code in *index.mjs*.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684982497/3a4c2ffc-2ee2-4c0a-979d-bbc67ef4c3f0.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684982497/3a4c2ffc-2ee2-4c0a-979d-bbc67ef4c3f0.png" alt="" width="600px" />
 
 Also, ensure that you install the dependencies before moving on to the uploading step.
 
@@ -265,7 +265,7 @@ zip -r code.zip .
 
 Next, open the Lambda function overview page, and under the "Code" tab, click on **Upload from &gt; .zip file**.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713619303737/3a95404b-bf36-4181-9113-921f9dc90702.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713619303737/3a95404b-bf36-4181-9113-921f9dc90702.png" alt="" width="600px" />
 
 Select the generated ZIP file (in this case, "code.zip"), and upload it to update the Lambda function's source code.
 
@@ -283,21 +283,21 @@ After uploading the source code, let's test our Lambda function to confirm if it
 
 4. Click on Test to trigger the Lambda function.
 
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713620206250/bf3f361c-af43-4a4a-a41f-620b0509233b.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713620206250/bf3f361c-af43-4a4a-a41f-620b0509233b.png" alt="" width="600px" />
 
 If the Lambda function successfully rotates the Access Token, we will observe that the Lambda function execution completes without any errors.
 
 By checking the Secret in the Secrets Manager, we can verify that the Secret has indeed been updated.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713620378479/195bc4ee-02f6-447a-9c6a-4e819d4bb6fc.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713620378479/195bc4ee-02f6-447a-9c6a-4e819d4bb6fc.png" alt="" width="600px" />
 
 **Note:** If the execution fails with a Task timed-out error, we can resolve this problem by extending the timeout duration.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713681543865/b0a713aa-93c5-4184-8382-7143a56f1411.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713681543865/b0a713aa-93c5-4184-8382-7143a56f1411.png" alt="" width="600px" />
 
 We can accomplish this by going to the Lambda function overview page, navigating to the "Configuration" tab, and then to "General configuration". Click on "Edit" and increase the timeout to a longer duration. In my situation, the timeout duration is currently set to 10 seconds.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713681595217/88bce40c-04f0-4a89-8f59-74030e7ff867.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713681595217/88bce40c-04f0-4a89-8f59-74030e7ff867.png" alt="" width="600px" />
 
 ## After using AWS Secrets Manager
 
@@ -307,11 +307,11 @@ In my case, I will utilize the [aws-sdk](https://www.npmjs.com/package/aws-sdk) 
 
 To access the Secrets Manager service securely, we must create a SecretsManagerClient. This client allows us to fetch secrets securely. Let's create the *aws\_secrets\_manager\_util.mjs* script, which will contain the necessary functions to set up a client and retrieve secrets using it.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685334711/4e1ea108-500c-456d-bb8d-209082521df5.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685334711/4e1ea108-500c-456d-bb8d-209082521df5.png" alt="" width="600px" />
 
 We can now use the functions exported from my *aws\_secrets\_manager\_util.mjs* in the start script to effectively utilize the Google Access Token for fetching Calendar events and remove the reliance on Service Account keys in the application.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685490779/8cd4732e-ba09-4ed8-9e25-0b7934cd9c0b.png" alt="" width="500px" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685490779/8cd4732e-ba09-4ed8-9e25-0b7934cd9c0b.png" alt="" width="600px" />
 
 ## Conclusion
 
