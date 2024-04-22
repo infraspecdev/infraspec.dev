@@ -161,15 +161,15 @@ Let's start by defining our policy in IAM.
 
     <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713612844675/64bfccc8-300b-4ad3-8a3e-d0924b50d23b.png" alt="" width="500px" />
 
-<img src="](<https://cdn.hashnode.com/res/hashnode/image/upload/v1713686110615/14f8cd33-6d33-401c-b17e-1f4435a1339a.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686110615/14f8cd33-6d33-401c-b17e-1f4435a1339a.png" alt="" width="500px" />
 
     Click on "Add ARNs" and then click on "Next".
 
-8. Under "Policy details", let's name our policy "*demo-GoogleAuth-AccessToken-UpdateSecret-policy*" since it is closely linked to our "*demo/GoogleAuth/AccessToken*" Secret.
+7. Under "Policy details", let's name our policy "*demo-GoogleAuth-AccessToken-UpdateSecret-policy*" since it is closely linked to our "*demo/GoogleAuth/AccessToken*" Secret.
 
     <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613225433/a8f2bbd7-0328-46e2-be74-1a8571bc709a.png" alt="" width="500px" />
 
-9. Create policy.
+8. Create policy.
 
 ### Linking the Policy under our Lambda function's role in the IAM
 
@@ -211,9 +211,9 @@ Okay, enough blabbering, let's get into the implementation part.
 
 3. Under the "Configuration" tab, within the "Environment variables" section, click on "Edit environment variables." Here, we can input our details - Service Account key as Base64, scopes, and the Secret's name.
 
-<img src="](<https://cdn.hashnode.com/res/hashnode/image/upload/v1713686228053/8551b641-58c3-47e4-b7ce-e412e9b8456c.png" alt="" width="500px" />
+    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686228053/8551b641-58c3-47e4-b7ce-e412e9b8456c.png" alt="" width="500px" />
 
-    Click on Save.
+4. Click on Save.
 
 Next, let's proceed with implementing our Lambda function.
 
