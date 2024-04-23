@@ -73,9 +73,6 @@ weight: 1
 
 <img src="/images/blog/tftp-overview/error.png" alt="My Collection" width="100%" >
 
-
-
-
 ## Advantages of TFTP
 
 <p style='text-align: justify;'>1. Simplicity: TFTP's design is straightforward, with fewer features and commands compared to FTP. This simplicity makes it easier to implement and use, requiring less overhead and fewer resources.</p>
@@ -85,6 +82,20 @@ weight: 1
 <p style='text-align: justify;'>3. Fast: Because TFTP operates over UDP, which doesn't have the connection establishment and teardown overhead of TCP, it can be faster for transferring small files over high-speed networks.</p>
 
 <p style='text-align: justify;'>4. Bootstrapping: One of TFTP's primary use cases is bootstrapping diskless devices, such as network booting of thin clients, diskless workstations, or embedded systems. Its simplicity and low overhead make it ideal for this purpose.</p>
+
+## Limitations of TFTP
+
+<p style='text-align: justify;'>1.  Lack of Authentication: TFTP lacks built-in user authentication mechanisms, which can pose security risks in environments where user access control is essential.</p>
+
+<p style='text-align: justify;'>2. Limited Error Handling: TFTP's error handling capabilities are basic, with error messages providing minimal information about the encountered issue.</p>
+
+<p style='text-align: justify;'>3. No Directory Listing: Unlike protocols like FTP or SFTP, TFTP does not support directory listing functionality. Users must manually specify the filenames they want to transfer, which can be cumbersome, especially when dealing with large numbers of files or directories.</p>
+
+<p style='text-align: justify;'>4. File Size Limitation: TFTP is not optimized for transferring large files efficiently. Its reliance on UDP and lack of features like file segmentation or resuming transfers mean that transferring large files can be slower and less reliable compared to protocols designed specifically for handling such scenarios.</p>
+
+<p style='text-align: justify;'>5. UDP Reliance: While UDP offers advantages in terms of speed and efficiency, it also introduces potential issues such as packet loss or out-of-order delivery. TFTP's reliance on UDP means that it may not be the best choice for environments where reliability is paramount, particularly over unreliable or congested networks.</p>
+
+
 
 ## Most commom use cases of TFTP
 - Network Booting: Booting diskless devices over a network, where the operating system is loaded from a remote server.
