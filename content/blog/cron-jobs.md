@@ -1,3 +1,13 @@
+---
+title: "Boost Your Productivity with Cron Jobs: What You Need to Know"
+authorId: "shivani"
+date: 2024-04-15
+draft: false
+featured: true
+weight: 1
+---
+
+___
 <img src="/images/blog/cron-jobs/cron-jobs-cover.png" alt="Cron Jobs cover" width="100%">
 
 ## **So, what are Cron Jobs?**
