@@ -1,13 +1,11 @@
 ---
 title: "Unlocking the Power of GitHub Runners: Streamlining Your CI/CD Workflow"
 authorId: "rahul"
-date: 2024-04-14
+date: 2024-04-25
 draft: false
 featured: true
 weight: 1
 ---
-
-# Unlocking the Power of GitHub Runners: Streamlining Your CI/CD Workflow
 
 ## Introduction
 
