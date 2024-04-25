@@ -67,9 +67,7 @@ GitHub automatically sends notifications about CI/CD workflow status updates to 
 
 ### Benefits of Customization:
 
-- **Improved Communication:** Customizing notifications ensures that the right people receive timely updates about
-
- the status of CI/CD workflow runs.
+- **Improved Communication:** Customizing notifications ensures that the right people receive timely updates about the status of CI/CD workflow runs.
 - **Flexible Workflow Management:** By allowing repository owners or administrators to customize notification recipients and preferences, GitHub promotes a flexible and tailored approach to workflow management.
 
 ## Conclusion
