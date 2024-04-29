@@ -11,7 +11,7 @@ ___
 
 In this article, tailored specifically for users of Unix-like systems such as Linux, we'll explore everything you need to know about cron jobs. From understanding their functionality and syntax to mastering practical applications.Additionally, we'll touch upon the alternative systemD timers and their role in modern task scheduling.
 
-### **So, what are Cron Jobs?**
+## **So, what are Cron Jobs?**
 
 Before crons, managing repetitive tasks was like being a chef juggling multiple pans on a hot stove, constantly checking and flipping without any help - exhausting and prone to mishaps!
 
@@ -146,7 +146,7 @@ Systemd timers offer a modern approach to task scheduling on Unix-like systems. 
 
 Unlike cron, which relies solely on crontab files, systemd timers are part of a larger systemd service. They are typically configured using a combination of .timer and .service files. This approach allows for more comprehensive management and integration of scheduled tasks with other systemd services and units.
 
-### **Advantages of SystemD Timers Over Cron Jobs:**
+## **Advantages of SystemD Timers Over Cron Jobs:**
 
 1. **Event-Based Triggering:**
     
@@ -180,7 +180,7 @@ Unlike cron, which relies solely on crontab files, systemd timers are part of a 
     * For example, Consider a financial institution processing stock trades. SystemD Timers with advanced scheduling options allow the institution to execute critical tasks, such as trade settlement processes, with precise timing accuracy as monotonic timers ensure consistent intervals between trades, while realtime timers enable timely execution of end-of-day processes.
         
 
-### **Features relevant to Cron Jobs**
+##**Features relevant to Cron Jobs**
 
 1. **Simple Time-Based Scheduling:**
     
@@ -205,7 +205,7 @@ Unlike cron, which relies solely on crontab files, systemd timers are part of a 
 
 > Note: If you're unsure how to use SystemD Timers, check out the guide on how to get started: \[[https://documentation.suse.com/smart/systems-management/html/systemd-working-with-timers/index.html](https://documentation.suse.com/smart/systems-management/html/systemd-working-with-timers/index.html)\].
 
-### **Conclusion**
+## **Conclusion**
 
 Both Cron Jobs and SystemD Timers play vital roles in task scheduling and system automation. While Cron Jobs offer simplicity and widespread compatibility, SystemD Timers provide advanced features like event-based triggering and better integration with system services making it well-suited for modern automation needs.
 
