@@ -57,7 +57,9 @@ Netbooting is a good path to achieve this. For example, when you netboot a Pi, i
 
 ## Setting Up The Infrastructure
 
-![Network Infrastructure](/images/blog/rpi-netboot-deep-dive/network-infrastructure.png)
+<div style="text-align:center">
+  ![Network Infrastructure](/images/blog/rpi-netboot-deep-dive/network-infrastructure.png)
+</div>
 
 <div style="text-align:center">This diagram illustrates the network infrastructure required for netbooting.</div>
 
