@@ -34,5 +34,9 @@
   "rahul": {
     "name" : "Rahul Patil",
     "image": "images/team/rahul-profile.jpeg"
+  },
+  "sudeep": {
+    "name" : "Sudeep Kulkarni",
+    "image": "images/team/sudeep-profile.png"
   }
 }
