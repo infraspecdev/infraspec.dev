@@ -1,3 +1,11 @@
+---
+title: "Step-by-Step Guide to Implement Winston Logger in your  Node.js Projects"
+authorId: "shivani"
+date: 2024-04-29
+draft: false
+featured: true
+weight: 1
+---
 "The only thing more satisfying than fixing a bug is reading the frustrated log messages that led you there." This humorous yet insightful quote perfectly encapsulates the importance of logging in software development. In any project, large or small, understanding what's happening under the hood is paramount. That's where Winston Logger comes into play.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1714104394861/9eef99ba-b18b-4e21-bfaa-eec9f94aa212.jpeg align="center")
