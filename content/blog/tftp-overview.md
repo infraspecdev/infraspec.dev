@@ -21,11 +21,12 @@ weight: 1
 
 **Visual Representation of TFTP Communication Flow: Client-Server Interaction:**
 
-<img src="/images/blog/tftp-overview/tftp-communication-flow.png" alt="My Collection" height="60%" >
+<img src="/images/blog/tftp-overview/tftp-communication-flow.png" alt="tftp communication flow" height="60%" >
                       
 
 
-#### TFTP has 5 Different message types which is used to communicate between client and server they are,
+#### TFTP has 5 Different message types which is used to communicate between client andgit commit -m "modifies tftp overview globg images"
+ server they are,
 - RRQ
 - WRQ
 - DATA
@@ -38,7 +39,7 @@ weight: 1
 
 <u>Packet Layout  of RRQ message:</u>
 
-<img src="/images/blog/tftp-overview/rrq.png" alt="My Collection" width="100%" >
+<img src="/images/blog/tftp-overview/rrq.png" alt="RRQ message packet format" width="100%" >
 
 
 ### WRQ ( Write Request ):
@@ -47,7 +48,7 @@ weight: 1
 
 <u>Packet Layout of WRQ message:</u>
 
-<img src="/images/blog/tftp-overview/rrq.png" alt="My Collection" width="100%" >
+<img src="/images/blog/tftp-overview/wrq.png" alt="WRQ message packet format" width="100%" >
 
 ### DATA message :
 
@@ -55,7 +56,7 @@ weight: 1
 
 <u>Packet Layout of DATA message:</u>
 
-<img src="/images/blog/tftp-overview/data.png" alt="My Collection" width="100%" >
+<img src="/images/blog/tftp-overview/data.png" alt="DATA message packet format" width="100%" >
 
 ### ACK ( Acknowledgment ):
 
@@ -63,7 +64,7 @@ weight: 1
 
 <u>Packet Layout of ACK message:</u>
 
-<img src="/images/blog/tftp-overview/ack.png" alt="My Collection" width="50%" >
+<img src="/images/blog/tftp-overview/ack.png" alt="ACK message packet format" width="100%" >
 
 ### ERROR message:
 
@@ -71,7 +72,7 @@ weight: 1
 
 <u>Packet Layout of ERROR message:</u>
 
-<img src="/images/blog/tftp-overview/error.png" alt="My Collection" width="100%" >
+<img src="/images/blog/tftp-overview/error.png" alt="ERROR message packet format" width="100%" >
 
 ## Advantages of TFTP
 
