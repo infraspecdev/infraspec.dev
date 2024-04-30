@@ -27,7 +27,7 @@ RBAC in Kubernetes follows a simple principle: Users, Roles, and RoleBindings. L
 
 **Let us understand RBAC with an example ,**
 
-Imagine you have a Kubernetes cluster with two namespaces: development and production. You want to restrict access so that users in the **development namespace** can only deploy pods, while users in the **production namespace** can also delete pods. Let's implement this using RBAC in Kubernetes
+Imagine you have a Kubernetes cluster with two namespaces: development and production. You want to restrict access so that users in the **development namespace** can deploy pods and delete pods, while users in the **production namespace** should not be able to delete pods. Let's implement this using RBAC in Kubernetes
 
 First, we define two roles: **deployer** for the development namespace and **operator** for the production namespace.
 
@@ -35,13 +35,14 @@ First, we define two roles: **deployer** for the development namespace and **ope
 
 # deployer-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role metadata:
+kind: Role 
+metadata:
 namespace: development 
 name: deployer
 rules:
 - apiGroups: [""]
 resources: ["pods"]
-verbs: ["create", "get", "list", "watch"]
+verbs: ["create", "get", "list", "watch", "delete"]
 
 # operator-role.yaml
 apiVersion: rbac.authorization.k8s.io/vI
@@ -52,7 +53,7 @@ name: operator
 rules:
 - apiGroups: [""]
 resources: ["pods"]
-verbs: ["create", "get", "list", "watch", "delete"]
+verbs: ["create", "get", "list", "watch"]
 
 ```
 
