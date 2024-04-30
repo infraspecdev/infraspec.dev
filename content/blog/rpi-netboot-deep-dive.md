@@ -155,4 +155,4 @@ EOF
 
 ### Conclusion
 
-In conclusion, implementing PXE boot for Raspberry Pi devices streamlines deployment and maintenance by centralizing the boot process and file systems. Automation of these processes further enhances efficiency and reduces manual intervention. To learn more about automating Raspberry Pi deployment using PXE boot, [click here](https://www.infraspec.dev/blog/rpi-netboot-automation).
+In conclusion, implementing PXE boot for Raspberry Pi devices streamlines deployment and maintenance by centralizing the boot process and file systems. Automation of these processes further enhances efficiency and reduces manual intervention. To learn more about automating Raspberry Pi deployment using PXE boot, click [here](https://www.infraspec.dev/blog/rpi-netboot-automation).
