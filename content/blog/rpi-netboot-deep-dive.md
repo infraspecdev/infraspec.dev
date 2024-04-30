@@ -116,7 +116,7 @@ echo "proc /proc proc defaults 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
 echo "192.168.XX.XX:/tftpboot/<MAC_ADDRESS>  /boot  nfs  defaults,vers=4.1,proto=tcp 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
 ```
 
-Configuring the `/etc/fstab` file for the PXE client is essential to ensure that the client mounts the necessary file systems correctly during the boot process. Replace `192.168.XX.XX` with the IP address of PXE server.
+Configuring the `/etc/fstab` file for the PXE client is essential to ensure that the client mounts the necessary file systems correctly during the boot process.
 
 #### Export the root file system created earlier, and the TFTP boot folder
 
@@ -132,6 +132,7 @@ sudo mkdir -p /tftpboot/<MAC_ADDRESS>
 sudo chmod 777 /tftpboot
 sudo cp -r ~/bootfiles/* /tftpboot/<MAC_ADDRESS>
 ```
+**Important Note:** Replace `192.168.XX.XX` with the IP address of PXE server and `<MAC_ADDRESS>` with the MAC address of PXE client.
 
 #### Configure `dnsmasq.conf`
 
