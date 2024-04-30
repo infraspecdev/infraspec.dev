@@ -87,7 +87,7 @@ To set the boot order on your Raspberry Pi, follow these steps:
 To verify that the boot order has been set correctly, run the following command after rebooting:
 
 ```bash
-vcgencmd bootloader_config
+$ vcgencmd bootloader_config
 ```
 
 This command will display the current bootloader configuration, confirming that the boot order is set to prioritize the SD card first, followed by network boot.
@@ -97,23 +97,23 @@ This command will display the current bootloader configuration, confirming that 
 #### Install the packages needed
 
 ```bash
-sudo apt update
-sudo apt install -y nfs-kernel-server dnsmasq
+$ sudo apt update
+$ sudo apt install -y nfs-kernel-server dnsmasq
 ```
 
 The client Raspberry Pi will need a root file system to boot from: we can use a copy of the server’s root filesystem and place it in `/nfs/<MAC_ADDRESS>`.
 
 ```bash
-sudo mkdir -p /nfs/<MAC_ADDRESS>
-sudo cp -a ~/userfiles/* /nfs/<MAC_ADDRESS>
+$ sudo mkdir -p /nfs/<MAC_ADDRESS>
+$ sudo cp -a ~/userfiles/* /nfs/<MAC_ADDRESS>
 ```
 
 #### Configure `/etc/fstab` for the client
 
 ```bash
-echo | sudo tee /nfs/<MAC_ADDRESS>/etc/fstab
-echo "proc /proc proc defaults 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
-echo "192.168.XX.XX:/tftpboot/<MAC_ADDRESS>  /boot  nfs  defaults,vers=4.1,proto=tcp 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
+$ echo | sudo tee /nfs/<MAC_ADDRESS>/etc/fstab
+$ echo "proc /proc proc defaults 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
+$ echo "192.168.XX.XX:/tftpboot/<MAC_ADDRESS>  /boot  nfs  defaults,vers=4.1,proto=tcp 0 0" | sudo tee -a /nfs/<MAC_ADDRESS>/etc/fstab
 ```
 
 Configuring the `/etc/fstab` file for the PXE client is essential to ensure that the client mounts the necessary file systems correctly during the boot process.
@@ -121,16 +121,16 @@ Configuring the `/etc/fstab` file for the PXE client is essential to ensure that
 #### Export the root file system created earlier, and the TFTP boot folder
 
 ```bash
-echo "/nfs/<MAC_ADDRESS> *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
-echo "/tftpboot<MAC_ADDRESS> *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
+$ echo "/nfs/<MAC_ADDRESS> *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
+$ echo "/tftpboot<MAC_ADDRESS> *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
 ```
 
 #### Copy the boot files to the specified directory
 
 ```bash
-sudo mkdir -p /tftpboot/<MAC_ADDRESS>
-sudo chmod 777 /tftpboot
-sudo cp -r ~/bootfiles/* /tftpboot/<MAC_ADDRESS>
+$ sudo mkdir -p /tftpboot/<MAC_ADDRESS>
+$ sudo chmod 777 /tftpboot
+$ sudo cp -r ~/bootfiles/* /tftpboot/<MAC_ADDRESS>
 ```
 **Important Note:** Replace `192.168.XX.XX` with the IP address of PXE server and `<MAC_ADDRESS>` with the MAC address of PXE client.
 
@@ -143,7 +143,7 @@ Dnsmasq simplifies PXE booting because it's a versatile tool that combines DHCP,
 3. **Easy Configuration:** Dnsmasq is easy to set up and configure, with straightforward options for defining DHCP lease ranges, DNS settings, and TFTP root directories.
 
 ```bash
-cat << EOF | sudo tee /etc/dnsmasq.conf
+$ cat << EOF | sudo tee /etc/dnsmasq.conf
 interface=eth0
 log-dhcp
 enable-tftp
