@@ -14,13 +14,13 @@ This blog will cover the foundational concepts of Docker layers, caching mechani
 
 Docker images are constructed from a series of layers; each layer corresponds to instructions in the Dockerfile that modify the filesystem of the image. These layers are stacked on top of each other, forming the final image. Understanding how these layers work is key to optimizing your Docker builds.
 
-<img src="/images/blog/docker-deep-dive/docker_layers.png" alt="My Collection" width="500">
+<img src="/images/blog/docker-deep-dive/docker_layers.png" alt="Docker Layers" width="700" height = "400">
 
 **Leveraging Docker's Caching Mechanism for Efficient Builds**
 
 During the build process, Docker looks at each instruction in the Dockerfile and checks if an intermediate layer for that instruction already exists in its cache. If it does, and if nothing has changed that would affect that layer, Docker will reuse the cached layer instead of recreating it. This reuse of layers speeds up the build process significantly and makes it more efficient in terms of resource use.
 
-<img src="/images/blog/docker-deep-dive/docker_layers_invalidated.png" alt="My Collection" width="500">
+<img src="/images/blog/docker-deep-dive/docker_layers_invalidated.png" alt="Invalidated Docker Layers" width="700" height = "400">
 
 For example, if your Dockerfile starts with a `RUN` instruction to install dependencies, and these dependencies haven't changed, Docker will use the cached layer from a previous build for this instruction. This avoids the need to re-download and install dependencies every time you build the image, as long as the corresponding instruction in the Dockerfile remains unchanged.
 
