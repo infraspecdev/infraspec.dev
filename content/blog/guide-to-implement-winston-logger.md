@@ -70,14 +70,14 @@ In Winston Logger, logging levels are used to categorize log messages based on t
 
 ```javascript
 levels: {
-    error: 0,
-    warn: 1,
-    info: 2,
-    http: 3,
-    verbose: 4,
-    debug: 5,
-    silly: 6
-  }
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  verbose: 4,
+  debug: 5,
+  silly: 6
+}
 ```
 
 ### **What are Transports in Winston Logger?**
@@ -85,9 +85,9 @@ levels: {
 In Winston Logger , Transports allow developers to specify how and where log messages should be logged, such as to the console, files, databases, http or third-party services. For example,
 
 ```javascript
- transports: [
-    new winston.transports.Console(), 
-    new winston.transports.File({ filename: 'logfile.log' }) 
+transports: [
+  new winston.transports.Console(), 
+  new winston.transports.File({ filename: 'logfile.log' }) 
 }
 ```
 
@@ -254,36 +254,36 @@ Additionally, we set up the system to delete files after a certain period using 
     
 2. **Include Contextual Information**: Provide timestamps and additional context in log messages to aid in debugging and troubleshooting.
     
-    ```javascript
-    const winston = require('winston');
-    
-    const customFormat = winston.format.printf(({ level, message, timestamp }) => {
-      return `${timestamp} [${level}]: ${message}`;
-    });
-    
-    const logger = winston.createLogger({
-      level: 'info', 
-      format: customFormat, 
-      transports: [
-        new winston.transports.Console(), 
-      ]
-    });
-    ```
+```javascript
+const winston = require('winston');
+
+const customFormat = winston.format.printf(({ level, message, timestamp }) => {
+return `${timestamp} [${level}]: ${message}`;
+});
+
+const logger = winston.createLogger({
+level: 'info', 
+format: customFormat, 
+transports: [
+  new winston.transports.Console(), 
+]
+});
+```
     
 3. **Centralized Logging Configuration**: Configure logging settings in a centralized location for consistency across the application.
     
-    ```javascript
-    const logger = require('winston');
-    
-    logger.configure({
-        level: 'info',
-        format: winston.format.json(),
-        transports: [
-            new winston.transports.Console(),
-            new winston.transports.File({ filename: 'app.log' })
-        ]
-    });
-    ```
+```javascript
+const logger = require('winston');
+
+logger.configure({
+level: 'info',
+format: winston.format.json(),
+transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'app.log' })
+]
+});
+```
     
 4. **Do not log sensitive information:** it's crucial to ensure that sensitive and confidential user information is never included in your log entries, especially in production environments. Not only does this protect users from potential malicious attacks, but it also helps your application comply with data privacy laws and regulations. Sensitive information encompasses personally identifiable data (PII), health records, financial details, passwords, IP addresses, and similar data.
     
