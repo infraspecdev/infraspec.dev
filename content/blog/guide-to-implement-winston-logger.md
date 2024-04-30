@@ -16,7 +16,7 @@ ___
 
 It is crucial for understanding the behavior of an application and for troubleshooting issues that may arise during its operation. It is an important tool for developers, system administrators, and other IT professionals who need to monitor the performance and behavior of complex systems.
 
-### **Logging Practices for Application Development:**
+## **Logging Practices for Application Development:**
 
 Here's a list of events that your application should log:
 
@@ -29,7 +29,7 @@ Here's a list of events that your application should log:
 4. **Security Threats**: Record any security-related issues, such as invalid API keys, failed authentication attempts, and security verification failures, to mitigate potential threats.
     
 
-### **Logging Libraries in Node.js**
+## **Logging Libraries in Node.js**
 
 Node.js offers various logging options beyond the default console module, allowing developers to structure, configure, and customize their logs efficiently. While `console.log` and `console.error` serve basic logging needs, they lack advanced features such as log structuring and customizable log levels. Fortunately, the Node ecosystem provides several logging libraries tailored to address these limitations. Let's explore some popular options:
 
@@ -46,13 +46,13 @@ Node.js offers various logging options beyond the default console module, allowi
 
 This post will delve into the process of configuring and utilizing the Winston library for logging messages.
 
-## What is Winston Logger?
+## **What is Winston Logger?**
 
 Winston Logger is a versatile logging library for Node.js applications, offering extensive flexibility and customization options compared to the built-in console module. Whether you're debugging code during development,or logging critical events in production, Winston provides the necessary tools and integrations to meet your logging needs effectively.
 
 It supports logging to the console, files, databases, and third-party services like [Loggly or Papertrail](https://betterstack.com/logs?utm_medium=c&utm_campaign=adwords19703922957&utm_source=adwords&utm_content=648793502849&utm_term=papertrail&gad_source=1&gclid=CjwKCAjwoa2xBhACEiwA1sb1BG9qUjgD2jGosVMhYytL76lWcnaL38LiXWlSxH3z5Hk6FG7YjShL1BoCeU0QAvD_BwE), making it a popular choice for logging in Node.js projects.
 
-## Installation and Setup
+## **Installation and Setup**
 
 To get started with Winston Logger, you can install it via npm using the following command:
 
@@ -60,7 +60,7 @@ To get started with Winston Logger, you can install it via npm using the followi
 $ npm install winston
 ```
 
-## Configuration Options
+## **Configuration Options**
 
 Winston Logger offers a wide range of configuration options to customize its behavior. You can set the log level, specify transports, define custom log formats, and more.
 
@@ -95,16 +95,16 @@ Here are some popularly used custom transport to check out:
 
 * [winston-daily-rotate-file](https://github.com/winstonjs/winston-daily-rotate-file)
     
-* [winston-s](https://github.com/winstonjs/winston-daily-rotate-file)[yslog](https://www.npmjs.com/package/winston-syslog)
+* [winston-syslog](https://www.npmjs.com/package/winston-syslog)
+     
+* [winston-cloudwatch](https://www.npmjs.com/package/winston-cloudwatch)
     
-* [winst](https://www.npmjs.com/package/winston-syslog)[on-cloudwatch](https://www.npmjs.com/package/winston-cloudwatch)
+* [winston-mongodb](https://www.npmjs.com/package/winston-mongodb)
     
-* [wins](https://www.npmjs.com/package/winston-cloudwatch)[ton-mongodb](https://www.npmjs.com/package/winston-mongodb)
-    
-* [winston-elast](https://github.com/winstonjs/winston-daily-rotate-file)[icsearch](https://www.npmjs.com/package/winston-syslog)
+* [winston-elasticsearch](https://www.npmjs.com/package/winston-elasticsearch)
     
 
-### **What are formats** [](https://github.com/winstonjs/winston-daily-rotate-file)**in Winston Logger?**
+### **What are formats in Winston Logger?**
 
 In Winston Logger , Formats allow developers to customize how log messages are formatted before being outputted by the logger. Formats can include timestamp, log level, message, metadata, and any custom formats to tailor the appearance of log messages to their specific requirements. For example,
 
@@ -173,7 +173,7 @@ app.use(expressWinston.logger({
 }));
 ```
 
-### Usage of Winston Logger in a Sample Blog Posting Application:
+### **Usage of Winston Logger in a Sample Blog Posting Application:**
 
 ```javascript
 
@@ -200,11 +200,11 @@ function publishPost(userId, postId) {
 }
 ```
 
-### **Rotating Files in Winston:**
+## **Rotating Files in Winston:**
 
 In Winston Logger, rotating files refer to a mechanism where log files are automatically rotated or split into multiple files based on certain criteria such as file size, time intervals, or a combination of both. This ensures that log files do not grow indefinitely and consume excessive disk space, while also facilitating log management and analysis.
 
-> Note: For more advanced options and detailed configuration settings for log rotation, you can refer to the official documentation of the [winston-daily-rotate-file](https://www.npmjs.com/package/winston-daily-rotate-file) package.
+> 📝Note: For more advanced options and detailed configuration settings for log rotation, you can refer to the official documentation of the [winston-daily-rotate-file](https://www.npmjs.com/package/winston-daily-rotate-file) package.
 
 Here is an example for retaining logs for 14 days before being deleted:
 
@@ -240,7 +240,7 @@ module.exports = logger;
 > 
 > When using the `winston-daily-rotate-file` package with zipped log archives, it's important to note that the package doesn't automatically handle unzipping of log files before deletion. As a result, zipped log files may remain in the directory even after they are no longer needed.
 
-### **How implementing logging system using Winston transformed our node.js application**
+## **How implementing logging system using Winston transformed our node.js application**
 
 When our Discord application faced issues with requests failing, it often led to our application crashing. it was executed using PM2 (process manager)with the restart option enabled, we encountered a challenge. Whenever the application failed and restarted, the logs would vanish instantly, leaving us clueless about the cause. To address this, we implemented logging using Winston.
 
@@ -248,7 +248,7 @@ We configured it to log to both the console and a file for persistent storage, u
 
 Additionally, we set up the system to delete files after a certain period using daily rotate files, preserving memory usage .
 
-### **Here are some best practices for logging in Node.js :**
+## **Here are some best practices for logging in Node.js :**
 
 1. **Use Log Levels**: Utilize different log levels to categorize log messages based on their severity. Common levels include `error`, `warn`, `info`, and `debug`.
     
@@ -290,7 +290,7 @@ Additionally, we set up the system to delete files after a certain period using 
 
 > Note: Have a look at the article dedicated to [structured logging](https://reflectoring.io/structured-logging/) if you want to dive deeper.
 
-### **Conclusion**
+## **Conclusion**
 
 In this step-by-step guide, we've explored the implementation of Winston Logger in Node.js projects, enabling us to build robust and reliable applications. With best practices like utilizing log levels, including contextual information, and centralizing logging configuration, we've paved the way for more reliable and usable Node.js applications.
 
