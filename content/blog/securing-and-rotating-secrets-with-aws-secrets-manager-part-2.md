@@ -1,139 +1,42 @@
 ---
-title: "Securing and Rotating Secrets Easily with AWS Secrets Manager"
+title: "Securing and Rotating Secrets Easily with AWS Secrets Manager - Part 2"
 authorId: "saumitra"
-date: 2024-04-21
+date: 2024-04-22
 draft: false
 featured: true
 weight: 1
 ---
 
-Automating Secret Rotation with AWS Secrets Manager
+In [Part 1](/blog/securing-and-rotating-secrets-with-aws-secrets-manager-part-1/), we discussed upon configuring AWS Secrets Manager, AWS Lambda, and Automatic Rotation for our Secret. We also defined permissions for our Lambda function, which enabled the Secrets Manager to invoke it on a scheduled basis. In Part 2, we will focus on setting up the Lambda function, including the required permissions and implementation.
 
-Managing secrets has always been a significant aspect when deploying applications. Typically, we set up a pipeline to provide secrets to our application as Environment Variables. For enhanced security, we can also choose to encrypt our secrets and store them as configuration files, which the application can access and decrypt at runtime.
-
-However, using long-lived credentials in our applications is a risky practice. The potential damage in the future could be substantial due to their indefinite validity, leading to risks like data theft, privacy breaches, and unauthorized access. On the other hand, short-lived credentials, while not entirely hack-proof, help reduce unauthorized access by expiring after a set period.
-
-We can utilize services such as AWS Secrets Manager to efficiently manage secrets, automatically rotate them, and use them in our application. In this blog, I will explore setting up AWS Secrets Manager and Lambda functions to accomplish this. Let's begin!
-
-## Before using AWS Secrets Manager
-
-For this example, I will be considering a simple Node.js application that uses the Google Calendar API to get events from a specific calendar. So far, we've been using Service Account keys to easily reach the Google Calendar API. Service Accounts help make Access Tokens for Google API use. Since Service Account keys stay valid for a long time, it's not recommended for the app to directly use them for access. Let's employ AWS Secrets Manager and Lambda functions to:
-
-1. Use the Service Account key to make the Access Token.
-
-2. Save the Access Token in the Secrets Manager.
-
-This method allows the app to get the Access Token from Secrets Manager and remove the need for Service Account keys.
-
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684534307/5b4af0ac-04e8-4994-8477-a3da850a1702.png" alt="" width="600px" />
-
-This is my starter code. The Google Service Account key being used is a long-lived credential. That's why I aim to remove this dependency by having an external service provide my application with the Access Token, which is a short-lived credential.
-
-Let's start configuring the AWS infrastructure to set up AWS Secrets Manager and Lambda functions.
-
-## Configuring the AWS Secrets Manager and Lambda functions
-
-### Configuring the AWS Secrets Manager
-
-1. Visit the [Secrets Manager](https://us-east-1.console.aws.amazon.com/secretsmanager/home?region=us-east-1) service in the AWS Console.
-
-2. Let's begin by storing a new secret, and let the type of secret be set to "Other type of secret".
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713608995307/9ac004d5-b92c-4d5c-a5fe-c28e35d79ee0.png" alt="" width="600px" />
-
-3. As I will be storing the Access Token, let's set the secret key as "*GOOGLE\_ACCESS\_TOKEN*" and leave the value empty.
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609088974/97402a01-e589-4389-82a4-6189de10bc18.png" alt="" width="600px" />
-
-4. For the Encryption key selection, I'll leave it as the default option, which is a key managed by AWS. However, you can choose to take an additional step and utilize customer-managed keys for encrypting secrets if you prefer.
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713609212808/64fc2162-1ff8-473e-9efb-8ce20fe0a855.png" alt="" width="600px" />
-
-5. In the "Configure secret" step, let's name our secret "*demo/GoogleAuth/AccessToken*".
-
-6. In the "Configure rotation" step, let's keep the Automatic rotation disabled. We will set up a Lambda function later for Automatic rotation.
-
-And there we have it, we have successfully created our secret in the Secrets Manager. Now, let's proceed to create the Lambda function. This function can be triggered by the Secrets Manager to rotate the secret.
-
-### Configuring the AWS Lambda function
-
-1. Visit the [Lambda](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/begin) service in the AWS Console.
-
-2. Create a new Lambda function and select the "Author from scratch" option.
-
-3. Since the function is meant to refresh the Google Access Token secret, name it "*refreshGoogleAccessTokenSecret*".
-
-4. I will write the Lambda function in JavaScript, so I'll choose the Runtime as "Node.js 20.x" and keep the Architecture as "x86\_64".
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610154824/59076adb-b75c-4afc-af1b-4fffc171d4ca.png" alt="" width="600px" />
-
-5. Create the function.
-
-Now that we have configured the Secrets Manager and the Lambda function, let's link them together.
-
-### Allowing Secrets Manager to invoke our Lambda function by providing permission
-
-We can now set up automatic rotation in the Secrets Manager and connect it to our Lambda function.
-
-Before linking them, we need to grant permissions to our Lambda function so that it can be invoked on a scheduled basis through the Secrets Manager.
-
-1. Go to the Lambda function overview page.
-
-2. Scroll down to locate the "Configuration" tab, and then go to the "Permissions" tab within it.
-
-3. Scroll further down to the "Resource-based policy statements" section. Click on "Add permissions".
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713610729973/9424af50-3d95-45b0-80a8-0b0792a9045d.png" alt="" width="600px" />
-
-4. In the "Edit policy statement" section, choose the "AWS service" option.
-
-5. Under the Service dropdown, select "Secrets Manager".
-
-6. For the Statement ID, let's name it "*scheduled-invocation-policy*".
-
-7. Make sure that the principal is set to "*secretsmanager.amazonaws.com*".
-
-8. Finally, select the "lambda:InvokeFunction" action from the Action dropdown, and then click on Save.
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611043263/be59f2ed-76b0-498a-88ff-5d66fc8cb6cd.png" alt="" width="600px" />
-
-This permission will enable the Secrets Manager service to refer to our Lambda function and automatically trigger it at a set schedule.
-
-### Configuring automatic rotation in the Secrets Manager
-
-We can now configure automatic rotation in the Secrets Manager and reference our Lambda function.
-
-Since I will be rotating the Google Access Token, I will generate the Access Token with a validity of 12 hours, which is the maximum allowed. This allows me to schedule automatic rotation to refresh the access token every 12 hours.
-
-1. Visit the Secrets Manager service page to check our secret details.
-
-2. Scroll down to locate the "Rotation" tab.
-
-    At first, automatic rotation is turned off. You can activate this by clicking on "Edit rotation".
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611445134/88a23906-17ca-459f-b850-ec9bdeb77149.png" alt="" width="600px" />
-
-3. In the "Edit rotation configuration" window, enable "Automatic rotation".
-
-4. In the "Rotation schedule" section, we can set our desired schedule. To refresh the Access Token every 12 hours, I will choose "Hours" as the Time Unit and set it to *12* hours.
-
-    Additionally, we have the option to define our schedule using an expression, similar to a cron schedule expression. This allows us to create more complex schedules effortlessly.
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611697737/513d6a77-313a-4558-8155-1b9fcef1923d.png" alt="" width="600px" />
-
-5. Finally, under the "Rotation function" section, select the created Lambda function from the dropdown menu, and click Save.
-
-    <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611755247/f651be0b-431a-4c4d-958c-0957af313f34.png" alt="" width="600px" />
-
-Upon saving, you should now notice that the automatic rotation is now enabled.
-
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713611799096/c2bc590e-f40e-4bf3-87cc-69d044c8363f.png" alt="" width="600px" />
-
-### Allowing our Lambda function to update secrets in the Secret Manager by defining a policy
+## Allowing our Lambda function to update secrets in the Secret Manager
 
 Before diving into implementing our Lambda function, it will require permission to update secrets in the Secrets Manager. This permission can be granted by creating a new policy in IAM and then attaching it to our Lambda function's role.
 
 Let's start by defining our policy in IAM.
+
+### **Using AWS CLI**
+
+```bash
+# Create a policy.json (make sure to replace the "REGION" and "YOUR_ACCOUNT_ID" with the appropriate region name, and your Account ID, respectively)
+echo '{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "secretsmanager:UpdateSecret",
+      "Resource": "arn:aws:secretsmanager:[REGION]:[YOUR_ACCOUNT_ID]:secret:demo/GoogleAuth/AccessToken-*"
+    }
+  ]
+}' > policy.json
+```
+
+```bash
+# Create the IAM policy
+aws iam create-policy --policy-name "demo-GoogleAuth-AccessToken-UpdateSecret-policy" --policy-document file://policy.json
+```
+
+### **Using AWS Console**
 
 1. Visit the [IAM dashboard](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/home) in the AWS Console.
 
@@ -171,9 +74,18 @@ Let's start by defining our policy in IAM.
 
 8. Create policy.
 
-### Linking the Policy under our Lambda function's role in the IAM
+## Linking the Policy under our Lambda function's role in the IAM
 
 Now that we have created a policy to allow updating our Secret in the Secrets Manager, let's proceed to link this policy under the Lambda function's role. You can find the Lambda function's role in IAM under **Access Management &gt; Roles**.
+
+### **Using AWS CLI**
+
+```bash
+# Attach the IAM policy to the Lambda function's Execution Role (make sure to replace the "YOUR_ACCOUNT_ID" with your Account ID)
+aws iam attach-role-policy --role-name "lambda_ex" --policy-arn "arn:aws:iam::[YOUR_ACCOUNT_ID]:policy/demo-GoogleAuth-AccessToken-UpdateSecret-policy"
+```
+
+### **Using AWS Console**
 
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713613440260/66ba5c84-aee8-41b4-ada0-adb7e6292e09.png" alt="" width="600px" />
 
@@ -191,13 +103,26 @@ This action will link our Policy to the role, giving access to the Secret and en
 
 This completes all the essential configuration needed for our Lambda function to securely update the Secret's value, and we can now move on to implementing the Lambda function.
 
-### Implementing our Lambda function to rotate Access Token
+## Implementing our Lambda function
 
 Our Lambda function will use the Google Service Account key and scopes to create an Access Token with a specific validity period. It will then update the value of the Secret in the Secrets Manager.
 
 We can input the Service Account key as a Base64-encoded string and the scopes as Environment Variables. Additionally, the Lambda function will need the Secret's name (in this case, "*demo/GoogleAuth/AccessToken*"). We can choose to read this as an Environment Variable or hard-code it. I recommend reading it as an Environment Variable to avoid tight coupling. Hard coding could complicate future changes, as we would need to find and update all references to the Secret, even within the Lambda function implementations.
 
-Okay, enough blabbering, let's get into the implementation part.
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1714815374400/1248f5af-a1bf-4c58-8ad4-fef2f55ef815.png" alt="" width="600px" />
+
+The above flowchart outlines a Lambda function's operation for rotating an access token. The function begins by extracting necessary Environment Variables, initializes Google Auth for access token generation, and then sets up the AWS Secrets Manager client. Once the token is generated, the function prepares and sends an update command to Secrets Manager to update the secret. It concludes by returning a successful response upon the successful updating of the secret in AWS.
+
+Okay, enough blabbering, let's set up the necessary Environment Variables, and get into the implementation part.
+
+### **Using AWS CLI**
+
+```bash
+# Set the Environment Variables in the Lambda Function
+aws lambda update-function-configuration --function-name "refreshGoogleAccessTokenSecret" --environment "Variables={GOOGLE_SERVICE_ACCOUNT_KEY_BASE64='* * *',GOOGLE_APIS_SCOPES='https://www.googleapis.com/auth/calendar.events.readonly,https://www.googleapis.com/auth/calendar.readonly',SECRET_ID='demo/GoogleAuth/AccessToken'}"
+```
+
+### **Using AWS Console**
 
 1. Visit the Lambda function overview page.
 
@@ -213,7 +138,7 @@ Okay, enough blabbering, let's get into the implementation part.
 
     <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713686228053/8551b641-58c3-47e4-b7ce-e412e9b8456c.png" alt="" width="600px" />
 
-4. Click on Save.
+    Click on Save.
 
 Next, let's proceed with implementing our Lambda function.
 
@@ -229,11 +154,45 @@ npm init -y
 
 Below is the implementation of the *google\_auth\_init.mjs* file, which defines the `createGoogleAuthFromBase64Credentials` function used to create a GoogleAuth instance.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684887551/9adc880b-01f0-48d0-a5ed-fb07c837c60f.png" alt="" width="600px" />
+```javascript
+// google_auth_init.mjs
+import { google } from "googleapis";
+
+/**
+ * Initializes a new GoogleAuth from the specified credentials
+ * and scopes.
+ */
+export function createGoogleAuthFromBase64Credentials(
+    credentialsInBase64,
+    scopes
+) {
+    // Decode the Base64 string using `atob` function
+    const decodedCredentials = atob(credentialsInBase64);
+    const decodedCredentialsInJson = JSON.parse(decodedCredentials);
+
+    return new google.auth.GoogleAuth({
+        credentials: decodedCredentialsInJson,
+        scopes,
+    });
+}
+```
 
 Let's now implement the *aws\_secrets\_manager\_init.mjs* file. This file will contain the `createAwsSecretsManagerClient` function, used to create an instance of SecretsManagerClient.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684941025/3d77dbee-ef47-4068-9b69-d37da7da385b.png" alt="" width="600px" />
+```javascript
+// aws_secrets_manager_init.mjs
+import { SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
+
+/**
+ * Initializes a new SecretsManagerClient instance
+ */
+export function createAwsSecretsManagerClient() {
+    const client = new SecretsManagerClient({
+        region: "us-east-1"
+    });
+    return client;
+}
+```
 
 Next, we can:
 
@@ -247,7 +206,52 @@ Next, we can:
 
 Let's proceed with implementing the source code in *index.mjs*.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713684982497/3a4c2ffc-2ee2-4c0a-979d-bbc67ef4c3f0.png" alt="" width="600px" />
+```javascript
+// index.mjs
+import { UpdateSecretCommand } from "@aws-sdk/client-secrets-manager";
+
+import { createGoogleAuthFromBase64Credentials } from "./google_auth_init.mjs";
+import { createAwsSecretsManagerClient } from "./aws_secrets_manager_init.mjs";
+
+const { GOOGLE_SERVICE_ACCOUNT_KEY_BASE64, GOOGLE_APIS_SCOPES, SECRET_ID } = process.env;
+
+// Entry point
+export const handler = async (event) => {
+    const googleAuthScopes = GOOGLE_APIS_SCOPES.split(",");
+    const googleAuth = createGoogleAuthFromBase64Credentials(
+        GOOGLE_SERVICE_ACCOUNT_KEY_BASE64,
+        googleAuthScopes
+    );
+
+    // Generate a new Access Token, and prepare
+    // an object with updated secrets.
+    const accessToken = await googleAuth.getAccessToken();
+    const updatedSecrets = {
+        GOOGLE_ACCESS_TOKEN: accessToken,
+    };
+
+    const secretsManagerClient = createAwsSecretsManagerClient();
+
+    // Prepare the update secret command with
+    // secret id (name of the Secret), and
+    // secret string which is the updated secrets
+    // stringified.
+    const updateSecretCommand = new UpdateSecretCommand({
+        SecretId: SECRET_ID,
+        SecretString: JSON.stringify(updatedSecrets),
+    });
+
+    // Commit the changes to Secrets Manager
+    await secretsManagerClient.send(updateSecretCommand);
+
+    // Return a response with the status code
+    const response = {
+        statusCode: 200,
+        body: "Access Token was rotated",
+    };
+    return response;
+};
+```
 
 Also, ensure that you install the dependencies before moving on to the uploading step.
 
@@ -263,15 +267,38 @@ Open a terminal in the project's (or implementation's) root directory and execut
 zip -r code.zip .
 ```
 
+#### Uploading the ZIP file using AWS CLI
+
+```bash
+# Upload the ZIP file containing the Lambda function implementation
+aws lambda update-function-code --function-name "refreshGoogleAccessTokenSecret" --zip-file fileb://code.zip
+```
+
+#### Uploading the ZIP file using AWS Console
+
 Next, open the Lambda function overview page, and under the "Code" tab, click on **Upload from &gt; .zip file**.
 
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713619303737/3a95404b-bf36-4181-9113-921f9dc90702.png" alt="" width="600px" />
 
-Select the generated ZIP file (in this case, "code.zip"), and upload it to update the Lambda function's source code.
+Select the generated ZIP file (in this case, "*code.zip*"), and upload it to update the Lambda function's source code.
 
-### Testing out our Lambda function
+## Testing out the Lambda function
 
 After uploading the source code, let's test our Lambda function to confirm if it successfully rotates the Access Token in the Secrets Manager.
+
+### **Using AWS CLI**
+
+```bash
+# Invoke the Lambda function and store the result to "output.txt"
+aws lambda invoke --function-name "refreshGoogleAccessTokenSecret" --payload '{}' output.txt
+```
+
+```bash
+# View the result
+cat output.txt
+```
+
+### **Using AWS Console**
 
 1. Visit the Lambda function overview page.
 
@@ -307,11 +334,78 @@ In my case, I will utilize the [aws-sdk](https://www.npmjs.com/package/aws-sdk) 
 
 To access the Secrets Manager service securely, we must create a SecretsManagerClient. This client allows us to fetch secrets securely. Let's create the *aws\_secrets\_manager\_util.mjs* script, which will contain the necessary functions to set up a client and retrieve secrets using it.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685334711/4e1ea108-500c-456d-bb8d-209082521df5.png" alt="" width="600px" />
+```javascript
+// aws_secrets_manager_util.mjs
+import AWS from "aws-sdk";
+
+const { SecretsManager } = AWS;
+
+/**
+ * Initializes a new SecretsManager instance
+ */
+export function createSecretsManagerClient(region) {
+    const client = new SecretsManager({ region });
+    return client;
+}
+
+/**
+ * Fetches secrets from a Secret Manager using the client and the secret Id
+ * @returns {Promise<{ GOOGLE_ACCESS_TOKEN: string }>} Secrets
+ */
+export async function getSecretsFromSecretsManagerClient(client, secretId) {
+    const secretsResult = await client
+        .getSecretValue({
+            SecretId: secretId,
+        })
+        .promise();
+
+    const secrets = JSON.parse(secretsResult.SecretString);
+    return secrets;
+}
+```
 
 We can now use the functions exported from my *aws\_secrets\_manager\_util.mjs* in the start script to effectively utilize the Google Access Token for fetching Calendar events and remove the reliance on Service Account keys in the application.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1713685490779/8cd4732e-ba09-4ed8-9e25-0b7934cd9c0b.png" alt="" width="600px" />
+```javascript
+import { config } from "dotenv";
+config();
+
+import {
+    createSecretsManagerClient,
+    getSecretsFromSecretsManagerClient,
+} from "./aws_secrets_manager_util.mjs";
+import {
+    createCalendarClient,
+    getEventsByCalendarId,
+} from "./google_calendar_service.mjs";
+
+/**
+ * AWS_SECRET_MANAGER_REGION -> AWS Secrets Manager Region (us-east-1)
+ * AWS_SECRET_MANAGER_SECRET_ID -> AWS Secrets Manager Secret Id
+ * (demo/GoogleAuth/AccessToken)
+ */
+const {
+    AWS_SECRET_MANAGER_REGION,
+    AWS_SECRET_MANAGER_SECRET_ID,
+    GOOGLE_CALENDAR_ID,
+} = process.env;
+
+// Fetch Google Access Token from the AWS Secrets Manager
+const secretsManagerClient = createSecretsManagerClient(
+    AWS_SECRET_MANAGER_REGION
+);
+const { GOOGLE_ACCESS_TOKEN } = await getSecretsFromSecretsManagerClient(
+    secretsManagerClient,
+    AWS_SECRET_MANAGER_SECRET_ID
+);
+
+const calendarClient = createCalendarClient(GOOGLE_ACCESS_TOKEN);
+
+// Fetch all Calendar events
+getEventsByCalendarId(calendarClient, GOOGLE_CALENDAR_ID)
+    .then(console.log)
+    .catch(console.error);
+```
 
 ## Conclusion
 
