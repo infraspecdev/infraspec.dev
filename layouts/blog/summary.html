@@ -13,8 +13,7 @@
           {{ $author := $authorDetails.name }}
           <span>by {{ $author }},</span>
         {{ end }}
-        <span>on {{ time.Format "Jan 2, 2006" .Params.Date }}</span>
-      </span>
+        <span>on {{ time.Format "Jan 2, 2006" .Params.Date }} | {{ .ReadingTime }} min read</span>
     </p>
   </div>
 </div>
