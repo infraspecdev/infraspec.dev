@@ -50,5 +50,9 @@
   "vijay": {
     "image": "images/team/vijay-profile.png",
     "name": "Vijay Dhama"
+  },
+  "sudeep": {
+    "name": "Sudeep Kulkarni",
+    "image": "images/team/sudeep-profile.png"
   }
 }
