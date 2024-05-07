@@ -1,58 +1,54 @@
 {
   "abhishek": {
-    "name": "Abhishek Sangwan",
-    "image": "images/team/abhishek-profile.png"
+    "image": "images/team/abhishek-profile.png",
+    "name": "Abhishek Sangwan"
   },
   "arihant": {
-    "name" : "Arihant Hirawat",
-    "image": "images/team/arihant-profile.png"
+    "image": "images/team/arihant-profile.png",
+    "name": "Arihant Hirawat"
   },
   "ashwini": {
-    "name" : "Ashwini Manoj",
-    "image": "images/team/ashwini-profile.png"
+    "image": "images/team/ashwini-profile.png",
+    "name": "Ashwini Manoj"
   },
   "chetan": {
-    "name" : "Chetan Kothari",
-    "image": "images/team/chetan-profile.png"
+    "image": "images/team/chetan-profile.png",
+    "name": "Chetan Kothari"
   },
   "madhu": {
-    "name" : "Madhu P",
-    "image": "images/team/madhu-profile.png"
-  },
-  "premdeep": {
-    "name" : "Premdeep Saini",
-    "image": "images/team/premdeep-profile.png"
-  },
-  "rajat": {
-    "name" : "Rajat Tomar",
-    "image": "images/team/rajat-profile.jpg"
-  },
-  "vijay": {
-    "name" : "Vijay Dhama",
-    "image": "images/team/vijay-profile.png"
-  },
-  "rahul": {
-    "name" : "Rahul Patil",
-    "image": "images/team/rahul-profile.jpeg"
-  },
-  "shivani": {
-    "name" : "Shivani Banke",
-    "image": "images/team/shivani-profile.jpg"
-  },
-  "saumitra": {
-    "name" : "Saumitra Topinkatti",
-    "image": "images/team/saumitra-profile.jpg"
+    "image": "images/team/madhu-profile.png",
+    "name": "Madhu P"
   },
   "nimisha": {
-    "name" : "Nimisha G J",
-    "image": "images/team/nimisha-profile.jpg"
+    "image": "images/team/nimisha-profile.jpg",
+    "name": "Nimisha G J"
+  },
+  "premdeep": {
+    "image": "images/team/premdeep-profile.png",
+    "name": "Premdeep Saini"
+  },
+  "rahul": {
+    "image": "images/team/rahul-profile.jpeg",
+    "name": "Rahul Patil"
+  },
+  "rajat": {
+    "image": "images/team/rajat-profile.jpg",
+    "name": "Rajat Tomar"
   },
   "rohit": {
-    "name" : "Rohit Nagmoti",
-    "image": "images/team/rohit-profile.png"
+    "image": "images/team/rohit-profile.png",
+    "name": "Rohit Nagmoti"
   },
-  "sudeep": {
-    "name" : "Sudeep Kulkarni",
-    "image": "images/team/sudeep-profile.png"
+  "saumitra": {
+    "image": "images/team/saumitra-profile.jpg",
+    "name": "Saumitra Topinkatti"
+  },
+  "shivani": {
+    "image": "images/team/shivani-profile.jpg",
+    "name": "Shivani Banke"
+  },
+  "vijay": {
+    "image": "images/team/vijay-profile.png",
+    "name": "Vijay Dhama"
   }
 }
