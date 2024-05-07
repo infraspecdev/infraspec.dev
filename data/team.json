@@ -46,5 +46,9 @@
   "nimisha": {
     "name" : "Nimisha G J",
     "image": "images/team/nimisha-profile.jpg"
+  },
+  "rohit": {
+    "name" : "Rohit Nagmoti",
+    "image": "images/team/rohit-profile.png"
   }
 }
