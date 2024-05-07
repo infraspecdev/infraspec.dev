@@ -38,5 +38,13 @@
   "shivani": {
     "name" : "Shivani Banke",
     "image": "images/team/shivani-profile.jpg"
+  },
+  "saumitra": {
+    "name" : "Saumitra Topinkatti",
+    "image": "images/team/saumitra-profile.jpg"
+  },
+  "nimisha": {
+    "name" : "Nimisha G J",
+    "image": "images/team/nimisha-profile.jpg"
   }
 }
