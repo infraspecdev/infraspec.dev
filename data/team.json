@@ -35,6 +35,22 @@
     "name" : "Rahul Patil",
     "image": "images/team/rahul-profile.jpeg"
   },
+  "shivani": {
+    "name" : "Shivani Banke",
+    "image": "images/team/shivani-profile.jpg"
+  },
+  "saumitra": {
+    "name" : "Saumitra Topinkatti",
+    "image": "images/team/saumitra-profile.jpg"
+  },
+  "nimisha": {
+    "name" : "Nimisha G J",
+    "image": "images/team/nimisha-profile.jpg"
+  },
+  "rohit": {
+    "name" : "Rohit Nagmoti",
+    "image": "images/team/rohit-profile.png"
+  },
   "sudeep": {
     "name" : "Sudeep Kulkarni",
     "image": "images/team/sudeep-profile.png"
