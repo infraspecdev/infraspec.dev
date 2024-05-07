@@ -50,5 +50,9 @@
   "rohit": {
     "name" : "Rohit Nagmoti",
     "image": "images/team/rohit-profile.png"
+  },
+  "sudeep": {
+    "name" : "Sudeep Kulkarni",
+    "image": "images/team/sudeep-profile.png"
   }
 }
