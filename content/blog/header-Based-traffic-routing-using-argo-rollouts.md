@@ -86,6 +86,7 @@ These steps may include various analysis checks, pauses, or adjustments in traff
 ### On implementing header-based routing, how will things look?
 Suppose below are the canary steps if we were using:
 ```yaml
+
 steps:
   - setCanaryScale:
       weight: 10
@@ -106,6 +107,7 @@ steps:
   - setWeight: 80
   - pause:
       duration: 20
+
 ```
 
 **setCanaryScale**: It will tell us how much of a percentage of new pods to scale up.
@@ -126,7 +128,7 @@ We will scale the 10% of pods in the total replica pods; consider that the total
 2. **Step 2:**
 It will create a new listener in AWS ALB with the same host and path but an additional header with lower priority, so that requests with a specific header should go to new pods instead of older pods by the existing listener.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1000" height = "250">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "350">
 
 
 3. **Step 3:**
@@ -135,7 +137,7 @@ Deployment will be paused for 60 seconds so that you can perform testing by hitt
 4. **Step 4:**
 Here we will be shifting 1% of production traffic to newer pods, which will come from the existing listener, but now you have some percentage of traffic on newer pods, and hence you can perform more comprehensive testing by using the same technique of header-based testing to hit new pods.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1000" height = "250">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "350">
 
 
 5. **Step 5:**
@@ -154,6 +156,7 @@ Let’s see how the ingress will look after Step 2 (considering the same rollout
 <img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/header-based-ingress.png" alt="Argo Rollout Header Based Ingress" width="700" height = "350">
 
 ```yaml
+
 spec:
   ingressClassName: alb
   rules:
@@ -174,17 +177,20 @@ spec:
               name: use-annotation
         path: /*
         pathType: ImplementationSpecific
+
 ```
 
 Consider that we have one path in ingress that will point to our service, Canary/Active, based on which is holding traffic. When we enable header-based routing, it will add one more path with the same configuration; the only difference is the service name, which is equal to the name we gave when defining the canary step. If you remember the below step,
 
 ```yaml
+
      - setHeaderRoute:
           match:
           - headerName: version
             headerValue:
               exact: "2"
           name: canary-header-route-new
+
 ```
 
 So, you might be wondering where this traffic between the services is specified and which service to point to currently. This is done by the annotation, which is then understood by the alb controller.
@@ -192,7 +198,12 @@ So, you might be wondering where this traffic between the services is specified 
 Let’s look into the action annotation, which tells us which service is holding the traffic.
 
 ```yaml
-alb.ingress.kubernetes.io/actions.service-rollout-active: '{"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":0},{"ServiceName":"service-rollout-root","ServicePort":"80","Weight":100}]}}'
+
+alb.ingress.kubernetes.io/actions.service-rollout-active: >-
+   {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":0},
+   {"ServiceName":"service-rollout-root","ServicePort":"80","Weight":100}]}}
+
+
 ```
 
 Here we can compare that when we give the service name while defining the path in ingress as service-rollout-active. It means that the service name matches the annotation and accordingly sends traffic to particular services with a percentage.
@@ -200,7 +211,10 @@ Here we can compare that when we give the service name while defining the path i
 Now, when we enable header-based routing, it will add one more annotation as follows:
 
 ```yaml
-alb.ingress.kubernetes.io/actions.canary-header-route-new: '{"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":100}]}}'
+
+alb.ingress.kubernetes.io/actions.canary-header-route-new: >-
+   {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":100}]}}
+
 ```
 
 So, as we can see, the active one is Root, which is currently holding 100% of traffic, and in the next iteration, it will be shifted to Canary, which is then pointed by the header route also.
@@ -213,11 +227,15 @@ To address this gap and enable the use of header-based routing, we devised a wor
 We made modifications to the `apps.yaml` file in our ArgoCD configuration to instruct it to ignore the specific changes related to the Ingress resources. Here's a snippet of the relevant configuration:
 
 ```yaml
+
 ignoreDifferences:
-﻿﻿  - group: networking.k8s.io
+  - group: networking.k8s.io
     kind: Ingress
     jqPathExpressions:
-      - ﻿﻿.spec.rules[]?.http.paths[]?|select (.backend. service.name=="canary-header-route-new")
+      - >-
+        .spec.rules[]?.http.paths[]?|select (.backend.
+        service.name=="canary-header-route-new")
+
 ```
 
 This configuration specifies that ArgoCD should ignore any changes made to Ingress resources where the backend service points to "canary-header-route-new." By applying this workaround, we were able to maintain the integrity of our header-based routing configuration despite the OutOfSync issue.
