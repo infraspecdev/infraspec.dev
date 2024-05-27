@@ -87,26 +87,26 @@ These steps may include various analysis checks, pauses, or adjustments in traff
 Suppose below are the canary steps if we were using:
 ```yaml
 
-steps:
-  - setCanaryScale:
-      weight: 10
-  - setHeaderRoute:
-      match:
-      - headerName: version
-        headerValue:
-          exact: "2"
-      name: canary-header-route-new
-  - pause:
-      duration: 60s
-  - setWeight: 1
-  - pause: {}
-  - setCanaryScale:
-      matchTrafficWeight: true
-  - pause:
-      duration: 20
-  - setWeight: 80
-  - pause:
-      duration: 20
+   steps:
+     - setCanaryScale:
+         weight: 10
+     - setHeaderRoute:
+         match:
+         - headerName: version
+           headerValue:
+             exact: "2"
+         name: canary-header-route-new
+     - pause:
+         duration: 60s
+     - setWeight: 1
+     - pause: {}
+     - setCanaryScale:
+         matchTrafficWeight: true
+     - pause:
+         duration: 20
+     - setWeight: 80
+     - pause:
+         duration: 20
 
 ```
 
@@ -128,7 +128,7 @@ We will scale the 10% of pods in the total replica pods; consider that the total
 2. **Step 2:**
 It will create a new listener in AWS ALB with the same host and path but an additional header with lower priority, so that requests with a specific header should go to new pods instead of older pods by the existing listener.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "450">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "550">
 
 
 3. **Step 3:**
@@ -137,7 +137,7 @@ Deployment will be paused for 60 seconds so that you can perform testing by hitt
 4. **Step 4:**
 Here we will be shifting 1% of production traffic to newer pods, which will come from the existing listener, but now you have some percentage of traffic on newer pods, and hence you can perform more comprehensive testing by using the same technique of header-based testing to hit new pods.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "450">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "550">
 
 
 5. **Step 5:**
