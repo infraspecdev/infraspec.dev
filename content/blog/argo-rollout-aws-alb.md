@@ -7,6 +7,7 @@ featured: true
 weight: 1
 ---
 
+The blog discusses resolving a deployment issue with 502 errors on AWS EKS using AWS ALB and Argo Rollouts. It details the root cause, attempted solutions, and resulting trade-offs.
 
 ## The Issue Encountered
 
