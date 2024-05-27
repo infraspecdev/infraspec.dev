@@ -54,5 +54,9 @@
   "sudeep": {
     "name": "Sudeep Kulkarni",
     "image": "images/team/sudeep-profile.png"
+  },
+  "mufaddal": {
+    "name": "Mufaddal Shakir",
+    "image": "images/team/mufaddal-profile.jpg"
   }
 }
