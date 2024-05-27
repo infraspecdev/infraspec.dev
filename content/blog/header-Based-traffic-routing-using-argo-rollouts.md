@@ -48,7 +48,7 @@ We acknowledged that responsibility for the incident wasn't solely on the Dev & 
 
 ### How does the Argo Rollout work?
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-1.png" alt="Argo Rollout Pre Deployment" width="1000" height = "250">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-1.png" alt="Argo Rollout Pre Deployment" width="1100" height = "250">
 
 Argo Rollout manages two services: the active service and the canary service, if utilizing the canary strategy. These services are represented as target groups on the AWS ALB console. The active service typically starts with a 100% weight, while the canary service begins with a 0% weight.
 
@@ -72,7 +72,7 @@ These steps may include various analysis checks, pauses, or adjustments in traff
     1. Once all traffic has been shifted to the Canary service, it becomes the active service.
     2. At this point, the previous active service becomes the Canary service, ready for future deployments.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-2.png" alt="Argo Rollout During Deployment" width="1000" height = "250">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-2.png" alt="Argo Rollout During Deployment" width="1100" height = "250">
 
 ### How does Argo Rollout header-based routing work then?
 #### Routing Traffic with Specific Headers:
@@ -128,7 +128,7 @@ We will scale the 10% of pods in the total replica pods; consider that the total
 2. **Step 2:**
 It will create a new listener in AWS ALB with the same host and path but an additional header with lower priority, so that requests with a specific header should go to new pods instead of older pods by the existing listener.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "350">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "400">
 
 
 3. **Step 3:**
@@ -137,7 +137,7 @@ Deployment will be paused for 60 seconds so that you can perform testing by hitt
 4. **Step 4:**
 Here we will be shifting 1% of production traffic to newer pods, which will come from the existing listener, but now you have some percentage of traffic on newer pods, and hence you can perform more comprehensive testing by using the same technique of header-based testing to hit new pods.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "350">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "400">
 
 
 5. **Step 5:**
