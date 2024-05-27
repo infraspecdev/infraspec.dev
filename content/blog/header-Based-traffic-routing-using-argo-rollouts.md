@@ -20,7 +20,7 @@ Our new feature led to an incident, and unfortunately, disabling it wasn't feasi
 
 To comprehend this, let's delve into the current setup of our organizational services. Essentially, all our client services are hosted in Kubernetes (K8s) via AWS EKS. The Kubernetes manifests are managed within our organization, with one such repository residing on GitHub, which is then synchronized with ArgoCD. In terms of deployment strategy, we've embraced Argo-Rollout Canary as it empowers us with automated progressive delivery.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.png" alt="Current Deployment Setup" width="700" height = "750">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.jpg" alt="Current Deployment Setup" width="700" height = "750">
 
 **Still, you didn’t get the answer to the question, correct?**
 
@@ -157,26 +157,26 @@ Let’s see how the ingress will look after Step 2 (considering the same rollout
 
 ```yaml
 
-spec:
-  ingressClassName: alb
-  rules:
-  - host: qa-domain.com
-    http:
-      paths:
-      - backend:
-          service:
-            name: canary-header-route-new
-            port:
-              name: use-annotation
-        path: /*
-        pathType: ImplementationSpecific
-      - backend:
-          service:
-            name: service-rollout-active
-            port:
-              name: use-annotation
-        path: /*
-        pathType: ImplementationSpecific
+   spec:
+     ingressClassName: alb
+     rules:
+     - host: qa-domain.com
+       http:
+         paths:
+         - backend:
+             service:
+               name: canary-header-route-new
+               port:
+                 name: use-annotation
+           path: /*
+           pathType: ImplementationSpecific
+         - backend:
+             service:
+               name: service-rollout-active
+               port:
+                 name: use-annotation
+           path: /*
+           pathType: ImplementationSpecific
 
 ```
 
@@ -199,9 +199,9 @@ Let’s look into the action annotation, which tells us which service is holding
 
 ```yaml
 
-alb.ingress.kubernetes.io/actions.service-rollout-active: >-
-   {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":0},
-   {"ServiceName":"service-rollout-root","ServicePort":"80","Weight":100}]}}
+   alb.ingress.kubernetes.io/actions.service-rollout-active: >-
+      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":0},
+      {"ServiceName":"service-rollout-root","ServicePort":"80","Weight":100}]}}
 
 
 ```
@@ -212,8 +212,8 @@ Now, when we enable header-based routing, it will add one more annotation as fol
 
 ```yaml
 
-alb.ingress.kubernetes.io/actions.canary-header-route-new: >-
-   {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":100}]}}
+   alb.ingress.kubernetes.io/actions.canary-header-route-new: >-
+      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"service-rollout-canary","ServicePort":"80","Weight":100}]}}
 
 ```
 
@@ -228,13 +228,13 @@ We made modifications to the `apps.yaml` file in our ArgoCD configuration to ins
 
 ```yaml
 
-ignoreDifferences:
-  - group: networking.k8s.io
-    kind: Ingress
-    jqPathExpressions:
-      - >-
-        .spec.rules[]?.http.paths[]?|select (.backend.
-        service.name=="canary-header-route-new")
+   ignoreDifferences:
+     - group: networking.k8s.io
+       kind: Ingress
+       jqPathExpressions:
+         - >-
+           .spec.rules[]?.http.paths[]?|select (.backend.
+           service.name=="canary-header-route-new")
 
 ```
 
