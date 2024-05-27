@@ -10,8 +10,7 @@ weight: 1
 This blog explores how to use Argo Rollouts for deploying software updates smoothly. It covers the challenges faced when rolling back updates and introduces header-based routing to manage traffic during deployments.
 ## Scenario
 
-Following the deployment of one of our client-critical services, we encountered an application bug after rolling out a service to 100% of users. Given the urgency of the situation, our only recourse was to swiftly rollback to the previous version.
-
+Following the deployment of one of our client-critical services, we saw an application bug after we rolled out a service to 100% of users, so the only option left for us is to quickly rollback to the older version. But that also took some time, as the rollback process was not fast in the older setup.
 ### Why was the rollback the only option we had?
 
 Our new feature led to an incident, and unfortunately, disabling it wasn't feasible. Without feature flags in place, executing a full rollback was the sole method available to us for recovery.
