@@ -1,3 +1,15 @@
+---
+title: "Building a Discord GPT Bot"
+authorId: "nandhitha"
+date: 2024-05-31
+draft: false
+featured: true
+weight: 1
+sitemap:
+changefreq: "monthly"
+priority: 1
+---
+
 With all the frenzy and buzz around AI, we also wanted to have a first hand experience of this world. However, as engineers ourselves we wanted more than just talking to ChatGPT. We wanted to get our hands dirty and in the nitty gritty of how to build AI apps. From the outset, it was clear to us that we wanted to build muscle in this space, but we also wanted to build something that we could actually use everyday and have real world feedback on. We started off with wanting to have a chatGPT like experience but within our messaging platform. We use Discord internally and quite heavily so, if I might add. Naturally, it has a large volume of information about our everyday life here - the mundane, the exciting and everything in between. Bringing ChatGPT capabilities into this medium would mean that we can keep all of conversations in one place and maybe even build some ops tooling around here. Unlike Slack, which has one available out of the box, we couldn't find one that works as smoothly for Discord. And this seemed like an ideal project for us have a go at. And lo behold! We found our first project - we were going to build a discord chatgpt bot from scratch.
 
 ### Step 1 -Setting up a python virtual environment (optional, but recommended):
