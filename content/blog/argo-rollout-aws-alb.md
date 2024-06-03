@@ -17,7 +17,7 @@ We encountered a 502 at the AWS load balancer level during the deployment of one
 
 Presently, all of our client's services are hosted on AWS EKS using Kubernetes, and all Kubernetes manifests are managed in org, one of which is a GitHub repository that is synchronized with ArgoCD. Since Argo-Rollout Canary offers us the benefit of automated progressive delivery, we have chosen it as our deployment strategy.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.jpg" alt="Current Deployment Setup" width="700" height = "750">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.png" alt="Current Deployment Setup" width="700" height = "750">
 
 We were using the AWS ALB to route traffic, and it was managing the instructions from the Argo Rollout to move traffic to a new service by using the canary steps specified in the rollout manifests.
 
