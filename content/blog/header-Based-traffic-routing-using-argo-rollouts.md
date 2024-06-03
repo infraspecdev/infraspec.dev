@@ -19,7 +19,7 @@ Our new feature led to an incident, and unfortunately, disabling it wasn't feasi
 
 To comprehend this, let's delve into the current setup of our organizational services. Essentially, all our client services are hosted in Kubernetes (K8s) via AWS EKS. The Kubernetes manifests are managed within our organization, with one such repository residing on GitHub, which is then synchronized with ArgoCD. In terms of deployment strategy, we've embraced Argo-Rollout Canary as it empowers us with automated progressive delivery.
 
-<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.jpg" alt="Current Deployment Setup" width="700" height = "750">
+<img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.png" alt="Current Deployment Setup" width="700" height = "750">
 
 **Still, you didn’t get the answer to the question, correct?**
 
