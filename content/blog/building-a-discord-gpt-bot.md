@@ -12,12 +12,12 @@ priority: 1
 
 With all the frenzy and buzz around AI, we also wanted to have a first hand experience of this world. However, as engineers ourselves we wanted more than just talking to ChatGPT. We wanted to get our hands dirty and in the nitty gritty of how to build AI apps. From the outset, it was clear to us that we wanted to build muscle in this space, but we also wanted to build something that we could actually use everyday and have real world feedback on. We started off with wanting to have a chatGPT like experience but within our messaging platform. We use Discord internally and quite heavily so, if I might add. Naturally, it has a large volume of information about our everyday life here - the mundane, the exciting and everything in between. Bringing ChatGPT capabilities into this medium would mean that we can keep all of conversations in one place and maybe even build some ops tooling around here. Unlike Slack, which has one available out of the box, we couldn't find one that works as smoothly for Discord. And this seemed like an ideal project for us have a go at. And lo behold! We found our first project - we were going to build a discord chatgpt bot from scratch.
 
-### Step 1 -Setting up a python virtual environment (optional, but recommended):
+## Step 1 -Setting up a python virtual environment (optional, but recommended):
 
 - Setup a python virtual environment - why should you this? This warrants a whole conversation by itself. But the tl;dr is that it helps you manage different python versions and project dependencies in a cleaner way.
 - I use `conda`. `venv` is a good alternative; regardless of whichever tool you use, remember to install dependencies only inside the virtual environment.
 
-### Step 2 - Create a simple discord bot
+## Step 2 - Create a simple discord bot
 
 - Goto https://www.discord.com/developers
 - Click on New Application; provide a name for it (e.g. - infraspec-gpt-bot)
@@ -26,7 +26,7 @@ With all the frenzy and buzz around AI, we also wanted to have a first hand expe
   - enable `Message Content Intent`. This allows the bot to read the `message_content` field of a message object
     ![bot-settings](/images/blog/building-a-discord-gpt-bot/bot-settings.png)
 
-#### Add bot to your discord server
+### Add bot to your discord server
 
 - Under Scopes, choose `Bot`
   ![oauth2-app-scope](/images/blog/building-a-discord-gpt-bot/oauth2-app-scope.png)
@@ -35,7 +35,7 @@ With all the frenzy and buzz around AI, we also wanted to have a first hand expe
 - Open the generated URL in your browser and add the bot to your discord server
   ![add-to-server.png](/images/blog/building-a-discord-gpt-bot/add-to-server.png)
 
-#### Coding a Python script to respond
+### Coding a Python script to respond
 
 - Install python dependency discord.py with `conda install discord.py`
 - Create `main.py` with the following code - this responds only to messages beginning with `$hello` only
@@ -68,13 +68,13 @@ export DISCORD_BOT_TOKEN=<your-bot-token>
 python main.py
 ```
 
-### Step 3 - Setup OpenAI API keys
+## Step 3 - Setup OpenAI API keys
 
 Now that we have a basic discord bot placeholder out of the way, let's get onto making it work like chatgpt - for this we use the openAI APIs that have been made available. Before we get onto that though, let us pause here for a minute to understand the difference between chatgpt and openAI. OpenAI is the company that created ChatGPT. ChatGPT is an end user application that is powered by the underlying GPT models (gpt-3.5-turbo, gpt-4, gpt-4o, etc.); whereas the OpenAI APIs allow for us to directly use these models for our usecase. I suspect that ChatGPT might also have been fed some tailored prompts to make it slightly more end user amenable, the open AI APIs allow us to access the models in their more uncensored, raw forms.
 
 Let us create project API keys on platform.openai.com/api-keys. Make a note of the key somewhere secure as it won't be possible to be view it later.
 
-#### Ensure that the API keys work as expected
+### Ensure that the API keys work as expected
 
 ```
 export OPENAI_API_KEY=<your-api-key-here>
@@ -124,7 +124,7 @@ You should see a valid response like below.
 }
 ```
 
-### Step 4 - Tying it all together
+## Step 4 - Tying it all together
 
 Let's now put it all together. We now have a discord bot and we have openAI API keys working as expected. Let's now build our very own chatgpt, but on discord. At the simplest level, we want to pass on the message from the user to the model and return the API response to the user.
 
