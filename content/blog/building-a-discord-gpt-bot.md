@@ -28,21 +28,16 @@ With all the frenzy and buzz around AI, we also wanted to have a first hand expe
 
 #### Add bot to your discord server
 
-Firstly, we will need to define the scope of the application and provide it with necessary permissions. Navigate to Settings -> OAuth2
-
 - Under Scopes, choose `Bot`
   ![oauth2-app-scope](/images/blog/building-a-discord-gpt-bot/oauth2-app-scope.png)
-
 - In the ensuing checklist that opens up, select the necessary bot permissions
   ![oauth2-bot-permissions](/images/blog/building-a-discord-gpt-bot/oauth2-bot-permission.png)
-
 - Open the generated URL in your browser and add the bot to your discord server
   ![add-to-server.png](/images/blog/building-a-discord-gpt-bot/add-to-server.png)
 
 #### Coding a Python script to respond
 
 - Install python dependency discord.py with `conda install discord.py`
-
 - Create `main.py` with the following code - this responds only to messages beginning with `$hello` only
 
 ```python
@@ -81,7 +76,9 @@ Let us create project API keys on platform.openai.com/api-keys. Make a note of t
 
 #### Ensure that the API keys work as expected
 
-`export OPENAI_API_KEY=<your api key here>`
+```
+export OPENAI_API_KEY=<your-api-key-here>
+```
 
 ```bash
 curl https://api.openai.com/v1/chat/completions   -H "Content-Type: application/json"   -H "Authorization: Bearer $OPENAI_API_KEY"   -d '{
@@ -167,7 +164,7 @@ async def on_message(user_message):
 discord_client.run(os.getenv('DISCORD_BOT_TOKEN'))
 ```
 
-So there you have it! A simple discord bot that lets you talk to GPT. The models do not have memory of the past requests and so at present, it just works as a relay layer. But we want to more from it. We want it have a conversation with it, and not just use it for one-off fact checking. And to have a conversation, both parties need to be able to retain earlier parts of the conversation (at least within reasonable limits). We humans can do that naturally, but how would GPT do that? For this, we would need to do something a little extra to make it 'remember'.
+And... voila! A simple discord bot that lets you talk to GPT. The models do not have memory of the past requests and so at present, it just works as a relay layer. But we want more from it. We want to have a conversation with it, and not just use it for one-off fact checking. And to have a conversation, both parties need to be able to retain earlier parts of the conversation (at least within reasonable limits). We humans can do that naturally, but how would GPT do that? For this, we would need to do a little extra to make it 'remember'.
 
 GPT's chat completion API works by treating whatever you pass in the `messages` field of the request as context. It is by design allowed to pass (an optional) system message and a series of exchanges between the user and the GPT(assistant). You can use this either for few-shot prompting, or you could also use this to pass relevant bits of the conversation history so that GPT has access to past conversation and can reference that information as needed. Below is a sample of what the `messages` field would look like.
 
