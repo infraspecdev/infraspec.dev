@@ -10,7 +10,12 @@ changefreq: "monthly"
 priority: 1
 ---
 
-With all the frenzy and buzz around AI, we also wanted to have a first hand experience of this world. However, as engineers ourselves we wanted more than just talking to ChatGPT. We wanted to get our hands dirty and in the nitty gritty of how to build AI apps. From the outset, it was clear to us that we wanted to build muscle in this space, but we also wanted to build something that we could actually use everyday and have real world feedback on. We started off with wanting to have a chatGPT like experience but within our messaging platform. We use Discord internally and quite heavily so, if I might add. Naturally, it has a large volume of information about our everyday life here - the mundane, the exciting and everything in between. Bringing ChatGPT capabilities into this medium would mean that we can keep all of conversations in one place and maybe even build some ops tooling around here. Unlike Slack, which has one available out of the box, we couldn't find one that works as smoothly for Discord. And this seemed like an ideal project for us have a go at. And lo behold! We found our first project - we were going to build a discord chatgpt bot from scratch.
+Amidst the excitement surrounding AI, we were eager to delve into this field ourselves. As engineers, we wanted more than just a casual conversation with ChatGPT—we aimed to understand the intricacies of building AI applications.
+From the beginning, our goal was clear: to build muscle in this space while creating something practical for daily use that could provide real-world feedback.
+
+We envisioned integrating a ChatGPT-like experience within our messaging platform. Internally, we rely heavily on Discord, which holds a vast amount of information about our daily activities - the mundane, the exciting and everything in between. Incorporating ChatGPT into Discord would allow us to centralize our conversations and potentially develop operational tools around it. Unlike Slack, which has a ready-to-use solution, we couldn't find a seemless Discord ChatGPT integration. This challenge seemed like the perfect project for us.
+
+Thus, our first project was born: building a ChatGPT bot for Discord from scratch.
 
 ## Step 1 -Setting up a python virtual environment (optional, but recommended):
 
@@ -73,8 +78,7 @@ python main.py
 Now that we have a basic discord bot placeholder out of the way, let's get onto making it work like chatgpt - for this we use the openAI APIs that have been made available. Before we get onto that though, let us pause here for a minute to understand the difference between chatgpt and openAI. OpenAI is the company that created ChatGPT. ChatGPT is an end user application that is powered by the underlying GPT models (gpt-3.5-turbo, gpt-4, gpt-4o, etc.); whereas the OpenAI APIs allow for us to directly use these models for our usecase. I suspect that ChatGPT might also have been fed some tailored prompts to make it slightly more end user amenable, the open AI APIs allow us to access the models in their more uncensored, raw forms.
 
 Let us create project API keys on platform.openai.com/api-keys. Make a note of the key somewhere secure as it won't be possible to be view it later.
-
-### Ensure that the API keys work as expected
+To ensure that the API keys work as expected
 
 ```
 export OPENAI_API_KEY=<your-api-key-here>
