@@ -8,9 +8,11 @@ weight: 1
 ---
 
 This blog explores how to use Argo Rollouts for deploying software updates smoothly. It covers the challenges faced when rolling back updates and introduces header-based routing to manage traffic during deployments.
+
 ## Scenario
 
 Following the deployment of one of our client-critical services, we saw an application bug after we rolled out a service to 100% of users, so the only option left for us is to quickly rollback to the older version. But that also took some time, as the rollback process was not fast in the older setup.
+
 ### Why was the rollback the only option we had?
 
 Our new feature led to an incident, and unfortunately, disabling it wasn't feasible. Without feature flags in place, executing a full rollback was the sole method available to us for recovery.
@@ -56,6 +58,7 @@ During each deployment, the weight distribution between the active and canary se
 These steps may include various analysis checks, pauses, or adjustments in traffic distribution, ensuring a smooth deployment process while minimizing disruptions.
 
 ### How does the Argo Rollout deployment flow work?
+
 1. **Initial State:**
     1. The active service is initially responsible for serving all incoming traffic.
 2. **Start of New Deployment:**
@@ -74,16 +77,21 @@ These steps may include various analysis checks, pauses, or adjustments in traff
 <img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-2.png" alt="Argo Rollout During Deployment" width="1100" height = "250">
 
 ### How does Argo Rollout header-based routing work then?
-#### Routing Traffic with Specific Headers:
+
+#### Routing Traffic with Specific Headers
+
 1. With header-based routing, all traffic containing a specific header key and value is directed to the Canary service.
 2. Previously, this Canary service wasn't serving traffic, but now it ensures that requests during deployment hit the new pods, and responses are received from them.
 
-#### Managing Canary Steps:
+#### Managing Canary Steps
+
 1. Within the canary steps, we have the option to specify the duration of pauses between stages to validate the deployment.
 2. This allows for careful monitoring and testing of the new deployment before fully transitioning traffic to it.
 
 ### On implementing header-based routing, how will things look?
+
 Suppose below are the canary steps if we were using:
+
 ```yaml
 
    steps:
@@ -119,7 +127,7 @@ Suppose below are the canary steps if we were using:
 
 **matchTrafficWeight**: By marking it true, it will tell the Argo Rollout to scale up the pods based on the traffic shift. The default value is true.
 
-### Let’s look in detail at how we can visualize this configuration.
+### Let’s look in detail at how we can visualize this configuration
 
 1. **Step 1:**
 We will scale the 10% of pods in the total replica pods; consider that the total replica pods are 10; then, 1 new pod will be up after the 1st step.
@@ -129,7 +137,6 @@ It will create a new listener in AWS ALB with the same host and path but an addi
 
 <img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-10percent-pod-up.png" alt="Argo Rollout 10% Canary Pods" width="1100" height = "550">
 
-
 3. **Step 3:**
 Deployment will be paused for 60 seconds so that you can perform testing by hitting the same endpoint with the header, whether the requests are going to newer pods or not.
 
@@ -137,7 +144,6 @@ Deployment will be paused for 60 seconds so that you can perform testing by hitt
 Here we will be shifting 1% of production traffic to newer pods, which will come from the existing listener, but now you have some percentage of traffic on newer pods, and hence you can perform more comprehensive testing by using the same technique of header-based testing to hit new pods.
 
 <img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/argo-rollout-after-1percent-traffic.png" alt="Argo Rollout 1% Traffic" width="1100" height = "550">
-
 
 5. **Step 5:**
 This step will put your deployment into an indefinite pause such that until you perform the Promote manually, deployment will not move. This type of step is really helpful when you need to run some long tests to get the critical features tested.
@@ -221,6 +227,7 @@ So, as we can see, the active one is Root, which is currently holding 100% of tr
 Hence, All this configs are added by rollout on the fly, which then Auto Synced by ArgoCD and remove this configs
 
 ## Solution
+
 To address this gap and enable the use of header-based routing, we devised a workaround. The solution involved instructing ArgoCD to ignore specific changes made by Argo Rollout to the Ingress resources. By doing so, we could ensure that the desired configuration for header-based routing was maintained, even though these changes were not reflected in the GitHub repository.
 
 We made modifications to the `apps.yaml` file in our ArgoCD configuration to instruct it to ignore the specific changes related to the Ingress resources. Here's a snippet of the relevant configuration:
@@ -240,7 +247,7 @@ We made modifications to the `apps.yaml` file in our ArgoCD configuration to ins
 This configuration specifies that ArgoCD should ignore any changes made to Ingress resources where the backend service points to "canary-header-route-new." By applying this workaround, we were able to maintain the integrity of our header-based routing configuration despite the OutOfSync issue.
 
 ## Conclusion
+
 By integrating header-based routing with Argo Rollout and ArgoCD, we've effectively safeguarded our production environment against potential bugs. This newfound capability has brought immense satisfaction to our organizational teams, particularly in enabling thorough testing of critical features before full rollout. The fear of introducing bugs into production has been significantly reduced, instilling confidence in our deployment process.
 
 Moreover, the enhanced control over deployments has streamlined our workflow, resulting in a higher frequency of deployments compared to before. However, it's important to acknowledge that the solutions we've implemented are temporary workarounds. We anticipate that future versions of Argo Rollout will address these compatibility issues with ArgoCD, providing a more seamless and integrated deployment experience. We look forward to leveraging these improvements to further optimize our deployment processes in the future.
-```
