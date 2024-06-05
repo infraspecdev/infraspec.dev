@@ -2,7 +2,7 @@
 title: "Nandhitha Kamal"
 date: 2024-06-05
 draft: false
-image: "images/team/nandhitha-profile.png"
+image: "images/team/nandhitha-profile.jpg"
 jobtitle: "Senior Software Engineer"
 weight: 10
 promoted: false
