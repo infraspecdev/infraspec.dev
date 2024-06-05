@@ -1,5 +1,5 @@
 ---
-title: "Bridging The Gap Between Argo Rollout & AWS ALB By Eliminating 502s"
+title: "Bridging the gap between Argo Rollout & AWS ALB by eliminating 502s"
 authorId: "mufaddal"
 date: 2024-05-27
 draft: false
