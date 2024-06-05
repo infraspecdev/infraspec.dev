@@ -15,7 +15,7 @@ We encountered a 502 at the AWS load balancer level during the deployment of one
 
 ## The Deployment Strategy
 
-Presently, all of our client's services are hosted on AWS EKS using Kubernetes, and all Kubernetes manifests are managed in org, one of which is a GitHub repository that is synchronized with ArgoCD. Since Argo-Rollout Canary offers us the benefit of automated progressive delivery, we have chosen it as our deployment strategy.
+Presently, all of our client's services are hosted on AWS EKS using Kubernetes, and all Kubernetes manifests are managed in org, one of which is a GitHub repository that is synchronised with ArgoCD. Since Argo-Rollout Canary offers us the benefit of automated progressive delivery, we have chosen it as our deployment strategy.
 
 <img src="/images/blog/header-Based-traffic-routing-using-argo-rollouts/deployment-workflow.png" alt="Current Deployment Setup" width="700" height = "750">
 
@@ -23,7 +23,7 @@ We were using the AWS ALB to route traffic, and it was managing the instructions
 
 ## Initial Findings
 
-Upon analyzing the ALB logs, we discovered that the 502 errors were originating from the older pods.
+Upon analysing the ALB logs, we discovered that the 502 errors were originating from the older pods.
 
 ## Theory We were Considering
 
@@ -126,7 +126,7 @@ The Argo Rollout canary configurations mentioned above appear to be normal, but 
 
 ## Root Cause
 
-When we analyze the AWS ALB controller logs, we get to know that an **update operation** request was received at almost the same time. However, the actual **ModifyRule** action to change weight was triggered only after about 1 minute and 10 seconds. Ultimately, the problem seems to be that there is a time difference between the lb-controller's update operation request for weight change and the actual lb-listener rule modification API.
+When we analyse the AWS ALB controller logs, we get to know that an **update operation** request was received at almost the same time. However, the actual **ModifyRule** action to change weight was triggered only after about 1 minute and 10 seconds. Ultimately, the problem seems to be that there is a time difference between the lb-controller's update operation request for weight change and the actual lb-listener rule modification API.
 
 We discovered that our use of **dynamicStableScale** caused older replica sets to scale down before the traffic shift from the load balancer. This created a lag between the canary weight change and the actual traffic switch from the load balancer, leading to problems. Similar to this, one issue is raised [here](https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/3588).
 
