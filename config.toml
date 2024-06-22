@@ -34,7 +34,7 @@ enableRobotsTXT = false
     # sets the google font link in layouts/partials/google-fonts.html
     google_fonts = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400&family=Titillium+Web:wght@400;700&display=swap'
     heading = "Outfit"
-    base = "Titillium Web"
+    base = "Noto Sans"
 
   [params.colors]
     primary = "#002644"
