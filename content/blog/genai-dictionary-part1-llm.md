@@ -25,6 +25,8 @@ LLMs are trained on vast amounts of data collected (typically) from the Internet
 
 ![gpt3.5-dataset](/images/blog/genai-dictionary-part1-llm/gpt3.5-dataset.png)
 
+_Source - [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165)_
+
 ### Tokenization
 
 LLMs break down words into tokens when processing and generating text. A 'token' is the smallest unit of text in the LLM world. A word is made up of one or more tokens. A simple rule of thumb - a token can be considered to be approximately 4 characters in length (this is not true all the time, but on average it works out to be this number). Complex words are composed of multiple tokens; punctuation marks are separate tokens by themselves.
