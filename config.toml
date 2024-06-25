@@ -65,6 +65,7 @@ enableRobotsTXT = false
     name = "Blog"
     url = "/blog/"
     weight = 1
+    paginate = 6
   [[menu.main]]
     name = "Team"
     url = "/team/"

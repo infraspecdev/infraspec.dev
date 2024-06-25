@@ -10,12 +10,11 @@
   <meta name="description" content="{{ .Params.meta_description | default .Site.Params.seo.meta_description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="{{ "favicon-32x32.svg" | relURL }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   {{ partial "google-fonts.html" . }}
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap">
 
   <!-- CSS-->
   {{ $css_options := dict "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction) }}
@@ -64,15 +63,15 @@
 </head>
 
 <body class='page {{ block "body_classes" . }}{{ end }}'>
-  {{ partial "main-menu-mobile.html" . }}
+  {{ partialCached "main-menu-mobile.html" . }}
   <div class="wrapper">
-    {{ partial "header.html" . }}
+    {{ partialCached "header.html" . }}
     {{ block "main" . }}
     {{ end }}
   </div>
 
-  {{ partial "footer.html" . }}
-  {{ partial "sub-footer.html" . }}
+  {{ partialCached "footer.html" . }}
+  {{ partialCached "sub-footer.html" . }}
 
   {{ $scripts := resources.Get "js/scripts.js" }}
 
@@ -84,8 +83,8 @@
   {{ end }}
   <script type="text/javascript" src="{{ $scripts.RelPermalink }}"></script>
 
-  {{ partial "google-tag-manager.html" . }}
-  {{ partial "google-analytics.html" . }}
+  {{ partialCached "google-tag-manager.html" . }}
+  {{ partialCached "google-analytics.html" . }}
 </body>
 
 </html>
