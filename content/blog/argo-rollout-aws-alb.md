@@ -9,9 +9,9 @@ weight: 1
 
 The blog discusses resolving a deployment issue with 502 errors on AWS EKS using AWS ALB and Argo Rollouts. It details the root cause, attempted solutions, and resulting trade-offs.
 
-## The Issue Encountered
+## Context
 
-We encountered a 502 at the AWS load balancer level during the deployment of one of our client services. This resulted in 1-2 minutes of downtime, which was unexpected even if the deployment was carried out during the day (during peak traffic). Nearly 15,000 requests were made to the high-throughput service every minute. Over 10 percent of requests resulted in 502 errors. Even during peak hours, the new version of the service was supposed to be rolled out without interfering with users' individual requests.
+We encountered a 502 at the AWS load balancer level during the deployment of one of our client's service. This resulted in 1-2 minutes of downtime, which was unexpected even if the deployment was carried out during the day (during peak traffic). Nearly 15,000 requests were made to the high-throughput service every minute. Over 10 percent of requests resulted in 502 errors. Even during peak hours, the new version of the service was supposed to be rolled out without interfering with users' individual requests.
 
 ## The Deployment Strategy
 
@@ -34,49 +34,41 @@ The way the ALB manages traffic is the main source of the issue. Traffic is dire
 1. As far as we know, Kubernetes uses probes to identify unhealthy pods and removes them from the list of service endpoints. Thus, the probes are required. In order for Kubelet to properly communicate with Kubepoxy and remove the endpoint in the event of a failure, we have confirmed the intervals of checks once more.
 2. To give Kube proxy enough time to remove the endpoint from service endpoint lists, we must add an extra delay. Pre-stop hooks were added to allow for a 60-second container-level sleep before pod termination. Following this, the system will send the SIGTERM signal to complete shutdown.
 
-```yaml
-
-    spec:
-      containers:
-        lifecycle:
-          preStop:
-            exec:
-              command:
-                - /bin/sh
-                - '-c'
-                - sleep 60
-
-```
+    ```yaml
+      spec:
+        containers:
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - '-c'
+                  - sleep 60
+    ```
 
 3. We have included a GraceFullShutdown of 90 seconds so that the application can process the existing requests. Upon receiving a SIGTERM signal, the application will no longer accept new ones and will take some time to process them. We also need to add some code to the application to make it understand that it should gracefully shut down before calling SIGKILL to end the application entirely in order to handle GraceFullShutdown.
 
-```yaml
-
-    spec:
-      terminationGracePeriodSeconds: 90
-
-```
+    ```yaml
+      spec:
+        terminationGracePeriodSeconds: 90
+    ```
 
 4. Current configurations are the most important thing that can help us manage requests on older pods from the Kubernetes side, but we also need to consider things from the standpoint of AWS-ALB, since all traffic is routed through AWS-ALB and needs to be routed if the pods are in the termination state.
 5. We increased the interval seconds from 15 to 10 seconds in order to more aggressively check the targets' health. By doing this, the load balancer won't send traffic to pods that are in termination state.
 
-```yaml
-
-    metadata:
-      annotations:
-        alb.ingress.kubernetes.io/healthcheck-interval-seconds: "10"
-
-```
+    ```yaml
+      metadata:
+        annotations:
+          alb.ingress.kubernetes.io/healthcheck-interval-seconds: "10"
+    ```
 
 6. Additionally, we want ALB to wait a suitable amount of time before eliminating targets that Kubernetes has labeled as unhealthy or terminated. To account for this, we have included a 30-second deregistration delay.
 
-```yaml
-
-    metadata:
-      annotations:
-        alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
-
-```
+    ```yaml
+      metadata:
+        annotations:
+          alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
+    ```
 
 ## Do These Solutions Prove to be Beneficial?
 
@@ -89,39 +81,35 @@ Interestingly, during our careful observation of the canary deployment steps, we
 ### What Definition Did This Canary Step Have?
 
 ```yaml
-
-    canary:
-        steps:
-          - setCanaryScale:
-              weight: 20
-          - setWeight: 0
-          - pause: { duration: 60 }
-          - setCanaryScale:
-              matchTrafficWeight: true
-          - setWeight: 10
-          - pause: { duration: 60 }
-          - setWeight: 60
-          - pause: { duration: 60 }
-          - setWeight: 80
-          - pause: { duration: 60 }
-          - setWeight: 90
-          - pause: { duration: 60 }
-          - setWeight: 100
-          - pause: { duration: 60 }
-
+  canary:
+    steps:
+      - setCanaryScale:
+          weight: 20
+      - setWeight: 0
+      - pause: { duration: 60 }
+      - setCanaryScale:
+          matchTrafficWeight: true
+      - setWeight: 10
+      - pause: { duration: 60 }
+      - setWeight: 60
+      - pause: { duration: 60 }
+      - setWeight: 80
+      - pause: { duration: 60 }
+      - setWeight: 90
+      - pause: { duration: 60 }
+      - setWeight: 100
+      - pause: { duration: 60 }
 ```
 
 The Argo Rollout canary configurations mentioned above appear to be normal, but the problem only surfaced during the final phase of increasing traffic from 90% to 100%. To be sure, we slightly adjusted the final configuration steps as shown below, which has assisted in bringing down the request count from 10% to 1%.
 
 ```yaml
-
-         - setWeight: 90
-          - pause: { duration: 60 }
-          - setWeight: 99
-          - pause: { duration: 60 }
-          - setWeight: 100
-          - pause: { duration: 60 }
-
+  - setWeight: 90
+  - pause: { duration: 60 }
+  - setWeight: 99
+  - pause: { duration: 60 }
+  - setWeight: 100
+  - pause: { duration: 60 }
 ```
 
 ## Root Cause
@@ -133,12 +121,11 @@ We discovered that our use of **dynamicStableScale** caused older replica sets t
 To address this, we disabled **dynamicStableScale** and increased the **scaleDownDelaySeconds** from 30 seconds (default) to 60 seconds, which will wait for 60 seconds before scaling down the older replicaset pods.
 
 ```yaml
-
-    spec:
-      strategy:
-        canary:
-          dynamicStableScale: false
-          scaleDownDelaySeconds: 60
+  spec:
+    strategy:
+      canary:
+        dynamicStableScale: false
+        scaleDownDelaySeconds: 60
 
 ```
 
