@@ -12,7 +12,7 @@ Most of us think of TDD as a tool for software testing and verification. But if 
 Since Test Drive Development (TDD) was introduced by Kent Beck it has always been a bit of a controversial topic. Today we are going to explore what TDD has to offer apart from being a way 
 to test and verify software. Before we dig deeper, let's take a look back at what is TDD, in the first place.
 
-> ### TDD is a process used to build software in which unit tests are written even before writing any code.
+> TDD is a process used to build software in which unit tests are written even before writing any code.
 
 As defined above, we write unit tests even before we write the code. This might sound counterintuitive as to how can we test something before it even exists.
 To make this easier to understand, try to think of it like this. It is not testing but stating what you expect the code to do. With this, you are trying to put your expectation before writing the code.
@@ -55,7 +55,7 @@ This helps us understand how complicated the code setup could be if it needs a l
 This acts as an indicator and surfaces tight coupling if any early on in the development lifecycle.
 We could consider this as a tool which would prevent the design of the system from having high coupling and reduce complexity.
 
-> ### TDD is not just about having tests but a lot more than that. It not only helps us verify the correctness of the software but if practised well, helps us design the software well. This is why I sometimes think of TDD as **Test Driven Design**
+> TDD is not just about having tests but a lot more than that. It not only helps us verify the correctness of the software but if practised well, helps us design the software well. This is why I sometimes think of TDD as **Test Driven Design**
 
 All of this sounds too good, but it's easier said than done.
 Here is one of the many reasons why people are not able to successfully adopt this practice into their development lifecycle.
@@ -68,4 +68,4 @@ We are going to be slow in anything we don't know, not just TDD.
 Only spending enough time with any skill will make us move faster. 
 Be it learning a new programming language, playing a new musical instrument or learning to drive.
 
-## To conclude, TDD could be used to improve the overall design of the system instead of just using it to increase code coverage.
+> To conclude, TDD could be used to improve the overall design of the system instead of just using it to increase code coverage.
