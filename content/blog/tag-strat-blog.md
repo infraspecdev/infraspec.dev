@@ -139,3 +139,13 @@ To ensure consistency and avoid conflicts, adhere to the following conventions:
 ## Conclusion
 
 A well-defined tagging strategy is essential for effective cloud resource management. By distinguishing between mandatory and discretionary tags and implementing robust enforcement mechanisms, you can achieve better visibility, cost control, and security in your AWS environment. Start by establishing a clear tagging dictionary and ensure compliance through automation and regular audits.
+
+## Additional Resources
+
+For further reading and deeper insights into AWS tagging strategies, consider the following resources:
+
+- [**AWS Tagging Best Practices and Strategies**](https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html) – Comprehensive guide on best practices and strategies for tagging in AWS.
+
+- [**AWS Organizations Tag Policies**](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) – Details on implementing and managing tag policies across accounts.
+
+- [**AWS Service Control Policies**](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html) – Guide on using SCPs to enforce tagging standards.
