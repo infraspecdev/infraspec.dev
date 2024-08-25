@@ -11,6 +11,18 @@ weight: 1
 
 Managing cloud resources efficiently in AWS requires a robust tagging strategy. Tags are key-value pairs attached to resources, providing crucial metadata for resource management, cost allocation, security, and automation. This blog will guide you through defining mandatory and discretionary tags and establishing detection and enforcement mechanisms to ensure compliance across your AWS environment.
 
+## The Problem: Untracked Resources and Rising Costs
+
+At Infraspec, we started noticing some major issues with how we were managing our AWS resources. We had several AWS accounts in use, but no tagging standards were enforced. This meant that anyone could create resources, and sometimes, these resources were left running long after they were needed. 
+
+As a result, our cloud costs were steadily increasing each month, and we had no clear way to track who was responsible for which resources. Without any tags, it was impossible to tie costs back to specific teams or projects, leaving us in the dark about where our budget was really going. This lack of accountability was causing both operational and financial headaches.
+
+## The Solution: Enforcing a Tagging Policy
+
+Realizing that we needed a way to get things under control, we started exploring how AWS tags could help. By enforcing a tagging policy across all our AWS accounts, we could ensure that every resource was labeled with essential information like the owner, team, and environment.
+
+But we didn’t stop there. To make sure everyone followed the rules, we implemented Service Control Policies (SCPs) that would block the creation of any resources that didn’t have the necessary tags. This added a layer of enforcement that gave us confidence that our tagging strategy would actually be used.
+
 ## The Importance of Tagging
 
 Tags are instrumental in achieving several goals within your AWS environment:
@@ -118,6 +130,78 @@ To ensure compliance with your tagging strategy, establish detection and enforce
 3. **Service Control Policies (SCPs)**: Use SCPs to prevent actions on resources without mandatory tags.
 4. **Compliance Audits**: Regularly audit resources to ensure they comply with the tagging policies. Automate this process where possible.
 
+## Implementing Tagging Policies in AWS
+
+### 1. **Enforcing Tagging Standards with AWS Organizations Tag Policies**
+
+AWS Organizations allows you to create tag policies that enforce your tagging standards across all accounts in your organization. Here’s how to create a tag policy:
+
+- **Step 1**: Navigate to AWS Organizations and select “Tag policies” from the sidebar.
+- **Step 2**: Click “Create policy” and define your tag rules. For example, you can enforce that all resources must have the `ManagedBy` tag.
+
+```json
+{
+  "tags": {
+    "ManagedBy": {
+      "tag_key": {
+        "@@assign": "ManagedBy"
+      },
+      "tag_value": {
+        "@@assign": [
+          "Terraform",
+          "Manual"
+        ]
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "ec2:vpc",
+          "ec2:natgateway",
+          "ec2:route-table",
+          "ec2:internet-gateway"
+        ]
+      }
+    },
+  }
+}
+```
+
+- **Step 3**: Attach the policy to your organizational units (OUs) or accounts to enforce compliance.
+
+### 2. **Using Service Control Policies (SCPs) to Block Non-Compliant Resources**
+
+You can create SCPs in AWS Organizations to prevent the creation of resources without mandatory tags. Here’s an example policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyEC2CreationWithNoManagedByTag",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:RunInstances",
+        "ec2:CreateVpc",
+        "ec2:CreateNatGateway",
+        "ec2:CreateRouteTable",
+        "ec2:CreateInternetGateway"
+      ],
+      "Resource": [
+        "arn:aws:ec2:*:*:vpc/*",
+        "arn:aws:ec2:*:*:natgateway/*",
+        "arn:aws:ec2:*:*:route-table/*",
+        "arn:aws:ec2:*:*:internet-gateway/*",
+        "arn:aws:ec2:*:*:instance/*"
+      ],
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/ManagedBy": "true"
+        }
+      }
+    }
+  ]
+}
+```
 ## Tag Naming and Usage Conventions
 
 To ensure consistency and avoid conflicts, adhere to the following conventions:
@@ -135,6 +219,10 @@ To ensure consistency and avoid conflicts, adhere to the following conventions:
 2. **Automation**: Automate tagging to reduce manual errors and ensure compliance.
 3. **Documentation**: Maintain comprehensive documentation of your tagging strategy and dictionary for reference.
 4. **Stakeholder Involvement**: Involve all relevant stakeholders in defining and reviewing the tagging strategy to ensure it meets organizational needs.
+
+## The Impact: Accountability and Cost Control
+
+Implementing this tagging strategy was a game-changer for us. We now had clear visibility into who was using what resources, and we could track our cloud costs with precision. This made it much easier to allocate expenses to the correct departments and projects, and we finally had the accountability we needed.
 
 ## Conclusion
 
