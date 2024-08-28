@@ -17,131 +17,49 @@ At Infraspec, we started noticing some major issues with how we were managing ou
 
 As a result, our cloud costs were steadily increasing each month, and we had no clear way to track who was responsible for which resources. Without any tags, it was impossible to tie costs back to specific teams or projects, leaving us in the dark about where our budget was really going. This lack of accountability was causing both operational and financial headaches.
 
-## The Solution: Enforcing a Tagging Policy
+## Our Approach: Structuring AWS Accounts and Enforcing a Tagging Policy
 
 Realizing that we needed a way to get things under control, we started exploring how AWS tags could help. By enforcing a tagging policy across all our AWS accounts, we could ensure that every resource was labeled with essential information like the owner, team, and environment.
 
 But we didn’t stop there. To make sure everyone followed the rules, we implemented Service Control Policies (SCPs) that would block the creation of any resources that didn’t have the necessary tags. This added a layer of enforcement that gave us confidence that our tagging strategy would actually be used.
 
-## The Importance of Tagging
+<p align="center">
+  <img src="/images/blog/tag-strat-aws/aws-organization.png" alt="AWS Organization">
+</p>
 
-Tags are instrumental in achieving several goals within your AWS environment:
+### Step 1: Organizing Accounts
 
-- **Resource Identification**: Quickly locate and manage resources.
-- **Cost Allocation**: Track spending and allocate costs to specific business units.
-- **Security and Compliance**: Identify resources that need special security measures or compliance with regulations.
-- **Automation**: Simplify management and automation tasks.
+Our first step was to create an AWS Organizations structure that mirrored our operational needs. We separated our accounts into two main Organizational Units (OUs): `Infraspec OU` and `Core OU`. The `Infraspec OU` contains all the accounts related to our primary operations, including `Dev`, `Staging`, and `Prod`. The `Core OU` contains our `Core Account`, which handles shared services such as networking and also handles policy management instead of root account.
 
-## Mandatory Tags: The Foundation of Your Tagging Strategy
+This structure allowed us to clearly distinguish between different environments and core services, making it easier to enforce policies and manage resources.
 
-Mandatory tags are essential for every AWS resource. They provide a baseline of information that is crucial for effective resource management and accountability. Here are some key mandatory tags and their purposes:
+### Step 2: Implementing Tagging Policy
 
-1. **Owner**
-   - **Purpose**: Identifies the owner or responsible team for the resource.
-   - **Sample Values**: `SecurityLead`, `Workload-1-Development-team`
+With our accounts organized, we moved on to enforce a tagging policy across all our AWS accounts. We established a set of mandatory tags that would be required for every resource, ensuring that all resources were labeled with essential information like the owner, team, and environment.
 
-2. **Team**
-   - **Purpose**: Specifies the organizational team responsible for the resource.
-   - **Sample Values**: `Finance`, `Retail`, `API-1`, `DevOps`
+To ensure compliance, we implemented Service Control Policies (SCPs) that blocked the creation of any resources without the necessary tags. This enforcement layer gave us the confidence that our tagging strategy would be consistently applied across all environments.
 
-3. **Environment**
-   - **Purpose**: Indicates the environment type where the resource is deployed.
-   - **Sample Values**: `Sandbox`, `Dev`, `PreProd`, `QA`, `Prod`, `Testing`
-
-4. **CostCenter**
-   - **Purpose**: Identifies the cost center associated with the resource.
-   - **Sample Values**: `FIN123`, `Retail-123`, `Sales-248`, `HR-333`
-
-5. **DataClassification**
-   - **Purpose**: Specifies the sensitivity level of data handled by the resource.
-   - **Sample Values**: `Public`, `Internal`, `Confidential`, `HighlyConfidential`
-
-6. **Service**
-   - **Purpose**: Defines the type of service or application associated with the resource.
-   - **Sample Values**: `Microservice`, `Monolithic`
-
-7. **ManagedBy**
-   - **Purpose**: Indicates whether the resource is managed by Terraform or manually.
-   - **Sample Values**: `Terraform`, `Manual`
-
-8. **Compliance**
-   - **Purpose**: Indicates if the resource complies with specific regulatory frameworks.
-   - **Sample Values**: `N/A`, `NIST`, `HIPAA`, `GDPR`
-
-## Discretionary Tags: Enhancing Flexibility
-
-Discretionary tags are not required for every resource but are crucial for specific use cases. They provide additional layers of metadata that help manage resources more effectively.
-
-1. **Version**
-   - **Purpose**: Specifies the version of the resource or application.
-   - **Sample Values**: `v1.0`, `v2.1`, `v3.2`
-
-2. **Backup**
-   - **Purpose**: Indicates the backup frequency or requirement for the resource.
-   - **Sample Values**: `Daily`, `Weekly`, `Monthly`
-
-3. **SLA**
-   - **Purpose**: Specifies the service-level agreement requirements for the resource.
-   - **Sample Values**: `99.9%`, `99.99%`
-
-4. **Lifespan**
-   - **Purpose**: Indicates the expected lifespan or retention period for the resource.
-   - **Sample Values**: `6 months`, `1 year`, `Indefinite`
-
-5. **Region**
-   - **Purpose**: Identifies the AWS region where the resource is deployed.
-   - **Sample Values**: `us-west-1`, `eu-central-1`, `ap-southeast-2`
-
-## Additional Useful Tags
-
-In addition to the mandatory and discretionary tags, the following tags provide further management capabilities:
-
-1. **ServiceOwner**
-   - **Purpose**: Identifies the operational team or individual responsible for the service associated with the resource.
-   - **Sample Values**: `Front-end`, `Backend`, `Database`
-
-2. **PointOfContact**
-   - **Purpose**: Provides contact information for the primary point of contact related to the resource.
-   - **Sample Values**: `email@example.com`
-
-3. **AccountName**
-   - **Purpose**: Specifies the name or identifier of the AWS account associated with the resource.
-   - **Sample Values**: `Prod-Account`, `Dev-Account`
-
-4. **SharedService**
-   - **Purpose**: Indicates if the resource is part of a shared service environment.
-   - **Sample Values**: `yes`, `no`
-
-5. **RemoveAfterDate**
-   - **Purpose**: Specifies the date when the resource should be removed or decommissioned.
-   - **Sample Values**: `12/31/2024`
-
-6. **Shutdown**
-   - **Purpose**: Indicates if the resource can be automatically shut down during non-business hours.
-   - **Sample Values**: `true`, `false`
-
-
-## Enforcing Tagging Policies
-
-To ensure compliance with your tagging strategy, establish detection and enforcement mechanisms:
-
-1. **Automated Tagging**: Use Infrastructure as Code (IaC) tools to automate the tagging process during resource creation.
-2. **Tag Policies**: Implement AWS Organizations Tag Policies to enforce tagging standards across accounts.
-3. **Service Control Policies (SCPs)**: Use SCPs to prevent actions on resources without mandatory tags.
-4. **Compliance Audits**: Regularly audit resources to ensure they comply with the tagging policies. Automate this process where possible.
-
-## Implementing Tagging Policies in AWS
-
-### 1. **Enforcing Tagging Standards with AWS Organizations Tag Policies**
-
-AWS Organizations allows you to create tag policies that enforce your tagging standards across all accounts in your organization. Here’s how to create a tag policy:
-
-- **Step 1**: Navigate to AWS Organizations and select “Tag policies” from the sidebar.
-- **Step 2**: Click “Create policy” and define your tag rules. For example, you can enforce that all resources must have the `ManagedBy` tag.
+We defined the following tags as mandatory across our AWS environment and implemented them using AWS Organizations Tag Policies. Below is an example of how these tags were structured and enforced:
 
 ```json
 {
   "tags": {
+    "Owner": {
+      "tag_key": {
+        "@@assign": "Owner"
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "ec2:vpc",
+          "ec2:subnet",
+          "ec2:natgateway",
+          "ec2:security-group",
+          "ec2:route-table",
+          "ec2:internet-gateway"
+        ]
+      }
+    },
     "ManagedBy": {
       "tag_key": {
         "@@assign": "ManagedBy"
@@ -156,39 +74,70 @@ AWS Organizations allows you to create tag policies that enforce your tagging st
         "@@assign": [
           "ec2:instance",
           "ec2:vpc",
+          "ec2:subnet",
           "ec2:natgateway",
+          "ec2:security-group",
           "ec2:route-table",
           "ec2:internet-gateway"
         ]
       }
-    },
+    }
   }
 }
 ```
 
-- **Step 3**: Attach the policy to your organizational units (OUs) or accounts to enforce compliance.
+### Step 2: Implementing Service Control Policy
 
-### 2. **Using Service Control Policies (SCPs) to Block Non-Compliant Resources**
-
-You can create SCPs in AWS Organizations to prevent the creation of resources without mandatory tags. Here’s an example policy:
+We created SCPs in AWS Organizations to prevent the creation of resources without mandatory tags. For example, the following SCP blocks the creation of EC2 instances and other resources if the `Owner` and `ManagedBy` tag is missing:
 
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "DenyEC2CreationWithNoManagedByTag",
+      "Sid": "DenyEC2CreationWithNoOwnerTag",
       "Effect": "Deny",
       "Action": [
         "ec2:RunInstances",
         "ec2:CreateVpc",
+        "ec2:CreateSubnet",
         "ec2:CreateNatGateway",
+        "ec2:CreateSecurityGroup",
         "ec2:CreateRouteTable",
         "ec2:CreateInternetGateway"
       ],
       "Resource": [
         "arn:aws:ec2:*:*:vpc/*",
+        "arn:aws:ec2:*:*:subnet/*",
         "arn:aws:ec2:*:*:natgateway/*",
+        "arn:aws:ec2:*:*:security-group/*",
+        "arn:aws:ec2:*:*:route-table/*",
+        "arn:aws:ec2:*:*:internet-gateway/*",
+        "arn:aws:ec2:*:*:instance/*"
+      ],
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/Owner": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyEC2CreationWithNoManagedByTag",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:RunInstances",
+        "ec2:CreateVpc",
+        "ec2:CreateSubnet",
+        "ec2:CreateNatGateway",
+        "ec2:CreateSecurityGroup",
+        "ec2:CreateRouteTable",
+        "ec2:CreateInternetGateway"
+      ],
+      "Resource": [
+        "arn:aws:ec2:*:*:vpc/*",
+        "arn:aws:ec2:*:*:subnet/*",
+        "arn:aws:ec2:*:*:natgateway/*",
+        "arn:aws:ec2:*:*:security-group/*",
         "arn:aws:ec2:*:*:route-table/*",
         "arn:aws:ec2:*:*:internet-gateway/*",
         "arn:aws:ec2:*:*:instance/*"
@@ -202,6 +151,25 @@ You can create SCPs in AWS Organizations to prevent the creation of resources wi
   ]
 }
 ```
+
+## Testing the Policy
+
+After implementing the tagging and scp policies, we conducted rigorous testing to ensure compliance across our EC2 resources. We deployed several EC2 instances with and without the mandatory tags to verify the enforcement mechanisms.
+
+- **Success Case**: When an EC2 instance was launched with all mandatory tags (`Owner`, `ManagedBy`), the instance creation proceeded without any issues.
+  
+- **Failure Case**: When an attempt was made to launch an EC2 instance without the `ManagedBy` tag, the operation was denied, demonstrating the effectiveness of our SCP in enforcing tag compliance.
+
+## The Impact of Tags in Our Organization
+
+### Resource Identification and Ownership
+
+- **Owner Tag**: By tagging each resource with an `Owner`, we could quickly identify who was responsible for any given resource. This became critical when tracking down resources that were running unexpectedly or were no longer needed. The `Owner` tag provided clear accountability, making it easier to manage and decommission resources no longer in use.
+
+### Operational Efficiency and Automation
+
+- **ManagedBy Tag**: The `ManagedBy` tag helped us distinguish between resources managed by Terraform and those managed manually. This was particularly useful for automating resource management and ensuring that Terraform-managed resources were consistent with our infrastructure-as-code policies.
+
 ## Tag Naming and Usage Conventions
 
 To ensure consistency and avoid conflicts, adhere to the following conventions:
@@ -219,10 +187,6 @@ To ensure consistency and avoid conflicts, adhere to the following conventions:
 2. **Automation**: Automate tagging to reduce manual errors and ensure compliance.
 3. **Documentation**: Maintain comprehensive documentation of your tagging strategy and dictionary for reference.
 4. **Stakeholder Involvement**: Involve all relevant stakeholders in defining and reviewing the tagging strategy to ensure it meets organizational needs.
-
-## The Impact: Accountability and Cost Control
-
-Implementing this tagging strategy was a game-changer for us. We now had clear visibility into who was using what resources, and we could track our cloud costs with precision. This made it much easier to allocate expenses to the correct departments and projects, and we finally had the accountability we needed.
 
 ## Conclusion
 
