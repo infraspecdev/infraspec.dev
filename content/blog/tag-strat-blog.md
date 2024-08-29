@@ -35,7 +35,7 @@ This structure allowed us to clearly distinguish between different environments 
 
 ### Step 2: Implementing Tagging Policy
 
-With our accounts organized, we moved on to enforce a tagging policy across all our AWS accounts. We established a set of mandatory tags that would be required for every resource, ensuring that all resources were labeled with essential information like the owner, team, and environment.
+With our accounts organized, we moved on to enforce a tagging policy across all our AWS accounts. We established a set of mandatory tags that would be required for specific resource, ensuring that resources were labeled with essential information like the owner, management of the rescource etc.
 
 To ensure compliance, we implemented Service Control Policies (SCPs) that blocked the creation of any resources without the necessary tags. This enforcement layer gave us the confidence that our tagging strategy would be consistently applied across all environments.
 
