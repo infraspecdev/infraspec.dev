@@ -173,7 +173,7 @@ After defining the policies, the next crucial step is to attach them to the appr
   - Go to the `Tag policies` tab and click `Create policy` to define your Tag Policy.
   - After creating the policy, click on `Targets` to attach it to the desired OU.
 
-### Handling Existing Resources Without Tags
+## Handling Existing Resources Without Tags
 
 Addressing the challenge of existing resources that were created before implementing the tagging policy was crucial. To bring these resources into compliance without causing any unexpected downtime, we followed a structured approach:
 
