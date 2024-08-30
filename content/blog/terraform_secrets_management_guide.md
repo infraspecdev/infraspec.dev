@@ -7,7 +7,11 @@ featured: true
 weight: 1
 ---
 
-When working with Terraform, managing credentials and secrets securely is crucial. In this blog, we'll explore several methods for managing secrets and credentials securely, including environment variables, GitHub Secrets, encrypted files with AWS KMS, and AWS Secrets Manager. We’ll also compare these methods to help you choose the best approach for your needs.
+Imagine you're working on a project where you need to deploy resources to aws using terraform. In a rush to get things done, you decide to hard-code your AWS credentials directly into your Terraform files. Everything works fine at first, and your resources are successfully deployed. But a few weeks later, you discover that your Terraform repository was accidentally made public. Suddenly, your AWS credentials are exposed to the entire internet. Exposing your credentials can lead to unauthorized access to your AWS account, leading to serious security problems.
+
+This scenario highlights why it's essential to manage secrets and credentials securely. Hard-coding sensitive information in your codebase is risky. To avoid such issues, it's crucial to explore secure methods for managing secrets and credentials in Terraform.
+
+In this blog, we'll explore several methods for managing secrets and credentials securely, including environment variables, GitHub Secrets, encrypted files with AWS KMS, and AWS Secrets Manager. We’ll also compare these methods to help you choose the best approach for your needs.
 
 ### Method 1: Environment Variables
 
@@ -72,6 +76,10 @@ terraform apply
 ### Method 2: Encrypted Files (KMS)
 
 Using encrypted files to manage secrets in Terraform is a robust approach that enhances security by leveraging AWS Key Management Service (KMS). This method ensures that sensitive information is stored in an encrypted format and decrypted only when needed by Terraform.
+
+<p align="center">
+  <img src="/images/blog/terraform-secrets-management/encrypted-files-kms.webp" alt="Encrypted Files (KMS)" style="border-radius: 10px; width: 300; height: 500;">
+</p>
 
 #### Step-by-Step Guide
 
@@ -202,6 +210,10 @@ terraform apply
 
 AWS Secrets Manager provides a secure way to store and manage sensitive information such as database credentials, API keys, and other secrets. This method allows you to retrieve secrets dynamically within your Terraform configuration, ensuring that sensitive data is never hard-coded in your Terraform files.
 
+<p align="center">
+  <img src="/images/blog/terraform-secrets-management/secrets-manager.webp" alt="AWS Secrets Manager" style="border-radius: 10px; width: 300; height: 500;">
+</p>
+
 #### Step-by-Step Guide
 
 Here’s how you can manage your database credentials using AWS Secrets Manager:
@@ -304,6 +316,10 @@ terraform apply
 For projects managed with GitHub, using GitHub Secrets is a convenient way to store
 
  and manage secrets securely within GitHub Actions workflows. This method is particularly useful for CI/CD pipelines where you need to keep sensitive data safe while automating deployments.
+
+ <p align="center">
+  <img src="/images/blog/terraform-secrets-management/github-actions-workflow.png" alt="GitHub Secrets" height="300" width="500" style="border-radius: 10px;">
+</p>
 
 #### Step-by-Step Guide
 
