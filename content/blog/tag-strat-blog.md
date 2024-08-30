@@ -173,6 +173,13 @@ After defining the policies, the next crucial step is to attach them to the appr
   - Go to the `Tag policies` tab and click `Create policy` to define your Tag Policy.
   - After creating the policy, click on `Targets` to attach it to the desired OU.
 
+### Handling Existing Resources Without Tags
+
+Addressing the challenge of existing resources that were created before implementing the tagging policy was crucial. To bring these resources into compliance without causing any unexpected downtime, we followed a structured approach:
+
+- **Tagging Existing Resources**: 
+   We utilized the AWS Tag Editor to identify all untagged resources. This tool enabled us to efficiently apply the necessary tags to multiple resources across various regions and accounts, ensuring consistency and compliance.
+
 ## Testing the Policy
 
 After implementing the tagging and scp policies, we conducted rigorous testing to ensure compliance across our EC2 resources. We deployed several EC2 instances with and without the mandatory tags to verify the enforcement mechanisms.
