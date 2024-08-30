@@ -151,6 +151,27 @@ We created SCPs in AWS Organizations to prevent the creation of resources withou
   ]
 }
 ```
+### Step 3: Attaching the Service Control Policy and Tag Policy
+
+After defining the policies, the next crucial step is to attach them to the appropriate Organizational Units (OUs) within AWS Organizations. By attaching both the Service Control Policy (SCP) and Tag Policy to the `Infraspec OU`, you ensure that all accounts under this OU enforce the mandatory tagging policy.
+
+#### Attaching the Service Control Policy (SCP) to an OU
+
+- **Navigate to the SCP Policy Section:**
+  - Sign in to the AWS Management Console and go to the AWS Organizations console at [https://console.aws.amazon.com/organizations](https://console.aws.amazon.com/organizations).
+
+- **Attach the SCP:**
+  - Go to the `Service control policies` tab and click `Create policy` to define your SCP.
+  - After creating the policy, click on `Targets` to attach it to the desired OU.
+
+#### Attaching the Tag Policy to an OU
+
+- **Navigate to the Tag Policy Section:**
+  - Sign in to the AWS Management Console and go to the AWS Organizations console at [https://console.aws.amazon.com/organizations](https://console.aws.amazon.com/organizations).
+
+- **Attach the Tag Policy:**
+  - Go to the `Tag policies` tab and click `Create policy` to define your Tag Policy.
+  - After creating the policy, click on `Targets` to attach it to the desired OU.
 
 ## Testing the Policy
 
