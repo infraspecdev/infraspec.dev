@@ -13,7 +13,7 @@ This scenario highlights why it's essential to manage secrets and credentials se
 
 In this blog, we'll explore several methods for managing secrets and credentials securely, including environment variables, GitHub Secrets, encrypted files with AWS KMS, and AWS Secrets Manager. We’ll also compare these methods to help you choose the best approach for your needs.
 
-### Method 1: Environment Variables
+## Method 1: Environment Variables
 
 Using environment variables to manage secrets in Terraform is straightforward and commonly used. This approach keeps sensitive data like usernames and passwords out of your codebase and allows for easy integration with your CI/CD pipelines.
 
@@ -73,7 +73,7 @@ terraform plan
 terraform apply
 ```
 
-### Method 2: Encrypted Files (KMS)
+## Method 2: Encrypted Files (KMS)
 
 Using encrypted files to manage secrets in Terraform is a robust approach that enhances security by leveraging AWS Key Management Service (KMS). This method ensures that sensitive information is stored in an encrypted format and decrypted only when needed by Terraform.
 
@@ -206,7 +206,7 @@ terraform plan
 terraform apply
 ```
 
-### Method 3: AWS Secrets Manager
+## Method 3: AWS Secrets Manager
 
 AWS Secrets Manager provides a secure way to store and manage sensitive information such as database credentials, API keys, and other secrets. This method allows you to retrieve secrets dynamically within your Terraform configuration, ensuring that sensitive data is never hard-coded in your Terraform files.
 
@@ -311,7 +311,7 @@ terraform plan
 terraform apply
 ```
 
-### Method 4: GitHub Secrets
+## Method 4: GitHub Secrets
 
 For projects managed with GitHub, using GitHub Secrets is a convenient way to store
 
@@ -377,7 +377,7 @@ Your Terraform configuration file remains unchanged, as it relies on the environ
 | **AWS Secrets Manager** | Secure storage with automatic rotation.       | Costs associated with Secrets Manager.         | Best for production environments needing dynamic secrets. |
 | **GitHub Secrets**      | Convenient for CI/CD workflows.                | Limited to GitHub Actions.                     | Good for managing secrets in CI/CD pipelines. |
 
-### Recommendations
+## Recommendations
 
 - **Development Environments:** Environment variables or encrypted files (KMS) can be sufficient and are easier to set up.
 - **Production Environments:** AWS Secrets Manager provides robust security features and is recommended for managing secrets in production.
