@@ -111,6 +111,7 @@ It will display something similar to this
 But the journey didn’t stop there. I needed to ensure that my NFS volumes could be easily managed across multiple containers. This is where Docker Compose came into play. By creating a docker-compose.yml file, I could define services that utilised NFS volumes:
 
 > Use the below command to create a new file
+
 ```bash
 nano docker-compose.yml
 ```
