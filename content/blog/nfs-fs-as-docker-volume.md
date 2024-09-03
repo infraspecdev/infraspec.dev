@@ -19,10 +19,12 @@ In containerised environments, Docker volumes enable the persistent storage of d
 
 NFS, also known as Network File System, is a distributed file system protocol that allows clients to access files and directories stored on remote servers as if they were local. Operated over a network, NFS provides a shared file system that can be accessed by multiple clients simultaneously. NFS offers benefits such as centralised storage management, improved data availability, and seamless file sharing across heterogeneous environments.
 
-## Install these Before proceeding further
+## Prerequisites
 
-- NFS server installed
-- Docker and Docker-compose installed
+We need the following tools preinstalled before proceeding forward.
+
+- NFS server
+- Docker and Docker-compose
 
 My journey began with setting up an NFS server. I created a directory at `/srv/nfs` where the NFS server would store the shared files. I then added an entry to the `/etc/exports` file, specifying that the directory `/srv/nfs` could be accessed by any client with read-write permissions. I also set the permissions for the NFS directory to 755, ensuring that the owner had full read-write-execute permissions while others had read-and-execute permissions.
 
