@@ -54,7 +54,7 @@ sudo systemctl restart nfs-kernel-server
 echo "NFS server setup complete!"
 ```
 
-## Run the script using the command
+Run the above script using the following commands
 
 ```bash
 chmod +x setup_nfs.sh
@@ -66,7 +66,7 @@ sudo ./setup_nfs.sh
 
 With the NFS server setup complete, I created an NFS Docker volume using the docker volume create command. I specified the NFS server's IP address, the mount point, and the device path.
 
-## Run these commands to create a docker volume with nfs configuration
+To create a docker volume with nfs configuration, you can use following command:
 
 ```bash
 docker volume create --driver local --opt type=nfs --opt o=addr=<ip-address-of-nfs-server>,rw --opt device=:/srv/nfs  nfs-volume
@@ -114,7 +114,7 @@ nano docker-compose.yml
 
 Write the following contents inside the Docker Compose file.
 
-```text
+```yaml
 version: '3.8'
 
 services:
