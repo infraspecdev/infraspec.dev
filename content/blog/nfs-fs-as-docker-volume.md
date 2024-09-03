@@ -133,7 +133,7 @@ volumes:
     device: ":/srv/nfs"
 ```
 
-## Reflections: The Benefits of Using NFS with Docker
+## Advantages I Discovered with NFS for Docker Storage
 
 Looking back at this, the benefits of using NFS for persistent volumes in Docker are clear:
 
