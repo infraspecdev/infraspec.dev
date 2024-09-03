@@ -26,7 +26,7 @@ NFS, also known as Network File System, is a distributed file system protocol th
 
 My journey began with setting up an NFS server. I created a directory at `/srv/nfs` where the NFS server would store the shared files. I then added an entry to the `/etc/exports` file, specifying that the directory `/srv/nfs` could be accessed by any client with read-write permissions. I also set the permissions for the NFS directory to 755, ensuring that the owner had full read-write-execute permissions while others had read-and-execute permissions.
 
-Use the following script to install the NFS server.
+> Use the following script to install the NFS server.
 
 ```bash
 #!/bin/bash
@@ -54,7 +54,7 @@ sudo systemctl restart nfs-kernel-server
 echo "NFS server setup complete!"
 ```
 
-Run the above script using the following commands
+> Run the above script using the following commands
 
 ```bash
 chmod +x setup_nfs.sh
@@ -66,7 +66,7 @@ sudo ./setup_nfs.sh
 
 With the NFS server setup complete, I created an NFS Docker volume using the docker volume create command. I specified the NFS server's IP address, the mount point, and the device path.
 
-To create a docker volume with nfs configuration, you can use following command:
+> To create a docker volume with nfs configuration, you can use following command:
 
 ```bash
 docker volume create --driver local --opt type=nfs --opt o=addr=<ip-address-of-nfs-server>,rw --opt device=:/srv/nfs  nfs-volume
@@ -75,7 +75,7 @@ docker volume create --driver local --opt type=nfs --opt o=addr=<ip-address-of-n
 Output:
 ![shows the name of the  docker volume](/images/blog/nfs-as-docker-volume/create-volume.png)
 
-To verify that the volume was created successfully, I used this command.
+> To verify that the volume was created successfully, I used this command.
 
 ```bash
 docker volume ls
@@ -91,7 +91,7 @@ Next, I mounted the NFS volume in a container using the docker run command. I sp
 **Output:**
 ![shows the container id](/images/blog/nfs-as-docker-volume/docker-run.png)
 
-To verify, we can use the following command with docker exec:
+> To verify, we can use the following command with docker exec:
 
 ```bash
 docker exec -it nfs_mounted_node_container sh
@@ -108,6 +108,7 @@ It will display something similar to this
 
 But the journey didn’t stop there. I needed to ensure that my NFS volumes could be easily managed across multiple containers. This is where Docker Compose came into play. By creating a docker-compose.yml file, I could define services that utilised NFS volumes:
 
+> Use the below command to create a new file
 ```bash
 nano docker-compose.yml
 ```
