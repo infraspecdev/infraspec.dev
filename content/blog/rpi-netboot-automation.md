@@ -190,7 +190,7 @@ configure_pxe_services() {
 
 The `addresslist.txt` file serves as a record of processed MAC addresses. Before executing the setup for a new MAC address, the script checks this list to ensure it hasn't already been configured. This prevents unnecessary duplication of efforts. Create `addresslist.txt` in the `/opt` directory. Here's an example of how the `addresslist.txt` file might look:
 
-```
+```text
 00-11-22-33-44-55
 aa-bb-cc-dd-ee-ff
 ```

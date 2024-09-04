@@ -11,14 +11,14 @@ weight: 1
 
 ### What is PXE Boot?
 
-The Preboot Execution Environment (PXE) specification describes a standardized client–server environment that boots a software assembly retrieved from a network on PXE-enabled clients.
+The Preboot Execution Environment (PXE) specification describes a standardized client-server environment that boots a software assembly retrieved from a network on PXE-enabled clients.
 
 ### Why PXE Boot?
 
 - Simplify Pi provisioning and maintenance as much as possible.
 - Automate updates/upgrades as much as possible.
 
-Netbooting is a good path to achieve this. For example, when you netboot a Pi, it does not require an SD card to boot. The OS and file system live on a central server. Because most of the provisioning happens on a central server, we can eventually automate it via scripts.
+Netbooting is a good path to achieve this. For example, when you netboot a Pi, it does not require an SD card to boot. The OS and file system live on a central server. Because most provisioning happens on a central server, we can eventually automate it via scripts.
 
 ### PXE Boot Sequence
 
@@ -66,7 +66,7 @@ Netbooting is a good path to achieve this. For example, when you netboot a Pi, i
 To implement netbooting for Raspberry Pi devices, you'll need the following components:
 
 - Raspberry Pi units acting as PXE clients connected via Ethernet to the router or switch.
-- Raspberry Pi acting as a PXE server containing boot files and user files connected via Ethernet to the router or switch.
+- Raspberry Pi as a PXE server containing boot files and user files connected via Ethernet to the router or switch.
 
 ## Configuration
 
@@ -132,6 +132,7 @@ $ sudo mkdir -p /tftpboot/<MAC_ADDRESS>
 $ sudo chmod 777 /tftpboot
 $ sudo cp -r ~/bootfiles/* /tftpboot/<MAC_ADDRESS>
 ```
+
 **Important Note:** Replace `192.168.XX.XX` with the IP address of PXE server and `<MAC_ADDRESS>` with the MAC address of PXE client.
 
 #### Configure `dnsmasq.conf`
