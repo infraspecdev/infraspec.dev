@@ -82,7 +82,7 @@ When we create a Service of type NodePort, Kubernetes gives us a nodePort value.
 
 *The YAML for NodePort service looks like this:*
 
-```shell
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -105,7 +105,7 @@ The `nodePort` parameter here is optional, added here just for an example. With
 
 Create the service:
 
-```shell
+```bash
 $ kubectl apply -f nginx-svc.yaml
 service/nginx-service created
 
@@ -113,7 +113,7 @@ service/nginx-service created
 
 Check it:
 
-```shell
+```bash
 $ kubectl get svc nginx-service
 NAME            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 nginx-service   NodePort   172.20.54.138   <none>        80:30036/TCP   40s
@@ -400,7 +400,7 @@ The Ingress controller provisions an implementation-specific load balancer that 
 Name-based virtual hosts support routing HTTP traffic to multiple host names at the same IP address.
 
 <p align="center">
-  <img width="500px" src="/images/blog/setting-up-ingress-on-eks/name-based-virtual-hosting.png" alt="Name based virtual hosting">
+  <img width="700px" src="/images/blog/setting-up-ingress-on-eks/name-based-virtual-hosting.png" alt="Name based virtual hosting">
 </p>
 
 image source: https://kubernetes.io/docs/concepts/services-networking/ingress/#name-based-virtual-hosting
