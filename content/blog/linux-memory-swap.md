@@ -8,16 +8,13 @@ weight: 1
 ---
 
 
- # Introduction
+## Introduction
 
 <p style='text-align: justify;'>This blog will help you figure out how to check how much memory is left on your Linux machine. Knowing this will tell you if your server is running low on memory and needs attention, or if everything is fine. Following this, an explanation will be provided regarding the concept of swap and its relevance for the operation of a Linux machine or server.</p>
 
-### Output of  ` htop ` command
-
-
+### Output of ` htop ` command
 
 <img src="/images/blog/linux-memory-swap/htop.png" alt="My Collection" width="100%">
-
 
 ## What is htop?
 
@@ -27,7 +24,7 @@ weight: 1
 
 <p style='text-align: justify;'>Next, we will explore how to view the amount of memory usage without relying on third-party utilities. This leads us to the first command, the free command. The free command provides information on the amount of free memory available.</p>
 
-### Output of   ` free `  command
+### Output of  ` free `  command
 
 ```bash
 
@@ -40,6 +37,7 @@ weight: 1
 <p style='text-align: justify;'>However, these numbers may not be immediately comprehensible. Therefore, we will utilize the -m option with the free command, which presents the memory statistics in megabytes, making them easier to interpret.</p>
 
 ### Output of ` free -m ` command
+
 ```bash
 
   user@machineHost:~$ free
@@ -61,7 +59,7 @@ weight: 1
 
 Now, we'll shift our focus to swap usage.
 
-## **What is Swap?**
+## What is Swap?
 
 <p style='text-align: justify;'>Swap memory, also known as swap space, is a section of a computer's hard disk or SSD that the operating system (OS) uses to store inactive data from Random Access Memory (RAM). Because swap exists on the hard disk, accessing swap memory is slower compared to accessing RAM.
 While swap is something we hope to avoid using, it serves as a safety net for when RAM becomes full. It's debated whether it's okay to run a Linux server or workstation without swap, but having some swap space, even sparingly like 1GB, doesn't heavily impact the hard disk. Additionally, some applications require swap even if there's available memory.</p>

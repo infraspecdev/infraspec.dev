@@ -24,14 +24,14 @@ We needed a cost-effective way where if the primary connection(which is ACT for 
 to the secondary backup connection(Airtel) and restores back to the primary connection once it regains its connectivity. This led to think about failover/multi-WAN
 setup.
 
-# Overview
+## Overview
 
 - Two ISP connections (primary and secondary)
 - Failover setup (not load balancing)
 - Quick switching time between ISPs
 - Clients should be part of a single network (IPs allocated from a single DHCP server)
 
-# Context
+## Context
 
 ![Failover Setup](/images/blog/office-home-lab-internet-failover-setup/failover-setup.png)
 
@@ -50,7 +50,8 @@ Internet connection for your Office/Home lab.
 > you will need to use a different router or a network switch to create a WAN port. Some routers also come equipped with multiple WAN
 > ports that can be used as well for failover in case one of the connections fails.
 
-## How we go about setting up the internet failover
+### How we go about setting up the internet failover
+
 The process to set up internet failover may vary depending on our specific setup and needs, but generally,
 we will need to follow these steps:
 
@@ -60,12 +61,13 @@ ACT as our primary as I mentioned due to its high bandwidth and Airtel as our se
 3. Configure the secondary internet connection as a backup gateway in your router or switch.
 4. Test the failover by disconnecting the primary internet connection and verifying that the secondary connection is used automatically.
 
-## The configurations to manage
+### The configurations to manage
 
 We can manage router configurations by login to the router's web-based configuration page. This can typically be done by entering
 the router's IP address (such as `192.168.1.1`) in a web browser. The configurations will vary with the router you have, here we
 will take an overview of the process we need to follow to manage the router's configuration.
-### 1. Configure WAN/LAN as WAN port
+
+#### 1. Configure WAN/LAN as a WAN port
 
 - Our router had only one WAN port, We need to convert one of its LAN port to a WAN port as we need two internet sources.
 - Once we have accessed the router's configuration page, look for a section on bridging or port forwarding. From here,
@@ -76,7 +78,7 @@ Now this second port (eth2 in our case) can be used as another WAN port.
 
 Now that we have two WAN ports/interfaces (eth1 & eth2) ready to act as our internet sources, the next step is to configure DHCP Clients for these ports.
 
-### 2. Setup DHCP client 
+#### 2. Setup DHCP client
 
 - Plug in the ISP cables to both the WAN interfaces we just configured in the above step.
 - In the network settings, We need to enable the DHCP client and configure the network settings.
@@ -87,7 +89,7 @@ Each ISP has its own DHCP server, the router acts as a DHCP client for each ISP 
 to obtain IP address information from each ISP and use that information to route traffic appropriately. This blog is 
 written considering dynamic IP assignments only.
 
-### 3. Configure routes
+#### 3. Configure routes
 
 - Now we need to configure the routes for our primary and the secondary internet connection, For that find the settings for 
 the routing table, which is typically found in the advanced settings or network settings section of the router's configuration page.
@@ -99,7 +101,7 @@ the higher the priority of the connection. For example, if you have two WAN conn
 connection is used whenever possible, and the secondary connection is only used if the primary connection is 
 unavailable.
 
-### 4. Setting up the DHCP Server
+#### 4. Setting up the DHCP Server
 
 - We need to have uninterrupted connection for all our devices in the office network. Instead of using the ISP’s DHCP servers 
 (both will provide different IPs from different pools), we will be setting up our own DHCP server which will be providing IPs
@@ -109,7 +111,7 @@ Till now all the connections are wired, and we need to provide a wireless access
 will be able to connect wireless. The Access Point is connected to one of the LAN ports and since it is part of the
 bridge network, all the devices connected via access point will be assigned the IP from our DHCP server instead of ISPs.
 
-### 5. Testing our setup
+#### 5. Testing our setup
 
 - Although there are a lot of tools available to simulate network failures, we chose a simpler approach to test 
 the working of our setup.
@@ -120,6 +122,7 @@ see the secondary/ failover connection kick in and the internet traffic flowing 
 the primary ISP.
 
 ## Conclusion
+
 In this article, We had an overview on how to go about setting up the office/home lab internet failover connection. We discussed configuring
 WAN interface, setting and configuring the DHCP client and server, and finally we looked at testing our setup.
 \

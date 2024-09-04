@@ -80,7 +80,7 @@ Now that we have a basic discord bot placeholder out of the way, let's get onto 
 Let us create project API keys on platform.openai.com/api-keys. Make a note of the key somewhere secure as it won't be possible to be view it later.
 To ensure that the API keys work as expected
 
-```
+```bash
 export OPENAI_API_KEY=<your-api-key-here>
 ```
 
@@ -170,7 +170,7 @@ discord_client.run(os.getenv('DISCORD_BOT_TOKEN'))
 
 And... voila! A simple discord bot that lets you talk to GPT. The models do not have memory of the past requests and so at present, it just works as a relay layer. But we want more from it. We want to have a conversation with it, and not just use it for one-off fact checking. And to have a conversation, both parties need to be able to retain earlier parts of the conversation (at least within reasonable limits). We humans can do that naturally, but how would GPT do that? For this, we would need to do a little extra to make it 'remember'.
 
-GPT's chat completion API works by treating whatever you pass in the `messages` field of the request as context. It is by design allowed to pass (an optional) system message and a series of exchanges between the user and the GPT(assistant). You can use this either for few-shot prompting, or you could also use this to pass relevant bits of the conversation history so that GPT has access to past conversation and can reference that information as needed. Below is a sample of what the `messages` field would look like.
+GPT's chat completion API works by treating whatever you pass in the `messages` field of the request as context. It is, by design, allowed to pass (an optional) system message and a series of exchanges between the user and the GPT(assistant). You can use this either for few-shot prompting, or you could also use this to pass relevant bits of the conversation history so that GPT has access to past conversation and can reference that information as needed. Below is a sample of what the `messages` field would look like.
 
 ```python
 from openai import OpenAI
@@ -189,7 +189,7 @@ response = client.chat.completions.create(
 
 To help the model remember, add every turn of the conversation to the `messages` list field.
 
-Something to be cognisant of here is that the request has a limit of 4096 token. If the request is larger than 4096 tokens, it would be rejected. Ensure that your request is always under 4096 tokens. The API response also typically tells you how many tokens were used for the prompt and the completion. But relying only on that to understand your token usage can be expensive. It's recommended to calculate the number of tokens in your request before you send it out. You can use the [tiktoken](https://github.com/openai/tiktoken) library for this.
+Something to be cognisant of here is that the request has a limit of 4096 token. If the request is larger than 4096 tokens, it would be rejected. Ensure that your request is always under 4096 tokens. The API response also typically tells you how many tokens were used for the prompt and the completion. However, relying only on that to understand your token usage can be expensive. It's recommended to calculate the number of tokens in your request before you send it out. You can use the [tiktoken](https://github.com/openai/tiktoken) library for this.
 
 And what do we do when we exceed the token limit? There are multiple ways you could approach this
 
