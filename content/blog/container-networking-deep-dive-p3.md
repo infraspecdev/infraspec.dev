@@ -42,7 +42,7 @@ before forwarding the packet to the containers. This can be achieved by adding a
 
 ## Configure ip forwarding and iptables rules to connect containers to the internet
 
-```shell
+```bash
 iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -j MASQUERADE
 ```
 This command means that we are adding a new rule to the `nat` table of the `POSTROUTING` chain to `MASQUERADE` all the
@@ -62,7 +62,7 @@ disabled in Linux, if any incoming network packet arrives at one interface which
 dropped. Enabling ip forwarding will allow the incoming packet meant to be passed on to the another network to be accepted and
 then forwards it accordingly.
 
-```shell
+```bash
 # To see the ip forwarding status
 cat /proc/sys/net/ipv4/ip_forward
 

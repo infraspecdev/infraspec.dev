@@ -26,7 +26,7 @@ Here is the [link](https://github.com/arihant-2310/Container-Networking-Deep-Div
 
 To start the VM, go to the directory where you downloaded the vagrant file and then execute the below commands:
 
-```shell
+```bash
 #To start the VM
 vagrant up
 
@@ -95,7 +95,7 @@ Hope you have set up the fresh VM and ssh into it ✌️.
 
 7. To list the interfaces inside `container1`
 
-   ```shell
+   ```bash
    #ip netns exec <network namespace name> <command>
    ip netns exec container1 ip link
    ```
@@ -105,7 +105,7 @@ Hope you have set up the fresh VM and ssh into it ✌️.
 
 8. By default, both ends of the veth pair were down. To enable
 
-   ```shell
+   ```bash
    #To set veth1 up
    ip link set veth1 up
    
@@ -115,7 +115,7 @@ Hope you have set up the fresh VM and ssh into it ✌️.
 
 9. To send packets to container1, we need to assign IP address to ceth1 interface inside `container1`
 
-   ```shell
+   ```bash
    ip netns exec container1 ip addr add 172.16.0.2/24 dev ceth1
    ```
 

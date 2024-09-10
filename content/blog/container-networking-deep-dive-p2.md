@@ -67,7 +67,7 @@ Here is the [link](https://github.com/arihant-2310/Container-Networking-Deep-Div
 file to set up the VM.
 
 To start the VM, go to the directory where you downloaded the vagrant file and then execute the below commands:
-```shell
+```bash
 #To start the VM
 vagrant up
 
@@ -84,25 +84,25 @@ In part 1 of this series, we already saw how to create network namespaces, add r
 I will quickly run the commands. We will focus more on the bridge part to help you understand how containers are attached to it and how packets are sent via it.
 
 1. To create two network namespace container1 and container2
-    ```shell
+    ```bash
     ip netns add container1
     ip netns add containe2
     ```
 
 2. To create two veth pairs
-    ```shell
+    ```bash
     ip link add veth1 type veth peer name ceth1
     ip link add veth2 type veth peer name ceth2
     ```
 
 3. To attach one end of each veth pair with containers
-    ```shell
+    ```bash
     ip link set ceth1 netns container1
     ip link set ceth2 netns container2
     ```
 
 4. To enables the interfaces inside the containers
-    ```shell
+    ```bash
     ip netns exec container1 ip link set lo up
     ip netns exec container2 ip link set lo up
     ip netns exec container1 ip link set ceth1 up
@@ -110,7 +110,7 @@ I will quickly run the commands. We will focus more on the bridge part to help y
     ```
 
 5. To assign ip address to interface inside containers
-   ```shell
+   ```bash
    ip netns exec container1 ip addr add 172.16.0.2/24 dev ceth1
    ip netns exec container2 ip addr add 172.16.0.3/24 dev ceth2
    ```
@@ -121,14 +121,14 @@ This will create a bridge named br0. Run `ip link` to list the bridge.
 ![Bridge](/images/blog/container-networking-deep-dive-p2/terminal-bridge.png)
 
 7. To attach the veth1 and veth2 to the bridge
-   ```shell
+   ```bash
    ip link set veth1 master br0
    ip link set veth2 master br0
    ```
    ![Veth pair attached to bridge](/images/blog/container-networking-deep-dive-p2/veth-pair-bridge-terminal.png)
 
 8. To enable veth1, veth2 and bridge br0
-   ```shell
+   ```bash
    ip link set veth1 up
    ip link set veth2 up
    ip link set br0 up
