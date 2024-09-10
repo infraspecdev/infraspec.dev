@@ -75,7 +75,13 @@ docker volume create --driver local --opt type=nfs --opt o=addr=<ip-address-of-n
 ```
 
 Output:
-![shows the name of the  docker volume](/images/blog/nfs-as-docker-volume/create-volume.png)
+
+```text
+$ docker volume create --driver local \
+ --opt type=nfs --opt o=addr=192.168.1.7,rw \
+ --opt device=:/srv/nfs nfs-volume 
+nfs volume
+```
 
 > To verify that the volume was created successfully, I used this command.
 
@@ -83,15 +89,38 @@ Output:
 docker volume ls
 ```
 
-**It would show like this**
-![shows the list of available docker volumes](/images/blog/nfs-as-docker-volume/docker-vol-ls.png)
+**Output:**
+
+```text
+$ docker volume ls
+DRIVER              VOLUME NAME
+local               nfs-volume
+```
 
 ## Mounting NFS in a Container: A Moment of Truth
 
 Next, I mounted the NFS volume in a container using the docker run command. I specified the NFS volume and the mount point in the --mount section.
 
+> To mount the NFS volume in a container, you can use the following command:
+
+```bash
+docker run --name nfs_mounted_node_container \
+--mount source=nfs-volume,target=/opt node
+```
+
 **Output:**
-![shows the container id](/images/blog/nfs-as-docker-volume/docker-run.png)
+
+```text
+$ docker run --name nfs_mounted_node_container \
+  --mount source=nfs-volume,target=/opt \
+  alpine
+Unable to find image 'alphine:latest' locally
+latest: Pulling from library/alphine
+5e6ec7f28fbf: Pull complete
+Digest: sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a6718c2b6d6a
+Status: Downloaded newer image for alphine:latest
+1d7e2e2b8e2e0d1
+```
 
 > To verify, we can use the following command with docker exec:
 
@@ -104,7 +133,13 @@ mount | grep /opt
 ```
 
 It will display something similar to this
-![shows that the mounted directory is of nfs type](/images/blog/nfs-as-docker-volume/result.png)
+  
+  ```text
+$ docker exec -it nfs_mounted_node_container sh
+# mount | grep /opt
+:/ on /opt type nfs4
+(rw,relatime,vers=4.0,risze=104348,wsize=1932432)
+  ```
 
 ## Docker Compose and NFS: Expanding Horizons
 
