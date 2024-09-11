@@ -87,4 +87,5 @@ There isn't a universal value for setting swappiness, it varies depending on the
 <p style='text-align: justify;'>In conclusion, the comprehension of memory and swap usage is deemed paramount for the optimization of Linux system performance. By understanding memory management techniques and understanding the role of swap, efficient allocation of resources can be ensured, and system responsiveness </p>
 
 ## Question
+
 So, do you prefer using swap memory in your Linux distro, or do you opt to run without it?
