@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-blog-files:
+    name: Lint blog markdown files
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - uses: DavidAnson/markdownlint-cli2-action@v17
+      with:
+        config: '.markdownlint.json'
+        globs: 'content/blog/*.md'
