@@ -1,6 +1,6 @@
 # infraspec.dev
 
-![Lint](https://github.com/github/docs/actions/workflows/markdown-lint.yml/badge.svg)
+![GitHub Action Lint](https://github.com/github/docs/actions/workflows/lint.yml/badge.svg?event=push,branch=main)
 
 ## Getting Started
 
