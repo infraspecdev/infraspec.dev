@@ -71,6 +71,7 @@ To check the swappiness value, you can use the command:
 `   sysctl vm.swappiness`
 
 ### Output of sysctl vm.swappiness command
+
 ```bash
 
   user@machineHost:~$ sysctl vm.swappiness
