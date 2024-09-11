@@ -43,12 +43,12 @@ Use these variables in your resource definitions. Here’s an example of an AWS 
 
 ```hcl
 resource "aws_db_instance" "example" {
-  identifier          = "mydbinstance"
+  identifier           = "mydbinstance"
   engine              = "mysql"
   instance_class      = "db.t3.micro"
   allocated_storage   = 10
   publicly_accessible = true
-  skip_final_snapshot = true
+  skip_final_snapshot  = true
   username            = var.db_username
   password            = var.db_password
 }
@@ -170,7 +170,7 @@ Use the `aws_secretsmanager_secret_version` data source in your Terraform config
 
 ```hcl
 data "aws_secretsmanager_secret_version" "creds" {
-  secret_id = aws_secretsmanager_secret.db_creds.id
+  secret_id  = aws_secretsmanager_secret.db_creds.id
   depends_on = [aws_secretsmanager_secret.db_creds, aws_secretsmanager_secret_version.db_creds_version]
 }
 
@@ -185,14 +185,14 @@ Use the decrypted credentials in your resource definitions. Here’s an example 
 
 ```hcl
 resource "aws_db_instance" "example" {
-  identifier          = "mydbinstance"
+  identifier           = "mydbinstance"
   engine              = "mysql"
   instance_class      = "db.t3.micro"
   allocated_storage   = 10
   publicly_accessible = true
-  skip_final_snapshot = true
-  username            = local.db_cred.db_username
-  password            = local.db_cred.db_password
+  skip_final_snapshot  = true
+  username            = var.db_username
+  password            = var.db_password
 }
 ```
 
@@ -267,7 +267,7 @@ Use the `aws_secretsmanager_secret_version` data source to fetch the secret from
 
 ```hcl
 data "aws_secretsmanager_secret_version" "creds" {
-  secret_id = aws_secretsmanager_secret.mysql_cred.id
+  secret_id  = aws_secretsmanager_secret.mysql_cred.id
   depends_on = [aws_secretsmanager_secret.mysql_cred, aws_secretsmanager_secret_version.mysql_cred_version]
 }
 
@@ -282,14 +282,14 @@ Use the retrieved credentials in your resource definitions. Here’s an example 
 
 ```hcl
 resource "aws_db_instance" "example" {
-  identifier          = "mydbinstance"
+  identifier           = "mydbinstance"
   engine              = "mysql"
   instance_class      = "db.t3.micro"
   allocated_storage   = 10
   publicly_accessible = true
-  skip_final_snapshot = true
-  username            = local.db_cred.db_username
-  password            = local.db_cred.db_password
+  skip_final_snapshot  = true
+  username            = var.db_username
+  password            = var.db_password
 }
 ```
 
