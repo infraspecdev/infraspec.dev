@@ -24,15 +24,14 @@ But then came crons, the kitchen timer of the digital world! Just like how a che
     ```bash
     $ crontab -e.
     ```
-    
-2. Add your cron job entries using the proper syntax (timing and command).
-    
-3. Save and exit the crontab file.
-    
-4. Cron will automatically execute the scheduled tasks according to the specified timings.
-    
 
-## **What is Crontab file?**
+2. Add your cron job entries using the proper syntax (timing and command).
+
+3. Save and exit the crontab file.
+
+4. Cron will automatically execute the scheduled tasks according to the specified timings.
+
+## **What is a Crontab file?**
 
 Crontab, short for "cron table," is a text file that outlines the schedule for cron jobs. There are two main types of crontab files: system-wide crontab files and individual user crontab files.
 
@@ -57,13 +56,9 @@ Each line in the user crontab file contains six fields separated by a space foll
 ### **Special Characters**
 
 * **Asterisk (\*)**: Represents all possible values for a field.
-    
 * **Hyphen (-)**: Specifies a range of values.
-    
 * **Comma (,)**: Specifies multiple values.
-    
 * **Forward Slash (/)**: Specifies increments.
-    
 
 For example, \**/10 8-16* \* 1-5 /home/user/scripts/[s](http://script.sh)cript.sh"
 
@@ -76,15 +71,10 @@ This cron expression executes the script `/home/user/scripts/script.sh` every 10
 There are several special Cron schedule macros used to specify common intervals. You can use these shortcuts in place of the five-column date specification.
 
 * `@yearly` (or `@annually`) - Run the specified task once a year at midnight (12:00 am) of the 1st of January. Equivalent to `0 0 1 1 *`.
-    
 * `@monthly` - Run the specified task once a month at midnight on the first day of the month. Equivalent to `0 0 1 * *`.
-    
 * `@daily` - Run the specified task once a day at midnight. Equivalent to `0 0 * * *`.
-    
-* `@weekly` - Run the specified task once a week at midnight on Sunday. Equivalent to `0 0 * * 0`.
-    
+* `@weekly` - Run the specified task weekly at midnight on Sunday. Equivalent to `0 0 * * 0`.
 * `@reboot` - Run the specified task at the system startup (boot-time).
-    
 
 > Note: For simplifying the process of generating cron job expressions, there's a website called [Crontab Generator](https://crontab-generator.org/).
 
@@ -93,41 +83,30 @@ There are several special Cron schedule macros used to specify common intervals.
 The crontab command enables you to manage cron jobs by installing, viewing, or opening a crontab file for editing.
 
 * `crontab -e` - Edit crontab file or create one if it doesn’t already exist.
-    
 * `crontab -l` - Display crontab file contents.
-    
 * `crontab -r` - Remove your current crontab file.
-    
 * `crontab -i` - Remove your current crontab file with a prompt before removal.
-    
 * `crontab -u <username>` - Edit other user crontab file. This option requires system administrator privileges.
-    
-    For example:
-    
-   
-    <img src="/images/blog/cron-jobs/crontab-entry.png" alt="Crontab entry" width="100%">
-    
+
+For example:
+
+<img src="/images/blog/cron-jobs/crontab-entry.png" alt="Crontab entry" width="100%">
 
 ## **Crontab Variables**
 
 The cron daemon automatically configures several environment variables:
 
-1. The default path is set to `PATH=/usr/bin:/bin`. If your command isn't in this path, you can either use the absolute command path or adjust the cron $PATH variable. Note that you can't implicitly append: $PATH as with regular scripts.
-    
-2. The default shell is /bin/sh. To use a different shell, modify the SHELL variable.
-    
-3. Cron executes commands from the user's home directory. You can set the HOME variable in the crontab if needed.
-    
-4. By default, cron sends email notifications to the crontab owner. However, you can override this behavior by using the MAILTO environment variable, specifying a comma-separated list of email addresses. Setting MAILTO="" will prevent any email notifications from being sent.
-    
+1. The default path is set to `PATH=/usr/bin:/bin`. If your command isn't in this path, you can either use the absolute command path or adjust the cron `$PATH` variable. Note that you can't implicitly append: `$PATH` as with regular scripts.
+2. The default shell is `/bin/sh`. To use a different shell, modify the `SHELL` variable.
+3. Cron executes commands from the user's home directory. You can set the `HOME` variable in the crontab if needed.
+4. By default, cron sends email notifications to the crontab owner. However, you can override this behavior by using the MAILTO environment variable, specifying a comma-separated list of email addresses. Setting `MAILTO=""` will prevent any email notifications from being sent.
     This feature is particularly useful in case a cron job encounters errors; it allows the system to promptly inform the owner or specified recipients about any issues that occurred during the execution of the job.
-    
+
     For example: Run a script every 5 minutes and redirected the standard output to dev null, only the standard error will be sent to the specified e-mail address:
-    
+
     `MAILTO=`[`email@example.com`](mailto:email@example.com)
-    
+
     `*/5 * * * * /path/to/script.sh > /dev/null`
-    
 
 ## **Crontab Restrictions**
 
@@ -147,61 +126,53 @@ Systemd timers offer a modern approach to task scheduling on Unix-like systems. 
 
 Unlike cron, which relies solely on crontab files, systemd timers are part of a larger systemd service. They are typically configured using a combination of .timer and .service files. This approach allows for more comprehensive management and integration of scheduled tasks with other systemd services and units.
 
-### Advantages of Systemd Timers Over Cron Jobs:
+### Advantages of Systemd Timers Over Cron Jobs
 
 1. **Event-Based Triggering:**
-    
+
     * Systemd Timers can trigger tasks based on various events such as service activation, socket activation, or path existence. This event-based approach offers more flexibility than Cron Jobs, which rely solely on time triggers such as specific times, intervals, or predefined strings like `@daily`.
-        
+
     * For example, Automatically restarting a failed service using Systemd Timers when a specific error log file indicates a failure.
-        
+
 2. **Dependency Management:**
-    
     * Systemd Timers efficiently handle dependencies between tasks and services, ensuring that tasks are executed only when specific conditions are met. This dependency management capability is not available in Cron Jobs.
-        
-    * For example , You have a web application that requires a database connection for a scheduled task to run. With Systemd Timers, you can ensure the task only executes after the database service is up and running.
-        
+    * For example, a web application requires a database connection for a scheduled task to run. With Systemd Timers, you can ensure the task only executes after the database service is up and running.
+
 3. **Built-in Logging and Monitoring:**
-    
     * Systemd provides comprehensive logging of service and timer units, simplifying debugging and monitoring of automated tasks. In contrast, Cron Jobs do not offer built-in logging capabilities, making troubleshooting more challenging.
-        
     * The logs are located in the `/var/log/journal/` directory.
-        
+
 4. **Better Integration with System Services:**
-    
+
     * Systemd Timers are tightly integrated into the Systemd init system, resulting in better integration and easier management of tasks with other system services.
-        
     * For example, You have a web application that relies on a backend API service. Now, you need to schedule regular cache clearing tasks to prevent stale data buildup. With Systemd Timers, you can tightly integrate cache clearing tasks with the API service.
-        
+
 5. **Advanced Scheduling Options:**
-    
     * Systemd Timers offer more advanced scheduling options, including monotonic and realtime timers, which provide precise control over task execution timing.
-        
+
     * For example, Consider a financial institution processing stock trades. Systemd Timers with advanced scheduling options allow the institution to execute critical tasks, such as trade settlement processes, with precise timing accuracy as monotonic timers ensure consistent intervals between trades, while realtime timers enable timely execution of end-of-day processes.
-        
 
 ### Features relevant to Cron Jobs
 
 1. **Simple Time-Based Scheduling:**
-    
+
     * If your task scheduling needs are straightforward and involve only time-based triggers (e.g., running a backup script every night at midnight), Cron Jobs provide a simple and effective solution without the need for additional complexity.
-        
+
 2. **Legacy System Compatibility:**
-    
+
     * On older Unix-like systems as well as some Linux distros that do not use Systemd as their init system, Cron Jobs remain the standard and widely supported method for task scheduling.
-        
+
 3. **Portability Across Systems**:
-    
+
     * Cron Jobs offer portability across different Unix-like systems, allowing scripts and automation workflows to be easily transferred and executed without dependencies on specific init systems like SystemD.
-        
+
 4. **User-Specific Tasks**:
-    
+
     * Setting up user-specific Cron Jobs is often simpler and more straightforward compared to configuring user-specific Systemd Timers. For users who require individualized task scheduling or automation, Cron Jobs provide an accessible solution without the need for complex configuration.
-        
+
 5. **Minimal System Dependency**:
-    
+
     * Cron Jobs have minimal dependencies on other system components, making them lightweight and efficient for simple task scheduling needs. In contrast, Systemd Timers are part of the larger Systemd init system and may introduce additional overhead or complexity for users who only require basic task scheduling capabilities.
-        
 
 > Note: If you're unsure how to use Systemd Timers, check out the guide on how to get started: \[[https://documentation.suse.com/smart/systems-management/html/systemd-working-with-timers/index.html](https://documentation.suse.com/smart/systems-management/html/systemd-working-with-timers/index.html)\].
 
