@@ -1,5 +1,7 @@
 # infraspec.dev
 
+![Lint](https://github.com/github/docs/actions/workflows/markdown-lint.yml/badge.svg)
+
 ## Getting Started
 
 ### Prerequisites

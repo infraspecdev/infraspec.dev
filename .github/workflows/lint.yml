@@ -23,3 +23,18 @@ jobs:
       with:
         globs: ${{ steps.changed-files.outputs.all_changed_files }}
         separator: ","
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: tj-actions/changed-files@v45
+      id: changed-files
+      with:
+        files: '**/*.md'
+        separator: ","
+    - uses: rojopolis/spellcheck-github-actions@0.41.0
+      name: Spellcheck
+      with:
+        source_files: ${{ steps.changed-files.outputs.all_changed_files }}
