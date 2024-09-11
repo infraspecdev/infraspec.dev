@@ -38,3 +38,4 @@ jobs:
       name: Spellcheck
       with:
         source_files: ${{ steps.changed-files.outputs.all_changed_files }}
+        task_name: Markdown
