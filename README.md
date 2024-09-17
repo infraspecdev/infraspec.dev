@@ -1,6 +1,6 @@
 # infraspec.dev
 
-![GitHub Action Lint](https://github.com/infraspecdev/infraspec.dev/actions/workflows/lint.yml/badge.svg?event=push)
+![GitHub Action Lint](https://github.com/infraspecdev/infraspec.dev/actions/workflows/lint.yml/badge.svg?branch=main)
 
 ## Getting Started
 
@@ -9,6 +9,12 @@
 To run this website locally, you will need to have the following software installed on your computer:
 
 - [Hugo](https://gohugo.io/getting-started/installing/)
+
+If you're using MacOS and [Homebrew](https://brew.sh/), you can install Hugo using the following command:
+
+```bash
+brew install hugo
+```
 
 ### Running the website locally
 
