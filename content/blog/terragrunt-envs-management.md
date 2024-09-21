@@ -2,7 +2,7 @@
 title: "From Chaos to Clarity: Managing Environments with Terragrunt"
 authorId: "nimisha"
 date: 2024-09-10
-draft: true
+draft: false
 featured: true
 weight: 1
 ---
@@ -148,8 +148,15 @@ This workflow allows me to manage multiple environments with ease. I can make ch
 
 4. Dependency Management: Another Terragrunt superpower is managing dependencies between infrastructure components. For example, my ECS service depends on the VPC and subnets being provisioned first. Terragrunt’s dependencies block ensures that I deploy resources in the correct order, so my ECS service doesn’t attempt to launch before the network is ready.
 
-## Final Thoughts
+## Obvious Question: Why to use terragrunt instead of directly using terraform modules or terraform workspaces
 
-Terragrunt isn’t just about making Terraform easier to use. It’s about enabling you to manage infrastructure at scale without the chaos. I no longer have to worry about accidentally mismatching configurations between environments or spending hours applying changes manually.
+While terraform workspaces can be using for multiple environments , [hashicorp does not recommend it](https://developer.hashicorp.com/terraform/cli/workspaces)
 
-If you’re tired of duplicating Terraform code across environments, I highly recommend giving Terragrunt a try. It’s been a game-changer in my workflow, and it just might bring the clarity you need in your infrastructure management journey.
+> CLI workspaces within a working directory use the same backend, so they are not a suitable isolation mechanism for this scenario.
+
+Even with terraform modules you can just pass the variable and use it but that's just adding more boilerplate and you are just trying to prove the point that modules can be used here and
+It will become more complex to maintain down the road, I'm not saying you should use terragrunt I'm just pointing the facts. Ultimately it depends on the type of project you are working on.
+
+## Wrapping Up
+
+Terragrunt goes beyond just making Terraform easier, it’s about scaling your infrastructure management without the hassle. It keeps your configurations DRY, handles dependencies, and automates workflows, so you don’t have to worry about misconfigurations or tedious manual updates. If you’re frustrated with managing repetitive Terraform code across multiple environments, Terragrunt might just be the tool that simplifies your workflow and brings order to your infrastructure management. Give it a try; it’s been a game-changer for me, and it could be for you too.
