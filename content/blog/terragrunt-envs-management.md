@@ -11,9 +11,9 @@ Managing multiple environments was a never-ending headache for me. Like many oth
 
 ## The Repetition Trap
 
-At first, my solution was simple: copy-paste. I created three separate folders: one for production, one for staging, and one for development. In each folder, I had the same Terraform files with minor tweaks like different variables or configurations for each environment. It worked, but I soon found myself dealing with the chaos of managing three sets of nearly identical infrastructure code.
+At first, my solution was simple: copy-paste. I created three separate folders: one for production, one for staging, and one for development. Each folder contained the same Terraform files with minor tweaks, such as different variables or configurations for each environment. It worked, but I soon found myself dealing with the chaos of managing three sets of nearly identical infrastructure code.
 
-Let’s say I needed to update a configuration for my database service. This meant that I had to open each folder, make the same change in three different places, and run Terraform multiple times for each environment. It was a tedious and error-prone process, and as my infrastructure grew, so did the complexity. I knew there had to be a better way.
+Let’s say I needed to update a configuration for my database service. This meant opening each folder, making the same change in three different places, and running Terraform multiple times for each environment. It was a tedious and error-prone process, and as my infrastructure grew, so did the complexity. I knew there had to be a better way.
 
 > My Initial Setup was like this
 
@@ -33,17 +33,18 @@ Let’s say I needed to update a configuration for my database service. This mea
     └── redis.tf
 ```
 
-The terraform files are contains same resources in different environment but the only difference was the values of the variables.
-That is lot of Repeated Code.
+The Terraform files contain the same resources in different environments, but the only difference is the values of the variables.
+That is lot of repeated code.
 
 ## The Terragrunt Revelation
 
 That’s when I discovered Terragrunt. Terragrunt is a thin wrapper for Terraform that provides extra tools for keeping your Terraform code DRY (Don’t Repeat Yourself). It allows you to manage multiple Terraform modules in a single repository and reuse code across different environments. Terragrunt’s ability to manage remote state, generate configurations, and apply configurations across multiple environments made it the perfect solution for my environment management woes.
 
 How we reduce the repeated code using Terragrunt:
+
 First step was to make a module of the resources with all the changeable variables exposed, Next was to use them in each environment.
 
-> The new setup with Terragrunt
+> The new folder structure using Terragrunt
 
 ```text
 .
@@ -71,8 +72,7 @@ First step was to make a module of the resources with all the changeable variabl
         └── terragrunt.hcl
 ```
 
-In the `terragrunt.hcl` file, we define the module to use and the
-variables to pass to the module.
+In the `terragrunt.hcl` file, we define the module to use and the variables to pass to the module.
 
 ```hcl
 # terragrunt.hcl
@@ -85,8 +85,8 @@ inputs = {
 }
 ```
 
-Similarly in the other terragrunt files we define the module to use and the variables to pass to the module.
-and now for the storing the state file we can use the remote state file.
+Similarly, in the other terragrunt files, we define the module to use and the variables to pass to the module.
+And now for the storing the state file we can use the remote state file.
 
 ```hcl
 # terragrunt.hcl
@@ -107,8 +107,7 @@ EOF
 }
 ```
 
-This tells terragrunt to create a new file `backend.tf` with the contents of the `contents` block, Even if backend.tf already exists it will overwrite the contents because we have specified `overwrite_terragrunt`.
-This is like a defining a function, Now we need to call it in the files i.e `terragrunt.hcl` files.
+This tells terragrunt to create a new file `backend.tf` with the contents of the `contents` block, Even if backend.tf already exists it will overwrite the contents because we have specified `overwrite_terragrunt`. This is like a defining a function, Now we need to call it in the files i.e `terragrunt.hcl` files.
 
 > This would look like this
 
@@ -118,7 +117,7 @@ include "root" {
 }
 ```
 
-here the `find_in_parent_folders` returns the absolute path to the first `terragrunt.hcl` file it finds in the parent folders above the current `terragrunt.hcl` file.
+Here the `find_in_parent_folders` returns the absolute path to the first `terragrunt.hcl` file it finds in the parent folders above the current `terragrunt.hcl` file.
 and the include block tells terragrunt to include all the cofigurations from the file with the path returned by the `find_in_parent_folders` function.
 
 ## The Terragrunt Workflow
@@ -136,7 +135,7 @@ This will run the terragrunt plan in each sub directory it finds, Then it reads 
 5. Terragrunt stores the Terraform state in the remote state file
 6. Terragrunt returns the output of the Terraform run
 
-This workflow allows me to manage multiple environments with ease. I can make changes to my infrastructure code in a single place and apply those changes across all environments with a single command. Terragrunt’s ability to keep my Terraform code DRY has saved me time and effort, and I no longer have to worry about managing multiple sets of nearly identical infrastructure code.
+This workflow allows me to manage multiple environments with ease. I am able to make changes to my infrastructure code in one place and then apply those changes across all environments with just one command. Terragrunt's capability to keep my Terraform code DRY has saved me time and effort, eliminating the need to manage multiple sets of nearly identical infrastructure code.
 
 ## How Terragrunt worked for me
 
@@ -148,14 +147,13 @@ This workflow allows me to manage multiple environments with ease. I can make ch
 
 4. Dependency Management: Another Terragrunt superpower is managing dependencies between infrastructure components. For example, my ECS service depends on the VPC and subnets being provisioned first. Terragrunt’s dependencies block ensures that I deploy resources in the correct order, so my ECS service doesn’t attempt to launch before the network is ready.
 
-## Obvious Question: Why to use terragrunt instead of directly using terraform modules or terraform workspaces
+## Obvious Question: Why to use terragrunt instead of directly using terraform modules or terraform workspaces?
 
 While terraform workspaces can be using for multiple environments , [hashicorp does not recommend it](https://developer.hashicorp.com/terraform/cli/workspaces)
 
 > CLI workspaces within a working directory use the same backend, so they are not a suitable isolation mechanism for this scenario.
 
-Even with terraform modules you can just pass the variable and use it but that's just adding more boilerplate and you are just trying to prove the point that modules can be used here and
-It will become more complex to maintain down the road, I'm not saying you should use terragrunt I'm just pointing the facts. Ultimately it depends on the type of project you are working on.
+Even with Terraform modules, you can simply pass the variable and use it. However, this adds more boilerplate, making it more complex to maintain in the long run. I'm not suggesting that you should use Terragrunt; I'm just pointing out the facts. Ultimately, the decision depends on the type of project you are working on.
 
 ## Wrapping Up
 
