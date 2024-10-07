@@ -38,7 +38,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} 
         run: |
           ALL_CHANGED_FILES='${{ steps.changed-files.outputs.all_changed_files }}'
-          python .github/scripts/spellcheck.py $ALL_CHANGED_FILES
+          python .github/scripts/spell_check.py $ALL_CHANGED_FILES
         continue-on-error: true  
 
       - name: Post comment for pull request
