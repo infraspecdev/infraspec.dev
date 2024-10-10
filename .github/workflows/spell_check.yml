@@ -22,31 +22,15 @@ jobs:
           files: |
             content/blog/**.md
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Run Spell Check Action
+        uses: infraspecdev/spellcheck-action@v1.0.1
         with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai==0.28
-
-      - name: Run spell check
-        id: spellcheck
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} 
-        run: |
-          ALL_CHANGED_FILES='${{ steps.changed-files.outputs.all_changed_files }}'
-          python .github/scripts/spell_check.py $ALL_CHANGED_FILES
-        continue-on-error: true  
-
-      - name: Post comment for pull request
-        if: github.event_name == 'pull_request'
-        uses: mshick/add-pr-comment@v2
-        with:
-          message-path: spell_check_result_with_lines.json
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }} 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repository: ${{ github.repository }}
+          pr_number: ${{ github.event.number }}
+          files: ${{ steps.changed-files.outputs.all_changed_files }}
 
       - name: Fail the job if spell check failed
-        if: steps.spellcheck.outcome == 'failure'
+        if: failure()
         run: exit 1
