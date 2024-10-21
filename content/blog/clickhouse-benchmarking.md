@@ -7,10 +7,10 @@ featured: true
 weight: 1
 ---
 
-"Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we utilize observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car."
+"Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we use observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car."
 
 <p align="center">
-  <img width="480" height="600" src="/images/blog/clickhouse-benchmarking/clickhouse-storage.jpeg" alt="Clickhouse Storage">
+  <img width="480" height="600" src="/images/blog/clickhouse-benchmarking/clickhouse-storage.jpeg" alt="ClickHouse Storage">
 </p>
 
 In this blog, we'll dive into the process of deploying ClickHouse on AWS Elastic Container Service (ECS). We’ll also look at performance benchmarking to evaluate ClickHouse as a high-performance log storage backend. Our focus will be on its ingestion rates, query performance, scalability, and resource utilization.
