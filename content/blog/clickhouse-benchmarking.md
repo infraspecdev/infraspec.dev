@@ -266,7 +266,7 @@ CREATE TABLE logs
   `request_protocol` String,
   `status` UInt64,
   `size` UInt64,
-  `referer` String,
+  `referrer` String,
   `user_agent` String
 )
 ENGINE = MergeTree
