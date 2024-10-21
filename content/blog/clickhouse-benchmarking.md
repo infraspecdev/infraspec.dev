@@ -10,7 +10,7 @@ weight: 1
 "Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we utilize observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car."
 
 <p align="center">
-  <img src="/images/blog/clickhouse-benchmarking/clickhouse-storage.jpeg" alt="Clickhouse Storage">
+  <img width="480" height="600" src="/images/blog/clickhouse-benchmarking/clickhouse-storage.jpeg" alt="Clickhouse Storage">
 </p>
 
 In this blog, we'll dive into the process of deploying ClickHouse on AWS Elastic Container Service (ECS). We’ll also look at performance benchmarking to evaluate ClickHouse as a high-performance log storage backend. Our focus will be on its ingestion rates, query performance, scalability, and resource utilization.
@@ -216,7 +216,7 @@ All configuration changes were integrated into the Docker image using the base C
 
 Now that the deployment architecture is established, let's move on to evaluating ClickHouse's performance through a series of benchmarking metrics.
 
-### 2.1 Data Ingestion Performance Metrics
+### Data Ingestion Performance Metrics
 
 - **Average Queries per Second:** This metric measures the sustained query ingestion rate during heavy load, offering insights into how well ClickHouse handles log ingestion.
   
@@ -230,7 +230,7 @@ Now that the deployment architecture is established, let's move on to evaluating
 
 - **Memory Usage (Tracked):** Monitoring the memory consumed by ClickHouse over time helps identify potential memory bottlenecks during sustained ingestion loads.
 
-### 2.2 Query Execution Metrics
+### Query Execution Metrics
 
 - **Response Times:** We measured the average query execution times, especially focusing on complex operations such as joins and aggregations.
 
@@ -240,7 +240,7 @@ Now that the deployment architecture is established, let's move on to evaluating
 
 - **Average Merges Running:** In ClickHouse's MergeTree engine, merges are essential for optimizing data. Tracking the number of concurrent merges gives an indication of how well ClickHouse is handling data restructuring.
 
-### 2.3 Scalability Metrics
+### Scalability Metrics
 
 - **Load Average:** This metric tracks the system load over a 15-minute window, providing a real-time view of how ClickHouse handles varying loads.
 
@@ -250,7 +250,7 @@ Now that the deployment architecture is established, let's move on to evaluating
 
 - **Memory Efficiency:** This metric monitors memory allocation efficiency and tracks peak memory usage during both data ingestion and query execution.
 
-## 3. Log Ingestion Testing
+## Log Ingestion Testing
 
 To benchmark log ingestion, we used the following table schema to handle log data:
 
@@ -277,23 +277,23 @@ ORDER BY (toStartOfHour(time_local), status, request_path, remote_addr);
 
 We used a public dataset containing 66 million records to perform ingestion tests. The dataset can be found at this [link](https://datasets-documentation.s3.eu-west-3.amazonaws.com/http_logs/data-66.csv.gz)
 
-### 3.1 Baseline Performance Testing
+### Baseline Performance Testing
 
 - **Initial Ingestion Rate:** We measured ingestion rates under normal load to evaluate whether real-time log ingestion was achievable.
 
 - **Disk I/O:** Disk throughput was closely monitored to evaluate how well ClickHouse handles log writes and merges during ingestion.
 
-### 3.2 High Load Performance
+### High Load Performance
 
 - **Stress Testing:** Simulating log bursts under peak traffic allowed us to analyze the stability and performance of the ingestion pipeline.
 
 - **Monitoring:** During high-load testing, key metrics such as CPU, memory, and I/O usage were tracked to ensure no bottlenecks surfaced.
 
-## 4. Query Performance Testing
+## Query Performance Testing
 
 To evaluate query performance, we designed several test queries ranging from simple `SELECT` statements to more complex join operations and aggregations.
 
-### 4.1 Test Queries
+### Test Queries
 
 - **Simple Select Queries:** Evaluating performance for basic queries that retrieve specific fields from the `logs` table.
 
@@ -359,7 +359,7 @@ ORDER BY time ASC
 LIMIT 100000;
 ```
 
-### 4.2 Query Benchmarking Results
+### Query Benchmarking Results
 
 - **Response Time:** We documented the average response times for each type of query to understand performance under load.
 
