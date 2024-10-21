@@ -1,4 +1,11 @@
-# ClickHouse Deployment and Performance Benchmarking on ECS
+---
+title: "ClickHouse Deployment and Performance Benchmarking on ECS"
+authorId: "rohit"
+date: 2024-10-21
+draft: false
+featured: true
+weight: 1
+---
 
 "Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we utilize observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car."
 
@@ -12,7 +19,7 @@ In this blog, we'll dive into the process of deploying ClickHouse on AWS Elastic
 
 In this architecture, we utilize five servers to ensure data availability and reliability. Two of these servers are dedicated to hosting copies of the data, while the remaining three serve to coordinate the replication process. We will create a database and a table using the **ReplicatedMergeTree** engine, which allows for seamless data replication across the two data nodes.
 
-#### Key Terms:
+### Key Terms
 
 - **Replica:** In ClickHouse, a replica refers to a copy of your data. There is always at least one copy (the original), and adding a second replica enhances fault tolerance. This ensures that if one copy fails, the other remains accessible.
 
@@ -20,9 +27,9 @@ In this architecture, we utilize five servers to ensure data availability and re
 
 This architecture not only protects your data but also allows for better handling of increased loads, making it a robust solution for data management in ClickHouse. For more detailed information, refer to the official documentation on [ClickHouse Replication Architecture](https://clickhouse.com/docs/en/architecture/replication).
 
-### Configuration Changes for ClickHouse Deployment
+## Configuration Changes for ClickHouse Deployment
 
-**Node Descriptions**
+### Node Descriptions
 
 - **clickhouse-01**: Data node for storing data.
 - **clickhouse-02**: Another data node for data storage.
@@ -32,7 +39,7 @@ This architecture not only protects your data but also allows for better handlin
 
 ### Installation Steps
 
-- **ClickHouse Server**: We deployed ClickHouse Server and Client on the data nodes, clickhouse-01 and clickhouse-02, using Docker images, specifically `clickhouse/clickhouse-server` for installation. 
+- **ClickHouse Server**: We deployed ClickHouse Server and Client on the data nodes, clickhouse-01 and clickhouse-02, using Docker images, specifically `clickhouse/clickhouse-server` for installation.
 
 - **ClickHouse Keeper**: Installed on the three servers (clickhouse-keeper-01, clickhouse-keeper-02, and clickhouse-keeper-03) using Docker image `clickhouse/clickhouse-keeper`.
 
@@ -48,7 +55,7 @@ This architecture not only protects your data but also allows for better handlin
 
 The configuration for clickhouse-01 includes five files for clarity, although they can be combined if desired. Here are key elements:
 
-- **Network and Logging Configuration**: 
+- **Network and Logging Configuration**:
   - Sets the display name to "cluster_1S_2R node 1."
   - Configures ports for HTTP (8123) and TCP (9000).
   
@@ -68,7 +75,7 @@ The configuration for clickhouse-01 includes five files for clarity, although th
 </clickhouse>
 ```
 
-- **Macros Configuration**: 
+- **Macros Configuration**:
   - Simplifies DDL by using macros for shard and replica numbers.
   
 ```xml
@@ -131,17 +138,17 @@ The configuration for clickhouse-01 includes five files for clarity, although th
 
 The configuration is mostly similar to clickhouse-01, with key differences noted:
 
-- **Network and Logging Configuration**: 
+- **Network and Logging Configuration**:
   - Similar to clickhouse-01 but with a different display name.
   
-- **Macros Configuration**: 
+- **Macros Configuration**:
   - The replica is set to 02 on this node.
 
 #### clickhouse-keeper Configuration
 
 For ClickHouse Keeper, each node configuration includes:
 
-- **General Configuration**: 
+- **General Configuration**:
   - Ensure the server ID is unique across all instances.
   
 ```xml
@@ -173,7 +180,7 @@ All configuration changes were integrated into the Docker image using the base C
 
 ## ECS Cluster Setup and ClickHouse Deployment
 
-#### ClickHouse Deployment Overview
+### ClickHouse Deployment Overview
 
 - **AWS Partner Solution:** We leveraged the AWS Partner Solution Deployment Guide for ClickHouse to ensure a structured setup.
 
@@ -204,7 +211,6 @@ All configuration changes were integrated into the Docker image using the base C
 #### Auto Scaling Configuration
 
 - **Auto Scaling Group:** An Auto Scaling Group was set up with `m5.large` instances, providing **3 GB of memory** for each container to ensure optimal performance under varying loads.
-
 
 ## Performance Benchmarking Metrics
 
