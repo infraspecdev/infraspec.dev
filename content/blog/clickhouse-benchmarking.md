@@ -368,3 +368,7 @@ LIMIT 100000;
 - **Throughput:** Finally, we measured how many queries could be executed per second under sustained load conditions.
 
 **🔍 For detailed performance metrics and benchmarks, please refer to the full report [**here**](https://infraspec.getoutline.com/doc/clickhouse-deployment-and-performance-benchmarking-on-ecs-Stsim2Uoz1).**
+
+## Acknowledgments
+
+Special thanks to **Rahul Patil** for his valuable contributions to the performance benchmarking and deployment strategies of ClickHouse.
