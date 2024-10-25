@@ -1,5 +1,5 @@
 ---
-title: "ClickHouse Deployment and Performance Benchmarking on ECS"
+title: "ClickHouse Performance Benchmarking on ECS"
 authorId: "rohit"
 date: 2024-10-21
 draft: false
@@ -7,364 +7,182 @@ featured: true
 weight: 1
 ---
 
-"Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we use observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car."
+Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we use observability in ClickHouse to monitor our data system's health. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car.
 
+In this blog, we’ll focus on the performance benchmarking of ClickHouse on AWS ECS during the ingestion of different data volumes. We’ll analyze key system metrics such as CPU usage, memory consumption, disk I/O, and row insertion rates across varying data ingestion sizes.
+
+For setting up the ClickHouse cluster, we followed the [ClickHouse replication architecture guide](https://clickhouse.com/docs/en/architecture/replication) and the [AWS CloudFormation ClickHouse cluster setup](https://aws-ia.github.io/cfn-ps-clickhouse-cluster/). Using these resources, we replicated the setup on ECS, allowing us to run performance benchmarking tests on the environment.
+
+By examining performance metrics during the ingestion of 1 million (10 lakh), 5 million (50 lakh), 10 million (1 crore), and 66 million (6.6 crore) logs, we aim to provide a quantitative analysis of how system behavior changes as the load increases.
+
+## Performance Comparison of Key Metrics Across Ingestion Volumes
+
+| **Logs Ingested** | **CPU Usage (Cores)** | **Selected Bytes per Second (B/s)** | **IO Wait (s)** | **CPU Wait (s)** | **Read from Disk (B)** | **Read from Filesystem (B)** | **Memory Tracked (Bytes)** | **Selected Rows per Second** | **Inserted Rows per Second** |
+|-------------------|-----------------------|------------------------------------|-----------------|-----------------|------------------------|------------------------------|----------------------------|------------------------------|------------------------------|
+| **1 Million (10 Lakh)** | 0.103 | 27,118.35 | 0.000 | 0.0217 | 0.000 | 439,023.78 | 714,778,747.45 | 256.88 | 238,666.67 |
+| **5 Million (50 Lakh)** | 0.111 | 37,545.82 | 0.000 | 0.0058 | 0.000 | 532,938.08 | 738,249,399.13 | 256.88 | 238,666.67 |
+| **10 Million (1 Crore)** | 0.433 | 36,265,260.35 | 0.000 | 0.3297 | 1,843.20 | 3,323,855.43 | 1,030,697,939.98 | 146,848.98 | 140,193.58 |
+| **66 Million (6.6 Crore)** | 1.179 | 122,710,173.00 | 0.750 | 4.4276 | 17,330,176.00 | 14,303,693.00 | 2,065,638,032.00 | 365,589.00 | 365,589.00 |
+
+<!-- markdownlint-disable MD033 -->
 <p align="center">
-  <img width="480" height="600" src="/images/blog/clickhouse-benchmarking/clickhouse-storage.jpeg" alt="ClickHouse Storage">
+  <img src="/images/blog/clickhouse-benchmarking/clickhouse-write-operations.png" alt="clickhouse-benchmarking" style="border-radius: 10px; width: 300; height: 500;">
 </p>
+<!-- markdownlint-enable MD033 -->
 
-In this blog, we'll dive into the process of deploying ClickHouse on AWS Elastic Container Service (ECS). We’ll also look at performance benchmarking to evaluate ClickHouse as a high-performance log storage backend. Our focus will be on its ingestion rates, query performance, scalability, and resource utilization.
+### Key Insights from the Data
 
-## Architecture: Replication for Fault Tolerance
+#### 1. **CPU Usage (avg_cpu_usage_cores)**
 
-In this architecture, we utilize five servers to ensure data availability and reliability. Two of these servers are dedicated to hosting copies of the data, while the remaining three serve to coordinate the replication process. We will create a database and a table using the **ReplicatedMergeTree** engine, which allows for seamless data replication across the two data nodes.
+- **At 1 Million logs**, the CPU usage was minimal at **0.103 cores**, indicating a low load on the system.
+- This increased marginally to **0.111 cores** when ingesting 5 million logs.
+- However, there was a significant jump when ingesting **10 million logs**, where CPU usage hit **0.433 cores** due to increased processing demands.
+- At **66 million logs**, the CPU usage surged to **1.179 cores**, showing that ClickHouse required far more processing power as the data ingestion rate scaled up.
 
-### Key Terms
+#### 2. **Selected Bytes per Second (avg_selected_bytes_per_second)**
 
-- **Replica:** In ClickHouse, a replica refers to a copy of your data. There is always at least one copy (the original), and adding a second replica enhances fault tolerance. This ensures that if one copy fails, the other remains accessible.
+- **For 1 million logs**, the system processed **27,118 bytes/sec**, and this grew to **37,546 bytes/sec** for **5 million logs**.
+- The ingestion of **10 million logs** saw a massive jump to **36.26 MB/sec**, highlighting how ClickHouse optimizes throughput as data scales.
+- With **66 million logs**, the throughput reached **122 MB/sec**, showcasing ClickHouse’s excellent scalability in handling large data volumes.
 
-- **Shard:** A shard is a subset of your data. If you do not split the data across multiple servers, all data resides in a single shard. Sharding helps distribute the load when a single server's capacity is exceeded. The destination server for the data is determined by a sharding key, which can be random or derived from a hash function. In our examples, we will use a random key for simplicity.
+#### 3. **I/O Wait (avg_io_wait)**
 
-This architecture not only protects your data but also allows for better handling of increased loads, making it a robust solution for data management in ClickHouse. For more detailed information, refer to the official documentation on [ClickHouse Replication Architecture](https://clickhouse.com/docs/en/architecture/replication).
+- **IO wait times** were negligible for smaller ingestion rates (1 and 5 million logs) at **0 seconds**.
+- When ingesting **10 million logs**, **IO wait** remained at **0 seconds**, indicating efficient disk I/O handling.
+- However, for **66 million logs**, we saw a significant spike in **IO wait** to **0.75 seconds**, suggesting that the disk subsystem became a bottleneck at this larger ingestion scale.
 
-## Configuration Changes for ClickHouse Deployment
+#### 4. **CPU Wait (avg_cpu_wait)**
 
-### Node Descriptions
+- **CPU wait times** were minimal at **0.0217 seconds** during the ingestion of **1 million logs**.
+- This decreased to **0.0058 seconds** during the ingestion of **5 million logs**, reflecting improved processing efficiency.
+- As the ingestion size grew to **10 million logs**, CPU wait times increased significantly to **0.3297 seconds**.
+- For **66 million logs**, CPU wait peaked at **4.4276 seconds**, indicating heavy contention for CPU resources.
 
-- **clickhouse-01**: Data node for storing data.
-- **clickhouse-02**: Another data node for data storage.
-- **clickhouse-keeper-01**: Responsible for distributed coordination.
-- **clickhouse-keeper-02**: Responsible for distributed coordination.
-- **clickhouse-keeper-03**: Responsible for distributed coordination.
+#### 5. **Disk Reads (avg_read_from_disk)**
 
-### Installation Steps
+- Disk reads were **0 bytes** during both the **1 million** and **5 million log** ingestions, indicating that all data operations were handled in-memory or by the filesystem.
+- At **10 million logs**, disk reads spiked to **1.843 MB**, indicating that ClickHouse started pulling more data from disk.
+- For **66 million logs**, disk reads increased drastically to **17.33 MB**, showing that the system leaned more on disk I/O as the data volume grew.
 
-- **ClickHouse Server**: We deployed ClickHouse Server and Client on the data nodes, clickhouse-01 and clickhouse-02, using Docker images, specifically `clickhouse/clickhouse-server` for installation.
+#### 6. **Filesystem Reads (avg_read_from_filesystem)**
 
-- **ClickHouse Keeper**: Installed on the three servers (clickhouse-keeper-01, clickhouse-keeper-02, and clickhouse-keeper-03) using Docker image `clickhouse/clickhouse-keeper`.
+- Filesystem reads followed a similar pattern, starting low with **439 KB** for **1 million logs** and **533 KB** for **5 million logs**.
+- At **10 million logs**, this metric jumped to **3.32 MB**, as the system started to fetch more data from the filesystem.
+- During the **66 million log** ingestion, filesystem reads skyrocketed to **14.3 MB**, further indicating the need for high I/O throughput at large ingestion scales.
 
-### Configuration Files and Best Practices
+#### 7. **Memory Usage (avg_memory_tracked)**
 
-#### General Configuration Guidelines
+- **Memory tracked** during the ingestion of **1 million logs** was **714 MB**, which increased slightly to **738 MB** for **5 million logs**.
+- However, as the log volume increased to **10 million logs**, memory consumption jumped to **1 GB**, indicating ClickHouse’s reliance on memory for faster ingestion.
+- For **66 million logs**, memory usage peaked at **2.06 GB**, suggesting that memory capacity plays a crucial role in handling high-volume ingestions.
 
-- Add configuration files to `/etc/clickhouse-server/config.d/`.
-- Add user configuration files to `/etc/clickhouse-server/users.d/`.
-- Keep the original `/etc/clickhouse-server/config.xml` and `/etc/clickhouse-server/users.xml` files unchanged.
+#### 8. **Selected Rows per Second (avg_selected_rows_per_second)**
 
-#### clickhouse-01 Configuration
+- For **both 1 million and 5 million logs**, **256 rows/sec** were selected, reflecting consistent read performance under lighter loads.
+- During the **10 million log** ingestion, the rate jumped to **146,849 rows/sec**, a significant increase as ClickHouse optimized its read performance.
+- At **66 million logs**, selected rows spiked to **365,589 rows/sec**, highlighting the system’s ability to maintain high read throughput even as write loads scale.
 
-The configuration for clickhouse-01 includes five files for clarity, although they can be combined if desired. Here are key elements:
+#### 9. **Inserted Rows per Second (avg_inserted_rows_per_second)**
 
-- **Network and Logging Configuration**:
-  - Sets the display name to "cluster_1S_2R node 1."
-  - Configures ports for HTTP (8123) and TCP (9000).
-  
-```xml
-<clickhouse>
-    <logger>
-        <level>debug</level>
-        <log>/var/log/clickhouse-server/clickhouse-server.log</log>
-        <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
-        <size>1000M</size>
-        <count>3</count>
-    </logger>
-    <display_name>cluster_1S_2R node 1</display_name>
-    <listen_host>0.0.0.0</listen_host>
-    <http_port>8123</http_port>
-    <tcp_port>9000</tcp_port>
-</clickhouse>
-```
+- The **inserted rows per second** remained consistent at **238,666 rows/sec** for both **1 million and 5 million logs**.
+- During the ingestion of **10 million logs**, the rate climbed to **140,193 rows/sec**, indicating that ClickHouse scaled write operations efficiently.
+- At **66 million logs**, the system handled an impressive **365,589 rows/sec**, reflecting excellent scaling of insertion throughput.
 
-- **Macros Configuration**:
-  - Simplifies DDL by using macros for shard and replica numbers.
-  
-```xml
-<clickhouse>
-    <macros>
-        <shard>01</shard>
-        <replica>01</replica>
-        <cluster>cluster_1S_2R</cluster>
-    </macros>
-</clickhouse>
-```
+### Incremental Comparison of Key Metrics
 
-- **Replication and Sharding Configuration**:
-  - Defines a cluster named `cluster_1S_2R` with one shard and two replicas.
-  
-```xml
-<clickhouse>
-    <remote_servers replace="true">
-        <cluster_1S_2R>
-            <secret>mysecretphrase</secret>
-            <shard>
-                <internal_replication>true</internal_replication>
-                <replica>
-                    <host>clickhouse-01.clickhouse</host>
-                    <port>9000</port>
-                </replica>
-                <replica>
-                    <host>clickhouse-02.clickhouse</host>
-                    <port>9000</port>
-                </replica>
-            </shard>
-        </cluster_1S_2R>
-    </remote_servers>
-</clickhouse>
-```
+| **Logs Ingested** | **Increase in CPU Usage** | **Increase in Selected Bytes/sec** | **Increase in IO Wait (s)** | **Increase in CPU Wait (s)** | **Increase in Disk Reads (B)** | **Increase in Filesystem Reads (B)** | **Increase in Memory Tracked (B)** | **Increase in Inserted Rows/sec** |
+|-------------------|---------------------------|------------------------------------|-----------------------------|------------------------------|---------------------------------|-------------------------------------|------------------------------------|------------------------------------|
+| **1M to 5M**      | 0.103 → 0.111             | 27 KB/s → 37 KB/s                  | 0 → 0                       | 0.0217 → 0.0058              | 0 → 0                           | 439 KB → 533 KB                    | 714 MB → 738 MB                    | 238,666 → 238,666                  |
+| **5M to 10M**     | 0.111 → 0.433             | 37 KB/s → 36 MB/s                  | 0 → 0                       | 0.0058 → 0.3297              | 0 → 1,843 MB                    | 533 KB → 3.32 MB                   | 738 MB → 1,030 MB                  | 238,666 → 140,193                  |
+| **10M to 66M**    | 0.433 → 1.179             | 36 MB/s → 122 MB/s                 | 0 → 0.75                    | 0.3297 → 4.4276              | 1,843 MB → 17.33 MB             | 3.32 MB → 14.30 MB                 | 1,030 MB → 2,065 MB                | 140,193 → 365,589                  |
 
-- **Using ClickHouse Keeper**:
-  - Configures ClickHouse Server to coordinate with ClickHouse Keeper.
-  
-```xml
-<clickhouse>
-    <zookeeper>
-        <node>
-            <host>clickhouse-keeper-01.clickhouse</host>
-            <port>9181</port>
-        </node>
-        <node>
-            <host>clickhouse-keeper-02.clickhouse</host>
-            <port>9181</port>
-        </node>
-        <node>
-            <host>clickhouse-keeper-03.clickhouse</host>
-            <port>9181</port>
-        </node>
-    </zookeeper>
-</clickhouse>
-```
+This incremental comparison clearly shows how the system scales with larger data ingestion volumes. The most notable jumps occur when increasing from **5 million to 10 million logs**, where CPU usage, memory, and disk I/O demands increase sharply. Moving to **66 million logs**, there’s another dramatic rise, particularly in **I/O wait**, **CPU wait**, and **inserted rows per second**.
 
-#### clickhouse-02 Configuration
+## Performance in Read-Heavy Operations
 
-The configuration is mostly similar to clickhouse-01, with key differences noted:
+ClickHouse’s performance during read-heavy operations, including `SELECT`, aggregate, and `JOIN` queries, is critical for applications relying on fast data retrieval. Here, we analyze key system metrics across different configurations: two-node replicas under load balancing and a single-node configuration due to failover.
 
-- **Network and Logging Configuration**:
-  - Similar to clickhouse-01 but with a different display name.
-  
-- **Macros Configuration**:
-  - The replica is set to 02 on this node.
+### Performance Comparison of Key Metrics Across Configurations
 
-#### clickhouse-keeper Configuration
+| **Configuration** | **CPU Usage (Cores)** | **Selected Bytes per Second (B/s)** | **IO Wait (s)** | **CPU Wait (s)** | **Read from Disk (B)** | **Read from Filesystem (B)** | **Memory Tracked (Bytes)** | **Selected Rows per Second** | **Inserted Rows per Second** |
+|-------------------|-----------------------|------------------------------------|-----------------|-----------------|------------------------|------------------------------|----------------------------|------------------------------|------------------------------|
+| **Two Nodes (Node-1)** | 0.574 – 0.875 | 143,598,799.18 – 224,235,858.8 | 0.0002 – 0.0077 | 1.045 – 1.9356 | 13,768,499.2 – 21,592,132.27 | 14,377,664.77 – 22,227,520.87 | 727,494,761.07 – 956,479,931 | 412,713.28 – 648,431.85 | 246.08 – 2,006 |
+| **Two Nodes (Node-2)** | 0.493 – 0.122 | 80,651,591.63 – 22,842.02 | 0.0047 – 0 | 1.0964 – 0.0039 | 7,768,951.47 – 0 | 8,374,316.53 – 589,784.78 | 819,671,565.67 – 725,970,944 | 232,168.82 – 238.1 | 253.93 – 238.1 |
+| **Single Node (Node-2 Down)** | 0.529 – 0.883 | 158,795,019 – 283,619,700.4 | 0.0002 | 1.8338 – 9.1992 | 3,258,299.73 – 11,590,451.2 | 32,649,785.97 – 30,984,717.98 | 877,527,596.88 – 903,618,884.9 | 458,760 – 9,742,907.23 | 214.92 – 222.00 |
 
-For ClickHouse Keeper, each node configuration includes:
-
-- **General Configuration**:
-  - Ensure the server ID is unique across all instances.
-  
-```xml
-<clickhouse>
-    <logger>
-        <level>trace</level>
-        <log>/var/log/clickhouse-keeper/clickhouse-keeper.log</log>
-        <errorlog>/var/log/clickhouse-keeper/clickhouse-keeper.err.log</errorlog>
-        <size>1000M</size>
-        <count>3</count>
-    </logger>
-    <listen_host>0.0.0.0</listen_host>
-    <keeper_server>
-        <tcp_port>9181</tcp_port>
-        <server_id>1</server_id> <!-- Change for each keeper -->
-        <log_storage_path>/var/lib/clickhouse/coordination/log</log_storage_path>
-        <snapshot_storage_path>/var/lib/clickhouse/coordination/snapshots</snapshot_storage_path>
-    </keeper_server>
-</clickhouse>
-```
-
-### Image Baking and Deployment
-
-All configuration changes were integrated into the Docker image using the base ClickHouse image. The configured image was then pushed to ECR and utilized in our ECS tasks for efficient deployment.
-
+<!-- markdownlint-disable MD033 -->
 <p align="center">
-  <img src="/images/blog/clickhouse-benchmarking/ecs-clickhouse-deployment.png" alt="ECS Clickhouse Deployment">
+  <img src="/images/blog/clickhouse-benchmarking/clickhouse-read-operations.png" alt="clickhouse-benchmarking" style="border-radius: 10px; width: 300; height: 500;">
 </p>
+<!-- markdownlint-enable MD033 -->
 
-## ECS Cluster Setup and ClickHouse Deployment
+<!-- markdownlint-disable MD024 -->
+### Key Insights from the Data
 
-### ClickHouse Deployment Overview
+#### 1. **CPU Usage (avg_cpu_usage_cores)**
 
-- **AWS Partner Solution:** We leveraged the AWS Partner Solution Deployment Guide for ClickHouse to ensure a structured setup.
+- **Node-1** in the two-node configuration showed CPU usage between **0.574 to 0.875 cores**, with higher loads during complex query executions.
+- **Node-2** showed lower CPU usage overall, ranging between **0.493 to 0.122 cores** due to load balancing.
+- **Single Node configuration** saw the CPU usage fluctuate from **0.529 to 0.883 cores**, as it handled all query loads without load balancing support.
 
-- **ECS Cluster:** ClickHouse was deployed on Amazon ECS using a multi-node configuration, following best practices to achieve high availability.
+#### 2. **Selected Bytes per Second (avg_selected_bytes_per_second)**
 
-#### VPC Configuration
+- In the two-node configuration, **Node-1** selected bytes per second ranged from **143,598,799.18 to 224,235,858.8 B/s**, whereas **Node-2** showed lower selected bytes per second, from **80,651,591.63 to 22,842.02 B/s**, indicating an uneven load distribution.
+- In the **Single Node configuration**, this metric ranged from **158,795,019 to 283,619,700.4 B/s**, indicating the node’s capability to handle high data selection rates.
 
-- **Custom VPC:** A dedicated Virtual Private Cloud (VPC) was created with subnets designated for public and private instances. This configuration enhances security and streamlines component communication.
+#### 3. **I/O Wait (avg_io_wait)**
 
-#### Security Measures
+- **Node-1** experienced minimal I/O wait, from **0.0002 to 0.0077 seconds**, while **Node-2** showed no I/O wait when handling lower loads.
+- The **Single Node configuration** maintained **0.0002 seconds** for I/O wait, reflecting efficient I/O handling even under increased loads.
 
-- **Security Groups:** Network traffic was restricted by configuring security groups to allow only necessary ports:
-  - **8123** for HTTP
-  - **9000** for TCP connections
+#### 4. **CPU Wait (avg_cpu_wait)**
 
-#### Instance Type Selection
+- **Node-1** in the two-node setup had a CPU wait ranging from **1.045 to 1.9356 seconds** during heavier query processing, while **Node-2** had a much lower CPU wait from **1.0964 to 0.0039 seconds**.
+- In **Single Node mode**, CPU wait times increased dramatically, ranging from **1.8338 to 9.1992 seconds**, indicating contention for CPU resources under increased query load.
 
-- **EC2 Instances:** Instance types were chosen based on the compute and memory needs of ClickHouse nodes, balancing performance and cost-effectiveness.
+#### 5. **Disk Reads (avg_read_from_disk)**
 
-#### Database Configuration
+- Disk reads for **Node-1** ranged from **13,768,499.2 to 21,592,132.27 bytes** in the two-node configuration, with **Node-2** reading **7,768,951.47 to 0 bytes** depending on load distribution.
+- In **Single Node configuration**, disk reads increased significantly, varying from **3,258,299.73 to 11,590,451.2 bytes** under solo operation, revealing increased reliance on disk when a single node handled queries.
 
-- **Shards and Replicas:** The ClickHouse database was set up with **2 shards** and **1 replica**, following the static configuration recommended in the ClickHouse horizontal scaling documentation.
+#### 6. **Filesystem Reads (avg_read_from_filesystem)**
 
-#### Container Image
+- **Filesystem reads on Node-1** ranged from **14,377,664.77 to 22,227,520.87 bytes** in the two-node setup, while **Node-2** saw reads between **8,374,316.53 and 589,784.78 bytes**.
+- In **Single Node configuration**, filesystem reads ranged from **32,649,785.97 to 30,984,717.98 bytes**, showing a notable increase compared to the two-node configuration.
 
-- **Docker Image:** We utilized the `clickhouse/clickhouse-server` container image, which includes both the ClickHouse server and keeper.
+#### 7. **Memory Usage (avg_memory_tracked)**
 
-#### Auto Scaling Configuration
+- **Memory tracked** for **Node-1** ranged from **727,494,761.07 to 956,479,931 bytes**, and **Node-2** from **819,671,565.67 to 725,970,944 bytes** in the two-node setup.
+- In **Single Node mode**, memory usage varied from **877,527,596.88 to 903,618,884.9 bytes**, indicating increased memory demand when handling queries without load balancing.
 
-- **Auto Scaling Group:** An Auto Scaling Group was set up with `m5.large` instances, providing **3 GB of memory** for each container to ensure optimal performance under varying loads.
+#### 8. **Selected Rows per Second (avg_selected_rows_per_second)**
 
-## Performance Benchmarking Metrics
+- **Node-1** showed a row selection rate from **412,713.28 to 648,431.85 rows/sec**, while **Node-2** had rates from **232,168.82 to 238.1 rows/sec** in the two-node setup.
+- In **Single Node mode**, selected rows per second varied widely from **458,760 to 9,742,907.23 rows/sec**, demonstrating the node’s ability to manage high query demands under load.
 
-Now that the deployment architecture is established, let's move on to evaluating ClickHouse's performance through a series of benchmarking metrics.
+#### 9. **Inserted Rows per Second (avg_inserted_rows_per_second)**
 
-### Data Ingestion Performance Metrics
+- The **inserted rows per second** remained low on **Node-1** with **246.08 to 2,006 rows/sec** and on **Node-2** with **253.93 to 238.1 rows/sec** in the two-node setup.
+- In **Single Node mode**, insertion rates were steady from **214.92 to 222 rows/sec**, suggesting minimal impact on insertions despite high query activity.
 
-- **Average Queries per Second:** This metric measures the sustained query ingestion rate during heavy load, offering insights into how well ClickHouse handles log ingestion.
-  
-- **CPU Usage (Cores):** Tracking the average CPU cores used during ingestion helps determine the efficiency of resource utilization during data ingestion.
+<!-- markdownlint-enable MD024 -->
 
-- **IO Wait Time:** Indicates the time ClickHouse spent waiting for I/O operations, such as disk reads or writes, which directly impacts ingestion throughput.
+### Incremental Comparison of Key Metrics Across Configurations
 
-- **OS CPU Usage:** This metric differentiates between user-space and kernel-space CPU usage to offer a clearer picture of where the processing power is consumed during data ingestion.
+| **Configuration** | **Increase in CPU Usage** | **Increase in Selected Bytes/sec** | **Increase in IO Wait (s)** | **Increase in CPU Wait (s)** | **Increase in Disk Reads (B)** | **Increase in Filesystem Reads (B)** | **Increase in Memory Tracked (B)** | **Increase in Selected Rows/sec** |
+|-------------------|---------------------------|------------------------------------|-----------------------------|------------------------------|---------------------------------|-------------------------------------|------------------------------------|------------------------------------|
+| **Two Nodes** | Node-1: 0.574 – 0.875, Node-2: 0.493 – 0.122 | 143.6 MB/s – 224.2 MB/s, 80.7 MB/s – 22.8 KB/s | Node-1: 0.0002 – 0.0077, Node-2: 0.0047 – 0 | Node-1: 1.045 – 1.9356, Node-2: 1.0964 – 0.0039 | 13.8 MB – 21.6 MB, 7.77 MB – 0 | 14.4 MB – 22.2 MB, 8.37 MB – 589 KB | 727 MB – 956 MB, 820 MB – 726 MB | 412,713 – 648,432, 232,169 – 238.1 |
+| **Single Node** | 0.529 – 0.883 | 158.8 MB/s – 283.6 MB/s | 0.0002 | 1.834 – 9.199 | 3.26 MB – 11.6 MB | 32.65 MB – 30.98 MB | 877 MB – 904 MB | 458,760 – 9,742,907 |
 
-- **Disk Throughput:** Measures the average read/write throughput from the file system, crucial for understanding how efficiently data is being ingested and written to storage.
+This incremental analysis highlights how resource usage scales differently depending on the configuration:
 
-- **Memory Usage (Tracked):** Monitoring the memory consumed by ClickHouse over time helps identify potential memory bottlenecks during sustained ingestion loads.
+- **Two-node configuration** efficiently balances CPU, memory, and I/O load, maintaining a stable throughput.
+- **Single-node configuration** exhibits higher CPU and memory usage and wider ranges in selected rows per second, indicating heavier resource strain.
 
-### Query Execution Metrics
+### Conclusion
 
-- **Response Times:** We measured the average query execution times, especially focusing on complex operations such as joins and aggregations.
+This benchmarking study highlights ClickHouse’s ability to handle both high-ingestion and read-intensive workloads on ECS. For ingestion, ClickHouse efficiently managed small data loads, but higher volumes (10M and 66M logs) led to significant increases in CPU, memory, and I/O wait, indicating the need for resource scaling.
 
-- **CPU Wait Time:** This metric captures the latency introduced by waiting for CPU cycles during query execution, giving insight into query performance under load.
+For read operations, a two-node setup provided balanced CPU and I/O distribution, while a single-node setup led to increased CPU wait and resource contention under full query load.
 
-- **Average Selected Rows/Second:** This metric tracks how many rows ClickHouse processes per second during `SELECT` queries, offering a gauge for query throughput.
-
-- **Average Merges Running:** In ClickHouse's MergeTree engine, merges are essential for optimizing data. Tracking the number of concurrent merges gives an indication of how well ClickHouse is handling data restructuring.
-
-### Scalability Metrics
-
-- **Load Average:** This metric tracks the system load over a 15-minute window, providing a real-time view of how ClickHouse handles varying loads.
-
-- **Max Parts per Partition:** As part of the merging process, this metric reflects the largest number of parts within a partition, offering insight into how well ClickHouse manages its partitioning strategy.
-
-- **TCP Connections:** The number of active TCP connections to the ClickHouse nodes reflects how well the system can handle network traffic under high query loads.
-
-- **Memory Efficiency:** This metric monitors memory allocation efficiency and tracks peak memory usage during both data ingestion and query execution.
-
-## Log Ingestion Testing
-
-To benchmark log ingestion, we used the following table schema to handle log data:
-
-```sql
-CREATE TABLE logs
-(
-  `remote_addr` String,
-  `remote_user` String,
-  `runtime` UInt64,
-  `time_local` DateTime,
-  `request_type` String,
-  `request_path` String,
-  `request_protocol` String,
-  `status` UInt64,
-  `size` UInt64,
-  `referrer` String,
-  `user_agent` String
-)
-ENGINE = MergeTree
-ORDER BY (toStartOfHour(time_local), status, request_path, remote_addr);
-```
-
-### Dataset
-
-We used a public dataset containing 66 million records to perform ingestion tests. The dataset can be found at this [link](https://datasets-documentation.s3.eu-west-3.amazonaws.com/http_logs/data-66.csv.gz)
-
-### Baseline Performance Testing
-
-- **Initial Ingestion Rate:** We measured ingestion rates under normal load to evaluate whether real-time log ingestion was achievable.
-
-- **Disk I/O:** Disk throughput was closely monitored to evaluate how well ClickHouse handles log writes and merges during ingestion.
-
-### High Load Performance
-
-- **Stress Testing:** Simulating log bursts under peak traffic allowed us to analyze the stability and performance of the ingestion pipeline.
-
-- **Monitoring:** During high-load testing, key metrics such as CPU, memory, and I/O usage were tracked to ensure no bottlenecks surfaced.
-
-## Query Performance Testing
-
-To evaluate query performance, we designed several test queries ranging from simple `SELECT` statements to more complex join operations and aggregations.
-
-### Test Queries
-
-- **Simple Select Queries:** Evaluating performance for basic queries that retrieve specific fields from the `logs` table.
-
-```sql
-SELECT * FROM logs;
-```
-
-```sql
-SELECT toStartOfInterval(toDateTime(time_local), INTERVAL 900 second) AS time, count() 
-FROM logs 
-WHERE time_local >= '1548288000' 
-  AND time_local <= '1550966400' 
-  AND status = 404 
-  AND request_path = '/apple-touch-icon-precomposed.png' 
-  AND remote_addr = '2.185.223.153' 
-  AND runtime > 4000 
-GROUP BY time 
-ORDER BY time ASC 
-LIMIT 10000;
-```
-
-- **Joins:** To test more complex queries, we used a join operation between two `logs` tables:
-
-```sql
-SELECT toStartOfInterval(toDateTime(l.time_local), INTERVAL 900 second) AS time, count() 
-FROM logs l
-JOIN logs_local ll ON l.remote_addr = ll.remote_addr AND l.time_local = ll.time_local
-WHERE l.time_local >= '1548288000' 
-  AND l.time_local <= '1550966400' 
-  AND l.status = 404 
-  AND l.request_path = '/apple-touch-icon-precomposed.png' 
-  AND l.remote_addr = '2.185.223.153' 
-  AND l.runtime > 4000 
-GROUP BY time 
-ORDER BY time ASC 
-LIMIT 10000;
-```
-
-- **Aggregations:** Performance of aggregate queries was tested on fields like status codes and request paths.
-
-```sql
-SELECT uniq(remote_addr) AS `unique ips` 
-FROM logs 
-WHERE time_local >= '1548288000' 
-  AND time_local <= '1550966400' 
-  AND status = 404 
-  AND request_path = '/apple-touch-icon-precomposed.png' 
-  AND remote_addr = '2.185.223.153' 
-  AND runtime > 4000;
-```
-
-```sql
-SELECT toStartOfInterval(toDateTime(time_local), INTERVAL 900 second) AS time, avg(runtime) AS avg_request_time, quantile(0.99)(runtime) AS 99_runtime 
-FROM logs 
-WHERE time_local >= '1548288000' 
-AND time_local <= '1550966400' 
-AND status = 404 
-AND request_path = '/apple-touch-icon-precomposed.png' 
-AND remote_addr = '2.185.223.153' 
-AND runtime > 4000 
-GROUP BY time 
-ORDER BY time ASC 
-LIMIT 100000;
-```
-
-### Query Benchmarking Results
-
-- **Response Time:** We documented the average response times for each type of query to understand performance under load.
-
-- **Resource Utilization:** We tracked CPU, memory, and I/O usage during the execution of these queries to evaluate resource efficiency.
-
-- **Throughput:** Finally, we measured how many queries could be executed per second under sustained load conditions.
-
-**🔍 For detailed performance metrics and benchmarks, please refer to the full report [**here**](https://infraspec.getoutline.com/doc/clickhouse-deployment-and-performance-benchmarking-on-ecs-Stsim2Uoz1).**
+To optimize performance, monitoring key metrics like **CPU usage**, **I/O wait**, and **memory** is essential, and leveraging multi-node configurations can help maintain efficient performance under heavy workloads.
