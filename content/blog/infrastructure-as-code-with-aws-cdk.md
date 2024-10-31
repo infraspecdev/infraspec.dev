@@ -27,7 +27,7 @@ A CDK App represents the root of our infrastructure as code, an entry point of o
 
 ### Stacks (CloudFormation Stacks)
 
-In CDK, a Stack is the unit of deployment. It represents a single Cloudformation Stack, which is a collection of resources that are deployed together. A Stack is a root Construct that contains multiple Constructs, which represent the actual cloud components. An App can have multiple Stacks, each representing a separate deployment unit. Use Stacks to group resources that should be deployed and destroyed together.
+In CDK, a Stack is the unit of deployment. It represents a single CloudFormation Stack, which is a collection of resources that are deployed together. A Stack is a root Construct that contains multiple Constructs, which represent the actual cloud components. An App can have multiple Stacks, each representing a separate deployment unit. Use Stacks to group resources that should be deployed and destroyed together.
 
 ### Constructs (Cloud Components)
 
@@ -44,7 +44,7 @@ Here's a simple analogy to help illustrate these concepts:
 Here's a simple diagram to illustrate the relationships between these concepts:
 ![aws cdk concepts](/images/blog/infrastructure-as-code-with-aws-cdk/aws-cdk-concepts.png)
 
-As we discussed about CDK, there is much more information available in the official CDK documentation. Coming back to the main point of the blog, why did I choose the CDK as the best option for my situation? So, what was the scenario?
+As we discussed of CDK, there is much more information available in the official CDK documentation. Coming back to the main point of the blog, why did I choose the CDK as the best option for my situation? So, what was the scenario?
 
 ## The Scenario: Deploying Applications with Isolation and Scale
 
@@ -117,4 +117,4 @@ It's recommended to use generated resource names instead of physical names defin
 
 ## Conclusion
 
-Our experience With AWS CDK, we were able to achieve true "infrastructure as code." Our CDK codebase became the single source of truth for our infrastructure, allowing us to manage and version-control our environments with ease. This approach also enabled us to automate our deployments, reduce manual errors, and improve our overall efficiency.
+Our experience with AWS CDK, we were able to achieve true "infrastructure as code." Our CDK codebase became the single source of truth for our infrastructure, allowing us to manage and version-control our environments with ease. This approach also enabled us to automate our deployments, reduce manual errors, and improve our overall efficiency.
