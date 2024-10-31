@@ -27,7 +27,7 @@ A CDK App represents the root of our infrastructure as code, an entry point of o
 
 ### Stacks (CloudFormation Stacks)
 
-In CDK, a Stack is the unit of deployment. It represents a single cloudformation Stack, which is a collection of resources that are deployed together. A Stack is a root Construct that contains multiple Constructs, which represent the actual cloud components. An App can have multiple Stacks, each representing a separate deployment unit. Use Stacks to group resources that should be deployed and destroyed together.
+In CDK, a Stack is the unit of deployment. It represents a single Cloudformation Stack, which is a collection of resources that are deployed together. A Stack is a root Construct that contains multiple Constructs, which represent the actual cloud components. An App can have multiple Stacks, each representing a separate deployment unit. Use Stacks to group resources that should be deployed and destroyed together.
 
 ### Constructs (Cloud Components)
 
@@ -48,12 +48,12 @@ As we discussed about CDK, there is much more information available in the offic
 
 ## The Scenario: Deploying Applications with Isolation and Scale
 
-Our use case involves deploying multiple applications on AWS ECS, with each application using RDS Postgres as its database. The twist was that we had to deploy these applications multiple times for different clients, with each client requiring database isolation. This meant that we needed a solution that could efficiently manage multiple deployments with minimal effort.
+Our use case involves deploying multiple applications on AWS ECS, with each application using RDS PostgreSQL as its database. The twist was that we had to deploy these applications multiple times for different clients, with each client requiring database isolation. This meant that we needed a solution that could efficiently manage multiple deployments with minimal effort.
 
 ### The Requirements
 
 * Deploy applications on AWS ECS
-* Use RDS Postgres as the database
+* Use RDS PostgreSQL as the database
 * Ensure database isolation for each client
 * Deploy the same application multiple times for different clients
 * Minimize onboarding effort for each new client
