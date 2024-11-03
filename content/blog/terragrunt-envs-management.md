@@ -126,6 +126,23 @@ Here is a high-level overview of the terragrunt workflow:
 
 > We run the command `terragrunt run-all plan` in the root directory.
 
+Output
+
+```bash
+22:03:23.710 INFO   The stack at . will be processed in the following order for command plan:
+Group 1
+- Module .
+- Module ./production/app
+- Module ./production/database
+- Module ./production/redis
+- Module ./qa/app
+- Module ./qa/database
+- Module ./qa/redis
+- Module ./staging/app
+- Module ./staging/database
+- Module ./staging/redis
+```
+
 This will run the terragrunt plan in each sub directory it finds, Then it reads the `terragrunt.hcl` file in the current directory and does the following:
 
 1. Terragrunt reads the `terraform` block and downloads the specified Terraform module
