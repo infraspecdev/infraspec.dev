@@ -52,7 +52,7 @@ essential data.
 
 We collaborated with multiple stakeholders, from schema owners to data engineers, for input on which tables were
 critical and required for daily operations. This information-gathering stage identified schemas for migration and
-non-essential
+nonessential
 ones for removal, enhancing the organization’s data efficiency.
 
 ## **Execution Phase**
@@ -150,7 +150,7 @@ was the importance of removing migrated tables from Hive immediately after the s
 delayed this
 step, which led to users continuing to write to the old tables in Hive, causing data divergence.
 
-The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and streamlines the
+The takeaway? **Don't wait to delete migrated tables from Hive**—doing so ensures data consistency and streamlines the
 transition to Unity Catalog. This small adjustment made a huge difference in the overall process.
 
 ## **Conclusion: Strategic Impact and Future Roadmap**
