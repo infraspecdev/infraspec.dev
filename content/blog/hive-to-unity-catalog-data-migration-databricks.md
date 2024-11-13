@@ -150,7 +150,7 @@ was the importance of removing migrated tables from Hive immediately after the s
 delayed this
 step, which led to users continuing to write to the old tables in Hive, causing data divergence.
 
-The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and smoothes the
+The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and streamlines the
 transition to Unity Catalog. This small adjustment made a huge difference in the overall process.
 
 ## **Conclusion: Strategic Impact and Future Roadmap**
