@@ -52,8 +52,7 @@ essential data.
 
 We collaborated with multiple stakeholders, from schema owners to data engineers, for input on which tables were
 critical and required for daily operations. This information-gathering stage identified schemas for migration and
-non-essential
-ones for removal, enhancing the organization’s data efficiency.
+non-essential ones for removal, enhancing the organization's data efficiency.
 
 ## **Execution Phase**
 
@@ -113,7 +112,7 @@ Successfully transferred **~22 TB** to Unity Catalog, with **~75 TB** of depreca
 
 #### **Cost Savings:**
 
-By removing 75 TB of deprecated data, we reduced both storage costs and data handling overheads. Here’s a rough
+By removing 75 TB of deprecated data, we reduced both storage costs and data handling overheads. Here's a rough
 breakdown of cost savings:
 
 | **Cost Type**          | **Details**                                                      | **Annual Cost** |
@@ -129,11 +128,11 @@ read/write operations are not included in the above cost breakdown but contribut
 ### **Enhanced Governance and Operational Efficiency**
 
 - **Improved Data Governance:** Unity Catalog introduced clear data lineage and granular access control, essential for
-  maintaining regulatory compliance. Unity Catalog’s centralized governance model also provided the ability to enforce
+  maintaining regulatory compliance. Unity Catalog's centralized governance model also provided the ability to enforce
   consistent access controls across environments, significantly improving both security and compliance management.
 
 - **Operational Efficiency:** Before the migration, engineers spent significant time maintaining outdated or unnecessary
-  jobs. Considering, ~10 unused jobs required about 1 hour per week to manage, removing those jobs saved approximately
+  jobs. Considering ~10 unused jobs required about 1 hour per week to manage, removing those jobs saved approximately
   10 hours of engineering effort each week. This freed up valuable time for engineers to focus on core operational
   tasks, accelerating product delivery and reducing maintenance overheads.
 
@@ -161,5 +160,5 @@ safeguarding production workloads and preventing any data loss. This careful app
 it was crucial for ensuring operational continuity and preserving data accuracy. The migration optimized the governance
 model, reduced costs, and enhanced operational focus.
 
-Stay tuned for an upcoming series of blog posts where we’ll dive deep into the technical processes and scripts used,
+Stay tuned for an upcoming series of blog posts where we'll dive deep into the technical processes and scripts used,
 including enabling Unity Catalog for an existing production Databricks setup. 🚀
