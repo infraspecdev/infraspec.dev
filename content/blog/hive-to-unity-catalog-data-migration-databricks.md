@@ -52,7 +52,7 @@ essential data.
 
 We collaborated with multiple stakeholders, from schema owners to data engineers, for input on which tables were
 critical and required for daily operations. This information-gathering stage identified schemas for migration and
-nonessential
+non-essential
 ones for removal, enhancing the organization’s data efficiency.
 
 ## **Execution Phase**
