@@ -51,7 +51,8 @@ to catalog and assess tables within the Hive Metastore. This enabled us to filte
 essential data.
 
 We collaborated with multiple stakeholders, from schema owners to data engineers, for input on which tables were
-critical and required for daily operations. This information-gathering stage identified schemas for migration and non-essential
+critical and required for daily operations. This information-gathering stage identified schemas for migration and
+non-essential
 ones for removal, enhancing the organization’s data efficiency.
 
 ## **Execution Phase**
@@ -84,7 +85,25 @@ ones for removal, enhancing the organization’s data efficiency.
 **Note:** The jobs in this migration were primarily batch-oriented, which allowed us to perform migrations during
 scheduled downtimes without impacting production workloads.
 
+### **Data Consistency and Rollback Strategy**
+
+To ensure data consistency and allow for a smooth rollback if needed, we followed these steps:
+
+- **User Preparation:** Before migration, we shared the new Unity Catalog table paths with users and asked them to
+  prepare GitHub pull requests (PRs) for updating their jobs to refer to Unity Catalog.
+- **Migration Process:** Once the migration to Unity Catalog was successful, we merged the PRs, ensuring that jobs now
+  referred to Unity Catalog tables.
+- **Rollback Option:** If the migration had failed, active jobs would have continued referring to the Hive tables,
+  ensuring no disruption or data loss.
+
 ## **Results and Key Improvements**
+
+### **Enhanced Query Performance and Data Visibility**
+
+Post-migration, we observed significant improvements in query performance due to more efficient data organization and
+optimized access controls within Unity Catalog. Additionally, the enhanced visibility provided by Unity Catalog's
+lineage tracking allowed us to easily identify upstream and downstream tables, as well as access audit history. This
+improved visibility contributed to better management and faster troubleshooting of data workflows.
 
 ### **Data and Cost Efficiency Gains**
 
@@ -110,7 +129,9 @@ read/write operations are not included in the above cost breakdown but contribut
 ### **Enhanced Governance and Operational Efficiency**
 
 - **Improved Data Governance:** Unity Catalog introduced clear data lineage and granular access control, essential for
-  maintaining regulatory compliance.
+  maintaining regulatory compliance. Unity Catalog’s centralized governance model also provided the ability to enforce
+  consistent access controls across environments, significantly improving both security and compliance management.
+
 - **Operational Efficiency:** Before the migration, engineers spent significant time maintaining outdated or unnecessary
   jobs. Considering, ~10 unused jobs required about 1 hour per week to manage, removing those jobs saved approximately
   10 hours of engineering effort each week. This freed up valuable time for engineers to focus on core operational
@@ -125,7 +146,8 @@ read/write operations are not included in the above cost breakdown but contribut
 ## **Unseen Challenges: Key Insights We Gained During the Migration**
 
 As with any large-scale project, there were a few unexpected challenges along the way. One critical lesson we learned
-was the importance of removing migrated tables from Hive immediately after the migration. Initially, we delayed this
+was the importance of removing migrated tables from Hive immediately after the successful migration. Initially, we
+delayed this
 step, which led to users continuing to write to the old tables in Hive, causing data divergence.
 
 The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and smoothes the
