@@ -51,7 +51,7 @@ to catalog and assess tables within the Hive Metastore. This enabled us to filte
 essential data.
 
 We collaborated with multiple stakeholders, from schema owners to data engineers, for input on which tables were
-critical and required for daily operations. This info-gathering stage identified schemas for migration and non-essential
+critical and required for daily operations. This information-gathering stage identified schemas for migration and non-essential
 ones for removal, enhancing the organization’s data efficiency.
 
 ## **Execution Phase**
@@ -128,7 +128,7 @@ As with any large-scale project, there were a few unexpected challenges along th
 was the importance of removing migrated tables from Hive immediately after the migration. Initially, we delayed this
 step, which led to users continuing to write to the old tables in Hive, causing data divergence.
 
-The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and smooths the
+The takeaway? **Don’t wait to delete migrated tables from Hive**—doing so ensures data consistency and smoothes the
 transition to Unity Catalog. This small adjustment made a huge difference in the overall process.
 
 ## **Conclusion: Strategic Impact and Future Roadmap**
