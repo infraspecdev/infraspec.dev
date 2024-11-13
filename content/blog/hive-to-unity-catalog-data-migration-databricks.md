@@ -19,7 +19,7 @@ nuances of managing dependencies, aligning stakeholders, and ensuring regulatory
 
 ## **Project Background: Migrating Enterprise-Scale Data**
 
-Our team recently undertook the task to upgrade data management from Hive Metastore to Unity Catalog within Databricks.
+We recently undertook the task to upgrade data management from Hive Metastore to Unity Catalog within Databricks.
 The Hive Metastore system posed challenges in data governance, access control, and lineage tracking. Unity Catalog, with
 its advanced security and governance features, was the natural choice to address these limitations and to meet our
 standards for compliance and operational efficiency.
