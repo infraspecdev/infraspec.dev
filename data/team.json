@@ -58,5 +58,9 @@
   "mufaddal": {
     "name": "Mufaddal Shakir",
     "image": "images/team/mufaddal-profile.jpg"
+  },
+  "sanjay": {
+    "name": "Sanjay Singh",
+    "image": "images/team/sanjay-profile.png"
   }
 }
