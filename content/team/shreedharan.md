@@ -3,7 +3,7 @@ title: 'Shreedharan Shree'
 date: 2024-01-08
 draft: false
 image: 'images/team/shreedharan-profile.jpeg'
-jobtitle: 'Admin'
+jobtitle: 'Office Admin'
 weight: 10
 promoted: false
 name: 'shreedharan'
