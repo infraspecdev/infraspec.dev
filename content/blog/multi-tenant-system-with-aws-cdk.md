@@ -37,7 +37,7 @@ Key requirements include:
 
 ## Architectural Overview
 
-![multi-tenant-architecture](images/blog/multi-tenant-system-with-aws-cdk/multi-tenant-architecture.png)
+<img src="/images/blog/multi-tenant-system-with-aws-cdk/multi-tenant-architecture.png" alt="multi-tenant-architecture" width="700" height = "600">
 
 To visualize our architecture, consider the following components:
 
@@ -63,7 +63,7 @@ Let’s first start looking into how we break down the [recommended](https://git
 
 We took the reference from this [config](https://github.com/aws-samples/aws-vpc-builder-cdk/blob/main/config/sample-firewall-blog.vpcBuilder.yaml) file. Let’s see how we can visualize this configuration file and how the actual output will look like, which can be understood by the below diagram.
 
-![multi-vpc](images/blog/multi-tenant-system-with-aws-cdk/multi-vpc.png)
+<img src="/images/blog/multi-tenant-system-with-aws-cdk/multi-vpc.png" alt="multi-vpc" width="700" height = "750">
 
 Let’s discuss in a bit what the components are. Although most of the components are self-explanatory, first start with
 
@@ -238,7 +238,7 @@ AWS CDK is imperative, and making it dynamic can break in the future if you want
 
 So identifying the boundary of what to keep together and what to do differently with respect to the stack should be identified carefully; else there will be some efforts required to move resources from a stack to another.
 
-![cdk-application-infra](images/blog/multi-tenant-system-with-aws-cdk/cdk-application-infra.png)
+<img src="/images/blog/multi-tenant-system-with-aws-cdk/cdk-application-infra.png" alt="cdk-application-infra" width="1100" height = "750">
 
 This above is the architecture overview of application infrastructure written in AWS CDK. From configuration file to visualization, it will help us understand how to write the CDK stacks to make tenants and service onboarding easier.
 
