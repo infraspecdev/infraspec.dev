@@ -6,7 +6,7 @@ draft: false
 featured: true
 weight: 1
 ---
-In this blog I will be taking you on a journey of building the scalable and efficient IaC solution that we build for our multi tenant system. Here we are not going to debate why we choose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
+In this blog I will be taking you on a journey of building the scalable and efficient IaC solution that we build for our multi-tenant system. Here we are not going to debate why we choose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
 
 ## What are Multi-tenant Systems?
 
@@ -53,7 +53,7 @@ As we were using AWS as our cloud provider, we started looking into finalizing t
 
 Considering we have what we wanted for our networking infrastructure, then for applications we are going to use Fargate ECS services, RDS for databases, SSM for application environment variables, Secret Manager for application secrets, and Route 53 for maintaining the DNS records.
 
-And for continuous integration and continuous deployment we are going to use the GitHub action. From all this decision, you might realize that we are avoiding anything self-hosted for now.
+And for continuous integration and continuous deployment we are going to use the GitHub Actions. From all this decision, you might realize that we are avoiding anything self-hosted for now.
 
 Before we start looking into CDK code, let me tell you I will only be going through the configuration file with you, not the actual code, because CDK only differs from other IaC tools in that it is written in imperative form, which means we make the configuration file public-facing and the actual code an abstraction, which then helps each member of the org to just learn how to manipulate the configuration file and not the actual code, which helps the infrastructure manipulation be very easy, quick, and scalable.
 
@@ -246,7 +246,7 @@ We created a bunch of stacks by identifying the problems.
 
 ### Common Infrastructure Stack
 
-This is the first stack that we have written to create common IAM roles that are going to be used globally, such as the ECS task execution role and the GitHub action role.
+This is the first stack that we have written to create common IAM roles that are going to be used globally, such as the ECS task execution role and the GitHub Actions role.
 
 ### ECS Service Stack (with EFS)
 
