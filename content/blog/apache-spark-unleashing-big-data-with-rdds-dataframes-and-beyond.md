@@ -28,55 +28,48 @@ Let’s break down our description:
 ## Where to Run Spark ?
 
 1. **Run Spark Locally**
-    
 
 * Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
-    
+
 * Visit [Spark's download page](http://spark.apache.org/downloads.html), choose "Pre-built for Hadoop 2.7 and later," and download the TAR file.
-    
+
 * Extract the TAR file and navigate to the directory.
-    
+
 * Launch consoles in the preferred language:
-    
-    * Python: `./bin/pyspark`
-        
+
+  * Python: `./bin/pyspark`
+
     * Scala: `./bin/spark-shell`
-        
+
     * SQL: `./bin/spark-sql`
-        
 
 2. **Run Spark in the Cloud**
-    
 
 * No installation required; provides a web-based interactive notebook environment.
-    
+
 * **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
-    
 
 3. **Building Spark from Source**
-    
 
 * **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
-    
+
 * **Instructions**: Follow the README file in the source package for building Spark.
-    
 
 ## Spark Components
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1732356652608/fe1bec32-214f-4784-aab3-8c2d1798c01a.png align="center")
+![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732356652608/fe1bec32-214f-4784-aab3-8c2d1798c01a.png> align="center")
 
 ## High-Level Components (Spark Applications)
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
 
 1. **SparkSQL**: SparkSQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the DataFrame API.
-    
+
 2. **MLlib**: It provides distributed algorithms for a variety of machine learning tasks such as classification, regression, clustering, recommendation systems, etc.
-    
+
 3. **GraphX**: GraphX is Spark’s API for graph-based computations. Whether you're working with social networks or recommendation systems, GraphX allows you to process and analyze graph data efficiently using distributed processing.
-    
+
 4. **Spark Streaming**: It enables the processing of live data streams from sources like Kafka, or TCP sockets, turning streaming data into real-time analytics.
-    
 
 ## Spark Core
 
@@ -89,9 +82,8 @@ At the heart of all these specialized libraries is **Spark Core**. Spark Core is
 ### DAG Scheduler and Task Scheduler
 
 * **DAG Scheduler**: Spark breaks down complex workflows into smaller stages by creating a Directed Acyclic Graph (DAG). The DAG Scheduler optimizes this execution plan by determining which operations can be performed in parallel and orchestrating how the tasks should be executed.
-    
+
 * **Task Scheduler**: After the DAG is scheduled, the Task Scheduler assigns tasks to worker nodes in the cluster. It interacts with the Cluster Manager to distribute tasks across the available resources.
-    
 
 ### Cluster Managers and Storage Systems
 
@@ -103,7 +95,7 @@ Spark's ability to interact with these diverse storage systems allows users to w
 
 ## Spark’s Basic Architecture
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1732357077877/d3ac6b43-9b95-48ed-8720-8cedc9c6550b.png align="center")
+![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732357077877/d3ac6b43-9b95-48ed-8720-8cedc9c6550b.png> align="center")
 
 ### 1\. The Spark Driver
 
@@ -122,11 +114,10 @@ The cluster manager is like a “resource manager.” It manages the machines th
 Spark can run in different ways, depending on how you want to set it up:
 
 * **Cluster Mode**: In this mode, both the driver and executors run on the cluster. This is the most common way to run Spark in production.
-    
+
 * **Client Mode**: The driver runs on your local machine (the client) from where the spark application is submitted, but the executors run on the cluster. This is often used when you're testing or developing.
-    
+
 * **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
-    
 
 ## Spark’s Low-Level APIS
 
@@ -139,9 +130,8 @@ An RDD represents a distributed collection of immutable records that can be proc
 **Key properties of RDDS**
 
 * **Fault Tolerance:** RDDs maintain a lineage graph that tracks the transformations applied to the data. If a partition is lost due to a node failure, Spark can recompute that partition by reapplying the transformations from the original dataset.
-    
+
 * **In-Memory Computation:** RDDs are designed for in-memory computation, which allows Spark to process data much faster than traditional disk-based systems. By keeping data in memory, Spark minimizes disk I/O and reduces latency.
-    
 
 **Creating RDDs**
 
@@ -172,13 +162,14 @@ The Spark DataFrame is one of the most widely used APIs in Spark, offering a hig
 
 It is a powerful Structured API that represents data in a tabular format, similar to a spreadsheet, with named columns defined by a schema. Unlike a traditional spreadsheet, which exists on a single machine, a Spark DataFrame can be distributed across thousands of computers. This distribution is essential for handling large datasets that cannot fit on one machine or for speeding up computations.
 
-While the DataFrame concept is not unique to Spark; R and Python also includes DataFrames—these are typically limited to a single machine's resources. Fortunately, Spark’s language interfaces allow for easy conversion of Pandas DataFrames in Python and R DataFrames to Spark DataFrames, enabling users to leverage distributed computing for enhanced performance.
+While the DataFrame concept is not unique to Spark; R and Python also include DataFrames—these are typically limited to a single machine's resources. Fortunately, Spark’s language interfaces allow for easy conversion of Pandas DataFrames in Python and R DataFrames to Spark DataFrames, enabling users to leverage distributed computing for enhanced performance.
 
 Below is a comparison of distributed versus single-machine analysis.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1732358269819/a38be331-b107-4065-bdda-ab40b0bcbff9.png align="center")
+![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732358269819/a38be331-b107-4065-bdda-ab40b0bcbff9.png> align="center")
 
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
+>
 ## Partitions
 
 Spark breaks up data into chunks called partitions, allowing executors to work in parallel. A partition is a collection of rows that reside on a single machine in the cluster. By default, partitions are sized at 128 MB, though this can be adjusted. The number of partitions affects parallelism—fewer partitions can limit performance, even with many executors, and vice versa.
@@ -192,7 +183,7 @@ In Spark, the core data structures are immutable, meaning once they’re created
 For example, to filter out even numbers from a dataframe, you would use:
 
 ```python
-divisBy2 = myRange.where("number % 2 = 0") # myRange is a dataframe
+diviBy2 = myRange.where("number % 2 = 0") # myRange is a dataframe
 ```
 
 This code performs a transformation but produces no immediate output. That’s because they are **lazy**, meaning they do not execute immediately; instead, Spark builds a Directed Acyclic Graph (DAG) of transformations that will be executed only when an **action** is triggered. Transformations are the heart of Spark’s business logic and can be of two types: narrow and wide.
@@ -203,7 +194,7 @@ In a **narrow transformation**, each partition of the parent RDD/DataFrame contr
 
 Examples: `map` `filter`
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1732344376978/13ba890a-95c4-4f21-b35f-ac19570daff1.png align="center")
+![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732344376978/13ba890a-95c4-4f21-b35f-ac19570daff1.png> align="center")
 
 ### Wide Transformations
 
@@ -211,7 +202,7 @@ In a **wide transformation**, data from multiple parent RDD/DataFrame partitions
 
 Examples: `groupByKey` `reduceByKey` `join`
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1732348673655/115212c0-c124-47fa-8c5b-de1f659c0866.png align="center")
+![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732348673655/115212c0-c124-47fa-8c5b-de1f659c0866.png> align="center")
 
 ## Actions
 
