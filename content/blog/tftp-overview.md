@@ -9,24 +9,22 @@ weight: 1
 
 ## TFTP protocol overview
 
-<p style='text-align: justify;'>TFTP known as Trivial File transfer protocol is a simple file transfer protocol with features such as get or put files. Unlike FTP or SFTP which can share files across networks TFTP can only share files over a local network, TFTP is known as Lightweight because it uses UDP(User Datagram Protocol) to transfer files and it has no advanced features such as listing files or listing directories</p>
+TFTP known as Trivial File transfer protocol is a simple file transfer protocol with features such as get or put files. Unlike FTP or SFTP which can share files across networks TFTP can only share files over a local network, TFTP is known as Lightweight because it uses UDP(User Datagram Protocol) to transfer files and it has no advanced features such as listing files or listing directories
 
 ## What problem did TFTP solve?
 
-<p style='text-align: justify;'>TFTP, or Trivial File Transfer Protocol, was developed to address specific challenges in network environments, primarily focusing on scenarios where simplicity, speed, and efficiency were crucial. </p>
+TFTP, or Trivial File Transfer Protocol, was developed to address specific challenges in network environments, primarily focusing on scenarios where simplicity, speed, and efficiency were crucial.
 
 ## How does TFTP work?
 
-<p style='text-align: justify;'>TFTP operates on a client-server model. The client initiates a connection to the server and sends a request for a file transfer, specifying the filename and the transfer mode (binary or ASCII). The server, upon receiving the request, responds by either sending the requested file or an error message if the file is not found or if there's another issue.</p>
+TFTP operates on a client-server model. The client initiates a connection to the server and sends a request for a file transfer, specifying the filename and the transfer mode (binary or ASCII). The server, upon receiving the request, responds by either sending the requested file or an error message if the file is not found or if there's another issue.
 
 **Visual Representation of TFTP Communication Flow: Client-Server Interaction:**
 
 <img src="/images/blog/tftp-overview/tftp-communication-flow.png" alt="tftp communication flow" height="60%" >
-                      
 
+TFTP has 5 Different message types which is used to communicate between client and server. They are:
 
-#### TFTP has 5 Different message types which is used to communicate between client andgit commit -m "modifies tftp overview globg images"
- server they are,
 - RRQ
 - WRQ
 - DATA
@@ -35,16 +33,15 @@ weight: 1
 
 ### RRQ ( Read Request )
 
-<p style='text-align: justify;'>The Read Request message, also known as a <b>GET</b> request, is sent by a TFTP client to request a file transfer from the server to the client. It includes the filename of the desired file and the transfer mode (binary or ASCII). Upon receiving an RRQ, the server responds with a Data packet containing the requested file's contents or an Error packet if the file is not found or cannot be accessed.
+The Read Request message, also known as a **GET** request, is sent by a TFTP client to request a file transfer from the server to the client. It includes the filename of the desired file and the transfer mode (binary or ASCII). Upon receiving an RRQ, the server responds with a Data packet containing the requested file's contents or an Error packet if the file is not found or cannot be accessed.
 
 <u>Packet Layout  of RRQ message:</u>
 
 <img src="/images/blog/tftp-overview/rrq.png" alt="RRQ message packet format" width="100%" >
 
-
 ### WRQ ( Write Request )
 
-<p style='text-align: justify;'>Contrary to RRQ, the Write Request message, or <b>PUT</b> request, is initiated by the client to upload a file to the server. Similar to RRQ, it includes the filename and transfer mode. Upon receiving a WRQ, the server acknowledges the request with an ACK packet, indicating its readiness to receive the file, or responds with an Error packet if the operation cannot be completed.
+Contrary to RRQ, the Write Request message, or **PUT** request, is initiated by the client to upload a file to the server. Similar to RRQ, it includes the filename and transfer mode. Upon receiving a WRQ, the server acknowledges the request with an ACK packet, indicating its readiness to receive the file, or responds with an Error packet if the operation cannot be completed.
 
 <u>Packet Layout of WRQ message:</u>
 
@@ -52,7 +49,7 @@ weight: 1
 
 ### DATA message
 
-<p style='text-align: justify;'>The Data packet carries a portion of the file being transferred, typically containing a block of data. Each Data packet includes a block number to facilitate sequential transmission and acknowledgment. After sending a Data packet, the sender awaits an ACK packet from the receiver before transmitting the next block. If the sender doesn't receive an ACK within a specified timeout period, it retransmits the Data packet.
+The Data packet carries a portion of the file being transferred, typically containing a block of data. Each Data packet includes a block number to facilitate sequential transmission and acknowledgment. After sending a Data packet, the sender awaits an ACK packet from the receiver before transmitting the next block. If the sender doesn't receive an ACK within a specified timeout period, it retransmits the Data packet.
 
 <u>Packet Layout of DATA message:</u>
 
@@ -60,7 +57,7 @@ weight: 1
 
 ### ACK ( Acknowledgment )
 
-<p style='text-align: justify;'>Acknowledgment packets, or ACKs, are sent by the receiver to confirm the successful receipt of a Data packet. Each ACK packet contains the block number of the Data packet it acknowledges. Upon receiving an ACK, the sender proceeds to transmit the next block of data. In case of packet loss or corruption, the sender retransmits the Data packet until it receives a valid ACK.
+Acknowledgment packets, or ACKs, are sent by the receiver to confirm the successful receipt of a Data packet. Each ACK packet contains the block number of the Data packet it acknowledges. Upon receiving an ACK, the sender proceeds to transmit the next block of data. In case of packet loss or corruption, the sender retransmits the Data packet until it receives a valid ACK.
 
 <u>Packet Layout of ACK message:</u>
 
@@ -68,7 +65,7 @@ weight: 1
 
 ### ERROR message
 
-<p style='text-align: justify;'>Error packets are generated by either the client or the server to communicate error conditions during a TFTP transaction. An Error packet includes an error code and a textual error message describing the encountered issue. Common error codes include file not found, access violation, disk full, and illegal TFTP operation. Upon receiving an Error packet, the recipient terminates the transaction and may display or log the error message for diagnostic purposes.
+Error packets are generated by either the client or the server to communicate error conditions during a TFTP transaction. An Error packet includes an error code and a textual error message describing the encountered issue. Common error codes include file not found, access violation, disk full, and illegal TFTP operation. Upon receiving an Error packet, the recipient terminates the transaction and may display or log the error message for diagnostic purposes.
 
 <u>Packet Layout of ERROR message:</u>
 
@@ -76,37 +73,36 @@ weight: 1
 
 ## Advantages of TFTP
 
-<p style='text-align: justify;'><b>1. Simplicity:</b> TFTP's design is straightforward, with fewer features and commands compared to FTP. This simplicity makes it easier to implement and use, requiring less overhead and fewer resources.</p>
+1. **Simplicity:** TFTP's design is straightforward, with fewer features and commands compared to FTP. This simplicity makes it easier to implement and use, requiring less overhead and fewer resources.
 
-<p style='text-align: justify;'><b>2. Minimalist:</b> TFTP is lightweight, both in terms of its protocol design and its resource requirements. This makes it suitable for embedded systems, such as routers, switches, and other network devices with limited memory and processing power.</p>
+2. **Minimalist:** TFTP is lightweight, both in terms of its protocol design and its resource requirements. This makes it suitable for embedded systems, such as routers, switches, and other network devices with limited memory and processing power.
 
-<p style='text-align: justify;'><b>3. Fast:</b> Because TFTP operates over UDP, which doesn't have the connection establishment and teardown overhead of TCP, it can be faster for transferring small files over high-speed networks.</p>
+3. **Fast:** Because TFTP operates over UDP, which doesn't have the connection establishment and teardown overhead of TCP, it can be faster for transferring small files over high-speed networks.
 
-<p style='text-align: justify;'><b>4. Bootstrapping:</b> One of TFTP's primary use cases is bootstrapping diskless devices, such as network booting of thin clients, diskless workstations, or embedded systems. Its simplicity and low overhead make it ideal for this purpose.</p>
+4. **Bootstrapping:** One of TFTP's primary use cases is bootstrapping diskless devices, such as network booting of thin clients, diskless workstations, or embedded systems. Its simplicity and low overhead make it ideal for this purpose.
 
 ## Limitations of TFTP
 
-<p style='text-align: justify;'><b>1.  Lack of Authentication:</b> TFTP lacks built-in user authentication mechanisms, which can pose security risks in environments where user access control is essential.</p>
+1. **Lack of Authentication:** TFTP lacks built-in user authentication mechanisms, which can pose security risks in environments where user access control is essential.
 
-<p style='text-align: justify;'><b>2. Limited Error Handling:</b> TFTP's error handling capabilities are basic, with error messages providing minimal information about the encountered issue.</p>
+2. **Limited Error Handling:** TFTP's error handling capabilities are basic, with error messages providing minimal information about the encountered issue.
 
-<p style='text-align: justify;'><b>3. No Directory Listing:</b> Unlike protocols like FTP or SFTP, TFTP does not support directory listing functionality. Users must manually specify the filenames they want to transfer, which can be cumbersome, especially when dealing with large numbers of files or directories.</p>
+3. **No Directory Listing:** Unlike protocols like FTP or SFTP, TFTP does not support directory listing functionality. Users must manually specify the filenames they want to transfer, which can be cumbersome, especially when dealing with large numbers of files or directories.
 
-<p style='text-align: justify;'><b>4. File Size Limitation:</b> TFTP is not optimized for transferring large files efficiently. Its reliance on UDP and lack of features like file segmentation or resuming transfers mean that transferring large files can be slower and less reliable compared to protocols designed specifically for handling such scenarios.</p>
+4. **File Size Limitation:** TFTP is not optimized for transferring large files efficiently. Its reliance on UDP and lack of features like file segmentation or resuming transfers mean that transferring large files can be slower and less reliable compared to protocols designed specifically for handling such scenarios.
 
-<p style='text-align: justify;'><b>5. UDP Reliance:</b> While UDP offers advantages in terms of speed and efficiency, it also introduces potential issues such as packet loss or out-of-order delivery. TFTP's reliance on UDP means that it may not be the best choice for environments where reliability is paramount, particularly over unreliable or congested networks.</p>
-
-
+5. **UDP Reliance:** While UDP offers advantages in terms of speed and efficiency, it also introduces potential issues such as packet loss or out-of-order delivery. TFTP's reliance on UDP means that it may not be the best choice for environments where reliability is paramount, particularly over unreliable or congested networks.
 
 ## Most commom use cases of TFTP
-- <b>Network Booting:</b> Booting diskless devices over a network, where the operating system is loaded from a remote server.
-- <b>Firmware Updates:</b> Updating firmware on network devices, such as routers, switches, and printers.
-- <b>Configuration Management:</b> Transferring configuration files to network devices for provisioning and management.
-- <b>Software Distribution:</b> Distributing small files, such as firmware updates or configuration files, across a network.
 
+- **Network Booting:** Booting diskless devices over a network, where the operating system is loaded from a remote server.
+- **Firmware Updates:** Updating firmware on network devices, such as routers, switches, and printers.
+- **Configuration Management:** Transferring configuration files to network devices for provisioning and management.
+- **Software Distribution:** Distributing small files, such as firmware updates or configuration files, across a network.
 
 ## Conclusion
-<p style='text-align: justify;'>In conclusion, TFTP has established itself as a valuable tool within network environments.  Its core strengths lie in simplicity, speed, and minimal resource requirements.  These attributes make TFTP particularly well-suited for tasks like network booting, firmware updates, and configuration management, especially for devices with limited processing power or memory.  While more feature-rich protocols exist for broader file transfer needs, TFTP remains a relevant and efficient solution for specific use cases.</p>
+
+In conclusion, TFTP has established itself as a valuable tool within network environments.  Its core strengths lie in simplicity, speed, and minimal resource requirements.  These attributes make TFTP particularly well-suited for tasks like network booting, firmware updates, and configuration management, especially for devices with limited processing power or memory.  While more feature-rich protocols exist for broader file transfer needs, TFTP remains a relevant and efficient solution for specific use cases.
 
 ## Question
 
