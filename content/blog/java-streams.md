@@ -27,6 +27,7 @@ Immutability ensures that the original data stays the same during stream operati
 - **Thread Safety:** In places with lots of things happening at once (multi-threaded), immutability acts like a safety net. Many threads can use the original data at the same time without causing problems.
 
 **Code Snippet and Benchmark Output:**
+
 ```java
 // Immutability with Streams
 List<Integer> values = Arrays.asList(1, 10, 3, 4, 2);
@@ -41,12 +42,15 @@ System.out.println("Original List: " + values);
 System.out.println("Modified List: " + modifiedList);
 System.out.println("The above two lists are equal? " + (mappedValues.count() == values.size()));
 ```
+
 **Analysis:**
+
 - The starting list stays the same; nothing is changed, proving that streams keep things unchanged.
 - When we filter and map, it's like making a fresh stream, leaving the original data intact.
 - Using `toList()` helps make a new list without messing up anything. It's like a safety feature for threads.
 
 **Benchmark Output:**
+
 ```
 Original List: [1, 10, 3, 4, 2]
 Modified List: [11, 5]
@@ -59,10 +63,12 @@ Lists Equality: true
 Streams, once consumed, cannot be reused. This design ensures that each stream operation, especially terminal operations, represents a distinct processing step. Once a terminal operation is invoked on a stream, it marks the end of its usability for further operations.
 
 **How it Benefits:**
+
 - **Efficient Resource Management:** When you have a large amount of data, utilizing streams in Java aligns with the practice of processing data and closing resources promptly. This practice helps prevent data leakage and minimizes the presence of unused resources.
 - **Prevention of Unintended Behavior:** The inability to reuse streams after terminal operations minimizes the risk of unintended side effects, promoting safer and more controlled data manipulation. Attempting to use a consumed stream again results in an `IllegalStateException`, ensuring a clear and intentional data processing flow.
 
 **Code Snippet and Benchmark Output:**
+
 ```java
 // Creating a stream from the list
 Stream<Integer> mappedValues = list.stream()
@@ -80,14 +86,17 @@ try {
     System.out.println("Error: " + e.getMessage());
 }
 ```
+
 **Analysis:**
+
 - The code begins by creating a stream, `mappedValues`, from the original list.
 - The stream is processed with an intermediate operation (`filter` and `map`) and a terminal operation (`count`).
 - Attempting to reuse the `mappedValues` stream (here with `toList()`) after the terminal operation will result in an `IllegalStateException`. This error occurs because once a stream is consumed by a terminal operation, it cannot be reused for another terminal operation.
 - The use of `count()` serves as a point of consumption, making the stream no longer available for further terminal operations.
 
 **Output:**
-```
+
+```shell
 Error: stream has already been operated upon or closed
 ```
 
@@ -97,10 +106,12 @@ Error: stream has already been operated upon or closed
 Parallel streams divide the workload among multiple threads, leveraging the power of multicore processors for concurrent execution. They are designed for efficient processing of large datasets.
 
 **How it Benefits:**
+
 - **Reduced Execution Time:** Parallel processing leads to shorter execution times compared to sequential streams, especially when dealing with massive datasets.
 - **Optimal Resource Utilization:** Multicore processors are fully utilized, making parallel streams ideal for performance optimization.
 
 **Code Snippet and Benchmark Output:**
+
 ```java
 // Populate the list with values
 for (int i = 0; i < datasetSize; i++) {
@@ -125,24 +136,27 @@ values.stream()
 long sequentialEndTime = System.currentTimeMillis();
 long sequentialTimeTaken = sequentialEndTime - sequentialStartTime;
 ```
+
 **Scenario 1: Small Dataset (datasetSize = 10) Analysis:**
+
 - The dataset is deliberately kept small to showcase the impact on performance.
 - Parallel processing does not demonstrate a significant advantage due to the overhead of managing parallel threads which overshadows the potential advantages.
 
 **Benchmark Output:**
+
 ```
 Parallel Time Taken: 9 milliseconds
 Sequential Time Taken: 0 milliseconds
 ```
 
-**Scenario 2: Large Dataset
+**Scenario 2: Large Dataset (datasetSize = 1,000,000) Analysis:**
 
- (datasetSize = 1,000,000) Analysis:**
 - Parallel streams potentially perform better when dealing with large datasets.
 - The process of dividing the work among multiple threads becomes more advantageous for significant workloads.
 - Multicore processors are utilized optimally, leading to shorter execution times compared to sequential streams.
 
 **Benchmark Output:**
+
 ```
 Parallel Time Taken: 2318 milliseconds
 Sequential Time Taken: 7789 milliseconds
@@ -159,6 +173,7 @@ In Java, the use of parallel streams can significantly improve performance for c
 - When multiple threads execute `println()` statements, the output becomes sequential.
 
 **Example:**
+
 ```java
 List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
 
@@ -176,6 +191,7 @@ list.forEach(value -> {
 - The synchronous nature of the resource limits the full potential of parallelization.
 
 **Example:**
+
 ```java
 // Limited impact with parallel streams
 System.out.println("\nParallel Stream:");
@@ -196,10 +212,12 @@ list.parallelStream()
 Lazy evaluation means that operations on a stream are not executed until a terminal operation is invoked. This allows for efficient resource usage by processing only the elements necessary for the final result.
 
 **How it Benefits:**
+
 - **Efficient Resource Utilization:** Elements are processed on-demand, saving processing time and memory.
 - **Suitable for Large Datasets:** Laziness ensures that the stream doesn't process the entire dataset if it's not required for the final result.
 
 **Code Snippet and Benchmark Output:**
+
 ```java
 // Leveraging Lazy Evaluation
 List<Integer> values = Arrays.asList(1, 2, 5, 10, 15);
@@ -210,13 +228,16 @@ Stream<Integer> doubleValues = values.stream()
 
 System.out.println(doubleValues.findFirst().orElse(0));
 ```
+
 **Analysis:**
+
 - The stream operations, `filter` and `map`, are defined but not immediately executed.
 - Processing occurs only when the terminal operation `findFirst()` is invoked.
 - The lazy nature ensures that only elements needed for the final result are processed, saving resources.
 - The output demonstrates the selective processing of elements that meet the specified criteria.
 
 **Output:**
+
 ```
 in isDivisibleBy5 1
 in isDivisibleBy5 2
