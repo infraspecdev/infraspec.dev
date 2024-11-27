@@ -270,9 +270,9 @@ In conclusion, building a scalable and efficient multi-tenant system on AWS requ
 
 We look forward to sharing more of our experiences in future blog posts with follow-up questions like below.
 
-1. How to automate the provisioning and updating of CDK infrastructure using GitHub Actions?
-2. What are the key factors to consider when deciding between these two popular IaC tools Terraform and AWS CDK?
-3. What are the downfalls of choosing multiple applications and databases for a multi-tenant system with a multi-VPC AWS architecture?
-4. As the system grows, how to design an application deployment pipeline that accommodates multiple services and tenants?
-5. How to ensure a complex system is resilient in the face of disasters or outages?
-6. How to normalize our complex multi-VPC system to reduce costs and improve efficiency?
+1. How to automate CDK infrastructure provisioning with GitHub Actions?
+2. When to choose CDK over Terraform?
+3. What are the downsides of choosing a multi-VPC AWS architecture?
+4. How to design a scalable deployment pipeline for multiple services and tenants?
+5. How to plan for disaster recovery?
+6. How to optimize multi-VPC architecture to reduce costs?
