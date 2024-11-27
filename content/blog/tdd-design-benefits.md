@@ -9,8 +9,7 @@ weight: 1
 
 Most of us think of TDD as a tool for software testing and verification. But if used effectively it is more than that.
 
-Since Test Drive Development (TDD) was introduced by Kent Beck it has always been a bit of a controversial topic. Today we are going to explore what TDD has to offer apart from being a way 
-to test and verify software. Before we dig deeper, let's take a look back at what is TDD, in the first place.
+Since Test Drive Development (TDD) was introduced by Kent Beck it has always been a bit of a controversial topic. Today we are going to explore what TDD has to offer apart from being a way to test and verify software. Before we dig deeper, let's take a look back at what is TDD, in the first place.
 
 > TDD is a process used to build software in which unit tests are written even before writing any code.
 
@@ -64,8 +63,8 @@ Not treating this as any other skill and not giving it enough time.
 Like any other skill, TDD is also a skill which needs some learning.
 But what I have observed is people don't give it enough time or practice it enough to be able to master this skill.
 This leads to some of the most obvious pushback of it taking longer than just writing code.
-We are going to be slow in anything we don't know, not just TDD. 
-Only spending enough time with any skill will make us move faster. 
+We are going to be slow in anything we don't know, not just TDD.
+Only spending enough time with any skill will make us move faster.
 Be it learning a new programming language, playing a new musical instrument or learning to drive.
 
 > To conclude, TDD could be used to improve the overall design of the system instead of just using it to increase code coverage.
