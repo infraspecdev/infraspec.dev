@@ -1,6 +1,6 @@
 # infraspec.dev
 
-![GitHub Action Lint](https://github.com/infraspecdev/infraspec.dev/actions/workflows/lint.yml/badge.svg?branch=main)
+![GitHub Action Lint](https://github.com/infraspecdev/infraspec.dev/actions/workflows/lint.yml/badge.svg?branch=main) [![Netlify Status](https://api.netlify.com/api/v1/badges/75646244-7bda-454b-98d1-5f8069237202/deploy-status?branch=main)](https://app.netlify.com/sites/infraspec/deploys)
 
 ## Getting Started
 
