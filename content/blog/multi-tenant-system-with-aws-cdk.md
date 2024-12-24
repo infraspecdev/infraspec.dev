@@ -6,19 +6,19 @@ draft: false
 featured: true
 weight: 1
 ---
-In this blog I will be taking you on a journey of building the scalable and efficient IaC solution that we build for our multi-tenant system. Here we are not going to debate why we choose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
+In this blog I will be taking you on a journey of building the scalable and efficient IaC solution that we build for our multi-tenant system. Here we are not going to debate why we chose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
 
 ## What are Multi-tenant Systems?
 
 A multi-tenancy architecture uses a single instance of a software application to serve multiple customers. Each customer is referred to as a tenant. Tenants can customize certain aspects of the application, such as the color of the user interface or business rules, but they cannot change the application's code.
 
-While there are mainly three types of multi-tenant architecture.
+There are three main types of multi-tenant architecture.
 
 1. One Application, One Database: All tenants share a single database.
-2. One Application, Multiple Databases: Each tenant has its own database while sharing the same application instance.
-3. Multiple Applications and Databases: This is the most complex architecture where multiple services and databases are deployed for each tenant.
+2. One Application, Multiple Databases: Each tenant has its own database that shares the same application instance.
+3. Multiple Applications and Databases: This is the most complex architecture, where multiple services and databases are deployed for each tenant.
 
-In this blog, we will focus on the third architecture, which provides greater flexibility and isolation
+In this blog, we will focus on the third architecture, which provides greater flexibility and isolation.
 
 ## What is AWS CDK?
 
@@ -53,7 +53,7 @@ As we were using AWS as our cloud provider, we started looking into finalizing t
 
 Considering we have what we wanted for our networking infrastructure, then for applications we are going to use Fargate ECS services, RDS for databases, SSM for application environment variables, Secret Manager for application secrets, and Route 53 for maintaining the DNS records.
 
-And for continuous integration and continuous deployment we are going to use the GitHub Actions. From all this decision, you might realize that we are avoiding anything self-hosted for now.
+And for continuous integration and continuous deployment, we are going to use GitHub Actions. From all this decision, you might realize that we are avoiding anything self-hosted for now.
 
 Before we start looking into CDK code, let me tell you I will only be going through the configuration file with you, not the actual code, because CDK only differs from other IaC tools in that it is written in imperative form, which means we make the configuration file public-facing and the actual code an abstraction, which then helps each member of the org to just learn how to manipulate the configuration file and not the actual code, which helps the infrastructure manipulation be very easy, quick, and scalable.
 
@@ -61,7 +61,7 @@ Before we start looking into CDK code, let me tell you I will only be going thro
 
 Let’s first start looking into how we break down the [recommended](https://github.com/aws-samples/aws-vpc-builder-cdk/tree/main) networking architecture to fit our solution.
 
-We took the reference from this [config](https://github.com/aws-samples/aws-vpc-builder-cdk/blob/main/config/sample-firewall-blog.vpcBuilder.yaml) file. Let’s see how we can visualize this configuration file and how the actual output will look like, which can be understood by the below diagram.
+We took the reference from this [config](https://github.com/aws-samples/aws-vpc-builder-cdk/blob/main/config/sample-firewall-blog.vpcBuilder.yaml) file. Let’s see how we can visualize this configuration file and how the actual output will look, which can be understood by the below diagram.
 
 <img src="/images/blog/multi-tenant-system-with-aws-cdk/multi-vpc.png" alt="multi-vpc" width="700" height = "750">
 
@@ -148,7 +148,7 @@ providers:
        cidrMask: 24
 ```
 
-Platform VPC has connectivity with tenants VPCs, and tenants are not  having cross-connectivity as we can verify this with dynamicRoutes.
+Platform VPC has connectivity with tenants VPCs, and tenants are not having cross-connectivity, as we can verify this with dynamicRoutes.
 
 This setup was the first milestone as a part of the infrastructure, as now to onboard any new tenants we just need to add a small block of code and the routes like below.
 
@@ -186,9 +186,9 @@ transitGateways:
 
 Moving forward from networking to application was going to be a little tricky because considering this networking setup using CDK, we have to be sure that we maintain the consistency across networking and application code for infrastructure.
 
-So we had two options: Either edit the same code to add another support for the application, or create a new CDK project that will only care about the application, considering the networking part is already set up.
+So we had two options: either edit the same code to add another support for the application or create a new CDK project that will only care about the application, considering the networking part is already set up.
 
-We choose to go with the 2nd approach because
+We chose to go with the 2nd approach because
 
 1. Change in application-related configuration will be more aggressive than networking.
 2. To make application configuration manipulated by developers, we have to keep the unusual data, according to developers, as little as possible in the same place.
@@ -197,7 +197,7 @@ We choose to go with the 2nd approach because
 
 ## IaC of Application
 
-The basic idea of writing AWS CDK code is to bundle the unit of deployment into the same stack. CDK Stack represents a single CloudFormation stack, which is a collection of resources that are deployed together. So here,I have created the stack with a collection of resources that are going to be deployed together and are linked.
+The basic idea of writing AWS CDK code is to bundle the unit of deployment into the same stack. CDK Stack represents a single CloudFormation stack, which is a collection of resources that are deployed together. So here, I have created the stack with a collection of resources that are going to be deployed together and are linked.
 
 This is the most important thing to identify upfront: how much power you want to give on manipulation from the configuration file, because if you try to write the CDK code very generically, then it will, at the end, be going to become like a CloudFormation template, and if you keep everything very coupled, then it will also be going to be a challenge if you want to decouple that.
 
@@ -258,7 +258,7 @@ Keeping the stateful resources separate is one of the best practices that we fol
 
 ### Public ALB
 
-This is one of the common stacks we identified to create a public-facing application load balancer separately by following practices of attaching ACM, proper security group.
+This is one of the common stacks we identified to create a public-facing application load balancer separately by following practices of attaching ACM and proper security groups.
 
 ### Internal ALB
 
