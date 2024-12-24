@@ -1,12 +1,12 @@
 ---
-title: "Building Scalable Multi-Tenant Systems with AWS CDK: An IaC Approach"
+title: "Building Scalable Multi-Tenant Systems with AWS CDK: An IAC Approach"
 authorId: "mufaddal"
 date: 2024-11-22
 draft: false
 featured: true
 weight: 1
 ---
-In this blog I will be taking you on a journey of building the scalable and efficient IaC solution that we build for our multi-tenant system. Here we are not going to debate why we chose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
+In this blog, I will be taking you on a journey of building the scalable and efficient IAC solution that we build for our multi-tenant system. Here we are not going to debate why we chose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
 
 ## What are Multi-tenant Systems?
 
@@ -28,7 +28,7 @@ AWS CDK, which is built on TypeScript, is tightly integrated with AWS CloudForma
 
 ## Understanding Our Requirements
 
-Our use case involves the linear growth of services alongside the exponential growth of tenants.A critical requirement is that each tenant must have database isolation to ensure robust tenant data integrity and confidentiality.This leads us to choose an architecture where services and databases for each tenant are deployed in isolation.
+Our use case involves the linear growth of services alongside the exponential growth of tenants. A critical requirement is that each tenant must have database isolation to ensure robust tenant data integrity and confidentiality. This leads us to choose an architecture where services and databases for each tenant are deployed in isolation.
 
 Key requirements include:
 
@@ -47,7 +47,7 @@ To visualize our architecture, consider the following components:
 
 ## What do we know?
 
-Now let’s briefly see what all things we have in our bucket and what is expected from IaC.
+Now let’s briefly see what all things we have in our bucket and what is expected from IAC.
 
 As we were using AWS as our cloud provider, we started looking into finalizing the architecture that we were going to use for our system. After all the R&D, we decided to go with the Multi-VPC architecture that is one of the recommendations from AWS, and yes, this was written in AWS CDK. And hence, taking recommendations from this CDK solution, we were able to achieve a single VPC for a single tenant, which then solved our complete isolation problem along with the platform VPC connectivity with the tenant VPCs. We will be looking at this in detail in this blog too.
 
@@ -55,9 +55,9 @@ Considering we have what we wanted for our networking infrastructure, then for a
 
 And for continuous integration and continuous deployment, we are going to use GitHub Actions. From all this decision, you might realize that we are avoiding anything self-hosted for now.
 
-Before we start looking into CDK code, let me tell you I will only be going through the configuration file with you, not the actual code, because CDK only differs from other IaC tools in that it is written in imperative form, which means we make the configuration file public-facing and the actual code an abstraction, which then helps each member of the org to just learn how to manipulate the configuration file and not the actual code, which helps the infrastructure manipulation be very easy, quick, and scalable.
+Before we start looking into CDK code, let me tell you I will only be going through the configuration file with you, not the actual code, because CDK only differs from other IAC tools in that it is written in imperative form, which means we make the configuration file public-facing and the actual code an abstraction, which then helps each member of the org to just learn how to manipulate the configuration file and not the actual code, which helps the infrastructure manipulation be very easy, quick, and scalable.
 
-## IaC of Networking
+## IAC of Networking
 
 Let’s first start looking into how we break down the [recommended](https://github.com/aws-samples/aws-vpc-builder-cdk/tree/main) networking architecture to fit our solution.
 
@@ -117,7 +117,7 @@ providers:
      firewallName: InspectionEgress
 ```
 
-For incoming traffic from the internet Central ingress is considered as ingress VPC, and similarly, central egress is the VPC from where all traffic will go out to the internet.
+For incoming traffic from the internet, Central ingress is considered the ingress VPC, and similarly, central egress is the VPC from where all traffic will go out to the internet.
 
 ```yaml
 providers:
@@ -150,7 +150,7 @@ providers:
 
 Platform VPC has connectivity with tenants VPCs, and tenants are not having cross-connectivity, as we can verify this with dynamicRoutes.
 
-This setup was the first milestone as a part of the infrastructure, as now to onboard any new tenants we just need to add a small block of code and the routes like below.
+This setup was the first milestone as a part of the infrastructure, as now to onboard any new tenants we just need to add a small block of code and the routes, like below.
 
 ```yaml
 vpcs:
@@ -184,18 +184,18 @@ transitGateways:
        inspectedBy: inspectionVpc
 ```
 
-Moving forward from networking to application was going to be a little tricky because considering this networking setup using CDK, we have to be sure that we maintain the consistency across networking and application code for infrastructure.
+Moving forward from networking to application was going to be a little tricky because, considering this networking setup using CDK, we have to be sure that we maintain the consistency across networking and application code for infrastructure.
 
 So we had two options: either edit the same code to add another support for the application or create a new CDK project that will only care about the application, considering the networking part is already set up.
 
-We chose to go with the 2nd approach because
+We chose to go with the second approach because
 
-1. Change in application-related configuration will be more aggressive than networking.
+1. Changes in application-related configuration will be more aggressive than networking.
 2. To make application configuration manipulated by developers, we have to keep the unusual data, according to developers, as little as possible in the same place.
 3. Changes in networking configuration can impact the entire ecosystem, and hence maintenance of that should only come under specific teams like SRE/DevOps and should not be available to manipulate so easily by any member of the organization.
-4. By keeping application IaC separate, it also helps in automating the CI/CD, which is also another topic we can discuss in a further blog.
+4. By keeping application IAC separate, it also helps in automating the CI/CD, which is also another topic we can discuss in a further blog.
 
-## IaC of Application
+## IAC of Application
 
 The basic idea of writing AWS CDK code is to bundle the unit of deployment into the same stack. CDK Stack represents a single CloudFormation stack, which is a collection of resources that are deployed together. So here, I have created the stack with a collection of resources that are going to be deployed together and are linked.
 
@@ -250,7 +250,7 @@ This is the first stack that we have written to create common IAM roles that are
 
 ### ECS Service Stack (with EFS)
 
-The stack creates the ECS service for the tenants cluster by identifying via configuration file alongside the ALB, NLB, EFS, and security groups.
+The stack creates the ECS service for the tenant cluster by identifying via the configuration file alongside the ALB, NLB, EFS, and security groups.
 
 ### RDS Stack
 
@@ -258,7 +258,7 @@ Keeping the stateful resources separate is one of the best practices that we fol
 
 ### Public ALB
 
-This is one of the common stacks we identified to create a public-facing application load balancer separately by following practices of attaching ACM and proper security groups.
+This is one of the common stacks we identified to create a public-facing application load balancer separately by following the practices of attaching ACM and proper security groups.
 
 ### Internal ALB
 
@@ -266,13 +266,13 @@ CDK Stack that is used to create a separate internal ALB, such as in the platfor
 
 ## Conclusion
 
-In conclusion, building a scalable and efficient multi-tenant system on AWS requires careful planning and design. By using AWS CDK, we were able to define and provision our cloud infrastructure resources in a flexible and scalable way. Our approach to separating IaC code for networking and applications allowed us to maintain consistency and make changes more easily. We hope that this blog post has provided a useful example of how to use AWS CDK to build a multi-tenant system.
+In conclusion, building a scalable and efficient multi-tenant system on AWS requires careful planning and design. By using AWS CDK, we were able to define and provision our cloud infrastructure resources in a flexible and scalable way. Our approach to separating IAC code for networking and applications allowed us to maintain consistency and make changes more easily. We hope that this blog post has provided a useful example of how to use AWS CDK to build a multi-tenant system.
 
-We look forward to sharing more of our experiences in future blog posts with follow-up questions like below.
+We look forward to sharing more of our experiences in future blog posts, with follow-up questions like below.
 
 1. How to automate CDK infrastructure provisioning with GitHub Actions?
 2. When to choose CDK over Terraform?
 3. What are the downsides of choosing a multi-VPC AWS architecture?
-4. How to design a scalable deployment pipeline for multiple services and tenants?
-5. How to plan for disaster recovery?
+4. How do you design a scalable deployment pipeline for multiple services and tenants?
+5. How do you plan for disaster recovery?
 6. How to optimize multi-VPC architecture to reduce costs?
