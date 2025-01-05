@@ -57,8 +57,9 @@ Let’s break down our description:
 
 ## Spark Components
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732356652608/fe1bec32-214f-4784-aab3-8c2d1798c01a.png> align="center")
-
+<p align="center">
+  <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-components.png" alt="Spark Components">
+</p>
 ## High-Level Components (Spark Applications)
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
@@ -95,8 +96,9 @@ Spark's ability to interact with these diverse storage systems allows users to w
 
 ## Spark’s Basic Architecture
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732357077877/d3ac6b43-9b95-48ed-8720-8cedc9c6550b.png> align="center")
-
+<p align="center">
+  <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-architecture.png" alt="Spark Basic Architecture">
+</p>
 ### 1\. The Spark Driver
 
 The Spark driver(process) is like the “brain” of your Spark application. It’s responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
@@ -166,8 +168,9 @@ While the DataFrame concept is not unique to Spark; R and Python also include Da
 
 Below is a comparison of distributed versus single-machine analysis.
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732358269819/a38be331-b107-4065-bdda-ab40b0bcbff9.png> align="center")
-
+<p align="center">
+  <img width="500px" src="images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-dataframe.png" alt="Spark DataFrame">
+</p>
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
 >
 ## Partitions
@@ -194,16 +197,18 @@ In a **narrow transformation**, each partition of the parent RDD/DataFrame contr
 
 Examples: `map` `filter`
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732344376978/13ba890a-95c4-4f21-b35f-ac19570daff1.png> align="center")
-
+<p align="center">
+  <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
+</p>
 ### Wide Transformations
 
 In a **wide transformation**, data from multiple parent RDD/DataFrame partitions must be shuffled (redistributed) to form new partitions. These operations involve **network communication**, making them more expensive.
 
 Examples: `groupByKey` `reduceByKey` `join`
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1732348673655/115212c0-c124-47fa-8c5b-de1f659c0866.png> align="center")
-
+<p align="center">
+  <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/wide-transformation.png" alt="Spark Wide Transformation">
+</p>
 ## Actions
 
 They are operations that trigger the execution of transformations and return results to the driver program. Actions are the point where Spark evaluates the lazy transformations applied to an RDD, DataFrame, or Dataset.
