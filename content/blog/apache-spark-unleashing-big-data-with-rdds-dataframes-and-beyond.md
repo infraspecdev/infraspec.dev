@@ -154,7 +154,7 @@ rdd = df.rdd
 rdd_data = rdd.collect()
 ```
 
-## Sparks’s Structured APIS
+## Spark’s Structured APIS
 
 ### DataFrame
 
