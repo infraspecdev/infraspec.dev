@@ -169,7 +169,7 @@ While the DataFrame concept is not unique to Spark; R and Python also include Da
 Below is a comparison of distributed versus single-machine analysis.
 
 <p align="center">
-  <img width="500px" src="images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-dataframe.png" alt="Spark DataFrame">
+  <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-dataframe.png" alt="Spark DataFrame">
 </p>
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
 >
@@ -198,7 +198,7 @@ In a **narrow transformation**, each partition of the parent RDD/DataFrame contr
 Examples: `map` `filter`
 
 <p align="center">
-  <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
+  <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
 </p>
 ### Wide Transformations
 
