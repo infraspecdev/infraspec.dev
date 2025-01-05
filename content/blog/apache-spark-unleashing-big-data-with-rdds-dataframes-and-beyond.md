@@ -23,11 +23,11 @@ Let’s break down our description:
 
 `Computing Engine`: It focuses on computation rather than storage, allowing it to work with various storage systems like Hadoop, Amazon S3, and Apache Cassandra. This flexibility makes Spark suitable for diverse environments, including cloud and streaming applications.
 
-`Libraries`: It provides a unified API for common data analysis tasks. It supports both standard libraries that ship with the engine as well as external libraries published as third-party packages by the open-source communities. The standard libraries includes libraries for SQL (Spark SQL), machine learning (MLlib), stream processing (Structured Streaming), and graph analytics (GraphX).
+`Libraries`: It provides a unified API for common data analysis tasks. It supports both standard libraries that ship with the engine as well as external libraries published as third-party packages by the open-source communities. The standard libraries include libraries for SQL (Spark SQL), machine learning (MLlib), stream processing (Structured Streaming), and graph analytics (GraphX).
 
 ## Where to Run Spark ?
 
-1. **Run Spark Locally**
+### Run Spark Locally
 
 * Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
 
@@ -43,13 +43,13 @@ Let’s break down our description:
 
     * SQL: `./bin/spark-sql`
 
-2. **Run Spark in the Cloud**
+### Run Spark in the Cloud
 
 * No installation required; provides a web-based interactive notebook environment.
 
 * **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
 
-3. **Building Spark from Source**
+### Building Spark from Source
 
 * **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
 
@@ -127,13 +127,13 @@ They are the fundamental building block of Spark's older API, introduced in the 
 
 An RDD represents a distributed collection of immutable records that can be processed in parallel across a cluster. Unlike DataFrames(High-Level API), where records are structured and organized into rows with known schemas, RDDs are more flexible. They allow developers to store and manipulate data in any format—whether Java, Scala, or Python objects. This flexibility gives you a lot of control but requires more manual effort compared to using higher-level APIs like DataFrames.
 
-**Key properties of RDDS**
+### Key properties of RDDS
 
 * **Fault Tolerance:** RDDs maintain a lineage graph that tracks the transformations applied to the data. If a partition is lost due to a node failure, Spark can recompute that partition by reapplying the transformations from the original dataset.
 
 * **In-Memory Computation:** RDDs are designed for in-memory computation, which allows Spark to process data much faster than traditional disk-based systems. By keeping data in memory, Spark minimizes disk I/O and reduces latency.
 
-**Creating RDDs**
+### Creating RDDs
 
 Now that we discussed some key RDD properties, let’s begin applying them so that you can better understand how to use them.
 
