@@ -1,5 +1,5 @@
 ---
-title: "Apache Spark: Unleashing Big Data with Rdds, DataFrames and Beyond."
+title: "Apache Spark: Unleashing Big Data with RDDs, DataFrames and Beyond."
 authorId: "shivani"
 date: 2024-11-24
 draft: false
@@ -7,7 +7,7 @@ featured: true
 weight: 1
 ---
 
-Have you ever wondered how companies like Netflix recommend your favourite movies or how e-commerce platforms handle vast amounts of data to personalize your shopping experience 🤔?
+Have you ever wondered how companies like Netflix recommend your favorite movies or how e-commerce platforms handle vast amounts of data to personalize your shopping experience 🤔?
 
 Behind the scenes, these capabilities often rely on **Apache Spark**, a powerful distributed computing system designed for big data processing. Spark simplifies working with massive datasets by enabling fast and scalable data processing across clusters of computers.
 
