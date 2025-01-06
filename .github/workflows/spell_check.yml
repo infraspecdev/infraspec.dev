@@ -23,7 +23,7 @@ jobs:
             content/blog/**.md
 
       - name: Run Spell Check Action
-        uses: infraspecdev/spellcheck-action@v1.4.0
+        uses: infraspecdev/spellcheck-action@v1.4.1
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }} 
           github_token: ${{ secrets.GITHUB_TOKEN }}
