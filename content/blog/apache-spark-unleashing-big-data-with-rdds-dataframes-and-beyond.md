@@ -117,7 +117,7 @@ Spark can run in different ways, depending on how you want to set it up:
 
 - **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
 
-## Spark’s Low-Level APIS
+## Spark’s Low-Level APIs
 
 ### RDDs (Resilient Distributed Datasets)
 
@@ -152,7 +152,7 @@ rdd = df.rdd
 rdd_data = rdd.collect()
 ```
 
-## Spark’s Structured APIS
+## Spark’s Structured APIs
 
 ### DataFrame
 
@@ -182,7 +182,7 @@ In Spark, the core data structures are immutable, meaning once they’re created
 For example, to filter out even numbers from a dataframe, you would use:
 
 ```python
-diviBy2 = myRange.where("number % 2 = 0") # myRange is a dataframe
+divBy2 = myRange.where("number % 2 = 0") # myRange is a dataframe
 ```
 
 This code performs a transformation but produces no immediate output. That’s because they are **lazy**, meaning they do not execute immediately; instead, Spark builds a Directed Acyclic Graph (DAG) of transformations that will be executed only when an **action** is triggered. Transformations are the heart of Spark’s business logic and can be of two types: narrow and wide.
