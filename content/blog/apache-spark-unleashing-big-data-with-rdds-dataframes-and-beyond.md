@@ -7,12 +7,6 @@ featured: true
 weight: 1
 ---
 
-Have you ever wondered how companies like Netflix recommend your favorite movies or how e-commerce platforms handle vast amounts of data to personalize your shopping experience 🤔?
-
-Behind the scenes, these capabilities often rely on **Apache Spark**, a powerful distributed computing system designed for big data processing. Spark simplifies working with massive datasets by enabling fast and scalable data processing across clusters of computers.
-
-Let’s dive into Spark to understand its core,
-
 ## Introduction
 
 Apache Spark is a unified, multi-language (Python, Java, Scala, and R)computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
@@ -29,37 +23,38 @@ Let’s break down our description:
 
 ### Run Spark Locally
 
-* Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
+- Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
 
-* Visit [Spark's download page](http://spark.apache.org/downloads.html), choose "Pre-built for Hadoop 2.7 and later," and download the TAR file.
+- Visit [Spark's download page](http://spark.apache.org/downloads.html), choose "Pre-built for Hadoop 2.7 and later," and download the TAR file.
 
-* Extract the TAR file and navigate to the directory.
+- Extract the TAR file and navigate to the directory.
 
-* Launch consoles in the preferred language:
+- Launch consoles in the preferred language:
 
-  * Python: `./bin/pyspark`
+    - Python: `./bin/pyspark`
 
-    * Scala: `./bin/spark-shell`
+        - Scala: `./bin/spark-shell`
 
-    * SQL: `./bin/spark-sql`
+        - SQL: `./bin/spark-sql`
 
 ### Run Spark in the Cloud
 
-* No installation required; provides a web-based interactive notebook environment.
+- No installation required; provides a web-based interactive notebook environment.
 
-* **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
+- **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
 
 ### Building Spark from Source
 
-* **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
+- **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
 
-* **Instructions**: Follow the README file in the source package for building Spark.
+- **Instructions**: Follow the README file in the source package for building Spark.
 
 ## Spark Components
 
 <p align="center">
   <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-components.png" alt="Spark Components">
 </p>
+
 ## High-Level Components (Spark Applications)
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
@@ -76,15 +71,15 @@ At a high level, Spark provides several libraries that extend its functionality 
 
 At the heart of all these specialized libraries is **Spark Core**. Spark Core is responsible for basic functionalities like task scheduling, memory management, fault tolerance, and interactions with storage systems.
 
-### The Core of Spark: RDDs
+### RDDs
 
 **RDDs (Resilient Distributed Datasets)** are the fundamental building blocks of Spark Core. They represent an immutable, distributed collection of objects that can be processed in parallel across a cluster. More about RDDs is discussed later.
 
 ### DAG Scheduler and Task Scheduler
 
-* **DAG Scheduler**: Spark breaks down complex workflows into smaller stages by creating a Directed Acyclic Graph (DAG). The DAG Scheduler optimizes this execution plan by determining which operations can be performed in parallel and orchestrating how the tasks should be executed.
+- **DAG Scheduler**: Spark breaks down complex workflows into smaller stages by creating a Directed Acyclic Graph (DAG). The DAG Scheduler optimizes this execution plan by determining which operations can be performed in parallel and orchestrating how the tasks should be executed.
 
-* **Task Scheduler**: After the DAG is scheduled, the Task Scheduler assigns tasks to worker nodes in the cluster. It interacts with the Cluster Manager to distribute tasks across the available resources.
+- **Task Scheduler**: After the DAG is scheduled, the Task Scheduler assigns tasks to worker nodes in the cluster. It interacts with the Cluster Manager to distribute tasks across the available resources.
 
 ### Cluster Managers and Storage Systems
 
@@ -99,15 +94,16 @@ Spark's ability to interact with these diverse storage systems allows users to w
 <p align="center">
   <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-architecture.png" alt="Spark Basic Architecture">
 </p>
-### 1\. The Spark Driver
+
+### 1\. Spark Driver
 
 The Spark driver(process) is like the “brain” of your Spark application. It’s responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
 
-### 2\. The Spark Executors
+### 2\. Spark Executors
 
 Executors(process)are the “workers” that actually do the processing. They take instructions from the driver, execute the tasks, and send back the results. Every Spark application gets its own set of executors, which run on different machines. They are responsible for completing the tasks, saving data, reporting results, and re-running any tasks that fail.
 
-### 3\. The Cluster Manager
+### 3\. Cluster Manager
 
 The cluster manager is like a “resource manager.” It manages the machines that make up your cluster and ensures that the Spark driver and executors have enough resources (like CPU and memory) to do their jobs. Spark can work with several types of cluster managers, such as YARN, Mesos, or Kubernetes, or it can use its built-in manager.
 
@@ -115,11 +111,11 @@ The cluster manager is like a “resource manager.” It manages the machines th
 
 Spark can run in different ways, depending on how you want to set it up:
 
-* **Cluster Mode**: In this mode, both the driver and executors run on the cluster. This is the most common way to run Spark in production.
+- **Cluster Mode**: In this mode, both the driver and executors run on the cluster. This is the most common way to run Spark in production.
 
-* **Client Mode**: The driver runs on your local machine (the client) from where the spark application is submitted, but the executors run on the cluster. This is often used when you're testing or developing.
+- **Client Mode**: The driver runs on your local machine (the client) from where the spark application is submitted, but the executors run on the cluster. This is often used when you're testing or developing.
 
-* **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
+- **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
 
 ## Spark’s Low-Level APIS
 
@@ -131,9 +127,9 @@ An RDD represents a distributed collection of immutable records that can be proc
 
 ### Key properties of RDDS
 
-* **Fault Tolerance:** RDDs maintain a lineage graph that tracks the transformations applied to the data. If a partition is lost due to a node failure, Spark can recompute that partition by reapplying the transformations from the original dataset.
+- **Fault Tolerance:** RDDs maintain a lineage graph that tracks the transformations applied to the data. If a partition is lost due to a node failure, Spark can recompute that partition by reapplying the transformations from the original dataset.
 
-* **In-Memory Computation:** RDDs are designed for in-memory computation, which allows Spark to process data much faster than traditional disk-based systems. By keeping data in memory, Spark minimizes disk I/O and reduces latency.
+- **In-Memory Computation:** RDDs are designed for in-memory computation, which allows Spark to process data much faster than traditional disk-based systems. By keeping data in memory, Spark minimizes disk I/O and reduces latency.
 
 ### Creating RDDs
 
@@ -152,7 +148,7 @@ spark = SparkSession.builder \
 df = spark.range(10)
 # Convert the DataFrame to an RDD
 rdd = df.rdd
-# Collect the RDD data 
+# Collect the RDD data
 rdd_data = rdd.collect()
 ```
 
@@ -200,6 +196,7 @@ Examples: `map` `filter`
 <p align="center">
   <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
 </p>
+
 ### Wide Transformations
 
 In a **wide transformation**, data from multiple parent RDD/DataFrame partitions must be shuffled (redistributed) to form new partitions. These operations involve **network communication**, making them more expensive.
@@ -209,6 +206,7 @@ Examples: `groupByKey` `reduceByKey` `join`
 <p align="center">
   <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/wide-transformation.png" alt="Spark Wide Transformation">
 </p>
+
 ## Actions
 
 They are operations that trigger the execution of transformations and return results to the driver program. Actions are the point where Spark evaluates the lazy transformations applied to an RDD, DataFrame, or Dataset.
@@ -219,11 +217,11 @@ When an action is invoked, Spark builds a **DAG (Directed Acyclic Graph)** of al
 
 Key Differences Between Transformations and Actions
 
-|  | **Transformations** | **Actions** |
-| --- | --- | --- |
-| **Execution** | Lazy (no immediate execution) | Eager (triggers computation) |
-| **Output** | New RDD/DataFrame | Result or persisted output |
-| **Examples** | `map`, `filter`, `groupBy` | `collect`, `count`, `take` |
-| **Purpose** | Defines the computation logic | Finalizes and executes the logic |
+|               | **Transformations**           | **Actions**                      |
+| ------------- | ----------------------------- | -------------------------------- |
+| **Execution** | Lazy (no immediate execution) | Eager (triggers computation)     |
+| **Output**    | New RDD/DataFrame             | Result or persisted output       |
+| **Examples**  | `map`, `filter`, `groupBy`    | `collect`, `count`, `take`       |
+| **Purpose**   | Defines the computation logic | Finalizes and executes the logic |
 
 Thanks for reading this blog! We’ve covered an overview of Spark’s components and architecture. In the next blog, we’ll explore its functionality in depth and understand how it handles large-scale data processing efficiently. Stay tuned!
