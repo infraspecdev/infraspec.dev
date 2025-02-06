@@ -67,7 +67,7 @@ Spark's ability to interact with these diverse storage systems allows users to w
 
 ### 1\. Spark Driver
 
-The Spark driver (process) is like the “brain” of your Spark application. It’s responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
+The Spark driver (process) is like the “brain” of your Spark application. It's responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
 
 ### 2\. Spark Executors
 
