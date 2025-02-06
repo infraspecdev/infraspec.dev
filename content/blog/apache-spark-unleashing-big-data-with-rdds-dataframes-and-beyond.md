@@ -88,6 +88,7 @@ Spark can run in different ways, depending on how you want to set it up:
 - **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
 
 ## Spark’s Low-Level APIs
+
 <h3 id="rdd"> RDDs (Resilient Distributed Datasets)</h3>
 
 They are the fundamental building block of Spark's older API, introduced in the Spark 1.x series. While RDDs are still available in Spark 2.x and beyond, they are no longer the default API due to the introduction of higher-level abstractions like DataFrames and Datasets. However, every operation in Spark ultimately gets compiled down to RDDs, making it important to understand their basics. The Spark UI also displays job execution details in terms of RDDs, so having a working knowledge of them is essential for debugging and optimization.
@@ -122,6 +123,7 @@ rdd_data = rdd.collect()
 ```
 
 ## Spark’s Structured APIs
+
 <div id="dataframe">
 <h3>DataFrame</h3>
 
@@ -187,11 +189,11 @@ When an action is invoked, Spark builds a **DAG (Directed Acyclic Graph)** of al
 
 Key Differences Between Transformations and Actions
 
-|               | **Transformations**     | **Actions**                |
-| ------------- | ----------------------- | -------------------------- |
-| **Execution** | Lazy (no immediate execution) | Eager (triggers computation) |
-| **Output**    | New RDD/DataFrame       | Result or persisted output |
-| **Examples**  | map, filter, groupBy    | collect, count, take       |
+|               | **Transformations**           | **Actions**                      |
+| ------------- | ----------------------------- | -------------------------------- |
+| **Execution** | Lazy (no immediate execution) | Eager (triggers computation)     |
+| **Output**    | New RDD/DataFrame             | Result or persisted output       |
+| **Examples**  | map, filter, groupBy          | collect, count, take             |
 | **Purpose**   | Defines the computation logic | Finalizes and executes the logic |
 
 ## Where to Run Spark ?
