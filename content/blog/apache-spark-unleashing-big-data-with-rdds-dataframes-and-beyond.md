@@ -9,45 +9,15 @@ weight: 1
 
 ## Introduction
 
-Apache Spark is a unified, multi-language (Python, Java, Scala, and R)computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
+Apache Spark is a unified, multi-language (Python, Java, Scala, and R) computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
 
 Let’s break down our description:
 
-`Unified`: It is designed to handle a wide range of data analytics tasks, from simple SQL queries to machine learning and streaming, all within a single engine using consistent APIs. This unified approach simplifies building complex applications and ensures high performance by optimizing different tasks.
+**Unified**: It is designed to handle a wide range of data analytics tasks, from simple SQL queries to machine learning and streaming, all within a single engine using consistent APIs. This unified approach simplifies building complex applications and ensures high performance by optimizing different tasks.
 
-`Computing Engine`: It focuses on computation rather than storage, allowing it to work with various storage systems like Hadoop, Amazon S3, and Apache Cassandra. This flexibility makes Spark suitable for diverse environments, including cloud and streaming applications.
+**Computing Engine**: It focuses on computation rather than storage, allowing it to work with various storage systems like Hadoop, Amazon S3, and Apache Cassandra. This flexibility makes Spark suitable for diverse environments, including cloud and streaming applications.
 
-`Libraries`: It provides a unified API for common data analysis tasks. It supports both standard libraries that ship with the engine as well as external libraries published as third-party packages by the open-source communities. The standard libraries include libraries for SQL (Spark SQL), machine learning (MLlib), stream processing (Structured Streaming), and graph analytics (GraphX).
-
-## Where to Run Spark ?
-
-### Run Spark Locally
-
-- Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
-
-- Visit [Spark's download page](http://spark.apache.org/downloads.html), choose "Pre-built for Hadoop 2.7 and later," and download the TAR file.
-
-- Extract the TAR file and navigate to the directory.
-
-- Launch consoles in the preferred language:
-
-    - Python: `./bin/pyspark`
-
-        - Scala: `./bin/spark-shell`
-
-        - SQL: `./bin/spark-sql`
-
-### Run Spark in the Cloud
-
-- No installation required; provides a web-based interactive notebook environment.
-
-- **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
-
-### Building Spark from Source
-
-- **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
-
-- **Instructions**: Follow the README file in the source package for building Spark.
+**Libraries**: It provides a unified API for common data analysis tasks. It supports both standard libraries that ship with the engine as well as external libraries published as third-party packages by the open-source communities. The standard libraries include libraries for SQL (Spark SQL), machine learning (MLlib), stream processing (Structured Streaming), and graph analytics (GraphX).
 
 ## Spark Components
 
@@ -59,7 +29,7 @@ Let’s break down our description:
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
 
-1. **SparkSQL**: SparkSQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the DataFrame API.
+1. **SparkSQL**: SparkSQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API](#dataframe).
 
 2. **MLlib**: It provides distributed algorithms for a variety of machine learning tasks such as classification, regression, clustering, recommendation systems, etc.
 
@@ -73,7 +43,7 @@ At the heart of all these specialized libraries is **Spark Core**. Spark Core is
 
 ### RDDs
 
-**RDDs (Resilient Distributed Datasets)** are the fundamental building blocks of Spark Core. They represent an immutable, distributed collection of objects that can be processed in parallel across a cluster. More about RDDs is discussed later.
+**RDDs (Resilient Distributed Datasets)** are the fundamental building blocks of Spark Core. They represent an immutable, distributed collection of objects that can be processed in parallel across a cluster. More about RDDs is discussed [here](#rdd).
 
 ### DAG Scheduler and Task Scheduler
 
@@ -118,8 +88,7 @@ Spark can run in different ways, depending on how you want to set it up:
 - **Local Mode**: Everything runs on a single machine. Spark uses multiple threads for parallel processing to simulate a cluster. This is useful for learning, testing, or development, but not for big production jobs.
 
 ## Spark’s Low-Level APIs
-
-### RDDs (Resilient Distributed Datasets)
+<h3 id="rdd"> RDDs (Resilient Distributed Datasets)</h3>
 
 They are the fundamental building block of Spark's older API, introduced in the Spark 1.x series. While RDDs are still available in Spark 2.x and beyond, they are no longer the default API due to the introduction of higher-level abstractions like DataFrames and Datasets. However, every operation in Spark ultimately gets compiled down to RDDs, making it important to understand their basics. The Spark UI also displays job execution details in terms of RDDs, so having a working knowledge of them is essential for debugging and optimization.
 
@@ -153,8 +122,8 @@ rdd_data = rdd.collect()
 ```
 
 ## Spark’s Structured APIs
-
-### DataFrame
+<div id="dataframe">
+<h3>DataFrame</h3>
 
 The Spark DataFrame is one of the most widely used APIs in Spark, offering a high-level abstraction for structured data processing.
 
@@ -167,9 +136,10 @@ Below is a comparison of distributed versus single-machine analysis.
 <p align="center">
   <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/spark-dataframe.png" alt="Spark DataFrame">
 </p>
+</div> 
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
 >
-## Partitions
+<h3>Partitions</h3>
 
 Spark breaks up data into chunks called partitions, allowing executors to work in parallel. A partition is a collection of rows that reside on a single machine in the cluster. By default, partitions are sized at 128 MB, though this can be adjusted. The number of partitions affects parallelism—fewer partitions can limit performance, even with many executors, and vice versa.
 
@@ -191,7 +161,7 @@ This code performs a transformation but produces no immediate output. That’s b
 
 In a **narrow transformation**, each partition of the parent RDD/DataFrame contributes to only one partition of the child RDD/DataFrame. Data does not move across partitions, so the operation is **local** to the same worker node. These are efficient because they avoid **shuffling** (data transfer between nodes).
 
-Examples: `map` `filter`
+Examples: `map` ,`filter`
 
 <p align="center">
   <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
@@ -201,7 +171,7 @@ Examples: `map` `filter`
 
 In a **wide transformation**, data from multiple parent RDD/DataFrame partitions must be shuffled (redistributed) to form new partitions. These operations involve **network communication**, making them more expensive.
 
-Examples: `groupByKey` `reduceByKey` `join`
+Examples: `groupByKey`, `reduceByKey`, `join`
 
 <p align="center">
   <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/wide-transformation.png" alt="Spark Wide Transformation">
@@ -211,17 +181,47 @@ Examples: `groupByKey` `reduceByKey` `join`
 
 They are operations that trigger the execution of transformations and return results to the driver program. Actions are the point where Spark evaluates the lazy transformations applied to an RDD, DataFrame, or Dataset.
 
-Examples: `collect` `count`
+Examples: `collect`, `count`
 
 When an action is invoked, Spark builds a **DAG (Directed Acyclic Graph)** of all preceding transformations and executes the optimized plan.
 
 Key Differences Between Transformations and Actions
 
-|               | **Transformations**           | **Actions**                      |
-| ------------- | ----------------------------- | -------------------------------- |
-| **Execution** | Lazy (no immediate execution) | Eager (triggers computation)     |
-| **Output**    | New RDD/DataFrame             | Result or persisted output       |
-| **Examples**  | `map`, `filter`, `groupBy`    | `collect`, `count`, `take`       |
+|               | **Transformations**     | **Actions**                |
+| ------------- | ----------------------- | -------------------------- |
+| **Execution** | Lazy (no immediate execution) | Eager (triggers computation) |
+| **Output**    | New RDD/DataFrame       | Result or persisted output |
+| **Examples**  | map, filter, groupBy    | collect, count, take       |
 | **Purpose**   | Defines the computation logic | Finalizes and executes the logic |
+
+## Where to Run Spark ?
+
+### Run Spark Locally
+
+- Install Java (required as Spark is written in Scala and runs on the JVM) and Python (if using the Python API).
+
+- Visit [Spark's download page](http://spark.apache.org/downloads.html), choose "Pre-built for Hadoop 2.7 and later," and download the TAR file.
+
+- Extract the TAR file and navigate to the directory.
+
+- Launch consoles in the preferred language:
+
+    - Python: `./bin/pyspark`
+
+        - Scala: `./bin/spark-shell`
+
+        - SQL: `./bin/spark-sql`
+
+### Run Spark in the Cloud
+
+- No installation required; provides a web-based interactive notebook environment.
+
+- **Option**: Use [Databricks Community Edition \[free\]](https://www.databricks.com/try-databricks#account)
+
+### Building Spark from Source
+
+- **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
+
+- **Instructions**: Follow the README file in the source package for building Spark.
 
 Thanks for reading this blog! We’ve covered an overview of Spark’s components and architecture. In the next blog, we’ll explore its functionality in depth and understand how it handles large-scale data processing efficiently. Stay tuned!
