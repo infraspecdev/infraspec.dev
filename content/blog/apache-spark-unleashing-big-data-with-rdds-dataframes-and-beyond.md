@@ -210,9 +210,9 @@ Key Differences Between Transformations and Actions
 
     - Python: `./bin/pyspark`
 
-        - Scala: `./bin/spark-shell`
+    - Scala: `./bin/spark-shell`
 
-        - SQL: `./bin/spark-sql`
+    - SQL: `./bin/spark-sql`
 
 ### Run Spark in the Cloud
 
