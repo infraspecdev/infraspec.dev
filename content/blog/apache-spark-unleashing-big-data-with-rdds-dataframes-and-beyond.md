@@ -7,17 +7,27 @@ featured: true
 weight: 1
 ---
 
+## My Journey with Spark
+
+Before I knew Spark, I mostly used only Pandas and NumPy for data processing. They worked well for small datasets, and I never really had any issues—until I had to process a really large dataset—millions of rows. The processing  slowed down, and eventually, I ran into an out of memory error. I tried splitting the data into chunks and tweaking my code, but nothing really worked well.
+
+On top of that, if my process failed due to a network issue, I had to start over. Running these jobs was expensive(long-running ec2 instances), and the time wasted on reruns was frustrating. That’s when I started looking for a better solution.
+
+That’s when I came across Apache Spark. It handles large datasets by distributing the work across multiple machines.
+
+When I ran my first Spark job, I was honestly amazed. It processed my data way faster than Pandas.  **The coolest part?** The driver-executor model. The driver assigns tasks, and the executors do the heavy lifting. If something goes wrong, Spark retries only the failed tasks instead of starting over. Plus, it works well with cluster managers like **YARN** and **Kubernetes**, making it easy to scale up.
+
 ## Introduction
 
 Apache Spark is a unified, multi-language (Python, Java, Scala, and R) computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
 
 Let’s break down our description:
 
-**Unified**: It is designed to handle a wide range of data analytics tasks, from simple SQL queries to machine learning and streaming, all within a single engine using consistent APIs. This unified approach simplifies building complex applications and ensures high performance by optimizing different tasks.
+**Unified**: It is designed to handle a wide range of data analytics tasks, from simple SQL queries to machine learning and streaming, all within a single engine using APIs.
 
-**Computing Engine**: It focuses on computation rather than storage, allowing it to work with various storage systems like Hadoop, Amazon S3, and Apache Cassandra. This flexibility makes Spark suitable for diverse environments, including cloud and streaming applications.
+**Computing Engine**: It focuses on computation rather than storage, allowing it to work with various storage systems like Hadoop, Amazon S3, and Apache Cassandra.
 
-**Libraries**: It provides a unified API for common data analysis tasks. It supports both standard libraries that ship with the engine as well as external libraries published as third-party packages by the open-source communities. The standard libraries include libraries for SQL (Spark SQL), machine learning (MLlib), stream processing (Structured Streaming), and graph analytics (GraphX).
+**Libraries**: Spark comes with built-in libraries for diverse use cases, including Spark SQL for database CRUD operations, Structured Streaming for real-time data processing in applications like fraud detection, MLlib for machine learning, and GraphX for graph analytics. It also supports third-party libraries from the open-source community.
 
 ## Spark Components
 
