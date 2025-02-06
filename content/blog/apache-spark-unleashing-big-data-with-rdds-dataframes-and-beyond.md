@@ -29,7 +29,7 @@ Let’s break down our description:
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
 
-1. **SparkSQL**: SparkSQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API](#dataframe).
+1. **Spark SQL**: Spark SQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API](#dataframe).
 
 2. **MLlib**: It provides distributed algorithms for a variety of machine learning tasks such as classification, regression, clustering, recommendation systems, etc.
 
@@ -55,7 +55,7 @@ At the heart of all these specialized libraries is **Spark Core**. Spark Core is
 
 Apache Spark can run on multiple cluster managers like, Standalone which is Spark’s built-in resource manager for small to medium-sized clusters, Hadoop YARN (Yet another resource navigator), Apache Mesos, Kubernetes for orchestrating Spark workloads in containerized environments.
 
-For data storage, Spark integrates with a variety of systems like HDFS (Hadoop Distributed File System), Amazon S3, Cassandra, HBase etc.
+For data storage, Spark integrates with a variety of systems like HDFS (Hadoop Distributed File System), Amazon S3, Cassandra, HBase, etc.
 
 Spark's ability to interact with these diverse storage systems allows users to work with data wherever it resides.
 
@@ -67,11 +67,11 @@ Spark's ability to interact with these diverse storage systems allows users to w
 
 ### 1\. Spark Driver
 
-The Spark driver(process) is like the “brain” of your Spark application. It’s responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
+The Spark driver (process) is like the “brain” of your Spark application. It’s responsible for controlling everything. The driver makes decisions about what tasks to run, keeps track of the application’s progress, and talks to the cluster manager to get the computing power needed. Essentially, it manages the entire process and checks on the tasks being handled by worker nodes (executors). So basically it manages the lifecycle of the spark application.
 
 ### 2\. Spark Executors
 
-Executors(process)are the “workers” that actually do the processing. They take instructions from the driver, execute the tasks, and send back the results. Every Spark application gets its own set of executors, which run on different machines. They are responsible for completing the tasks, saving data, reporting results, and re-running any tasks that fail.
+Executors (process)are the “workers” that actually do the processing. They take instructions from the driver, execute the tasks, and send back the results. Every Spark application gets its own set of executors, which run on different machines. They are responsible for completing the tasks, saving data, reporting results, and re-running any tasks that fail.
 
 ### 3\. Cluster Manager
 
