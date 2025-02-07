@@ -15,11 +15,11 @@ On top of that, if my process failed due to a network issue, I had to start over
 
 That’s when I came across Apache Spark. It handles large datasets by distributing the work across multiple machines.
 
-When I ran my first Spark job, I was honestly amazed. It processed my data way faster than Pandas.  **The coolest part?** The driver-executor model. The driver assigns tasks, and the executors do the heavy lifting. If something goes wrong, Spark retries only the failed tasks instead of starting over. Plus, it works well with cluster managers like **YARN** and **Kubernetes**, making it easy to scale up.
+When I ran my first Spark job, I was honestly amazed. It processed my data way faster than Pandas.  **The coolest part?** The driver-executor model. The driver assigns tasks, and the executors do the heavy lifting. If something goes wrong, Spark retries only the failed tasks instead of starting over, offering fault tolerance, and efficient distribution. Plus, it works well with cluster managers like **YARN** and **Kubernetes**, making it easy to scale up.
 
-## Introduction
+Now, let's take a closer look at what Spark is and its key components.
 
-Apache Spark is a unified, multi-language (Python, Java, Scala, and R) computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
+**Apache Spark** is a unified, multi-language (supports Python, Java, Scala, and R) computing engine for executing data engineering, data science, and machine learning on single-node machines or clusters and a set of libraries for parallel data processing.
 
 Let’s break down our description:
 
@@ -39,7 +39,7 @@ Let’s break down our description:
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
 
-1. **Spark SQL**: Spark SQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API](#dataframe).
+1. **Spark SQL**: Spark SQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API] (for now imagine dataframe is just a table of data, like what you see in Excel, more about dataframe is discussed [here](#dataframe)).
 
 2. **MLlib**: It provides distributed algorithms for a variety of machine learning tasks such as classification, regression, clustering, recommendation systems, etc.
 
@@ -115,22 +115,22 @@ An RDD represents a distributed collection of immutable records that can be proc
 
 Now that we discussed some key RDD properties, let’s begin applying them so that you can better understand how to use them.
 
-One of the easiest ways to get RDDs is from an existing DataFrame or Dataset. Converting these to an RDD is simple: just use the `rdd` method on any of these data types for example in Python, It only supports DataFrame and not Datasets, other languages like Scala, and Java support both DataFrame and Datasets.
-
 ```python
-from pyspark.sql import SparkSession
+from pyspark import SparkContext
 
-# Initialize SparkSession
-spark = SparkSession.builder
-  .appName("DataFrame to RDD Example")
-  .getOrCreate()
-# Create a DataFrame using a range of numbers
-df = spark.range(10)
-# Convert the DataFrame to an RDD
-rdd = df.rdd
-# Collect the RDD data
-rdd_data = rdd.collect()
+# Create a SparkContext
+sc = SparkContext("local", "RDD Example")
+
+# Create an RDD directly from a list
+numbers = [1, 2, 3, 4, 5]
+rdd = sc.parallelize(numbers)
+
+# Now we can perform operations on this RDD
+squared = rdd.map(lambda x: x * x)
+print(squared.collect())  # [1, 4, 9, 16, 25]
 ```
+
+Here think of RDDs like taking a list of numbers and splitting it up so different computers can work on different parts at the same time.
 
 ## Spark’s Structured APIs
 
@@ -151,9 +151,29 @@ Below is a comparison of distributed versus single-machine analysis.
 </div>
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
 >
-<h3>Partitions</h3>
 
-Spark breaks up data into chunks called partitions, allowing executors to work in parallel. A partition is a collection of rows that reside on a single machine in the cluster. By default, partitions are sized at 128 MB, though this can be adjusted. The number of partitions affects parallelism—fewer partitions can limit performance, even with many executors, and vice versa.
+from pyspark.sql import SparkSession
+
+### Creating a Dataframe
+
+```python
+# Initialize Spark session
+spark = SparkSession.builder.appName("DF_from_List").getOrCreate()
+
+data = [1, 2, 3, 4, 5]
+
+# Convert list to DataFrame
+df = spark.createDataFrame([(x,) for x in data], ["Numbers"])
+
+# Show DataFrame
+df.show()
+```
+
+When you have huge amounts of data, Spark splits it into smaller chunks (which we'll learn about as "partitions") so different computers can process different parts at the same time.
+
+## Partitions
+
+Spark breaks up data into chunks called partitions, allowing executors (workers) to work in parallel. A partition is a collection of rows that reside on a single machine in the cluster. By default, partitions are sized at 128 MB, though this can be adjusted. The number of partitions affects parallelism—fewer partitions can limit performance, even with many executors, and vice versa.
 
 ## Transformations
 
@@ -189,6 +209,8 @@ Examples: `groupByKey`, `reduceByKey`, `join`
   <img width="500px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/wide-transformation.png" alt="Spark Wide Transformation">
 </p>
 
+In Spark, transformations are lazy, meaning they don't execute immediately. Instead, they build a logical plan that outlines how data should be processed. However, to actually compute and retrieve results, we need actions.
+
 ## Actions
 
 They are operations that trigger the execution of transformations and return results to the driver program. Actions are the point where Spark evaluates the lazy transformations applied to an RDD, DataFrame, or Dataset.
@@ -206,7 +228,7 @@ Key Differences Between Transformations and Actions
 | **Examples**  | map, filter, groupBy          | collect, count, take             |
 | **Purpose**   | Defines the computation logic | Finalizes and executes the logic |
 
-## Where to Run Spark ?
+Now that we've covered some key Spark concepts, Let’s explore the different ways to install and execute Spark.
 
 ### Run Spark Locally
 
@@ -235,5 +257,9 @@ Key Differences Between Transformations and Actions
 - **Source**: Download the source code from the [Apache Spark download page](http://spark.apache.org/downloads.html).
 
 - **Instructions**: Follow the README file in the source package for building Spark.
+
+## Conclusion
+
+Apache Spark has revolutionized the way we handle large-scale data processing, providing speed, fault tolerance, and scalability. From my initial struggles with Pandas and NumPy to embracing Spark’s powerful distributed computing capabilities, the journey has been eye-opening. Whether you're dealing with batch processing, real-time streaming, or machine learning workloads, Spark offers the flexibility and efficiency required to tackle complex data challenges.
 
 Thanks for reading this blog! We’ve covered an overview of Spark’s components and architecture. In the next blog, we’ll explore its functionality in depth and understand how it handles large-scale data processing efficiently. Stay tuned!
