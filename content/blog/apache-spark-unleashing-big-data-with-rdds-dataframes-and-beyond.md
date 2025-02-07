@@ -81,7 +81,7 @@ The Spark driver (process) is like the “brain” of your Spark application. It
 
 ### 2\. Spark Executors
 
-Executors (process)are the “workers” that actually do the processing. They take instructions from the driver, execute the tasks, and send back the results. Every Spark application gets its own set of executors, which run on different machines. They are responsible for completing the tasks, saving data, reporting results, and re-running any tasks that fail.
+Executors (process) are the “workers” that actually do the processing. They take instructions from the driver, execute the tasks, and send back the results. Every Spark application gets its own set of executors, which run on different machines. They are responsible for completing the tasks, saving data, reporting results, and re-running any tasks that fail.
 
 ### 3\. Cluster Manager
 
@@ -105,7 +105,7 @@ They are the fundamental building block of Spark's older API, introduced in the 
 
 An RDD represents a distributed collection of immutable records that can be processed in parallel across a cluster. Unlike DataFrames(High-Level API), where records are structured and organized into rows with known schemas, RDDs are more flexible. They allow developers to store and manipulate data in any format—whether Java, Scala, or Python objects. This flexibility gives you a lot of control but requires more manual effort compared to using higher-level APIs like DataFrames.
 
-### Key properties of RDDS
+### Key properties of RDDs
 
 - **Fault Tolerance:** RDDs maintain a lineage graph that tracks the transformations applied to the data. If a partition is lost due to a node failure, Spark can recompute that partition by reapplying the transformations from the original dataset.
 
@@ -152,11 +152,11 @@ Below is a comparison of distributed versus single-machine analysis.
 > Note: Spark also provides the Dataset API, which combines the benefits of RDDs and DataFrames by offering both compile-time type safety and query optimization. However, the Dataset API is only supported in Scala and Java, not in Python.
 >
 
-from pyspark.sql import SparkSession
-
 ### Creating a Dataframe
 
 ```python
+from pyspark.sql import SparkSession
+
 # Initialize Spark session
 spark = SparkSession.builder.appName("DF_from_List").getOrCreate()
 
