@@ -39,7 +39,7 @@ Let’s break down our description:
 
 At a high level, Spark provides several libraries that extend its functionality and are used in specialized data processing tasks.
 
-1. **Spark SQL**: Spark SQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the [DataFrame API] (for now imagine dataframe is just a table of data, like what you see in Excel, more about dataframe is discussed [here](#dataframe)).
+1. **Spark SQL**: Spark SQL allows users to run SQL queries on large datasets using Spark’s distributed infrastructure. Whether interacting with structured or semi-structured data, SparkSQL makes querying data easy, using either SQL syntax or the DataFrame API (for now imagine dataframe is just a table of data, like what you see in Excel, more about dataframe is discussed [here](#dataframe)).
 
 2. **MLlib**: It provides distributed algorithms for a variety of machine learning tasks such as classification, regression, clustering, recommendation systems, etc.
 
