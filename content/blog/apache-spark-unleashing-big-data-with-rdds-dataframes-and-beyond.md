@@ -11,7 +11,7 @@ weight: 1
 
 Before I knew Spark, I mostly used only Pandas and NumPy for data processing. They worked well for small datasets, and I never really had any issues—until I had to process a really large dataset—millions of rows. The processing  slowed down, and eventually, I ran into an out of memory error. I tried splitting the data into chunks and tweaking my code, but nothing really worked well.
 
-On top of that, if my process failed due to a network issue, I had to start over. Running these jobs was expensive(long-running ec2 instances), and the time wasted on reruns was frustrating. That’s when I started looking for a better solution.
+On top of that, if my process failed due to a network issue, I had to start over. Running these jobs was expensive(long-running EC2 instances), and the time wasted on reruns was frustrating. That’s when I started looking for a better solution.
 
 That’s when I came across Apache Spark. It handles large datasets by distributing the work across multiple machines.
 
@@ -103,7 +103,7 @@ Spark can run in different ways, depending on how you want to set it up:
 
 They are the fundamental building block of Spark's older API, introduced in the Spark 1.x series. While RDDs are still available in Spark 2.x and beyond, they are no longer the default API due to the introduction of higher-level abstractions like DataFrames and Datasets. However, every operation in Spark ultimately gets compiled down to RDDs, making it important to understand their basics. The Spark UI also displays job execution details in terms of RDDs, so having a working knowledge of them is essential for debugging and optimization.
 
-An RDD represents a distributed collection of immutable records that can be processed in parallel across a cluster. Unlike DataFrames(High-Level API), where records are structured and organized into rows with known schemas, RDDs are more flexible. They allow developers to store and manipulate data in any format—whether Java, Scala, or Python objects. This flexibility gives you a lot of control but requires more manual effort compared to using higher-level APIs like DataFrames.
+An RDD represents a distributed collection of immutable records that can be processed in parallel across a cluster. Unlike DataFrames (High-Level API), where records are structured and organized into rows with known schemas, RDDs are more flexible. They allow developers to store and manipulate data in any format—whether Java, Scala, or Python objects. This flexibility gives you a lot of control but requires more manual effort compared to using higher-level APIs like DataFrames.
 
 ### Key properties of RDDs
 
