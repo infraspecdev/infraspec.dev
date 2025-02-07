@@ -187,13 +187,13 @@ For example, to filter out even numbers from a dataframe, you would use:
 divBy2 = myRange.where("number % 2 = 0") # myRange is a dataframe
 ```
 
-This code performs a transformation but produces no immediate output. That’s because they are **lazy**, meaning they do not execute immediately; instead, Spark builds a Directed Acyclic Graph (DAG) of transformations that will be executed only when an **action** is triggered. Transformations are the heart of Spark’s business logic and can be of two types: narrow and wide.
+This code performs a transformation but produces no immediate output. That’s because they are **lazy**, meaning they do not execute immediately; instead, Spark builds a Directed Acyclic Graph (DAG) of transformations that will be executed only when an **action** is triggered. Transformations are the heart of Spark’s business logic and can be of two types: **narrow and wide**.
 
 ### Narrow Transformations
 
 In a **narrow transformation**, each partition of the parent RDD/DataFrame contributes to only one partition of the child RDD/DataFrame. Data does not move across partitions, so the operation is **local** to the same worker node. These are efficient because they avoid **shuffling** (data transfer between nodes).
 
-Examples: `map` ,`filter`
+Examples: `map`, `filter`
 
 <p align="center">
   <img width="400px" src="/images/blog/apache-spark-unleashing-big-data-with-rdds-dataframes-and-beyond/narrow-transformation.png" alt="Spark Narrow Transformation">
