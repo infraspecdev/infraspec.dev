@@ -1,0 +1,10 @@
+[[redirects]]
+from = "https://mta-sts.infraspec.dev/.well-known/mta-sts.txt"
+to = "https://infraspec.dev/.well-known/mta-sts.txt"
+status = 200
+
+[[redirects]]
+from = "https://mta-sts.infraspec.dev/*"
+to = "https://mta-sts.infraspec.dev/.well-known/mta-sts.txt"
+status = 302
+force = true
