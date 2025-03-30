@@ -6,13 +6,13 @@
   },
   {
     "title": "Infrastructure Platform Engineering",
-    "description": "Build incremental internal platforms that align your product teams",
+    "description": "Build incremental internal platforms that align with your product teams",
     "image": "images/features/infrastructure-platform.svg"
   },
   {
-    "title": "Backend Engineering",
-    "description": "Build scalable and distributed backend systems.",
-    "image": "images/features/backend-engineering.svg"
+    "title": "Product Engineering",
+    "description": "Build scalable, reliable and extensible products",
+    "image": "images/features/product-engineering.svg"
   },
   {
     "title": "SRE Enablement",
@@ -21,7 +21,7 @@
   },
   {
     "title": "Modernize with Re-architecture",
-    "description": "Re-architect your existing products to be more extensible and maintainable.",
+    "description": "Re-architect your existing products to be more extensible and maintainable.                        ",
     "image": "images/features/rearchitecture.svg"
   },
   {

@@ -49,8 +49,8 @@ enableRobotsTXT = false
     meta_twitter_site = "@infraspec_dev"
     meta_twitter_creator = "@infraspec_dev"
     meta_og_image = ""
-    meta_description = "Infraspec is an engineering consulting company that provides expertise in distributed systems, infrastructure automation, SRE, platform engineering, and DevOps."
-    meta_keywords = "Cloud native infrastructure, SRE consulting, Kubernetes consulting, Microservices, DevOps, Infrastructure as code, Cloud migration, Technology consulting in Bengaluru, infraspec, infraspec dev, Infraspec Bengaluru, Infraspec Consulting Company"
+    meta_description = "Infraspec is an engineering consulting company that provides expertise in AI product engineering, Platform Engineering, Product Engineering, SRE Enablement and DevOps."
+    meta_keywords = "Cloud native infrastructure, SRE consulting, Kubernetes consulting, AI Engineering, Platform Engineering, Product Engineering, SRE Enablement, DevOps, Infrastructure as code, Cloud migration, Technology consulting in Bengaluru, infraspec, infraspec dev, Infraspec Bengaluru, Infraspec Consulting Company"
 
   [params.services]
     summary_truncate = 120 # How many characters to include in the summary of the service descriptions before truncating
