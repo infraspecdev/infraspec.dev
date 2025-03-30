@@ -8,13 +8,14 @@
 
 To run this website locally, you will need to have the following software installed on your computer:
 
-- [Hugo](https://gohugo.io/getting-started/installing/)
+- If you're using MacOS and [Homebrew](https://brew.sh/), you can install Hugo using the following command:
 
-If you're using MacOS and [Homebrew](https://brew.sh/), you can install Hugo using the following command:
+    ```bash
+    brew install hugo
+    ```
 
-```bash
-brew install hugo
-```
+- If you're using a different operating system, you can find the installation instructions on the [Hugo website](https://gohugo.io/getting-started/installing/).
+- The minimum version of Hugo required is available in [config.toml](config.toml) under `[module.hugoVersion]` key.
 
 ### Running the website locally
 
