@@ -19,6 +19,10 @@
   </div>
 </div>
 
+<div class="strip">
+  {{ partial "blog-carousel.html" . }}
+</div>
+
 {{ $services := where (where .Site.RegularPages "Type" "services") ".Params.featured" true }}
 {{if gt (len $services) 0}}
 <div class="strip">
