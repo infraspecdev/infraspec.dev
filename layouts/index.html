@@ -20,7 +20,16 @@
 </div>
 
 <div class="strip">
-  {{ partial "blog-carousel.html" . }}
+  <div class="container-fluid py-5 m-0">
+    <div class="row g-0">
+      <div class="col-12 col-md-2 p-0 d-flex align-items-center justify-content-center">
+        <h2 class="text-center">Our Latest <br> Posts</h2>
+      </div>
+      <div class="col-12 col-md-10 p-0">
+        {{ partial "blog-carousel.html" . }}
+      </div>
+    </div>
+  </div>
 </div>
 
 {{ $services := where (where .Site.RegularPages "Type" "services") ".Params.featured" true }}
