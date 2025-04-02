@@ -19,19 +19,6 @@
   </div>
 </div>
 
-<div class="strip">
-  <div class="container-fluid py-5 m-0">
-    <div class="row g-0">
-      <div class="col-12 col-md-2 p-0 d-flex align-items-center justify-content-center">
-        <h2 class="text-center">Our Latest <br> Posts</h2>
-      </div>
-      <div class="col-12 col-md-10 p-0">
-        {{ partial "blog-carousel.html" . }}
-      </div>
-    </div>
-  </div>
-</div>
-
 {{ $services := where (where .Site.RegularPages "Type" "services") ".Params.featured" true }}
 {{if gt (len $services) 0}}
 <div class="strip">
@@ -100,6 +87,20 @@
   </div>
 </div>
 
+<div class="strip">
+  <div class="container-fluid py-5 m-0">
+    <div class="row g-0">
+      <div class="col-12 col-md-2 rounded-left roun p-0 d-flex align-items-center justify-content-center blog-carousel-title">
+        <h2 class="text-center">Our Latest <br> Posts</h2>
+      </div>
+      <div class="col-12 col-md-10 rounded-right p-0">
+        <div>
+          {{ partial "blog-carousel.html" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{ end }}
 
