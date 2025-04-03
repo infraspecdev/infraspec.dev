@@ -1,0 +1,48 @@
+/* General styles for the sticky note */
+.sticky-note {
+    width: 100%;
+    height: 100%;
+    background-color: $white-offset;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    font-family: 'Caveat', cursive;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header of the sticky note */
+.sticky-header {
+    background-color: #f6b60b;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.sticky-title {
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+}
+
+/* Content area of the sticky note */
+.sticky-content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* Make the sticky note text look more like handwriting */
+.sticky-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+}
+
+/* Optional hover effect */
+.sticky-note:hover {
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}

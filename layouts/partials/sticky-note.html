@@ -1,0 +1,10 @@
+<div class="sticky-note">
+  <div class="sticky-content">
+    {{ .description | safeHTML }}
+    <div class="text-center">
+      <br> - {{ .author }}
+      <br>{{ .designation }} 
+      <br> {{ .company}}
+    </div>
+  </div>
+</div>
