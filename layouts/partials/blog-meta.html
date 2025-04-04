@@ -1,0 +1,16 @@
+{{ if .Params.AuthorId }}
+  {{ $authorId := .Params.AuthorId }}
+  {{ $authorDetails := (index .Site.Data.team $authorId) }}
+  {{ $author := $authorDetails.name }}
+  {{ $image := $authorDetails.image }}
+
+<div class="d-flex flex-row mb-2 align-items-center">
+  <div class="mr-2">
+    <img class="rounded-circle" width="48" height="48" alt="{{ .Params.Author }}" src="{{ $image | relURL }}" />
+  </div>
+  <div>
+    <div>{{ $author }}</div>
+    <div>{{ time.Format "Jan 2, 2006" .Params.Date }}</div>
+  </div>
+</div>
+{{ end }}

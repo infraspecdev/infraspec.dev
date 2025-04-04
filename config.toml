@@ -64,7 +64,7 @@ enableRobotsTXT = false
 [menu]
   # Main Menu
   [[menu.main]]
-    name = "Blog"
+    name = "Blog Posts"
     url = "/blog/"
     weight = 1
     paginate = 6

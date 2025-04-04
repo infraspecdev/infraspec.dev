@@ -1,0 +1,35 @@
+<div id="blog-carousel" class="carousel slide carousel-container" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {{ $posts := where .Site.Pages "Section" "blog" }}
+    {{ range $index, $page := $posts }}
+    {{ if .Params.authorId }}
+    <div class="carousel-item {{ if eq $index 0 }}active{{ end }}">
+      <div class="card">
+        <div class="card-body card-body-shadow">
+        <div class="d-flex justify-content-center">
+          <div class="carousel-content text-center">
+            <p class="carousel-description">{{ .Render "summary" }}</p>
+            <div class="d-flex justify-content-end">
+              {{ partial "blog-meta.html" . }}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <!-- Previous button -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#blog-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <!-- Next button -->
+  <button class="carousel-control-next" type="button" data-bs-target="#blog-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
