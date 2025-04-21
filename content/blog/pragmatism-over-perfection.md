@@ -28,6 +28,7 @@ So I got to work exploring image tagging tools.
 ## Exploring the Right Tools for the Job
 
 We had a couple of requirements for this process:
+
 1. **Security and Access Control:** The signature images were PII, so we needed secure login, proper access control, and audit logs.
 
 2. **Speed over Longevity:** This was going to be mostly a one time activity, and there was some pressure to get this done as soon as possible.
@@ -35,6 +36,7 @@ We had a couple of requirements for this process:
 I quickly found a couple of open-source tagging tools available and started evaluating each one so that I could present viable options to the stakeholders. For each, I looked into pros, cons and how to get them up and running securely and so that only the Ops team could access them.
 
 However there were some constraints:
+
 1. **Missing Security Features:** Most open-source tools lacked the security and access controls we needed, at least in their free versions. And buying licenses didn’t make sense for a one-off task, this meant that I would need to somehow implement security and access control.
 
 2. **Time pressure:** The images were ready to be tagged. The stakeholders were waiting. And the Ops team was blocked on me to provide them with an interface. Setting up the infrastructure, securing it, and onboarding users would take time we did not have.
@@ -67,7 +69,7 @@ It was in no way the "right" tool for the job, but it worked, and that made it t
 And now it was time to implement this pragmatic solution.
 
 > What is databricks?
-> 
+>
 > Databricks is an all in one platform for analysts and engineers to manipulate process and use data, read more [here](https://www.databricks.com/data-intelligence?scid=7018Y000001f8FIQAY&utm_medium=paid+search&utm_source=google&utm_campaign=20782149301&utm_adgroup=152953302702&utm_content=microsite&utm_offer=data-intelligence&utm_ad=724408738477&utm_term=what%20is%20databricks&gad_source=1&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGwAa41AMcCUzaTbsL60svmAaD4LReAsmqlwm_SMoJYbKgzcDWwEoGAaAi4wEALw_wcB).
 
 ## Getting it up and Running
@@ -76,6 +78,7 @@ I onboarded the Ops team onto Databricks and assigned them the right roles, whic
 
 Then, I created a simple notebook for them.
 Here is what the notebook did:
+
 1. Fetched an image path at random from the table we had where the manual tag field was Null.
 2. Displayed the image to the user.
 3. Asked the user for input.
