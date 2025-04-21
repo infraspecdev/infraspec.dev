@@ -70,7 +70,7 @@ And now it was time to implement this pragmatic solution.
 
 > What is databricks?
 >
-> Databricks is an all in one platform for analysts and engineers to manipulate process and use data, read more [here](https://www.databricks.com/data-intelligence?scid=7018Y000001f8FIQAY&utm_medium=paid+search&utm_source=google&utm_campaign=20782149301&utm_adgroup=152953302702&utm_content=microsite&utm_offer=data-intelligence&utm_ad=724408738477&utm_term=what%20is%20databricks&gad_source=1&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGwAa41AMcCUzaTbsL60svmAaD4LReAsmqlwm_SMoJYbKgzcDWwEoGAaAi4wEALw_wcB).
+> Databricks is an all in one platform for analysts, and engineers to manipulate, process and use data, read more [here](https://www.databricks.com/data-intelligence?scid=7018Y000001f8FIQAY&utm_medium=paid+search&utm_source=google&utm_campaign=20782149301&utm_adgroup=152953302702&utm_content=microsite&utm_offer=data-intelligence&utm_ad=724408738477&utm_term=what%20is%20databricks&gad_source=1&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGwAa41AMcCUzaTbsL60svmAaD4LReAsmqlwm_SMoJYbKgzcDWwEoGAaAi4wEALw_wcB).
 
 ## Getting it up and Running
 
@@ -107,7 +107,7 @@ P.S. The CNN model won.
 
 ## The Takeaway
 
-The right tools for the job are great, and I now know which ones to use for tagging images, videos, audio, etc and what their limitations are. This is valuable knowledge to have, for the future, when a similar problem statement comes along.
+The right tools for the job are great, and I now know which ones to use for tagging images, videos, audio, etc., and what their limitations are. This is valuable knowledge to have, for the future, when a similar problem statement comes along.
 
 But what matters more is **driving business value**.
 My solution was pragmatic, and it let us do exactly that, within the constraints we had.
