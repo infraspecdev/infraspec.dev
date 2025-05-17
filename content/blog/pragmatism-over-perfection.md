@@ -43,8 +43,7 @@ These constraints made the "right" tools impractical for our needs.
 
 This is when the shift happened. I stepped back and looked at what we already had, and an idea struck.
 
-We were already using Databricks internally. What if it could be turned into a tagging tool?
-
+We were already using Databricks internally to ingest product data and run analytics and modeling jobs. What if it could be turned into a tagging tool?
 I pitched the idea to my manager. It was hacky, no doubt, but it was great.
 It ticked all our boxes:
 
