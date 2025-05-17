@@ -15,8 +15,8 @@ This is a story about me getting that lesson reinforced with a simple task I was
 
 ## The Problem
 
-I had worked with the ML team to develop two models for tagging KYC signature images as **valid** or **invalid** — one based on a CNN, the other on a Decision Tree.
-Once trained, we ran both models on a dataset of around **1.2 lakh images**. They disagreed on about **17%** of them — and the only way to figure out which model was better was to manually tag those images and compare.
+We had developed two models to classify KYC signature images as **valid** or **invalid** — one based on a CNN, the other on a Decision Tree.
+Once trained, I inferenced both the models on a dataset of around **1.2 lakh images**, they disagreed on about **17%** of them — and the only way to figure out which model was better was to manually tag those conflicting images.
 The ops team was ready to help. All we needed now was a simple interface for them to actually do the tagging.
 
 So I got to work exploring image tagging tools.
