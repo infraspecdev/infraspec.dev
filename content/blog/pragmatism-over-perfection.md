@@ -8,9 +8,7 @@ weight: 1
 ---
 
 We as Engineers often chase perfection.
-
 It fuels our curiosity, sharpens our skills, and makes us feel good about the things we build. But at the same time, it can be a double-edged sword, sometimes slowing us down or distracting us from what actually matters: **delivering business value**.
-
 That’s where pragmatism comes in.
 
 This is a story about me getting that lesson reinforced with a simple task I was working on: KYC Image Tagging.
@@ -18,9 +16,7 @@ This is a story about me getting that lesson reinforced with a simple task I was
 ## The Problem
 
 I had worked with the ML team to develop two models for tagging KYC signature images as **valid** or **invalid** — one based on a CNN, the other on a Decision Tree.
-
 Once trained, we ran both models on a dataset of around **1.2 lakh images**. They disagreed on about **17%** of them — and the only way to figure out which model was better was to manually tag those images and compare.
-
 The ops team was ready to help. All we needed now was a simple interface for them to actually do the tagging.
 
 So I got to work exploring image tagging tools.
@@ -64,19 +60,18 @@ It ticked all our boxes:
 
 My manager signed off, and we presented the options to the stakeholders. They were happy that we could use an existing system to get the job done.
 So, we used Databricks as a tagging tool.
-
 It was in no way the "right" tool for the job, but it worked, and that made it the best one.
 And now it was time to implement this pragmatic solution.
 
-> What is databricks?
+> What is Databricks?
 >
-> Databricks is an all in one platform for analysts, and engineers to manipulate, process and use data, read more [here](https://www.databricks.com/data-intelligence?scid=7018Y000001f8FIQAY&utm_medium=paid+search&utm_source=google&utm_campaign=20782149301&utm_adgroup=152953302702&utm_content=microsite&utm_offer=data-intelligence&utm_ad=724408738477&utm_term=what%20is%20databricks&gad_source=1&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGwAa41AMcCUzaTbsL60svmAaD4LReAsmqlwm_SMoJYbKgzcDWwEoGAaAi4wEALw_wcB).
+> Databricks is an-all-in one platform for analysts, and engineers to manipulate, process and use data, read more [here](https://www.databricks.com/data-intelligence?scid=7018Y000001f8FIQAY&utm_medium=paid+search&utm_source=google&utm_campaign=20782149301&utm_adgroup=152953302702&utm_content=microsite&utm_offer=data-intelligence&utm_ad=724408738477&utm_term=what%20is%20databricks&gad_source=1&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGwAa41AMcCUzaTbsL60svmAaD4LReAsmqlwm_SMoJYbKgzcDWwEoGAaAi4wEALw_wcB).
 
 ## Getting it up and Running
 
 I onboarded the Ops team onto Databricks and assigned them the right roles, which was quick and easy since I already had admin access.
-
 Then, I created a simple notebook for them.
+
 Here is what the notebook did:
 
 1. Fetched an image path at random from the table we had where the manual tag field was Null.
@@ -94,13 +89,10 @@ And after a short walkthrough, the Ops team was off tagging the images.
 ## The Outcome
 
 Using existing tools enabled us to get started quickly.
-
 It did introduce a few extra steps for the ops team, like running the notebook cells repeatedly, as compared to the right tools. However, the overhead was minimal, within acceptable limits, and the Ops team found the process simple.
 
 The tagging was completed within **3 weeks**, which gave us the clarity we needed on the model performances.
-
 If I had used the “right” tools, the setup alone would have taken about a week.
-
 In the end, this approach saved us **time, effort, complexity and additional costs** while keeping the stakeholders happy.
 
 P.S. The CNN model won.
