@@ -109,4 +109,4 @@ This doesn’t mean we shouldn’t explore new or better tools; we absolutely sh
 But when solving a problem under real-world constraints, you have to ask:
 **What kind of solution does this situation really need?**
 
-More often than not, **simple is better**.
+More often than not, **the best solution isn’t perfect — it’s pragmatic**.
