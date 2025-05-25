@@ -69,14 +69,15 @@ And now it was time to implement this pragmatic solution.
 ## Getting it up and Running
 
 I onboarded the Ops team onto Databricks and assigned them the right roles, which was quick and easy since I already had admin access.
-Then, I created a simple notebook for them.
+Then, I created a table containing the list of disagreed images along with some additional metadata.
+Finally, I created a simple notebook for them.
 
 Here is what the notebook did:
 
-1. Fetched an image path at random from the table we had where the manual tag field was Null.
+1. Fetched an image path at random from the table where the `manual_tag` field was `Null`.
 2. Displayed the image to the user.
 3. Asked the user for input.
-4. Updated the manual tag field in the table for the image, with the user input, tagging it valid or invalid.
+4. Updated the `manual_tag` field in the table for the image, with the user input, tagging it valid or invalid.
 
 Here are some screenshots of the notebook, it contains some more information:
 <img src="/images/blog/pragmatism-over-perfection/Image_tagging_1.png" alt="Databricks Notebook Image 1" />
