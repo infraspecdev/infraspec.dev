@@ -11,7 +11,7 @@ We as Engineers often chase perfection.
 It fuels our curiosity, sharpens our skills, and makes us feel good about the things we build. But at the same time, it can be a double-edged sword, sometimes slowing us down or distracting us from what actually matters: **delivering business value**.
 That’s where pragmatism comes in.
 
-This is a story about me getting that lesson reinforced with a simple task I was working on: KYC Image Tagging.
+This is a story about that lesson being reinforced for me while working on a simple task: KYC Image Tagging.
 
 ## The Problem
 
