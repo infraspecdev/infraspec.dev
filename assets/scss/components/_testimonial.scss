@@ -1,6 +1,5 @@
-/* General styles for the sticky note */
 .sticky-note {
-    max-width: 600px; // Adjust as needed
+    max-width: 600px;
     margin: 0 auto;
     height: 100%;
     background-color: $white-offset;
@@ -28,7 +27,6 @@
     color: $black;
 }
 
-/* Header of the sticky note */
 .sticky-header {
     background-color: #f6b60b;
     padding: 5px;
@@ -41,16 +39,8 @@
     font-size: 16px;
 }
 
-/* Content area of the sticky note */
 .sticky-content {
     flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
-}
-
-/* Optional hover effect */
-.sticky-note:hover {
-    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
-    transform: scale(1.05);
-    transition: all 0.5s ease;
 }
