@@ -70,9 +70,9 @@
 
 <div class="strip">
   <div class="container pt-6 pb-6 pt-md-10 pb-md-10">
-    <div class="row">
+    <div class="row justify-content-center align-items-stretch">
       {{ range .Site.Data.testimonial }}
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-5 d-flex">
         {{ partial "testimonial.html" . }}
       </div>
       {{ end }}
