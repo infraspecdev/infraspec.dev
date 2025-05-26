@@ -6,8 +6,10 @@
       <br> {{ .author }} - {{ .designation }} at {{ .company}}
       <br>
       <br> <div class="feature-image">
-              <img width="100" alt="{{ .company }} logo"
+              <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+                <img width="100" alt="{{ .company }} logo" 
                 src="{{ .image | relURL }}" />
+              </a>
            </div>
     </div>
   </div>
