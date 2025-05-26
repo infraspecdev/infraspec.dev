@@ -4,6 +4,11 @@
     <hr>
     <div class="sticky-author">
       <br> {{ .author }} - {{ .designation }} at {{ .company}}
+      <br>
+      <br> <div class="feature-image">
+              <img width="100" alt="{{ .company }} logo"
+                src="{{ .image | relURL }}" />
+           </div>
     </div>
   </div>
 </div>
