@@ -1,6 +1,8 @@
 <div class="sticky-note">
   <div class="sticky-content">
-    <div class="sticky-description"> {{ .description | safeHTML }} </div>
+    <div class="sticky-description"> 
+      {{ .description | safeHTML }} 
+    </div>
     <hr>
     <div class="sticky-author">
       <br> {{ .author }} - {{ .designation }} at {{ .company}}
