@@ -36,10 +36,9 @@
     pointer-events: none;
 }
 
-.sticky-description::after {
-  content: "”";
+.sticky-quote-end {
   position: absolute;
-  bottom: 1rem;
+  bottom: -2rem;
   right: 1rem;
   font-size: 4rem;
   font-family: Georgia, serif;
