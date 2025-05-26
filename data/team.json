@@ -62,5 +62,9 @@
   "sanjay": {
     "name": "Sanjay Singh",
     "image": "images/team/sanjay-profile.png"
+  },
+  "aleric": {
+    "name": "Aleric Cusher",
+    "image": "images/team/aleric-profile.png"
   }
 }
