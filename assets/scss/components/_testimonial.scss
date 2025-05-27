@@ -12,7 +12,7 @@
 
 .sticky-description {
     font-style: italic;
-    height: 520 px;
+    height: 560 px;
     flex-shrink: 0;
     flex-grow: 0;
     display: flex;
@@ -29,9 +29,7 @@
     left: 1rem;
     font-size: 4rem;
     line-height: 1;
-    /* soft gray - feel free to change */
     font-family: Georgia, serif;
-    /* looks elegant */
     opacity: 0.4;
     pointer-events: none;
 }
