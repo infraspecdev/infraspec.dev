@@ -9,6 +9,5 @@ promoted: false
 name: 'Swarathmica'
 ---
 
-Swarathmica is passionate about technology and art, finding joy in building efficient, elegant solutions that blend creativity with logic. 
-
+Swarathmica is passionate about technology and art, finding joy in building efficient, elegant solutions that blend creativity with logic.
 A skilled charcoal portrait artist and an enthusiast of Sanskrit, she brings together innovation and tradition in everything she pursues.
