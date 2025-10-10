@@ -4,7 +4,7 @@ date: 2025-10-06
 draft: false
 image: 'images/team/vibha-profile.png'
 jobtitle: 'Talent acquisition'
-weight: 1
+weight: 14
 promoted: false
 name: 'vibha'
 ---
