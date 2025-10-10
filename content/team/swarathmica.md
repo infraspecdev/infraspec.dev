@@ -4,7 +4,7 @@ date: 2025-06-23
 draft: false
 image: 'images/team/swarathmica-profile.png'
 jobtitle: 'Platform Engineer'
-weight: 1
+weight: 13
 promoted: false
 name: 'Swarathmica'
 ---
