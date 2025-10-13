@@ -1,0 +1,260 @@
+// Critical CSS - Only above-the-fold content
+// This gets inlined in <head> for instant rendering
+
+// Variables
+$primary: #002644;
+$black: #2f2f41;
+$white: #ffffff;
+$white-offset: #f6f7ff;
+$grey: #5C5A5A;
+$font-family-base: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+$font-family-heading: 'Outfit', serif, -apple-system;
+
+// Reset essentials
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $black;
+  text-align: left;
+  background-color: $white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+// Container
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+// Wrapper
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Header
+.header {
+  color: $primary;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $white-offset;
+  padding: 10px 0px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.header-absolute {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+  }
+}
+
+// Logo
+.logo {
+  display: none;
+
+  a {
+    display: block;
+  }
+
+  img {
+    width: auto;
+  }
+}
+
+.logo-mobile {
+  display: block;
+
+  a {
+    display: block;
+  }
+
+  img {
+    width: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .logo {
+    display: block;
+  }
+  .logo-mobile {
+    display: none;
+  }
+}
+
+// Main menu
+.main-menu {
+  display: none;
+
+  > ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      list-style: none;
+      font-size: 1rem;
+
+      > a {
+        padding: 10px 12px;
+        display: inline-block;
+        font-weight: normal;
+        text-decoration: none;
+        color: $primary;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &.active > a {
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .main-menu {
+    display: block;
+  }
+}
+
+// Intro/Hero section
+.intro {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  overflow: hidden;
+
+  h1 {
+    color: $black;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 1.2;
+    font-family: $font-family-heading;
+  }
+
+  h2 {
+    width: 80%;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    color: $black;
+    font-family: $font-family-base;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: $grey;
+  }
+}
+
+@media (min-width: 768px) {
+  .intro {
+    padding-top: 140px;
+    padding-bottom: 140px;
+
+    h1 {
+      width: 80%;
+      font-size: 48px;
+    }
+
+    p {
+      width: 80%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .intro h1 {
+    font-size: 50px;
+  }
+}
+
+// Hamburger menu (visible on mobile)
+.hamburger {
+  display: inline-block;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}

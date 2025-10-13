@@ -18,13 +18,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap">
 
-  <!-- CSS-->
+  <!-- Critical CSS - Inlined for instant rendering -->
+  {{ $critical_css_options := dict "targetPath" "css/critical.css" }}
+  {{ $critical := resources.Get "scss/critical.scss" | toCSS $critical_css_options }}
+  {{ if hugo.IsProduction }}
+    {{ $critical = $critical | minify }}
+  {{ end }}
+  <style>{{ $critical.Content | safeCSS }}</style>
+
+  <!-- Full CSS - Deferred for non-blocking load -->
   {{ $css_options := dict "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction) }}
   {{ $style := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS $css_options }}
   {{ if hugo.IsProduction }}
     {{ $style = $style | minify | fingerprint }}
   {{ end }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  <link rel="preload" href="{{ $style.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ $style.RelPermalink }}"></noscript>
+  <script>
+    // Fallback for browsers that don't support rel="preload"
+    !function(e){"use strict";var n=function(n,t,o){var i,r=e.document,a=r.createElement("link");if(t)i=t;else{var l=(r.body||r.getElementsByTagName("head")[0]).childNodes;i=l[l.length-1]}var d=r.styleSheets;a.rel="stylesheet",a.href=n,a.media="only x",function e(n){if(r.body)return n();setTimeout(function(){e(n)})}(function(){i.parentNode.insertBefore(a,t?i:i.nextSibling)});var f=function(e){for(var n=a.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return a.addEventListener&&a.addEventListener("load",o),a.onloadcssdefined=f,f(o),a};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+  </script>
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
