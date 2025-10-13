@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Ranjan Sakalley",
+    "title": "Head of Engineering",
+    "company": "Vedantu",
+    "image": "images/testimonials/ranjan.jpeg",
+    "quote": "Infraspec helped us improve operational efficiency by completely owning and building important products that our operations team needed. They owned multiple initiatives in the organization including continuous delivery audit for teams, helped in setting up processes for change management, securing & improving resilience of public APIs. They go the extra mile to understand the requirements at depth and utilize that knowledge to make appropriate technology choices. They constantly challenged the status quo and pushed for technical excellence. They were always aligned with our culture and values."
+  },
+  {
+    "name": "Karthik Chandrasekariah",
+    "title": "CTO",
+    "company": "Zinc Learning Labs",
+    "image": "images/testimonials/karthik.jpeg",
+    "quote": "Working with the Infraspec team has been a very satisfying experience! They were completely dedicated to our mission and our product. Their commitment and dedication to our efforts felt like they are a part of our core team rather than being external consultants. They are a high quality technical team. They were able to take on and deliver projects with both familiar and unfamiliar technologies. Their commitment to writing clean code and good automated tests helped our team level up our own coding skills."
+  }
+]

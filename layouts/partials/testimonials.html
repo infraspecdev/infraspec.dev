@@ -1,0 +1,28 @@
+{{ if .Site.Data.testimonials }}
+<div class="testimonials testimonials-clean-avatar">
+  <h2>Testimonials</h2>
+  <div class="swiper testimonialSwiper">
+    <div class="swiper-wrapper">
+      {{ range .Site.Data.testimonials }}
+      <div class="swiper-slide">
+        <div class="testimonial">
+          <div class="testimonial-body">
+            <p>{{ .quote }}</p>
+          </div>
+          <div class="testimonial-avatar">
+            <img src="{{ .image | relURL }}" alt="{{ .name }}">
+          </div>
+          <div class="testimonial-author">
+            <h4 class="author-name">{{ .name }}</h4>
+            <p class="author-title">{{ .title }} at {{ .company }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+{{ end }}

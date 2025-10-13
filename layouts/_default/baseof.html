@@ -25,6 +25,9 @@
   {{ end }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
   {{ block "header_css" . }}{{ end }}
 
   {{ block "meta_tags" . }}
@@ -88,6 +91,9 @@
   {{ partialCached "google-analytics.html" . }}
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>
