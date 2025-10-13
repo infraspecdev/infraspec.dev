@@ -1,5 +1,5 @@
 ---
-title: 'Akanksha sharma'
+title: 'Akanksha Sharma'
 date: 2025-07-02
 draft: false
 image: 'images/team/akanksha-profile.jpeg'

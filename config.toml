@@ -34,7 +34,7 @@ enableRobotsTXT = false
 
   [params.fonts]
     # Sets the google font link in layouts/partials/google-fonts.html
-    google_fonts = "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Titillium+Web:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+    google_fonts = "https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Merriweather:ital,wght@0,300;1,300&display=swap"
     heading = "Outfit"
     base = "Noto Sans"
 
