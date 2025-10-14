@@ -1,6 +1,6 @@
 ---
 title: "Building a Discord GPT Bot"
-authorId: "nandhitha"
+authorIds: ["nandhitha", "vijay"]
 date: 2024-05-31
 draft: false
 featured: true

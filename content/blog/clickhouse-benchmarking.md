@@ -1,6 +1,6 @@
 ---
 title: "ClickHouse Performance Benchmarking on ECS for Log Storage and Querying"
-authorId: "rohit"
+authorIds: ["rohit"]
 date: 2024-10-21
 draft: false
 featured: true

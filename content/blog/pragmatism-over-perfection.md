@@ -1,6 +1,6 @@
 ---
 title: "Pragmatism Over Perfection"
-authorId: "aleric"
+authorIds: ["aleric"]
 date: 2025-04-21
 draft: false
 featured: true

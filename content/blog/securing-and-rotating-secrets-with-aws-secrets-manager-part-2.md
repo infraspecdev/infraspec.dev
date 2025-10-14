@@ -1,6 +1,6 @@
 ---
 title: "Securing and Rotating Secrets Easily with AWS Secrets Manager - Part 2"
-authorId: "saumitra"
+authorIds: ["saumitra"]
 date: 2024-04-22
 draft: false
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Container Networking Deep Dive - Part 3"
-authorId: "arihant"
+authorIds: ["arihant"]
 date: 2022-11-21
 draft: false
 featured: true

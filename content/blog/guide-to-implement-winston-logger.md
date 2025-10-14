@@ -1,6 +1,6 @@
 ---
 title: "Step-by-Step Guide to Implement Winston Logger in your Node.js Projects"
-authorId: "shivani"
+authorIds: ["shivani"]
 date: 2024-04-29
 draft: false
 featured: true

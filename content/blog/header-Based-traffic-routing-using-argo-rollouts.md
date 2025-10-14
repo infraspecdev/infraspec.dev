@@ -1,6 +1,6 @@
 ---
 title: "Header-Based traffic routing using Argo Rollouts"
-authorId: "mufaddal"
+authorIds: ["mufaddal"]
 date: 2024-05-27
 draft: false
 featured: true

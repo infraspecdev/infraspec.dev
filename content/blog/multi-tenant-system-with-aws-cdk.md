@@ -1,6 +1,6 @@
 ---
 title: "Building Scalable Multi-Tenant Systems with AWS CDK: An IAC Approach"
-authorId: "mufaddal"
+authorIds: ["mufaddal"]
 date: 2024-11-22
 draft: false
 featured: true

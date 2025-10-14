@@ -1,6 +1,6 @@
 ---
 title: "Building internal tooling in legacy systems"
-authorId: "abhishek"
+authorIds: ["abhishek"]
 date: 2024-04-11
 draft: false
 featured: true

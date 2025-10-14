@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with GitHub Runners"
-authorId: "rahul"
+authorIds: ["rahul"]
 date: 2024-04-25
 draft: false
 featured: true

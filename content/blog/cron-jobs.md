@@ -1,6 +1,6 @@
 ---
 title: "Boost Your Productivity with Cron Jobs: What You Need to Know"
-authorId: "shivani"
+authorIds: ["shivani"]
 date: 2024-04-15
 draft: false
 featured: true

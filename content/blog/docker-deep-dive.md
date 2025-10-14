@@ -1,6 +1,6 @@
 ---
 title: "Docker: Simplify , Scale & Secure"
-authorId: "sudeep"
+authorIds: ["sudeep"]
 date: 2024-04-24
 draft: false
 featured: true

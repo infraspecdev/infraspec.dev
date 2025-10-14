@@ -1,15 +1,26 @@
-{{ if .Params.AuthorId }}
-  {{ $authorId := .Params.AuthorId }}
-  {{ $authorDetails := (index .Site.Data.team $authorId) }}
-  {{ $author := $authorDetails.name }}
-  {{ $image := $authorDetails.image }}
+{{ $authorIds := .Params.AuthorIds | default .Params.AuthorId }}
+{{ if and $authorIds (not (reflect.IsSlice $authorIds)) }}
+  {{ $authorIds = slice $authorIds }}
+{{ end }}
 
+{{ if $authorIds }}
 <div class="d-flex flex-row mb-2 align-items-center">
-  <div class="mr-2">
-    <img class="rounded-circle" width="48" height="48" alt="{{ .Params.Author }}" src="{{ $image | relURL }}" />
+  <div class="d-flex mr-2">
+  {{ range $i, $authorId := $authorIds }}
+    {{ with (index $.Site.Data.team $authorId) }}
+      <img class="rounded-circle" width="48" height="48" alt="{{ .name }}" src="{{ .image | relURL }}" {{ if gt $i 0 }}style="margin-left: -24px; border: 2px solid white;"{{ end }} />
+    {{ end }}
+  {{ end }}
   </div>
   <div>
-    <div>{{ $author }}</div>
+    <div>
+      {{ range $i, $authorId := $authorIds }}
+        {{- with (index $.Site.Data.team $authorId) -}}
+          {{ .name }}
+        {{- end -}}
+        {{- if lt (add $i 1) (len $authorIds) -}}, {{ end -}}
+      {{ end }}
+    </div>
     <div>{{ time.Format "Jan 2, 2006" .Params.Date }}</div>
   </div>
 </div>

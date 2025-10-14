@@ -1,6 +1,6 @@
 ---
 title: "From Chaos to Clarity: Managing Environments with Terragrunt"
-authorId: "nimisha"
+authorIds: ["nimisha"]
 date: 2024-09-10
 draft: false
 featured: true

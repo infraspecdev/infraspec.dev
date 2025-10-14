@@ -1,6 +1,6 @@
 ---
 title: "TFTP: A Lightweight Protocol for File Transfer"
-authorId: "nimisha"
+authorIds: ["nimisha"]
 date: 2024-04-19
 draft: false
 featured: true

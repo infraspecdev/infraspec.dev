@@ -1,6 +1,6 @@
 ---
 title: "AWS ECS: FARGATE vs self-managed EC2"
-authorId: "saumitra"
+authorIds: ["saumitra"]
 date: 2024-08-13
 draft: false
 featured: true
