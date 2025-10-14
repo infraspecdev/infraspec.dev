@@ -2,7 +2,7 @@
   <div class="carousel-inner">
     {{ $posts := where .Site.Pages "Section" "blog" }}
     {{ range $index, $page := $posts }}
-    {{ if or (isset .Params "authorId") (isset .Params "authorIds") }}
+    {{ if or .Params.authorid .Params.authorids }}
     <div class="carousel-item {{ if eq $index 0 }}active{{ end }}">
       <div class="card">
         <div class="card-body card-body-shadow">
