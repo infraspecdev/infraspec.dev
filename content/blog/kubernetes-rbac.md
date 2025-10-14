@@ -1,6 +1,6 @@
 ---
 title: "Role-Based Access Control in Kubernetes"
-authorId: "sudeep"
+authorIds: ["sudeep"]
 date: 2024-04-29
 draft: false
 featured: true

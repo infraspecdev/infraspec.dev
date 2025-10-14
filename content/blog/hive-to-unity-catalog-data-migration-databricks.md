@@ -1,6 +1,6 @@
 ---
 title: "Efficient Data Migration: From Hive Metastore to Unity Catalog in Databricks"
-authorId: "arihant"
+authorIds: ["arihant"]
 date: 2024-11-09
 draft: false
 featured: true

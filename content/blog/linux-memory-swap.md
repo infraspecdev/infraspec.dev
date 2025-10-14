@@ -1,6 +1,6 @@
 ---
 title: "Understanding memory and swap usage in Linux"
-authorId: "nimisha"
+authorIds: ["nimisha"]
 date: 2024-04-15
 draft: false
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Streamlining Raspberry Pi Deployment: A Deep Dive into PXE Boot Sequence"
-authorId: "rohit"
+authorIds: ["rohit"]
 date: 2024-04-16
 draft: false
 featured: true

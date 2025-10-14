@@ -1,6 +1,6 @@
 ---
 title: "Essential AWS Tagging Strategies for Better Cloud Control"
-authorId: "rohit"
+authorIds: ["rohit"]
 date: 2024-07-29
 draft: false
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Setting up Ingress on EKS"
-authorId: "rajat"
+authorIds: ["rajat"]
 date: 2022-11-30
 draft: false
 featured: true

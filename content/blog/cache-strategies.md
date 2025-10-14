@@ -1,6 +1,6 @@
 ---
 title: "Cache Strategies"
-authorId: "sanjay"
+authorIds: ["sanjay"]
 date: 2024-09-25
 draft: false
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Streamlining Raspberry Pi Deployment: A Guide to Automated Netbooting"
-authorId: "rohit"
+authorIds: ["rohit"]
 date: 2024-04-17
 draft: false
 featured: true

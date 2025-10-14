@@ -1,6 +1,6 @@
 ---
 title: "Leveraging NFS Filesystem as Volumes in Docker: A Comprehensive Guide"
-authorId: "nimisha"
+authorIds: ["nimisha"]
 date: 2024-08-19
 draft: false
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "How TDD helps design and build better software?"
-authorId: "chetan"
+authorIds: ["chetan"]
 date: 2023-01-18
 draft: false
 featured: true

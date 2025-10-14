@@ -1,6 +1,6 @@
 ---
 title: "Apache Spark: Unleashing Big Data with RDDs, DataFrames and Beyond."
-authorId: "shivani"
+authorIds: ["shivani"]
 date: 2024-11-24
 draft: false
 featured: true

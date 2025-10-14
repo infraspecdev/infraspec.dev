@@ -1,6 +1,6 @@
 ---
 title: "Is DNS migration a tricky affair?"
-authorId: "premdeep"
+authorIds: ["premdeep"]
 date: 2022-12-15
 draft: false
 featured: true

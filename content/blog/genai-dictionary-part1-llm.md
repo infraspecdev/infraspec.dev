@@ -1,6 +1,6 @@
 ---
 title: "GenAI Dictionary: Part 1 - LLM"
-authorId: "nandhitha"
+authorIds: ["nandhitha"]
 date: 2024-06-21
 draft: false
 featured: true

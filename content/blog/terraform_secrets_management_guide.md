@@ -1,6 +1,6 @@
 ---
 title: "Managing Credentials and Secrets in Terraform"
-authorId: "rahul"
+authorIds: ["rahul"]
 date: 2024-08-06
 draft: false
 featured: true

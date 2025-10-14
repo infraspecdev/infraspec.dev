@@ -1,6 +1,6 @@
 ---
 title: "Unleashing the Power of Streams in Java"
-authorId: "rahul"
+authorIds: ["rahul"]
 date: 2024-03-05
 draft: false
 featured: true
