@@ -26,7 +26,7 @@ To run this website locally, you will need to have the following software instal
 
 ### Steps to raise PR for adding profile to infraspec team
 
-1. clone the git repo (use this command:-  git clone git@github.com:infraspecdev/infraspec.dev.git )
+1. clone the git repo (use this command:-  `git clone https://github.com/infraspecdev/infraspec.dev.git` )
 
 2. make new branch of your name (git branch  ashok-profile)
 
