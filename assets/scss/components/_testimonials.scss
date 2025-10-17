@@ -210,27 +210,36 @@
     padding-top: clamp(1.5rem, 4vw, 2rem);
     letter-spacing: 0.005em;
 
-    &:before {
-      content: '\201C';
-      position: absolute;
-      top: -0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: clamp(3.5rem, 12vw, 5rem);
-      font-family: 'Merriweather', Georgia, serif;
-      color: rgba($primary, 0.08);
-      line-height: 1;
-      font-style: normal;
-      font-weight: 700;
-    }
-
     p {
       margin-bottom: 0;
       font-size: inherit;
       line-height: inherit;
       position: relative;
-      z-index: 1;
       font-weight: 300;
+
+      &:before {
+        content: '\201C';
+        font-size: clamp(3.5rem, 8vw, 3.5rem);
+        font-family: 'Merriweather', Georgia, serif;
+        color: rgba($primary, 0.15);
+        line-height: 0;
+        font-style: normal;
+        font-weight: 700;
+        margin-right: 0.25rem;
+        vertical-align: -0.4rem;
+      }
+
+      &:after {
+        content: '\201D';
+        font-size: clamp(3.5rem, 8vw, 3.5rem);
+        font-family: 'Merriweather', Georgia, serif;
+        color: rgba($primary, 0.15);
+        line-height: 0;
+        font-style: normal;
+        font-weight: 700;
+        margin-left: 0.25rem;
+        vertical-align: -2.4rem;
+      }
     }
   }
 
@@ -384,7 +393,7 @@
     }
 
     .testimonial {
-      max-width: 53rem;
+      max-width: 70rem;
     }
 
     .swiper-button-next {
@@ -398,7 +407,7 @@
     .testimonial-body {
       font-size: 1.25rem;
       line-height: 1.75;
-      max-width: 46.875rem;
+      max-width: 60rem;
 
       &:before {
         font-size: 8.5rem;
