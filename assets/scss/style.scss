@@ -1,3 +1,6 @@
+// Self-hosted fonts
+@import 'fonts';
+
 // Colors
 $primary: {{ .Site.Params.colors.primary | default "#f24088" }};
 $black: {{ .Site.Params.colors.black | default "#2f2f41" }};

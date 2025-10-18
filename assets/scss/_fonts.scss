@@ -1,0 +1,35 @@
+/* Outfit Regular */
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/outfit-v11-latin-regular.woff2') format('woff2');
+}
+
+/* Outfit Bold */
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/outfit-v11-latin-700.woff2') format('woff2');
+}
+
+/* Merriweather Light 300 */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/merriweather-v30-latin-300.woff2') format('woff2');
+}
+
+/* Merriweather Light 300 Italic */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/merriweather-v30-latin-300italic.woff2') format('woff2');
+}
