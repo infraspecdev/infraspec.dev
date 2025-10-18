@@ -57,6 +57,7 @@ $sub-footer-text-color: $white;
 @import 'components/social';
 @import 'components/blog-carousel';
 @import 'components/testimonials';
+@import 'components/pagination';
 
 // Pages
 @import 'pages/home';
@@ -70,22 +71,5 @@ body {
   @include media-breakpoint-up(md) {
     font-size: 16px;
     line-height: 1.3;
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  .page-item {
-    margin: 0 0.25rem;
-    &.active .page-link {
-      background-color: $primary;
-      color: $white;
-      border-color: $primary;
-    }
-    .page-link {
-      border-radius: 0.25rem;
-    }
   }
 }
