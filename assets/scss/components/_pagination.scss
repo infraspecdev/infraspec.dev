@@ -1,0 +1,16 @@
+.blog-pagination .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  .page-item {
+    margin: 0 0.25rem;
+    &.active .page-link {
+      background-color: $primary;
+      color: $white;
+      border-color: $primary;
+    }
+    .page-link {
+      border-radius: 0.25rem;
+    }
+  }
+}
