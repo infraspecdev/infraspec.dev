@@ -11,11 +11,20 @@
 
 <div class="container pt-6 pb-6">
   <div class="row">
-    {{ range .Pages.ByWeight }}
-    <div class="col-12">
-      <div>{{ .Render "summary" }}</div>
-    </div>
+    {{ $pinned := where .Pages "Params.pinned" "eq" true }}
+    {{ range $pinned }}
+      <div class="col-12">
+        <div>{{ .Render "summary" }}</div>
+      </div>
+    {{ end }}
+
+    {{ $paginator := .Paginate (where .Pages "Params.pinned" "ne" true) }}
+    {{ range $paginator.Pages }}
+      <div class="col-12">
+        <div>{{ .Render "summary" }}</div>
+      </div>
     {{ end }}
   </div>
+  {{ partial "pagination.html" . }}
 </div>
 {{ end }}

@@ -4,6 +4,7 @@ authorIds: ["nandhitha"]
 date: 2024-05-31
 draft: false
 featured: true
+pinned: true
 weight: 1
 sitemap:
 changefreq: "monthly"
