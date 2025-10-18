@@ -2,6 +2,7 @@ baseURL = "https://www.infraspec.dev/"
 languageCode = "en-us"
 title = "Infraspec"
 enableRobotsTXT = false
+paginate = 10
 
 [module]
   [module.hugoVersion]
