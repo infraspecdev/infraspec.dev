@@ -12,5 +12,20 @@
     "company": "Zinc Learning Labs",
     "image": "images/testimonials/karthik.jpeg",
     "quote": "Working with the Infraspec team has been a very satisfying experience! They were completely dedicated to our mission and our product. Their commitment and dedication to our efforts felt like they are a part of our core team rather than being external consultants. They are a high quality technical team. They were able to take on and deliver projects with both familiar and unfamiliar technologies. Their commitment to writing clean code and good automated tests helped our team level up our own coding skills."
+  },
+  {
+    "name": "Sidu Ponnappa",
+    "title": "CEO",
+    "company": "Realfast",
+    "image": "images/testimonials/sidu.jpg",
+    "quote": "Infraspec delivered exactly what we needed to set up tooling for our customers. Their self-service solution has significantly accelerated our team's productivity. Most importantly, they worked closely with us to design infrastructure that supports our AI agents while maintaining enterprise-grade standards. They provided an easy and reliable infrastructure foundation that we could extend effortlessly. This allowed us to focus on our core business goals, particularly the development of Salesforce AI agents. Their team also supported us in implementing ISO 27001 and SOC 2-compliant AWS infrastructure, complete with automated provisioning and rapid disaster recovery capabilities."
+  },
+  {
+    "name": "Nikhil Mittal",
+    "title": "CTO",
+    "company": "Zepto",
+    "image": "images/testimonials/nikhil.jpeg",
+    "quote": "Collaborating with Infraspec was key to adopting practices suited to our growth. They helped drive important projects to closure with transparency. They crucially improved our tooling documentation, reducing key person risks. With infrastructure as code, they helped improve our infrastructure reliability and maintainability while also upskilling the team in infrastructure and DevOps practices. Additionally, they also helped enhance the reliability of our observability tools, reduce infrastructure costs and introduce continuous delivery for containerised workload."
   }
 ]
+
