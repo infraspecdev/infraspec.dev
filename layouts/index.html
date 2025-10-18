@@ -23,6 +23,11 @@
 {{if gt (len $services) 0}}
 <div class="strip">
   <div class="container pt-6 pb-6 pb-md-10">
+    <div class="row justify-content-center mb-4">
+      <div class="col-12 text-center">
+        <h2>Our Services</h2>
+      </div>
+    </div>
     <div class="row justify-content-start">
       {{ range first 6 (sort $services ".Params.weight") }}
       <div class="col-12 col-md-4 mb-1">
@@ -45,6 +50,11 @@
 <div class="strip strip-grey">
   <div class="container pt-6 pb-6 pt-md-10 pb-md-10">
     <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2 class="offerings-heading">Our Offerings</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
       {{ range .Site.Data.features }}
       <div class="col-12 col-md-6 col-lg-4 mb-2">
         <div class="feature">
@@ -53,7 +63,7 @@
           {{ end }}
           <h2 class="feature-title">{{ .title }}</h2>
           <div class="feature-content">
-            <p>{{ .description }}</p>
+            <p>{{ .tagline }}</p>
           </div>
         </div>
       </div>

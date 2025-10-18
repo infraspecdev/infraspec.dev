@@ -1,32 +1,20 @@
 [
   {
-    "title": "AI Engineering",
-    "description": "AI augmentation for existing products and development of AI-native solutions",
-    "image": "images/features/ai-engineering.svg"
-  },
-  {
-    "title": "Infrastructure Platform Engineering",
-    "description": "Build incremental internal platforms that align with your product teams",
+    "title": "Platform Engineering",
+    "tagline": "Build scalable internal platforms that empower your product teams",
+    "short_description": "Design and implement developer platforms that reduce complexity, accelerate delivery, and enable your teams to ship features independently.",
     "image": "images/features/infrastructure-platform.svg"
   },
   {
-    "title": "Product Engineering",
-    "description": "Build scalable, reliable and extensible products",
-    "image": "images/features/product-engineering.svg"
-  },
-  {
-    "title": "SRE Enablement",
-    "description": "Improve the reliability of your product by enabling SRE practices",
+    "title": "Reliability Engineering",
+    "tagline": "Build confidence in your systems with proactive reliability practices",
+    "short_description": "Strengthen system reliability through SRE best practices, incident management, and resilience engineering, so your team can innovate without fear of breaking production.",
     "image": "images/features/sre-reliability.svg"
   },
   {
-    "title": "Modernize with Re-architecture",
-    "description": "Re-architect your existing products to be more extensible and maintainable.                        ",
-    "image": "images/features/rearchitecture.svg"
-  },
-  {
-    "title": "DevOps Consulting",
-    "description": "Improve collaboration within teams by adoption DevOps culture",
-    "image": "images/features/devops-icon.svg"
+    "title": "Platform & Reliability Enablement",
+    "tagline": "Embed platform and reliability best practices into your organization",
+    "short_description": "Expert guidance and hands-on support to establish platform engineering and SRE practices that fit your team's culture and technical landscape.",
+    "image": "images/features/sre-reliability.svg"
   }
 ]
