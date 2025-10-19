@@ -9,7 +9,7 @@ enableRobotsTXT = false
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.145.0"
+    min = "0.150.1"
 
 [sitemap]
   changefreq = "daily"
