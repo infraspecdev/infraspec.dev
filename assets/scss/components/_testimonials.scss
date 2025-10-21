@@ -120,6 +120,10 @@
     background-color: $primary;
     opacity: 0.5;
     transition: all 0.3s ease;
+    /* Increase touch target for accessibility (WCAG 2.5.5) */
+    padding: 19px;
+    background-clip: content-box;
+    /* Total touch target: 10px + (19px * 2) = 48x48px */
 
     &-active {
       opacity: 1;
@@ -296,6 +300,10 @@
     opacity: 0.3;
     transition: all 0.3s ease;
     margin: 0 0.3125rem;
+    /* Increase touch target for accessibility (WCAG 2.5.5) */
+    padding: 1.1875rem;
+    background-clip: content-box;
+    /* Total touch target: 0.625rem (10px) + (1.1875rem * 2) = 3rem (48px) */
 
     &-active {
       opacity: 1;
