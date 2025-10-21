@@ -13,9 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="{{ "favicon-32x32.svg" | relURL }}">
 
-  {{ partial "google-fonts.html" . }}
+  <!-- CDN Preconnects -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap">
+  <!-- Preload Critical Fonts -->
+  <link rel="preload" href="/fonts/outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  {{ partial "google-fonts.html" . }}
 
   <!-- CSS-->
   {{ $css_options := dict "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction) }}
