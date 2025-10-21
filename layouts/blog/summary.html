@@ -6,7 +6,7 @@
     <p>
       {{ .Content | plainify | htmlUnescape | truncate 120 "…" }}
       <br />
-      <span class="text-black-50">
+      <span class="blog-meta-text">
         {{ if .Params.AuthorId }}
           {{ $authorId := .Params.AuthorId }}
           {{ $authorDetails := (index .Site.Data.team $authorId) }}

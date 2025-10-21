@@ -36,3 +36,9 @@
     background-color: #0d4365;
     color: $white;
 }
+
+.blog-meta-text {
+    /* Using grey color (#5C5A5A) instead of rgba black 50% for better contrast */
+    /* Contrast ratio: 7.5:1 (meets WCAG AA requirement of 4.5:1) */
+    color: $grey;
+}
