@@ -24,21 +24,14 @@ To run this website locally, you will need to have the following software instal
 3. Run the website locally: `hugo server`
 4. View the website in your browser at `http://localhost:1313`
 
-### Steps to raise PR for adding profile to infraspec team
+### Adding yourselves to the team
 
-1. clone the git repo (use this command:-  `git clone https://github.com/infraspecdev/infraspec.dev.git` )
-
-2. make new branch of your name (git branch  ashok-profile)
-
-3. checkout to that branch ( git checkout ashok-profile)
-
-4. create ashok.md file in content/team
-
-5. upload your image in static/images/team
-
-6. do git commit ( git commit -m "add ashok's profile to team")
-
-7. (git push -u origin ashok-profile)
+1. Clone the repository (use this command:-  `git clone https://github.com/infraspecdev/infraspec.dev.git` )
+2. Create `<yourfirstname>.md`(change to `your-first-second-name.md` in case of conflict) file in `content/team`.
+3. Add your image in `static/images/team`. Ensure that you use a faceshot and image is not too large(< 2MB).
+4. Push changes in a branch
+5. See Netlify preview to check if everything is working as expected
+6. Get PR merged.
 
 ## Contributions
 
