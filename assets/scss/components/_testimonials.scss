@@ -115,20 +115,34 @@
   }
 
   .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-    background-color: $primary;
-    opacity: 0.5;
+    width: 48px;
+    height: 48px;
+    background-color: transparent;
+    opacity: 1;
     transition: all 0.3s ease;
-    /* Increase touch target for accessibility (WCAG 2.5.5) */
-    padding: 19px;
-    background-clip: content-box;
-    /* Total touch target: 10px + (19px * 2) = 48x48px */
+    position: relative;
+    /* Total touch target: 48x48px for accessibility (WCAG 2.5.5) */
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      background-color: $primary;
+      opacity: 0.5;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
 
     &-active {
-      opacity: 1;
-      width: 25px;
-      border-radius: 5px;
+      &::before {
+        opacity: 1;
+        width: 28px;
+        border-radius: 5px;
+      }
     }
   }
 
@@ -197,6 +211,9 @@
     margin: 0 0;
     padding: clamp(1rem, 3vw, 2rem) 1rem;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .testimonial-body {
@@ -213,6 +230,9 @@
     position: relative;
     padding-top: clamp(1.5rem, 4vw, 2rem);
     letter-spacing: 0.005em;
+    min-height: clamp(10rem, 30vw, 15rem);
+    display: flex;
+    align-items: center;
 
     p {
       margin-bottom: 0;
@@ -294,21 +314,35 @@
   }
 
   .swiper-pagination-bullet {
-    width: 0.625rem;
-    height: 0.625rem;
-    background-color: $primary;
-    opacity: 0.3;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    opacity: 1;
     transition: all 0.3s ease;
     margin: 0 0.3125rem;
-    /* Increase touch target for accessibility (WCAG 2.5.5) */
-    padding: 1.1875rem;
-    background-clip: content-box;
-    /* Total touch target: 0.625rem (10px) + (1.1875rem * 2) = 3rem (48px) */
+    position: relative;
+    /* Total touch target: 3rem (48px) for accessibility (WCAG 2.5.5) */
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.75rem;
+      height: 0.75rem;
+      background-color: $primary;
+      opacity: 0.3;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
 
     &-active {
-      opacity: 1;
-      width: 1.875rem;
-      border-radius: 0.3125rem;
+      &::before {
+        opacity: 1;
+        width: 2rem;
+        border-radius: 0.3125rem;
+      }
     }
   }
 
