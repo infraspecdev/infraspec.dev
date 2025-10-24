@@ -1,0 +1,42 @@
+{{ define "body_classes" }}page-team-single{{ end }}
+
+{{ define "main" }}
+<div class="container pb-6 pt-6 pt-md-10 pb-md-10">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="team-member-detail">
+        <!-- Profile Image -->
+        {{ if .Params.image }}
+        <div class="text-center mb-4">
+          <img
+            src="{{ .Params.image | relURL }}"
+            alt="{{ .Title }}"
+            class="team-member-image rounded-circle"
+            width="200"
+            height="200"
+          />
+        </div>
+        {{ end }}
+
+        <!-- Name -->
+        <h1 class="title text-center mb-2">{{ .Title }}</h1>
+
+        <!-- Job Title -->
+        {{ if .Params.jobtitle }}
+        <p class="team-member-jobtitle text-center mb-4">{{ .Params.jobtitle }}</p>
+        {{ end }}
+
+        <!-- Bio / Content -->
+        <div class="team-member-content content">
+          {{ .Content }}
+        </div>
+
+        <!-- Back to Team Link -->
+        <div class="text-center mt-5">
+          <a href="/team/" class="btn btn-outline-primary">← Back to Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
