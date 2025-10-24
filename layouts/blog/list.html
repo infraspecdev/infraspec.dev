@@ -1,6 +1,8 @@
 {{ define "body_classes" }}page-services-list{{ end }}
 
 {{ define "main" }}
+{{ .Scratch.Set "tag" (.Param "tag") }}
+{{ .Scratch.Set "author" (.Param "author") }}
 <div class="container">
   <div class="row">
     <div class="col-12 text-center mt-8">
@@ -10,8 +12,59 @@
 </div>
 
 <div class="container pt-6 pb-6">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex justify-content-center">
+        <div class="mx-2">
+          <select id="tag-filter" class="form-select" onchange="filterPosts()">
+            <option value="">All Tags</option>
+            {{ range .Site.Taxonomies.tags.ByCount }}
+              <option value="{{ .Name | urlize }}" {{ if (eq ($.Scratch.Get "tag") (.Name | urlize)) }}selected{{ end }}>{{ .Name }} ({{ .Count }})</option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="mx-2">
+          <select id="author-filter" class="form-select" onchange="filterPosts()">
+            <option value="">All Authors</option>
+            {{ range .Site.Taxonomies.authors.ByCount }}
+              <option value="{{ .Name | urlize }}" {{ if (eq ($.Scratch.Get "author") (.Name | urlize)) }}selected{{ end }}>{{ .Page.Title }} ({{ .Count }})</option>
+            {{ end }}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ $pages := .Pages }}
+  {{ $featured := where $pages "Params.featured" "eq" true }}
+  {{ $regular := where $pages "Params.featured" "ne" true }}
+
+  {{ $tag := .Scratch.Get "tag" }}
+  {{ $author := .Scratch.Get "author" }}
+
+  {{ if $tag }}
+    {{ $regular = where $regular "Params.tags" "intersect" (slice $tag) }}
+  {{ end }}
+  {{ if $author }}
+    {{ $regular = where $regular "Params.authors" "intersect" (slice $author) }}
+  {{ end }}
+
+  {{ if $featured }}
+  <div class="featured-posts">
+    <h2 class="text-center mb-4">Featured Posts</h2>
+    <div class="row">
+      {{ range $featured }}
+      <div class="col-12">
+        <div>{{ .Render "summary" }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <hr class="my-5" />
+  {{ end }}
+
   <div class="row">
-    {{ $paginator := .Paginate .Pages }}
+    {{ $paginator := .Paginate $regular }}
     {{ range $paginator.Pages }}
     <div class="col-12">
       <div>{{ .Render "summary" }}</div>
@@ -22,4 +75,36 @@
     {{ partial "pagination.html" . }}
   </div>
 </div>
+
+<script>
+  function filterPosts() {
+    const tag = document.getElementById('tag-filter').value;
+    const author = document.getElementById('author-filter').value;
+    let url = '/blog/';
+    const params = new URLSearchParams();
+    if (tag) {
+      params.append('tag', tag);
+    }
+    if (author) {
+      params.append('author', author);
+    }
+    const queryString = params.toString();
+    if (queryString) {
+      url += `?${queryString}`;
+    }
+    window.location.href = url;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const tag = params.get('tag');
+    const author = params.get('author');
+    if (tag) {
+      document.getElementById('tag-filter').value = tag;
+    }
+    if (author) {
+      document.getElementById('author-filter').value = author;
+    }
+  });
+</script>
 {{ end }}
