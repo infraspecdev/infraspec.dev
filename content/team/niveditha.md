@@ -2,7 +2,7 @@
 title: 'Niveditha S'
 date: 2025-07-01
 draft: false
-image: 'images/team/niveditha-profile.png'
+image: 'images/team/niveditha-profile.jpeg'
 jobtitle: 'Accounts and Finance Generalist'
 weight: 9
 promoted: false
