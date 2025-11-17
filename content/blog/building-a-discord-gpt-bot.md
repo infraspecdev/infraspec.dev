@@ -8,6 +8,7 @@ weight: 1
 sitemap:
 changefreq: "monthly"
 priority: 1
+tags: ["discord", "gpt", "openai", "python"]
 ---
 
 Amidst the excitement surrounding AI, we were eager to delve into this field ourselves. As engineers, we wanted more than just a casual conversation with ChatGPT—we aimed to understand the intricacies of building AI applications.

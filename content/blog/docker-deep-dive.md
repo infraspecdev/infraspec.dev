@@ -5,6 +5,7 @@ date: 2024-04-24
 draft: false
 featured: true
 weight: 1
+tags: ["docker", "containers"]
 ---
 
 
