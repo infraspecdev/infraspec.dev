@@ -65,9 +65,9 @@ this question goes under the carpet until it breaks
 Your team has grown and the engineering team has around 20 people now.A single codebase
 is getting hard to manage, and as the codebase grows, architecture choices are becoming
 a bottle neck now. There are incidents every now and then but the product has
-good traction and customers really love it. This keeps fuelling the team energy
+good traction and customers really love it. This keeps fueling the team energy
 and everyone is very close to the customer and trying to solve for them.
-CTO takes a call of reachitecting the systems while it is easy to change
+CTO takes a call of rearchitecting the systems while it is easy to change
 to enable the next phase of growth. Tech team decides to go towards the microservices
 route and identifies 5 services, 3 databases, and messages queues with multiple
 deployment regions.
@@ -75,21 +75,21 @@ deployment regions.
 ### Month 12
 
 Team jumps in this, product development is halted because of this overhaul, and
-achieves this goal within 8 weeks as the team ends up copy pasting most of the things
+achieve this goal within 8 weeks as the team ends up copy pasting most of the things
 as timeline is tight. This goes to staging and is put under test. A lot of bugs and
 issues are reported but engineers figure it out and pushes the fix quickly by
 reading mostly logs on a single machine on staging.
 
 This goes to production but the reality is completely different from what the
-leadership has imagined. Uptime is a complex metric to come up with with so
+leadership has imagined. Uptime is a complex metric to come up with so
 many systems in place. It's a distributed environment now. There are lot of
 issues coming up, while the team wants to maintain the delivery speed.
 No engineer has all the context which was normal 6 months back. Their deployment
-breaks, contracts breaks often because the task which was simple sometime back
+breaks, contract breaks often because the task which was simple sometime back
 now involves dependency of the context with other teams and availability.
 
 Incidents have become scarier, because you have grown on the business
-front and your customers expects more maturity from you. But every incident
+front and your customers expect more maturity from you. But every incident
 is like running in the dark as most of the time you are getting this information
 as an escalation from your operations or customers. Team is all reactive, running
 on manual checks of hitting production APIs to figure out whether the systems
@@ -111,7 +111,7 @@ the issues back to the engineering team. This creates a false illusion that
 we'll figure out the issue before our customer.
 
 **Let's be more careful**: You add approval gates, slow down deployments, review
-every change. You've gained caution, not control. You're still operating blind
+every change, you've gained caution, not control. You're still operating blind
 just more slowly.
 
 **Let's assign experts**: You designate "the person who understands the auth service"
@@ -199,7 +199,7 @@ their actual impact and can roll back immediately if needed.
 you have the data to understand what happened.
 
 **Optimize strategically**: You're not guessing which optimizations matter;
-You're measuring actual bottlenecks and their impact.
+You're measuring actual bottle necks and their impact.
 
 **Scale proactively**: You're not reacting to outages; you're seeing capacity
 limits before you hit them.
