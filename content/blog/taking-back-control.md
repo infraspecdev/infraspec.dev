@@ -49,14 +49,14 @@ and now your response time is critical for you. Immediately you figure
 out there is an operation happening in the customer facing flow which can be
 moved async, team jumped on this action and slashed your response time by
 30 percent. Team is happy, and the engineering team is getting good recognition
-with so less turn around time. It was a big win. But we can't trace the
+with so less turnaround time. It was a big win. But we can't trace the
 end-to-end request easily but that concern is pushed for later.
 
 ### Month 4
 
 The product team wants to take data based decisions and the roadmap is evolving
 towards experimentations, AB testing and more mature data-driven product
-decisions. For now engineering team adds a second database to unblocks the
+decisions. For now engineering team adds a second database to unblock the
 analytics team and data is in two places and consistency is questionable, but
 this question goes under the carpet until it breaks
 
@@ -64,12 +64,12 @@ this question goes under the carpet until it breaks
 
 Your team has grown and the engineering team has around 20 people now.A single codebase
 is getting hard to manage, and as the codebase grows, architecture choices are becoming
-a bottle neck now. There are incidents every now and then but the product has
+a bottleneck now. There are incidents every now and then but the product has
 good traction and customers really love it. This keeps fueling the team energy
 and everyone is very close to the customer and trying to solve for them.
 CTO takes a call of rearchitecting the systems while it is easy to change
 to enable the next phase of growth. Tech team decides to go towards the microservices
-route and identifies 5 services, 3 databases, and messages queues with multiple
+route and identifies 5 services, 3 databases, and message queues with multiple
 deployment regions.
 
 ### Month 12
@@ -199,7 +199,7 @@ their actual impact and can roll back immediately if needed.
 you have the data to understand what happened.
 
 **Optimize strategically**: You're not guessing which optimizations matter;
-You're measuring actual bottle necks and their impact.
+You're measuring actual bottlenecks and their impact.
 
 **Scale proactively**: You're not reacting to outages; you're seeing capacity
 limits before you hit them.
