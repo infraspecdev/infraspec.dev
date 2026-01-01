@@ -14,8 +14,8 @@ regaining control.
 
 When the product is still in its inception and the team consists of a couple of engineers,
 If there is a CTO (at that point in the product's journey) who is programming and
-contributing to building systems.The team is in tight control of what is happening,
-The context is small enough that everyone knows every endpoint, every query and
+contributing, to building systems. The team is in tight control of what is happening,
+The context is small enough that everyone knows every endpoint, every query and,
 integration that exists.
 
 Most likely, everything that is getting shipped and there is no environment
@@ -35,7 +35,7 @@ Control doesn't disappear suddenly. It erodes gradually, almost imperceptibly:
 
 ### Week 1
 
-It'sla 2-person engineering team. You have to optimise some API response
+It's a 2-person engineering team. You have to optimize some API response
 time, and as a default strategy for faster read operations teams add a
 caching layer. There is a new thing you have to worry about when the
 request is being served from cache and which one from the database.
@@ -187,7 +187,7 @@ plan for scaling. Launch goes smoothly.
 
 ## The Empowerment
 
-Here's what makes this powerful: observability doesn't just help you react it
+Here's what makes this powerful: observability doesn't just help you react, it
 changes what you can do.
 
 With proper observability, you can:
