@@ -1,0 +1,12 @@
+<div class="career-summary">
+  <div class="career-meta">
+    <h2 class="career-title">{{ .Title }}</h2>
+    <span class="career-location"><img src="{{ "images/careers/location-pin.svg" | relURL }}" alt="Location" class="location-icon" /> {{ .Params.location }}</span>
+  </div>
+  <div class="career-content">
+    {{ .Content }}
+  </div>
+  <div class="career-footer">
+    <a href="{{ .RelPermalink }}" class="button button-primary">Apply</a>
+  </div>
+</div>

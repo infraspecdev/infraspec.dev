@@ -1,0 +1,86 @@
+.career-single-meta {
+  .career-location {
+    font-size: 14px;
+    color: $grey;
+  }
+}
+
+.career-single-content {
+  margin-top: 16px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: $white;
+  background-color: $primary;
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  &:hover {
+    background-color: lighten($primary, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.location-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+// Career list cards
+.career-summary {
+  background-color: $white-offset;
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .career-meta {
+    margin-bottom: 12px;
+
+    .career-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: $black;
+    }
+
+    .career-location {
+      font-size: 13px;
+      color: $grey;
+      font-weight: 500;
+    }
+  }
+
+  .career-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+    color: $black;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0 0 8px 0;
+    }
+
+    strong {
+      color: $primary;
+    }
+  }
+
+  .career-footer {
+    margin-top: auto;
+
+    .button {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{{ define "body_classes" }}page-careers-single{{ end }}
+
+{{ define "main" }}
+<div class="container pb-6 pt-6 pt-md-10 pb-md-10">
+  <div class="row justify-content-start">
+
+    <div class="col-12">
+      <a href="{{ "careers" | relURL }}" class="back-link">All Roles</a>
+      <div class="career-single-meta mb-2 mt-3">
+        <span class="career-location"><img src="{{ "images/careers/location-pin.svg" | relURL }}" alt="Location" class="location-icon" /> {{ .Params.location }}</span>
+      </div>
+      <h1 class="title">{{ .Title }}</h1>
+      <div class="content career-single-content">{{ .Params.details | markdownify }}</div>
+
+      {{ if .Params.formUrl }}
+      <div class="career-apply-cta mt-4">
+        <a href="{{ .Params.formUrl }}" target="_blank" rel="noopener noreferrer" class="button button-primary">Apply Now</a>
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</div>
+{{ end }}
