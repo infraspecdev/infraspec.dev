@@ -57,41 +57,6 @@
   margin-right: 2px;
 }
 
-<<<<<<< HEAD
-// Career list items
-.career-list {
-  border-top: 1px solid $white-offset;
-}
-
-.career-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-  border-bottom: 1px solid $white-offset;
-
-  .career-list-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .career-list-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: $black;
-  }
-
-  .career-list-location {
-    font-size: 13px;
-    color: $grey;
-    font-weight: 500;
-  }
-
-  .career-list-btn {
-    flex-shrink: 0;
-    margin-left: 24px;
-=======
 // Career list cards
 .career-summary {
   background-color: $white-offset;
@@ -111,11 +76,10 @@
       color: $black;
     }
 
-    .career-location {
-      font-size: 13px;
-      color: $grey;
-      font-weight: 500;
-    }
+  .career-list-location {
+    font-size: 13px;
+    color: $grey;
+    font-weight: 500;
   }
 
   .career-content {
@@ -140,6 +104,5 @@
     .button {
       display: inline-block;
     }
->>>>>>> 176845b (feat: Add Careers page with roles and Google Form apply.)
   }
 }
