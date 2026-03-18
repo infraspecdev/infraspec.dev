@@ -1,5 +1,5 @@
 ---
-title: 'Solutions Architect'
+title: 'Full Stack Engineer'
 location: 'Bangalore'
 weight: 2
 draft: false
