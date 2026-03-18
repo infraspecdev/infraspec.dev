@@ -12,11 +12,9 @@
       <h1 class="title">{{ .Title }}</h1>
       <div class="content career-single-content">{{ .Params.details | markdownify }}</div>
 
-      {{ if .Params.formUrl }}
       <div class="career-apply-cta mt-4">
-        <a href="{{ .Params.formUrl }}" target="_blank" rel="noopener noreferrer" class="button button-primary">Apply Now</a>
+        <a href="{{ .Site.Params.careersFormUrl }}?usp=pp_url&{{ .Site.Params.careersFormRoleEntry }}={{ .Title | urlquery }}" target="_blank" rel="noopener noreferrer" class="button button-primary">Apply Now</a>
       </div>
-      {{ end }}
     </div>
 
   </div>

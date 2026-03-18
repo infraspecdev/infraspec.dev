@@ -3,7 +3,6 @@ title: 'DevOps Engineer'
 location: 'Bangalore, Inoffice'
 weight: 1
 draft: false
-formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSddhY5oZMA6keeEDWW4IKlsjeV8dyI7n8PVd6--Jx6RCOGkLA/viewform?usp=sharing&ouid=117435754665105737091'
 details: |
   We are looking for a DevOps Engineer who is passionate about automation, infrastructure reliability, and building systems that teams love to use. At Infraspec, DevOps is not just a role — it is a mindset we embed across engineering.
 
