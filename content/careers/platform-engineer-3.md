@@ -1,7 +1,7 @@
 ---
 title: 'Platform Engineer 3'
 location: 'Domlur, Bangalore (In-Office)'
-weight: 1
+weight: 3
 draft: false
 details: |
   We are looking for a Platform Engineer III who loves building infrastructure platforms that improve the flow of value through better developer experience. At Infraspec, you will own complex platform decisions, mentor others, and work closely with clients and internal teams.
