@@ -22,6 +22,8 @@ enableRobotsTXT = false
   # Otherwise your data might be useless.
   google_analytics_id = "G-LWW22W6FQM"
   google_tag_manager_id = "GT-WBLRZ4P"
+  careersFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc2MHdRBys8ZYet8ihXh9Otu711RSeMRf7HjmtjNnbv2B5nmA/viewform"
+  careersFormRoleEntry = "entry.1078958931"
 
   [params.homepage]
     show_contact_box = true      # show / hide the contact box on the homepage
