@@ -1,7 +1,7 @@
 ---
-title: 'Platform Engineer III'
+title: 'Platform Engineer 3'
 location: 'Domlur, Bangalore (In-Office)'
-weight: 1
+weight: 3
 draft: false
 details: |
   We are looking for a Platform Engineer III who loves building infrastructure platforms that improve the flow of value through better developer experience. At Infraspec, you will own complex platform decisions, mentor others, and work closely with clients and internal teams.
@@ -16,6 +16,7 @@ details: |
   - Stay current with industry trends and emerging technologies
 
   **Required qualifications:**
+  - 5–8 years of experience in platform, infrastructure, or reliability engineering
   - Experience managing large-scale infrastructure systems
   - Experience as a reliability engineer is a plus
   - Proficiency in at least one programming language
@@ -37,6 +38,6 @@ details: |
   - Experience with configuration management tools like Ansible and Chef
 ---
 
-We are looking for a Platform Engineer III who designs and manages infrastructure platforms that improve developer experience at scale. You lead technical discussions, mentor teammates, and bring deep expertise across the Cloud-Native ecosystem.
+We are looking for a Platform Engineer 3 (5–8 years experience) who designs and manages infrastructure platforms that improve developer experience at scale. You lead technical discussions, mentor teammates, and bring deep expertise across the Cloud-Native ecosystem.
 
 **Skills:** Kubernetes, Terraform, Prometheus, OpenTelemetry, CI/CD, Linux, Ansible, SQL/NoSQL.

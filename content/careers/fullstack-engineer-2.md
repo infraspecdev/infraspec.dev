@@ -1,5 +1,5 @@
 ---
-title: 'Fullstack Engineer II'
+title: 'Fullstack Engineer 2'
 location: 'Domlur, Bangalore (In-Office)'
 weight: 2
 draft: false
@@ -45,6 +45,6 @@ details: |
   - Experience with observability tooling (Prometheus, Datadog, OpenTelemetry, etc.)
 ---
 
-We are looking for a product-minded Fullstack Engineer who owns features end-to-end — from ambiguous problem to shipped product — across both frontend and backend. You move fast, use AI tools naturally, and care deeply about craftsmanship.
+We are looking for a product-minded Fullstack Engineer 2 (3–5 years experience) who owns features end-to-end — from ambiguous problem to shipped product — across both frontend and backend. You move fast, use AI tools naturally, and care deeply about craftsmanship.
 
 **Skills:** React, Next.js, Node.js / Go / Python, REST APIs, SQL, NoSQL, CI/CD.

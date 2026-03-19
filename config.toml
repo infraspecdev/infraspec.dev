@@ -64,7 +64,7 @@ enableRobotsTXT = false
     summary_large_truncate = 120 # How many characters to include in the summary of the team bios before truncating
 
   [params.footer]
-    copyright_text = "© 2025 Infraspec - Your Infrastructure and Reliability partner"
+    copyright_text = "© 2026 Infraspec - Your Infrastructure and Reliability partner"
 
 [menu]
   # Main Menu
