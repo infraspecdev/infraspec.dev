@@ -1,10 +1,12 @@
 ---
 title: "AWS ECS: FARGATE vs self-managed EC2"
 authorIds: ["saumitra"]
+authors: ["saumitra"]
 date: 2024-08-13
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "ecs", "fargate", "ec2"]
 ---
 
 Cooking Up Cloud: Fargate or EC2—Which Kitchen Suits You?
