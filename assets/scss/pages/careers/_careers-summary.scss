@@ -57,24 +57,29 @@
   margin-right: 2px;
 }
 
-// Career list cards
-.career-summary {
-  background-color: $white-offset;
-  border-radius: 4px;
-  padding: 24px;
+// Career list items
+.career-list {
+  border-top: 1px solid $white-offset;
+}
+
+.career-list-item {
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid $white-offset;
 
-  .career-meta {
-    margin-bottom: 12px;
+  .career-list-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-    .career-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 6px 0;
-      color: $black;
-    }
+  .career-list-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $black;
+  }
 
   .career-list-location {
     font-size: 13px;
@@ -82,27 +87,8 @@
     font-weight: 500;
   }
 
-  .career-content {
-    flex: 1;
-    font-size: 14px;
-    line-height: 1.6;
-    color: $black;
-    margin-bottom: 20px;
-
-    p {
-      margin: 0 0 8px 0;
-    }
-
-    strong {
-      color: $primary;
-    }
-  }
-
-  .career-footer {
-    margin-top: auto;
-
-    .button {
-      display: inline-block;
-    }
+  .career-list-btn {
+    flex-shrink: 0;
+    margin-left: 24px;
   }
 }
