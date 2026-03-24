@@ -28,10 +28,30 @@ To run this website locally, you will need to have the following software instal
 
 1. Clone the repository (use this command:-  `git clone https://github.com/infraspecdev/infraspec.dev.git` )
 2. Create `<yourfirstname>.md`(change to `your-first-second-name.md` in case of conflict) file in `content/team`.
-3. Add your image in `static/images/team`. Ensure that you use a faceshot and image is not too large(< 2MB).
-4. Push changes in a branch
-5. See Netlify preview to check if everything is working as expected
-6. Get PR merged.
+3. Add `active: true` in the front matter (optional, defaults to active if omitted).
+4. Add your image in `static/images/team`. Ensure that you use a faceshot and image is not too large(< 2MB).
+5. Push changes in a branch
+6. See Netlify preview to check if everything is working as expected
+7. Get PR merged.
+
+### Offboarding a team member
+
+1. Open that member file in `content/team/<name>.md`.
+2. Set `active: false` in front matter.
+3. Open a PR and merge.
+
+This keeps profile content/history in git while automatically hiding the member from `/team/`.
+
+### Manage team from UI (Decap CMS)
+
+1. In Netlify site settings, enable `Identity`.
+2. In Netlify `Identity` settings, enable `Git Gateway`.
+3. Invite editors from Netlify `Identity` tab (or enable open registration only if you want public signup).
+4. Open `/admin/` on your site and log in.
+5. Edit any Team Member and toggle `Active` to offboard from UI.
+6. The UI intentionally shows only essential fields (full name, job title, image, active, bio).
+
+CMS config lives at `static/admin/config.yml` and admin page at `static/admin/index.html`.
 
 ## Contributions
 
