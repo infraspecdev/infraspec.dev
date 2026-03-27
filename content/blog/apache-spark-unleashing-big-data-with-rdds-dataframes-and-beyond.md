@@ -5,6 +5,7 @@ date: 2024-11-24
 draft: false
 featured: true
 weight: 1
+tags: ["apache-spark", "big-data", "rdds", "dataframes"]
 ---
 
 ## My Journey with Spark
