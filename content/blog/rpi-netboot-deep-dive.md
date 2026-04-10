@@ -5,6 +5,7 @@ date: 2024-04-16
 draft: false
 featured: true
 weight: 1
+tags: ["raspberry-pi", "netboot", "automation"]
 ---
 
 ## Understanding PXE Boot

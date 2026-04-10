@@ -5,6 +5,7 @@ date: 2023-01-02
 draft: false
 featured: true
 weight: 1
+tags: ["k3s", "kubernetes", "raspberry-pi", "iot"]
 ---
 As a developer at Infraspec, I am responsible for managing internal tooling and ensuring the smooth operation of local
 tooling and network services in our office. We had a cluster of Raspberry Pi devices available and saw an opportunity to
