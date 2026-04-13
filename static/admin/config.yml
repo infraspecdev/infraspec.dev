@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: static/images/team
+public_folder: images/team
+
+collections:
+  - name: team
+    label: Team Members
+    label_singular: Team Member
+    folder: content/team
+    create: false
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - label: Full Name
+        name: title
+        widget: string
+      - label: Job Title
+        name: jobtitle
+        widget: string
+      - label: Profile Image
+        name: image
+        widget: image
+      - label: Active
+        name: active
+        widget: boolean
+        default: true
+        required: false
+        hint: "Offboarding: uncheck this to hide from /team."
+      - label: Bio
+        name: body
+        widget: markdown
+      - label: Internal Name
+        name: name
+        widget: hidden
+        required: false
+      - label: Weight
+        name: weight
+        widget: hidden
+        required: false
+      - label: Promoted
+        name: promoted
+        widget: hidden
+        required: false
+      - label: Draft
+        name: draft
+        widget: hidden
+        required: false
+      - label: Date
+        name: date
+        widget: hidden
+        required: false
