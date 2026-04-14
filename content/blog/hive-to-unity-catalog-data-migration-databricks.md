@@ -5,6 +5,7 @@ date: 2024-11-09
 draft: false
 featured: true
 weight: 1
+tags: ["databricks", "hive", "unity-catalog", "data-migration"]
 ---
 
 <img src="/images/blog/hive-to-unity-catalog-data-migration-databricks/cover.png" alt="Hive Metastore to Unity Catalog Data Migration in Databricks">

@@ -1,0 +1,5 @@
+port 1313 already in use, attempting to use an available port
+Watching for changes in /app/{assets,content,data,layouts,static}
+Watching for config changes in /app/config.toml
+Start building sites …
+hugo v0.150.1-ce44a8e835e6934292acda936e5b43b70f451af9+extended linux/amd64 BuildDate=2025-09-25T10:26:04Z VendorInfo=gohugoio

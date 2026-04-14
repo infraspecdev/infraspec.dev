@@ -8,6 +8,7 @@ weight: 1
 sitemap:
    changefreq: 'monthly'
    priority: 0.8
+tags: ["docker", "networking", "containers"]
 ---
 
 In part 1 of this series, we will demystify how a container communicates with the host and vice versa.

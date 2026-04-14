@@ -5,6 +5,7 @@ date: 2022-11-21
 draft: false
 featured: true
 weight: 1
+tags: ["docker", "networking", "containers", "kubernetes"]
 ---
 
 In part 3 of this series, we will see how containers running on the host communicates with the outside world i.e., the internet
