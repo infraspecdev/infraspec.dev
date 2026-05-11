@@ -1,12 +1,13 @@
 ---
-title: 'Akanksha Sharma'
-date: 2025-07-02
-draft: false
-image: 'images/team/akanksha-profile.jpeg'
-jobtitle: 'People and Culture Specialist'
+title: Akanksha Sharma
+jobtitle: People and Culture Specialist
+image: images/team/akanksha-profile.jpeg
+active: false
+name: akanksha
 weight: 8
 promoted: false
-name: 'akanksha'
+draft: false
+date: 2025-07-02
 ---
 
 Hi, I’m Akanksha, a People & Culture Specialist who loves creating workplaces where people feel valued, supported, and genuinely connected. I’m passionate about helping teams grow, fostering a sense of belonging, and bringing a little bit of joy and fun into the workday wherever I can.
