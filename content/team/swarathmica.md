@@ -1,12 +1,13 @@
 ---
-title: 'Swarathmica Srinivasa Desikan'
-date: 2025-06-23
-draft: false
-image: 'images/team/swarathmica-profile.png'
-jobtitle: 'Platform Engineer'
+title: Swarathmica Srinivasa Desikan
+jobtitle: Platform Engineer
+image: images/team/swarathmica-profile.png
+active: false
+name: Swarathmica
 weight: 13
 promoted: false
-name: 'Swarathmica'
+draft: false
+date: 2025-06-23
 ---
 
 Swarathmica is passionate about technology and art, finding joy in building efficient, elegant solutions that blend creativity with logic.
