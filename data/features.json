@@ -1,20 +1,20 @@
 [
   {
+    "title": "AI Native Software Delivery",
+    "tagline": "We deliver working software fast, and the quality holds. The reason is harness engineering, the scaffolding most teams defer, which we treat as first-class work, not an afterthought.",
+    "short_description": "We deliver working software fast, and the quality holds. The reason is harness engineering, the scaffolding most teams defer, which we treat as first-class work, not an afterthought.",
+    "image": "images/features/product-engineering.svg"
+  },
+  {
+    "title": "Agentic AI",
+    "tagline": "We build agents that go into production and stay there. End-to-end design, deployment and ongoing upkeep, with human oversight wherever automation shouldn't have the final word.",
+    "short_description": "We build agents that go into production and stay there. End-to-end design, deployment and ongoing upkeep, with human oversight wherever automation shouldn't have the final word.",
+    "image": "images/features/agentic-ai.svg"
+  },
+  {
     "title": "Platform Engineering",
-    "tagline": "Build scalable internal platforms that empower your product teams",
-    "short_description": "Design and implement developer platforms that reduce complexity, accelerate delivery, and enable your teams to ship features independently.",
+    "tagline": "We build the engineering foundations that let your teams move fast today and scale without pain tomorrow. Cloud-native, AI-ready and designed not to get in the way.",
+    "short_description": "We build the engineering foundations that let your teams move fast today and scale without pain tomorrow. Cloud-native, AI-ready and designed not to get in the way.",
     "image": "images/features/infrastructure-platform.svg"
-  },
-  {
-    "title": "Reliability Engineering",
-    "tagline": "Build confidence in your systems with proactive reliability practices",
-    "short_description": "Strengthen system reliability through SRE best practices, incident management, and resilience engineering, so your team can innovate without fear of breaking production.",
-    "image": "images/features/sre-reliability.svg"
-  },
-  {
-    "title": "Platform & Reliability Enablement",
-    "tagline": "Embed platform and reliability best practices into your organization",
-    "short_description": "Expert guidance and hands-on support to establish platform engineering and SRE practices that fit your team's culture and technical landscape.",
-    "image": "images/features/sre-reliability.svg"
   }
 ]
