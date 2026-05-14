@@ -35,7 +35,7 @@ enableRobotsTXT = false
     mobile_height = "32px"
     desktop = "images/logo/infraspec-logo.svg"
     desktop_height = "28px"
-    alt = "Infraspec - Your Infrastructure and Reliability partner"
+    alt = "Infraspec - Serious AI Engineering"
 
   [params.fonts]
     # Sets the google font link in layouts/partials/google-fonts.html
@@ -54,8 +54,8 @@ enableRobotsTXT = false
     meta_twitter_site = "@infraspec_dev"
     meta_twitter_creator = "@infraspec_dev"
     meta_og_image = ""
-    meta_description = "Infraspec is an engineering consulting company that provides expertise in AI product engineering, Platform Engineering, Product Engineering, SRE Enablement and DevOps."
-    meta_keywords = "Cloud native infrastructure, SRE consulting, Kubernetes consulting, AI Engineering, Platform Engineering, Product Engineering, SRE Enablement, DevOps, Infrastructure as code, Cloud migration, Technology consulting in Bengaluru, infraspec, infraspec dev, Infraspec Bengaluru, Infraspec Consulting Company"
+    meta_description = "Infraspec delivers serious AI engineering for growing teams. Forward deployed engineers embedded in your team, shipping working software from week one."
+    meta_keywords = "AI engineering, agentic AI, platform engineering, AI native software delivery, forward deployed engineers, embedded engineering team, technology consulting Bengaluru, infraspec, infraspec dev"
 
   [params.services]
     summary_truncate = 120 # How many characters to include in the summary of the service descriptions before truncating
@@ -64,7 +64,7 @@ enableRobotsTXT = false
     summary_large_truncate = 120 # How many characters to include in the summary of the team bios before truncating
 
   [params.footer]
-    copyright_text = "© 2026 Infraspec - Your Infrastructure and Reliability partner"
+    copyright_text = "© 2026 Infraspec"
 
 [menu]
   # Main Menu

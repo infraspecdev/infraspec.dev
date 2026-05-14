@@ -1,6 +1,6 @@
 ---
 title: 'Infraspec'
-meta_title: "Infraspec - DevOps & SRE Consulting"
+meta_title: "Infraspec - Serious AI Engineering"
 intro_image: "images/illustrations/pointing.svg"
 intro_image_absolute: true
 intro_image_hide_on_mobile: true
@@ -9,6 +9,6 @@ sitemap:
     priority: 1
 ---
 
-# Your Infrastructure and Reliability partner
+# Serious AI engineering
 
-We are team of engineers helping you navigate your daily DevOps and SRE needs. Delivering high impact transformational work. Focusing on outcome over output.
+Your engineers know the product. We bring the AI depth they don't have time to build in-house, embedded directly in your team, shipping working software from week one, not strategy documents.
