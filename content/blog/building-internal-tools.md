@@ -1,6 +1,7 @@
 ---
 title: "Building internal tooling in legacy systems"
 authorIds: ["abhishek"]
+authors: ["abhishek"]
 date: 2024-04-11
 draft: false
 featured: true
@@ -8,6 +9,7 @@ weight: 1
 sitemap:
 changefreq: 'monthly'
 priority: 1
+tags: ["engineering", "legacy-systems"]
 ---
 
 
