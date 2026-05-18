@@ -5,6 +5,7 @@ date: 2024-09-10
 draft: false
 featured: true
 weight: 1
+tags: ["terragrunt", "terraform", "iac"]
 ---
 
 Managing multiple environments was a never-ending headache for me. Like many others in the DevOps world, I was responsible for deploying applications across various environments—production, staging, and development. Each of these environments required the same infrastructure, but I found myself writing the same Terraform code over and over again in different folders. The repetition felt inefficient, and the potential for human error only grew with each tweak I had to make for a specific environment.

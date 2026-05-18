@@ -5,6 +5,7 @@ date: 2024-04-21
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "secrets-manager", "security"]
 ---
 
 Automating Secret Rotation with AWS Secrets Manager

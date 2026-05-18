@@ -5,6 +5,7 @@ date: 2023-01-18
 draft: false
 featured: true
 weight: 1
+tags: ["tdd", "software-design"]
 ---
 
 Most of us think of TDD as a tool for software testing and verification. But if used effectively it is more than that.

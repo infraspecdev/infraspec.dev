@@ -5,6 +5,7 @@ date: 2022-12-15
 draft: false
 featured: true
 weight: 1
+tags: ["networking", "home-lab", "failover"]
 ---
 An overview of how to set up internet failover for an office or home lab.
 

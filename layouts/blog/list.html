@@ -10,10 +10,44 @@
 </div>
 
 <div class="container pt-6 pb-6">
-  <div class="row">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <form action="{{ .Permalink }}" method="get" class="blog-filter-form">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="tag-select">Filter by Tag</label>
+              <select name="tag" id="tag-select" class="form-control">
+                <option value="">All Tags</option>
+                {{ range .Site.Taxonomies.tags.ByCount }}
+                <option value="{{ .Name }}">{{ .Name }} ({{ .Count }})</option>
+                {{ end }}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="author-select">Filter by Author</label>
+              <select name="author" id="author-select" class="form-control">
+                <option value="">All Authors</option>
+                {{ range $authorId, $authorData := .Site.Data.team }}
+                <option value="{{ $authorId }}">{{ $authorData.name }}</option>
+                {{ end }}
+              </select>
+            </div>
+          </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container pt-6 pb-6">
+  <div class="row" id="blog-list">
     {{ $paginator := .Paginate .Pages }}
     {{ range $paginator.Pages }}
-    <div class="col-12">
+    <div class="col-12 blog-post">
       <div>{{ .Render "summary" }}</div>
     </div>
     {{ end }}
@@ -22,4 +56,32 @@
     {{ partial "pagination.html" . }}
   </div>
 </div>
+
+<script>
+  const tagSelect = document.getElementById('tag-select');
+  const authorSelect = document.getElementById('author-select');
+  const blogPosts = document.querySelectorAll('.blog-post');
+
+  function filterPosts() {
+    const selectedTag = tagSelect.value;
+    const selectedAuthor = authorSelect.value;
+
+    blogPosts.forEach(post => {
+      const postTags = post.querySelector('.service-summary').dataset.tags.split(' ');
+      const postAuthors = post.querySelector('.service-summary').dataset.authorids.split(' ');
+
+      const tagMatch = selectedTag === '' || postTags.includes(selectedTag);
+      const authorMatch = selectedAuthor === '' || postAuthors.includes(selectedAuthor);
+
+      if (tagMatch && authorMatch) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+  }
+
+  tagSelect.addEventListener('change', filterPosts);
+  authorSelect.addEventListener('change', filterPosts);
+</script>
 {{ end }}

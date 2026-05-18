@@ -5,6 +5,7 @@ date: 2022-12-15
 draft: false
 featured: true
 weight: 1
+tags: ["dns", "migration"]
 ---
 
 Never trust a friend who says DNS migration is easy. Your instinct says it's easy, well don't trust your instinct. In this post, I will be sharing my experience with one such encounter with DNS migration from GoDaddy to Route53.

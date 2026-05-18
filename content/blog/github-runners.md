@@ -5,6 +5,7 @@ date: 2024-04-25
 draft: false
 featured: true
 weight: 1
+tags: ["github", "ci-cd", "automation"]
 ---
 
 # Introduction
