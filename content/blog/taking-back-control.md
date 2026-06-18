@@ -10,6 +10,8 @@ weight: 1
 The story of every growing system is fundamentally a story about losing and
 regaining control.
 
+<!--more-->
+
 ## Act I: The Illusion of Control
 
 When the product is still in its inception and the team consists of a couple of engineers,

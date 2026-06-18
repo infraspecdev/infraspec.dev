@@ -73,16 +73,22 @@ enableRobotsTXT = false
     url = "/blog/"
     weight = 1
     paginate = 6
+    [menu.main.params]
+      description = "Technical engineering insights, deep dives, and system architecture articles."
 
   [[menu.main]]
     name = "Team"
     url = "/team/"
     weight = 2
+    [menu.main.params]
+      description = "The people behind Infraspec."
 
   [[menu.main]]
     name = "Careers"
     url = "/careers/"
     weight = 3
+    [menu.main.params]
+      description = "Open engineering roles and opportunities at Infraspec."
 
   # Footer Menu
   [[menu.footer]]
@@ -94,3 +100,12 @@ enableRobotsTXT = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[outputFormats.txt]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS"]
