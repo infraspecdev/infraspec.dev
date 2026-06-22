@@ -29,7 +29,7 @@ enableRobotsTXT = false
   # A role with e.g. `form: 'marketing'` uses the matching URL below; roles without a
   # `form` key fall back to careersFormUrl with the role title auto-filled.
   [params.careersForms]
-    marketing-role = "https://forms.gle/DbkgCcuYRm9597KT8"
+    marketing-role = "https://forms.gle/MPxWVDAL2Adi4N6Q7"
 
   [params.homepage]
     show_contact_box = true      # show / hide the contact box on the homepage
