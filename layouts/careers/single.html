@@ -13,7 +13,12 @@
       <div class="content career-single-content">{{ .Params.details | markdownify }}</div>
 
       <div class="career-apply-cta mt-4">
-        <a href="{{ .Site.Params.careersFormUrl }}?usp=pp_url&{{ .Site.Params.careersFormRoleEntry }}={{ .Title | urlquery }}" target="_blank" rel="noopener noreferrer" class="button button-primary">Apply Now</a>
+        {{/* Use a role-specific form (front matter `form` key) if set, else the default form with the role auto-filled. */}}
+        {{ $applyUrl := printf "%s?usp=pp_url&%s=%s" .Site.Params.careersFormUrl .Site.Params.careersFormRoleEntry (.Title | urlquery) }}
+        {{ with .Params.form }}
+          {{ $applyUrl = index $.Site.Params.careersForms . }}
+        {{ end }}
+        <a href="{{ $applyUrl }}" target="_blank" rel="noopener noreferrer" class="button button-primary">Apply Now</a>
       </div>
     </div>
 

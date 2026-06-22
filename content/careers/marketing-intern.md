@@ -3,6 +3,7 @@ title: 'Marketing Intern'
 location: 'Domlur, Bangalore (In-Office)'
 weight: 5
 draft: false
+form: 'marketing-role'
 details: |
   We aren't your typical IT services shop. We're an AI-first product and platform engineering collective built by builders, for builders. We're building a collaborative home where elite engineering meets high-growth ambition — and we need your help making that vision unmistakable to the world.
 
