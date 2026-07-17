@@ -74,8 +74,6 @@ We went back to the attendant tests expecting them to cover this. That is when t
 
 **Some states could not be created at all.** How should the attendant behave when a lot goes offline, or enters maintenance? The real `ParkingLot` has no such state to begin with, so those paths inside the attendant simply could not be tested.
 
-
-
 ## What kind of test were we actually writing
 
 The intent was to write unit tests for the attendant. What we actually wrote was something in between, part unit test and part integration test, without noticing it. The mistake was not really in the code. It was that we did not have a clear enough idea of what makes something a unit test versus an integration test, so the two got mixed together without us noticing.
