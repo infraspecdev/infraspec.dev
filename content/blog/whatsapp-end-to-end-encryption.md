@@ -7,8 +7,6 @@ featured: true
 weight: 1
 ---
 
-# How WhatsApp Ensures Only the Recipient Can Read Your Messages
-
 Every day, billions of messages are exchanged over WhatsApp. These messages travel through Wi-Fi routers, Internet Service Providers (ISPs), mobile towers, and WhatsApp's own servers before reaching the recipient.
 
 Yet, despite all these intermediaries, WhatsApp claims that **only the sender and the recipient can read the messages**. Not WhatsApp. Not your ISP. Not someone intercepting your network traffic.
@@ -298,28 +296,37 @@ Behind every "Hi", "How are you?", or "See you tomorrow" is a carefully engineer
 ## Glossary
 
 ### ECDH (Elliptic Curve Diffie–Hellman)
+
 A key exchange algorithm that allows two devices to independently compute the same shared secret without ever transmitting it over the network.
 
 ### HKDF (HMAC-based Key Derivation Function)
+
 A cryptographic function that derives one or more strong encryption keys from a shared secret.
 
 ### AES-GCM
+
 A mode of operation for AES that provides both confidentiality (encryption) and integrity (tamper detection).
 
 ### IV (Initialization Vector) / Nonce
+
 A unique value used during encryption to ensure that encrypting the same plaintext twice produces different ciphertext. It is transmitted alongside the ciphertext and does not need to remain secret.
 
 ### Double Ratchet Algorithm
+
 The key management algorithm used by the Signal Protocol that derives a fresh message key for every encrypted message, providing forward secrecy and post-compromise security.
 
 ### Shared Secret
+
 A secret value independently computed by two devices during ECDH. Both devices compute the same value without ever sending it across the network.
 
 ### Forward Secrecy
+
 A security property where compromising a current encryption key does not allow an attacker to decrypt previously sent messages.
 
 ### Signal Protocol
+
 The end-to-end encryption protocol used by WhatsApp. It combines ECDH, HKDF, the Double Ratchet Algorithm, and AES-GCM to provide secure messaging.
 
 ### End-to-End Encryption (E2EE)
+
 A communication model in which only the sender and the intended recipient can decrypt the messages. Intermediate servers can forward encrypted data but cannot decrypt or read its contents.
