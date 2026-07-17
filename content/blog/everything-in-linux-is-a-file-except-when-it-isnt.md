@@ -20,7 +20,7 @@ Here's what it actually means: Linux lets you use the same four simple actions �
 
 That idea is old — it comes from the very first version of Unix, the operating system Linux is based on. The people who built it made a smart choice: instead of giving every device its own special controls, give everything a name (like a file name) and let you open, read, write, and close it, just like a text file.
 
-![Linux File Abstraction](/static/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/unified-file-interface.jpeg)
+![Linux File Abstraction](/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/unified-file-interface.jpeg)
 
 ## Where the Trick Really Works
 
@@ -46,7 +46,7 @@ dd if=/dev/sda of=backup.img bs=4M   # copies the whole disk
 
 Now here's where it gets fun. Linux also has folders that aren't real files at all — they're more like windows into the running system, created fresh every time you look.
 
-![VFS Directory Overview](/static/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/vfs-directory-overview.jpeg)
+![VFS Directory Overview](/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/vfs-directory-overview.jpeg)
 
 For example, `/proc` shows you live information about every running program:
 
@@ -109,7 +109,7 @@ But to actually *change* something — like giving it a new IP address — you d
 
 **The settings a program starts with also skip files completely.** They're just handed to the program directly when it starts — never written to or read from a file, by anyone, ever.
 
-![VFS Directory Overview](/static/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/not-everything-is-file.jpeg)
+![VFS Directory Overview](/images/blog/everything-in-linux-is-a-file-except-when-it-isnt/not-everything-is-file.jpeg)
 
 ## So What's Actually True?
 
