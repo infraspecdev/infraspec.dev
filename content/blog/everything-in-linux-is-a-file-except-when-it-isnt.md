@@ -12,7 +12,7 @@ This is a simple story about a famous Linux saying — and where it stops being 
 
 If you've used Linux for more than five minutes, you've probably heard this line:
 
-**"In Linux, everything is a file."**
+"In Linux, everything is a file."
 
 It sounds like a magic rule. Your hard disk? A file. Your keyboard? A file. A running program? Also a file, somehow.
 
