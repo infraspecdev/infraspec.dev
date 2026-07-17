@@ -1,7 +1,7 @@
 ---
 title: "Everything in Linux Is a File... Except When It Isn't"
 authorIds: ["venkidesh"]
-date: 2024-06-21
+date: 2026-07-17
 draft: false
 featured: true
 weight: 1
