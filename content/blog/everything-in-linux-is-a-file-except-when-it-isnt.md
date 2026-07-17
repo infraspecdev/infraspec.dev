@@ -6,7 +6,7 @@ draft: false
 featured: true
 weight: 1
 ---
-*A simple story about a famous Linux saying — and where it stops being true.*
+This is a simple story about a famous Linux saying — and where it stops being true.
 
 ## The Famous Saying
 
@@ -35,13 +35,13 @@ brw-rw---- 1 root disk 8, 0   /dev/sda
 `/dev/null` looks like a file, but it's really a doorway into the kernel — anything you send there just disappears.
 
 ```bash
-$ echo "bye bye" > /dev/null      # gone forever
+echo "bye bye" > /dev/null      # gone forever
 ```
 
 `/dev/sda` looks like a file too, but it's actually your entire hard disk. You can copy your whole disk with one command, because to Linux, a disk is just another "file" you can read from.
 
 ```bash
-$ dd if=/dev/sda of=backup.img bs=4M   # copies the whole disk
+dd if=/dev/sda of=backup.img bs=4M   # copies the whole disk
 ```
 
 Now here's where it gets fun. Linux also has folders that aren't real files at all — they're more like windows into the running system, created fresh every time you look.
