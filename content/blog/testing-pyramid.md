@@ -74,9 +74,7 @@ We went back to the attendant tests expecting them to cover this. That is when t
 
 **Some states could not be created at all.** How should the attendant behave when a lot goes offline, or enters maintenance? The real `ParkingLot` has no such state to begin with, so those paths inside the attendant simply could not be tested.
 
-**Only the outcome was visible, not the decision.** We could confirm a car ended up parked. We could not confirm whether the attendant had checked availability first, or whether it handled an error response the right way. The test told us what happened at the end, not whether the logic behind it was right.
 
-These four gaps have names: isolation, determinism, completeness, and observability. They are different failure modes with one common cause: the test depends on a real collaborator it cannot control.
 
 ## What kind of test were we actually writing
 
@@ -92,9 +90,10 @@ Tests differ by how many real components they let run, and that difference decid
 
 **End to End tests** runs the whole system the way a user would touch it. It gives the highest confidence that the real thing works, at the cost of being the slowest to run and the hardest to debug, since a failure could be coming from anywhere in the chain.
 
-This is why the three form a pyramid, and it is not just a rule of thumb about proportions, it follows directly from what each layer can and cannot do. Unit tests are cheap and precise, so you want as much logic covered there as possible, many of them, at the base. Integration tests are more expensive and answer a coarser question, so you want just enough to confirm the seams actually connect, fewer of them, in the middle. End to end tests are the most expensive and least specific about why something failed, so they are kept for the paths that matter most to a user, fewest, at the top.
+Combined together, they form a pyramid. That shape is not just a rule of thumb about proportions, it follows directly from what each layer can and cannot do. Unit tests are cheap and precise, so you want as much logic covered there as possible: many of them, at the base. Integration tests are more expensive and answer a coarser question, so you only need enough to confirm the seams actually connect: fewer of them, in the middle. End to end tests are the most expensive and the least specific about why something failed, so they are kept for the paths that matter most to a user: fewest, at the top.
 
 Put as questions, each layer is asking something different:
+
 - Unit: is this piece of logic correct, given inputs I control?
 - Integration: do these real classes work together correctly?
 - End to end: does the system, as a whole, do what the user needs?
@@ -134,11 +133,12 @@ func (f *fakeLot) Park(car Car) error {
 }
 ```
 
-Now each problem from before has a direct answer. 
+Now each problem from before has a direct answer.
+
 - A bug in `ParkingLot` now fails parking lot tests, not attendant tests.
-- Testing the full lot case means setting `full: true` on the fake, no real capacity involved. 
-- Testing error handling means returning an error from the fake, no real failure needed. 
-- And checking call order means inspecting `calls`. 
+- Testing the full lot case means setting `full: true` on the fake, no real capacity involved.
+- Testing error handling means returning an error from the fake, no real failure needed.
+- And checking call order means inspecting `calls`.
 
 The integration test still exists, but it lives at the right layer and tests the right question: do the real `Attendant` and real `ParkingLot` work together? That is worth one test, not the main coverage for both types.
 
@@ -156,8 +156,8 @@ When the multistory lot requirement arrives, we implement `Lot` and pass it in. 
 
 ## The takeaway
 
-This was not really about parking lots. The same thing could happen in any codebase. A class depends on another class, that dependency gets hardwired in as a concrete struct instead of an interface, and nobody notices because the tests still pass. A controller depends directly on a service. A handler depends directly on a database client. A scheduler depends directly on one specific job runner. The names change, the shape stays the same, and the test suite stays green the whole time because it is quietly testing two things glued together instead of one thing on its own.
+This was not just about parking lots. The same pattern could show up in any codebase: a class depends on another class, that dependency gets hardwired in as a concrete type instead of an interface, and nobody notices because the tests still pass.
 
-The fix is simple to describe: find the one behavior the dependent class actually needs, turn it into an interface, and let unit tests use a fake version of it instead of the real thing. Keep one real combination around as an integration test, just to prove the two sides actually connect, and let it stay small.
+The fix: find the one behavior the dependent class actually needs, turn it into an interface, and let unit tests use a fake version of it. Keep one real combination as an integration test, just to prove the two sides actually connect.
 
-But the real fix is a habit, not a technique. Before trusting a green test, ask what it is actually testing. If the answer includes more than one real class, it is probably not a unit test, no matter what folder it lives in. A test that passes because two things happened to work together is not the same as a test that passes because the logic underneath is correct. Learning to tell those two apart, before a requirement forces the question, is what keeps a test suite honest.
+The habit worth keeping is simpler than the fix. Before trusting a green test, ask what it is actually testing. If the answer involves more than one real class, it is probably not a unit test, no matter what folder it lives in. A test that passes because two things happened to work together is not the same as a test that passes because the logic underneath is correct. Learning to tell those two apart, before a requirement forces the question, is what keeps a test suite honest.
