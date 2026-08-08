@@ -5,6 +5,7 @@ date: 2025-04-21
 draft: false
 featured: true
 weight: 1
+tags: ["software-development", "philosophy"]
 ---
 
 We as Engineers often chase perfection.

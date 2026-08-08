@@ -5,6 +5,7 @@ date: 2024-11-22
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "cdk", "multi-tenancy"]
 ---
 In this blog, I will be taking you on a journey of building the scalable and efficient IAC solution that we build for our multi-tenant system. Here we are not going to debate why we chose the CDK; that will be another discussion that can be highlighted in another blog. Instead, how we approached solving using AWS CDK is going to be discussed in this blog. Even if you are not very familiar with CDK, this blog can help to build a mental model of how we can think while writing the code for the infrastructure of such a complex system.
 

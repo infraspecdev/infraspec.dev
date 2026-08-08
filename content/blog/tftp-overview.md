@@ -5,6 +5,7 @@ date: 2024-04-19
 draft: false
 featured: true
 weight: 1
+tags: ["tftp", "networking"]
 ---
 
 ## TFTP protocol overview

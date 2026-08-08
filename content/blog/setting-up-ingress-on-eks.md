@@ -5,6 +5,7 @@ date: 2022-11-30
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "eks", "kubernetes", "ingress"]
 ---
 
 > **Note**: Everything here applies to [Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/). If you are running on another cloud, on-prem, with minikube, or something else, these will be slightly different.

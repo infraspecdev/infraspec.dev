@@ -5,6 +5,7 @@ date: 2022-11-20
 draft: false
 featured: true
 weight: 1
+tags: ["docker", "networking", "containers"]
 ---
 
 In part 2 of this series, we will demystify how multiple containers running on the same host communicates with the host and vice versa.

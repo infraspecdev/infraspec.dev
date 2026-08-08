@@ -5,6 +5,7 @@ date: 2024-08-06
 draft: false
 featured: true
 weight: 1
+tags: ["terraform", "aws", "secrets-management"]
 ---
 
 Imagine you're working on a project where you need to deploy resources to aws using terraform. In a rush to get things done, you decide to hard-code your AWS credentials directly into your Terraform files. Everything works fine at first, and your resources are successfully deployed. But a few weeks later, you discover that your Terraform repository was accidentally made public. Suddenly, your AWS credentials are exposed to the entire internet. Exposing your credentials can lead to unauthorized access to your AWS account, leading to serious security problems.

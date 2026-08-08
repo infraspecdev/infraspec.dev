@@ -5,6 +5,7 @@ date: 2024-05-27
 draft: false
 featured: true
 weight: 1
+tags: ["argo", "kubernetes", "traffic-routing"]
 ---
 
 This blog explores how to use Argo Rollouts for deploying software updates smoothly. It covers the challenges faced when rolling back updates and introduces header-based routing to manage traffic during deployments.

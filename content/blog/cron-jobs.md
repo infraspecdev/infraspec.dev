@@ -5,6 +5,7 @@ date: 2024-04-15
 draft: false
 featured: true
 weight: 1
+tags: ["cron", "linux", "automation"]
 ---
 ___
 <img src="/images/blog/cron-jobs/cron-jobs-cover.png" alt="Cron Jobs cover" width="100%">

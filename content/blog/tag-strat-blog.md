@@ -5,6 +5,7 @@ date: 2024-07-29
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "tagging", "strategy"]
 ---
 
 ## Introduction

@@ -5,6 +5,7 @@ date: 2024-04-22
 draft: false
 featured: true
 weight: 1
+tags: ["aws", "secrets-manager", "security"]
 ---
 
 In [Part 1](/blog/securing-and-rotating-secrets-with-aws-secrets-manager-part-1/), we discussed upon configuring AWS Secrets Manager, AWS Lambda, and Automatic Rotation for our Secret. We also defined permissions for our Lambda function, which enabled the Secrets Manager to invoke it on a scheduled basis. In Part 2, we will focus on setting up the Lambda function, including the required permissions and implementation.

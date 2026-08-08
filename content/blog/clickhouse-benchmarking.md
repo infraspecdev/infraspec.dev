@@ -5,6 +5,7 @@ date: 2024-10-21
 draft: false
 featured: true
 weight: 1
+tags: ["clickhouse", "benchmarking", "database"]
 ---
 
 Imagine being a Formula One driver, racing at breakneck speeds, but without any telemetry data to guide you. It’s a thrilling ride, but one wrong turn or an overheating engine could lead to disaster. Just like a pit crew relies on performance metrics to optimize the car's speed and handling, we rely on observability in ClickHouse to monitor the health of our data systems for storing and querying logs. These metrics provide crucial insights, allowing us to identify bottlenecks, prevent outages, and fine-tune performance, ensuring our data engine runs as smoothly and efficiently as a championship-winning race car.

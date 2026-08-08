@@ -8,6 +8,7 @@ weight: 1
 sitemap:
 changefreq: "monthly"
 priority: 1
+tags: ["cache", "performance"]
 ---
 
 ## What is Caching?

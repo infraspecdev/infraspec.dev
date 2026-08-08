@@ -5,6 +5,7 @@ date: 2024-04-17
 draft: false
 featured: true
 weight: 1
+tags: ["raspberry-pi", "netboot", "automation"]
 ---
 
 In this blog, we'll delve into automating the netbooting process using a bash script (`pxeService.sh`) and an address list (`addresslist.txt`) to enhance the deployment and management of Raspberry Pi devices. If you haven't already, you can catch up on the initial steps and concepts discussed [here](https://www.infraspec.dev/blog/rpi-netboot-deep-dive/), where we laid the groundwork for this automation project.

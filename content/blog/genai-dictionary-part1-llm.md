@@ -8,6 +8,7 @@ weight: 1
 sitemap:
 changefreq: "monthly"
 priority: 1
+tags: ["genai", "llm", "ai"]
 ---
 
 We bring to you this weekly series of articles, to help understand and demystify the lexicon in the GenAI space.
