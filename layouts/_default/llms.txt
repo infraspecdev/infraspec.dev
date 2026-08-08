@@ -1,0 +1,27 @@
+{{- $baseURL := .Site.BaseURL -}}
+{{- $posts := where .Site.RegularPages "Section" "blog" -}}
+{{- $posts = $posts | first 5 -}}
+# {{ .Site.Title }}
+
+> {{ .Site.Params.seo.meta_description }}
+
+## Core Offerings
+- [AI Native Software Delivery]({{ $baseURL }}ai-native-software-delivery/): We deliver working software fast, and the quality holds. The reason is harness engineering, the scaffolding most teams defer, which we treat as first-class work, not an afterthought.
+- [Agentic AI]({{ $baseURL }}agentic-ai/): We build agents that go into production and stay there. End-to-end design, deployment and ongoing upkeep, with human oversight wherever automation shouldn't have the final word.
+- [Platform Engineering]({{ $baseURL }}platform-engineering/): We build the engineering foundations that let your teams move fast today and scale without pain tomorrow. Cloud-native, AI-ready and designed not to get in the way.
+
+## Core Pages
+{{- range .Site.Menus.main }}
+- [{{ .Name }}]({{ .URL | absURL }}): {{ .Params.description }}
+{{- end }}
+
+## Recent Engineering Posts
+{{- range $posts }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description | default (.Summary | plainify | htmlUnescape) }}
+{{- end }}
+
+## Links
+- [Contact](mailto:hey@infraspec.dev): Direct company query address.
+- [GitHub](https://github.com/infraspecdev): Code repositories and public tooling.
+- [Twitter](https://twitter.com/infraspecdev): Engineering updates and announcements.
+- [LinkedIn](https://linkedin.com/company/infraspecdev): Company profile and team updates.
