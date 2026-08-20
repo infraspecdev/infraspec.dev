@@ -41,7 +41,7 @@ enableRobotsTXT = false
     mobile_height = "32px"
     desktop = "images/logo/infraspec-logo.svg"
     desktop_height = "28px"
-    alt = "Infraspec - Serious AI Engineering"
+    alt = "Infraspec - Your Observability and Reliability partner"
 
   [params.fonts]
     # Sets the google font link in layouts/partials/google-fonts.html
@@ -60,8 +60,8 @@ enableRobotsTXT = false
     meta_twitter_site = "@infraspec_dev"
     meta_twitter_creator = "@infraspec_dev"
     meta_og_image = ""
-    meta_description = "Infraspec delivers serious AI engineering for growing teams. Forward deployed engineers embedded in your team, shipping working software from week one."
-    meta_keywords = "AI engineering, agentic AI, platform engineering, AI native software delivery, forward deployed engineers, embedded engineering team, technology consulting Bengaluru, infraspec, infraspec dev"
+    meta_description = "Infraspec is your observability and reliability partner. Forward deployed engineers embedded in your team, cutting alert noise and shortening incidents from week one."
+    meta_keywords = "observability, reliability engineering, SRE, monitoring and alerting, incident response, platform engineering, forward deployed engineers, embedded engineering team, technology consulting Bengaluru, infraspec, infraspec dev"
 
   [params.services]
     summary_truncate = 120 # How many characters to include in the summary of the service descriptions before truncating
