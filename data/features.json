@@ -1,15 +1,15 @@
 [
   {
-    "title": "AI Native Software Delivery",
-    "tagline": "We deliver working software fast, and the quality holds. The reason is harness engineering, the scaffolding most teams defer, which we treat as first-class work, not an afterthought.",
-    "short_description": "We deliver working software fast, and the quality holds. The reason is harness engineering, the scaffolding most teams defer, which we treat as first-class work, not an afterthought.",
-    "image": "images/features/product-engineering.svg"
+    "title": "Observability",
+    "tagline": "We make your systems answer questions instead of just raising alarms. Instrumentation, sane dashboards and alerts that fire on what users actually feel, so on-call stops guessing.",
+    "short_description": "We make your systems answer questions instead of just raising alarms. Instrumentation, sane dashboards and alerts that fire on what users actually feel, so on-call stops guessing.",
+    "image": "images/features/devops-icon.svg"
   },
   {
-    "title": "Agentic AI",
-    "tagline": "We build agents that go into production and stay there. End-to-end design, deployment and ongoing upkeep, with human oversight wherever automation shouldn't have the final word.",
-    "short_description": "We build agents that go into production and stay there. End-to-end design, deployment and ongoing upkeep, with human oversight wherever automation shouldn't have the final word.",
-    "image": "images/features/agentic-ai.svg"
+    "title": "Reliability Engineering",
+    "tagline": "We build confidence in production through SRE practice: error budgets, incident response that improves after every incident, and resilience work done before the outage, not after.",
+    "short_description": "We build confidence in production through SRE practice: error budgets, incident response that improves after every incident, and resilience work done before the outage, not after.",
+    "image": "images/features/sre-reliability.svg"
   },
   {
     "title": "Platform Engineering",
